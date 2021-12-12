@@ -18,6 +18,13 @@ module.exports = {
         href: '//img.alicdn.com/imgextra/i3/O1CN01XtT3Tv1Wd1b5hNVKy_!!6000000002810-55-tps-360-360.svg',
       },
     ],
+    [
+      'link',
+      {
+        rel: 'stylesheet',
+        href: 'https://unpkg.com/ant-design-vue@1.7.8/dist/antd.css',
+      },
+    ],
   ],
   themeConfig: {
     logo: '//img.alicdn.com/imgextra/i2/O1CN01Kq3OHU1fph6LGqjIz_!!6000000004056-55-tps-1141-150.svg',
@@ -53,4 +60,20 @@ module.exports = {
       },
     ],
   ],
+  less: {
+    modifyVars: {},
+    javascriptEnabled: true,
+  },
+  configureWebpack: (config, isServer) => {
+    return {
+      resolve: {
+        alias: {
+          '@formily/antdv': path.resolve(
+            __dirname,
+            '../../packages/components/src'
+          ),
+        },
+      },
+    }
+  },
 }
