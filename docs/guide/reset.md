@@ -18,7 +18,7 @@
 
 ## API
 
-按钮相关的 API 属性，我们参考 [https://element.eleme.io/#/zh-CN/component/button](https://element.eleme.io/#/zh-CN/component/button) 即可，剩下是 Reset 组件独有的 API 属性
+按钮相关的 API 属性，我们参考 [https://antdv.com/components/button-cn](https://antdv.com/components/button-cn) 即可，剩下是 Reset 组件独有的 API 属性
 
 ### 事件
 

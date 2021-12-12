@@ -3,7 +3,7 @@
     "node": true
   },
   "extends": [
-    "plugin:vue/vue3-recommended",
+    "plugin:vue/vue3-essential",
     "plugin:@typescript-eslint/recommended",
     "prettier/@typescript-eslint"
   ],
