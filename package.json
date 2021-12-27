@@ -53,6 +53,8 @@
     "eslint-plugin-promise": "^4.0.0",
     "eslint-plugin-vue": "^7.20.0",
     "ghooks": "^2.0.4",
+    "jest": "^27.4.5",
+    "jest-dom": "^4.0.0",
     "lerna": "^4.0.0",
     "less": "^4.1.2",
     "less-loader": "^5.0.0",
