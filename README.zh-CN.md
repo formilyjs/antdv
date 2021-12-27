@@ -6,7 +6,7 @@
 <img src="https://img.shields.io/npm/dm/@formily/antdv"/>
 <a href="https://www.npmjs.com/package/@formily/antdv"><img src="https://img.shields.io/npm/v/@formily/antdv.svg"></a>
 <a href="https://codecov.io/gh/formilyjs/antdv">
-  <img src="https://codecov.io/gh/formilyjs/antdv/branch/master/graph/badge.svg?token=3V9RU8Wh9d"/>
+  <img src="https://codecov.io/gh/formilyjs/antdv/branch/main/graph/badge.svg?token=3V9RU8Wh9d"/>
 </a>
 <img alt="PRs Welcome" src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg"/>
 <a href="https://github.com/actions-cool/issues-helper">
@@ -18,7 +18,7 @@
 
 ## 概要
 
-这是一个结合了 Formily & ant-design-vue的超酷组件库.
+这是一个结合了 Formily & ant-design-vue 的超酷组件库.
 
 ## 特性
 
