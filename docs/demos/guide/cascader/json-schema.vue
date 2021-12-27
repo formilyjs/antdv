@@ -66,7 +66,7 @@ const schema = {
         },
       },
       'x-reactions': [
-        '{{useAsyncDataSource("//unpkg.com/china-location/dist/location.json",transformAddress)}}',
+        '{{useAsyncDataSource("https://unpkg.com/china-location/dist/location.json",transformAddress)}}',
       ],
     },
   },
