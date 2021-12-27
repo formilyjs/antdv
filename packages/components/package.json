@@ -44,9 +44,19 @@
       "optional": true
     }
   },
-  "dependencies": {},
+  "dependencies": {
+    "@formily/core": "^2.0.7",
+    "@formily/grid": "^2.0.7",
+    "@formily/json-schema": "^2.0.7",
+    "@formily/reactive": "^2.0.7",
+    "@formily/reactive-vue": "^2.0.7",
+    "@formily/shared": "^2.0.7",
+    "@formily/vue": "^2.0.7",
+    "portal-vue": "^2.1.7",
+    "vue-slicksort": "^1.2.0"
+  },
   "devDependencies": {
-    "vue": "^2.6.14",
-    "ant-design-vue": "^1.7.8"
+    "ant-design-vue": "^1.7.8",
+    "vue": "^2.6.14"
   }
 }

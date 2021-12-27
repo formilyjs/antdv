@@ -1,12 +1,11 @@
 import type { Component } from 'vue'
+import type { InjectionKey, Ref } from '@vue/composition-api'
 import {
   defineComponent,
   provide,
   inject,
   readonly,
-  InjectionKey,
   ref,
-  Ref,
   toRef,
 } from '@vue/composition-api'
 

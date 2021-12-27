@@ -7,8 +7,7 @@
         x-decorator="FormItem"
         x-component="Select"
         :x-component-props="{
-          filterable: true,
-          remote: true,
+          showSearch: true,
           style: {
             width: '240px',
           },
@@ -56,8 +55,10 @@ const useAsyncDataSource = (pattern, service) => {
 
   onFieldInit(pattern, (field) => {
     field.setComponentProps({
-      remoteMethod: (value) => {
-        keyword.value = value
+      onSearch: (value) => {
+        if (value) {
+          keyword.value = value
+        }
       },
     })
   })

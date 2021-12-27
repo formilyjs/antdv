@@ -16,4 +16,4 @@
 
 ## API
 
-参考 [https://element.eleme.io/#/zh-CN/component/input-number](https://element.eleme.io/#/zh-CN/component/input-number)
+参考 [https://antdv.com/components/input-number-cn/](https://antdv.com/components/input-number-cn/)

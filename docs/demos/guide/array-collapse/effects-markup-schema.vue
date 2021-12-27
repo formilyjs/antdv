@@ -11,10 +11,10 @@
         }"
       >
         <SchemaObjectField
-          x-component="ArrayCollapse.Item"
+          x-component="ArrayCollapse.CollapsePanel"
           x-decorator="FormItem"
           :x-component-props="{
-            title: '对象数组',
+            header: '对象数组',
           }"
         >
           <SchemaVoidField x-component="ArrayCollapse.Index" />

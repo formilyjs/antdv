@@ -1,0 +1,29 @@
+@import '../__builtins__/styles/common.less';
+
+.@{formily-prefix}-form-drawer {
+  .@{ant-prefix}-drawer-wrapper-body {
+    display: flex;
+    flex-direction: column;
+  }
+  .@{ant-prefix}-drawer-body {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    padding: 0;
+    overflow: auto;
+  }
+
+  &-body {
+    flex: 1;
+    overflow: auto;
+    padding: @drawer-body-padding;
+  }
+
+  &-footer {
+    border-top: 1px solid @border-color-base;
+    padding: @drawer-body-padding;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+  }
+}

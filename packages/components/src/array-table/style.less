@@ -1,0 +1,48 @@
+@import '../__builtins__/styles/common.less';
+
+@array-table-prefix-cls: ~'@{formily-prefix}-array-table';
+
+.@{array-table-prefix-cls} {
+  .@{array-table-prefix-cls}-pagination {
+    display: flex;
+    justify-content: center;
+
+    .@{array-table-prefix-cls}-status-select.has-error {
+      .@{ant-prefix}-select-selector {
+        border-color: @error-color !important;
+      }
+    }
+  }
+
+  .@{ant-prefix}-table {
+    td {
+      visibility: visible;
+
+      .@{formily-prefix}-form-item:not(.@{formily-prefix}-form-item-feedback-layout-popover) {
+        margin-bottom: 0 !important;
+
+        .@{formily-prefix}-form-item-help {
+          position: absolute;
+          font-size: 12px;
+          top: 100%;
+          background: #fff;
+          width: 100%;
+          margin-top: 3px;
+          padding: 3px;
+          z-index: 1;
+          border-radius: 3px;
+          box-shadow: 0 0 10px #eee;
+          animation: none;
+          transform: translateY(0);
+          opacity: 1;
+        }
+      }
+    }
+  }
+
+  .@{array-table-prefix-cls}-sort-helper {
+    background: #fff;
+    border: 1px solid #eee;
+    z-index: 10;
+  }
+}

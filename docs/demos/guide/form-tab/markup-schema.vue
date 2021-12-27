@@ -10,7 +10,7 @@
           type="void"
           name="tab1"
           x-component="FormTab.TabPane"
-          :x-component-props="{ label: 'A1' }"
+          :x-component-props="{ tab: 'A1' }"
         >
           <SchemaStringField
             name="aaa"
@@ -23,7 +23,7 @@
         <SchemaVoidField
           name="tab2"
           x-component="FormTab.TabPane"
-          :x-component-props="{ label: 'A2' }"
+          :x-component-props="{ tab: 'A2' }"
         >
           <SchemaStringField
             name="bbb"
@@ -36,7 +36,7 @@
         <SchemaVoidField
           name="tab3"
           x-component="FormTab.TabPane"
-          :x-component-props="{ label: 'A3' }"
+          :x-component-props="{ tab: 'A3' }"
         >
           <SchemaStringField
             name="ccc"

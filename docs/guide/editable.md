@@ -22,10 +22,10 @@
 
 > 内联编辑
 
-参考 [https://element.formilyjs.org/guide/form-item.html#api](https://element.formilyjs.org/guide/form-item.html#api)
+参考 [https://antdv.com/components/form-cn/#Form.Item](https://antdv.com/components/form-cn/#Form.Item)
 
 ### Editable.Popover
 
 > 浮层编辑
 
-参考 [https://element.eleme.io/#/zh-CN/component/popover](https://element.eleme.io/#/zh-CN/component/popover)
+参考 [https://antdv.com/components/popover-cn/](https://antdv.com/components/popover-cn/)

@@ -27,9 +27,18 @@ export function isVueOptions(options) {
   )
 }
 
+// eslint-disable-next-line @typescript-eslint/ban-types
 export function composeExport<T0 extends {}, T1 extends {}>(
   s0: T0,
   s1: T1
 ): T0 & T1 {
   return Object.assign(s0, s1)
+}
+
+export function isEmptyElement(c) {
+  return !(c.tag || (c.text && c.text.trim() !== ''))
+}
+
+export function filterEmpty(children = []) {
+  return children.filter((c) => !isEmptyElement(c))
 }

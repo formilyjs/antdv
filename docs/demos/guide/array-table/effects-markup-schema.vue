@@ -11,6 +11,10 @@
         name="array"
         x-decorator="FormItem"
         x-component="ArrayTable"
+        :x-component-props="{
+          pagination: { pageSize: 10 },
+          scroll: { x: 800 },
+        }"
       >
         <SchemaObjectField>
           <SchemaVoidField

@@ -1,8 +1,8 @@
+import type { Ref } from '@vue/composition-api'
 import {
   ref,
   defineComponent,
   onMounted,
-  Ref,
   onBeforeUnmount,
   watch,
   provide,
@@ -12,7 +12,7 @@ import { connect, mapProps, h } from '@formily/vue'
 import { useFormLayout, FormLayoutShallowContext } from '../form-layout'
 import { composeExport, resolveComponent } from '../__builtins__/shared'
 import { stylePrefix } from '../__builtins__/configs'
-import { Component } from 'vue'
+import type { Component } from 'vue'
 import { Tooltip } from 'ant-design-vue'
 import ResizeObserver from 'resize-observer-polyfill'
 
@@ -39,8 +39,13 @@ export type FormItemProps = {
   size?: 'small' | 'default' | 'large'
   extra?: string
   feedbackText?: string | Component
-  feedbackLayout?: 'loose' | 'terse' | 'popover' | 'none' | (string & {})
-  feedbackStatus?: 'error' | 'warning' | 'success' | 'pending' | (string & {})
+  feedbackLayout?: 'loose' | 'terse' | 'popover' | 'none' | (string & unknown)
+  feedbackStatus?:
+    | 'error'
+    | 'warning'
+    | 'success'
+    | 'pending'
+    | (string & unknown)
   tooltipLayout?: 'icon' | 'text'
   feedbackIcon?: string | Component
   asterisk?: boolean
@@ -136,7 +141,7 @@ export const FormBaseItem = defineComponent<FormItemProps>({
     bordered: { default: true },
     inset: { default: false },
   },
-  setup(props, { slots, attrs, refs }) {
+  setup(props, { slots, refs }) {
     const active = ref(false)
     const deepLayoutRef = useFormLayout()
 

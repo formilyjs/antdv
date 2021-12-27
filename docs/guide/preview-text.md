@@ -14,23 +14,23 @@
 
 ### PreviewText.Input
 
-参考 [https://element.eleme.io/#/zh-CN/component/input](https://element.eleme.io/#/zh-CN/component/input)
+参考 [https://antdv.com/components/input-cn/](https://antdv.com/components/input-cn/)
 
 ### PreviewText.Select
 
-参考 [https://element.eleme.io/#/zh-CN/component/select](https://element.eleme.io/#/zh-CN/component/select)
+参考 [https://antdv.com/components/select-cn/](https://antdv.com/components/select-cn/)
 
 ### PreviewText.Cascader
 
-参考 [https://element.eleme.io/#/zh-CN/component/cascader](https://element.eleme.io/#/zh-CN/component/cascader)
+参考 [https://antdv.com/components/cascader-cn/](https://antdv.com/components/cascader-cn/)
 
 ### PreviewText.DatePicker
 
-参考 [https://element.eleme.io/#/zh-CN/component/date-picker](https://element.eleme.io/#/zh-CN/component/date-picker)
+参考 [https://antdv.com/components/date-picker-cn/](https://antdv.com/components/date-picker-cn/)
 
 ### PreviewText.TimePicker
 
-参考 [https://element.eleme.io/#/zh-CN/component/time-picker](https://element.eleme.io/#/zh-CN/component/time-picker)
+参考 [https://antdv.com/components/time-picker-cn/](https://antdv.com/components/time-picker-cn/)
 
 ### PreviewText
 

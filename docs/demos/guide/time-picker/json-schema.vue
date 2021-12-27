@@ -24,18 +24,6 @@ const schema = {
         },
       },
     },
-    '[startTime,endTime]': {
-      title: '时间范围',
-      'x-decorator': 'FormItem',
-      'x-component': 'TimePicker',
-      'x-component-props': {
-        isRange: true,
-        style: {
-          width: '240px',
-        },
-      },
-      type: 'string',
-    },
   },
 }
 

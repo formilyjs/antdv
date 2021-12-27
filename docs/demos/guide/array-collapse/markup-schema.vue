@@ -12,9 +12,9 @@
         }"
       >
         <SchemaVoidField
-          x-component="ArrayCollapse.Item"
+          x-component="ArrayCollapse.CollapsePanel"
           :x-component-props="{
-            title: '字符串数组',
+            header: '字符串数组',
           }"
         >
           <SchemaVoidField x-component="ArrayCollapse.Index" />
@@ -43,7 +43,7 @@
         <SchemaObjectField
           x-component="ArrayCollapse.Item"
           :x-component-props="{
-            title: '对象数组',
+            header: '对象数组',
           }"
         >
           <SchemaVoidField x-component="ArrayCollapse.Index" />
@@ -75,7 +75,7 @@
         <SchemaVoidField
           x-component="ArrayCollapse.Item"
           :x-component-props="{
-            title: '字符串数组',
+            header: '字符串数组',
           }"
         >
           <SchemaVoidField x-component="ArrayCollapse.Index" />

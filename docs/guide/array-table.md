@@ -26,21 +26,13 @@
 
 > 表格组件
 
-参考 [https://element.eleme.io/#/zh-CN/component/table](https://element.eleme.io/#/zh-CN/component/table)
+参考 [https://antdv.com/components/table-cn/](https://antdv.com/components/table-cn/)
 
 ### ArrayTable.Column
 
 > 表格列
 
-参考 [https://element.eleme.io/#/zh-CN/component/table](https://element.eleme.io/#/zh-CN/component/table)
-
-扩展属性
-
-| 属性名   | 类型    | 描述     | 默认值 |
-| -------- | ------- | -------- | ------ |
-| asterisk | boolean | 星号显示 | true   |
-
-> ArrayTableColumn 会自动检查内部的 FormItem 是否必填，并自动在表头加上红色星号。如果不希望显示，可通过 `asterisk` 属性进行覆盖。
+参考 [https://antdv.com/components/table-cn/](https://antdv.com/components/table-cn/)
 
 ### ArrayTable.Addition
 
@@ -48,12 +40,13 @@
 
 扩展属性
 
-| 属性名 | 类型 | 描述 | 默认值 |
-| ------ | ---- | ---- | ------ ||
-| title | string | 文案 | |
-| method | `'push' | 'unshift'` | 添加方式 | `'push'` |
+| 属性名       | 类型    | 描述       | 默认值   |
+| ------------ | ------- | ---------- | -------- | -------- |
+| title        | string  | 文案       |          |
+| method       | `'push' | 'unshift'` | 添加方式 | `'push'` |
+| defaultValue | `any`   | 默认值     |          |
 
-其余参考 [https://element.eleme.io/#/zh-CN/component/button](https://element.eleme.io/#/zh-CN/component/button)
+其余参考 [https://antdv.com/components/button-cn/](https://antdv.com/components/button-cn/)
 
 注意：title 属性可以接收 Field 模型中的 title 映射，也就是在 Field 上传 title 也是生效的
 
@@ -65,7 +58,7 @@
 | ------ | ------ | ---- | ------ |
 | title  | string | 文案 |        |
 
-其余参考 [https://element.eleme.io/#/zh-CN/component/button](https://element.eleme.io/#/zh-CN/component/button)
+其余参考 [https://antdv.com/components/icon-cn/](https://antdv.com/components/icon-cn/)
 
 注意：title 属性可以接收 Field 模型中的 title 映射，也就是在 Field 上传 title 也是生效的
 
@@ -77,7 +70,7 @@
 | ------ | ------ | ---- | ------ |
 | title  | string | 文案 |        |
 
-其余参考 [https://element.eleme.io/#/zh-CN/component/button](https://element.eleme.io/#/zh-CN/component/button)
+其余参考 [https://antdv.com/components/icon-cn/](https://antdv.com/components/icon-cn/)
 
 注意：title 属性可以接收 Field 模型中的 title 映射，也就是在 Field 上传 title 也是生效的
 
@@ -89,7 +82,7 @@
 | ------ | ------ | ---- | ------ |
 | title  | string | 文案 |        |
 
-其余参考 [https://element.eleme.io/#/zh-CN/component/button](https://element.eleme.io/#/zh-CN/component/button)
+其余参考 [https://antdv.com/components/icon-cn/](https://antdv.com/components/icon-cn/)
 
 注意：title 属性可以接收 Field 模型中的 title 映射，也就是在 Field 上传 title 也是生效的
 

@@ -9,29 +9,23 @@
       />
       <SchemaStringField
         name="week"
-        title="周"
+        title="周选择"
         x-decorator="FormItem"
-        x-component="DatePicker"
-        :x-component-props="{
-          type: 'week',
-        }"
+        x-component="DatePicker.WeekPicker"
       />
       <SchemaStringField
         name="month"
-        title="月"
+        title="月选择"
         x-decorator="FormItem"
-        x-component="DatePicker"
-        :x-component-props="{
-          type: 'month',
-        }"
+        x-component="DatePicker.MonthPicker"
       />
       <SchemaStringField
         name="year"
-        title="年"
+        title="年选择"
         x-decorator="FormItem"
         x-component="DatePicker"
         :x-component-props="{
-          type: 'year',
+          mode: 'year',
         }"
       />
       <SchemaStringField
@@ -40,43 +34,16 @@
         x-decorator="FormItem"
         x-component="DatePicker"
         :x-component-props="{
-          type: 'datetime',
+          mode: 'time',
         }"
       />
       <SchemaArrayField
-        name="dates"
-        title="多个日期"
-        x-decorator="FormItem"
-        x-component="DatePicker"
-        :x-component-props="{
-          type: 'dates',
-        }"
-      />
-      <SchemaArrayField
-        name="dateRange"
+        name="[startDate,endDate]"
         title="日期范围"
         x-decorator="FormItem"
-        x-component="DatePicker"
+        x-component="DatePicker.RangePicker"
         :x-component-props="{
-          type: 'daterange',
-        }"
-      />
-      <SchemaArrayField
-        name="monthRange"
-        title="月范围"
-        x-decorator="FormItem"
-        x-component="DatePicker"
-        :x-component-props="{
-          type: 'monthrange',
-        }"
-      />
-      <SchemaArrayField
-        name="dateTimeRange"
-        title="日期时间范围"
-        x-decorator="FormItem"
-        x-component="DatePicker"
-        :x-component-props="{
-          type: 'datetimerange',
+          showTime: true,
         }"
       />
     </SchemaField>

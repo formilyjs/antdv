@@ -26,7 +26,7 @@
 ### FormDialog
 
 ```ts pure
-import { IFormProps, Form } from '@formily/core'
+import type { IFormProps, Form } from '@formily/core'
 
 type FormDialogContentProps = { form: Form }
 

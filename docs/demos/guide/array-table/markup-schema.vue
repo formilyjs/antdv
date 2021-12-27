@@ -7,20 +7,22 @@
         x-component="ArrayTable"
         :x-component-props="{
           pagination: { pageSize: 10 },
+          scroll: { x: 800 },
         }"
       >
         <SchemaObjectField>
           <SchemaVoidField
             x-component="ArrayTable.Column"
-            :x-component-props="{ width: 80, title: 'Index' }"
-            ><SchemaVoidField
+            :x-component-props="{ width: 80, title: 'Index', align: 'center' }"
+          >
+            <SchemaVoidField
               x-decorator="FormItem"
               x-component="ArrayTable.Index"
             />
           </SchemaVoidField>
           <SchemaVoidField
             x-component="ArrayTable.Column"
-            :x-component-props="{ prop: 'a1', title: 'A1', width: 200 }"
+            :x-component-props="{ title: 'A1', dataIndex: 'a1', width: 200 }"
           >
             <SchemaStringField
               x-decorator="Editable"
@@ -42,7 +44,7 @@
           </SchemaVoidField>
           <SchemaVoidField
             x-component="ArrayTable.Column"
-            :x-component-props="{ title: 'A3' }"
+            :x-component-props="{ title: 'A3', width: 200 }"
           >
             <SchemaStringField
               name="a3"
@@ -55,8 +57,9 @@
             x-component="ArrayTable.Column"
             :x-component-props="{
               title: 'Operations',
-              prop: 'operations',
+              dataIndex: 'operations',
               width: 200,
+              fixed: 'right',
             }"
           >
             <SchemaVoidField x-component="FormItem">
@@ -83,7 +86,7 @@
     </Button>
     <Alert
       :style="{ marginTop: '10px' }"
-      title="注意：开启formily插件的页面，因为后台有数据通信，会占用浏览器算力，最好在无痕模式(无formily插件)下测试"
+      message="注意：开启formily插件的页面，因为后台有数据通信，会占用浏览器算力，最好在无痕模式(无formily插件)下测试"
       type="warning"
     />
   </FormProvider>
@@ -92,13 +95,7 @@
 <script>
 import { createForm } from '@formily/core'
 import { FormProvider, createSchemaField } from '@formily/vue'
-import {
-  Submit,
-  FormItem,
-  ArrayTable,
-  Input,
-  Editable,
-} from '@formily/antdv'
+import { Submit, FormItem, ArrayTable, Input, Editable } from '@formily/antdv'
 import { Button, Alert } from 'ant-design-vue'
 
 const fields = createSchemaField({

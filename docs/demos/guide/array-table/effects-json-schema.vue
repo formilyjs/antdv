@@ -60,6 +60,10 @@ export default {
           type: 'array',
           'x-decorator': 'FormItem',
           'x-component': 'ArrayTable',
+          'x-component-props': {
+            pagination: { pageSize: 10 },
+            scroll: { x: 800 },
+          },
           items: {
             type: 'object',
             properties: {

@@ -46,9 +46,9 @@ export default {
           'x-decorator': 'FormItem',
           items: {
             type: 'object',
-            'x-component': 'ArrayCollapse.Item',
+            'x-component': 'ArrayCollapse.CollapsePanel',
             'x-component-props': {
-              title: '字符串数组',
+              header: '字符串数组',
             },
             properties: {
               index: {
@@ -91,9 +91,9 @@ export default {
           'x-decorator': 'FormItem',
           items: {
             type: 'object',
-            'x-component': 'ArrayCollapse.Item',
+            'x-component': 'ArrayCollapse.CollapsePanel',
             'x-component-props': {
-              title: '对象数组',
+              header: '对象数组',
             },
             properties: {
               index: {
@@ -136,9 +136,9 @@ export default {
           'x-decorator': 'FormItem',
           items: {
             type: 'object',
-            'x-component': 'ArrayCollapse.Item',
+            'x-component': 'ArrayCollapse.CollapsePanel',
             'x-component-props': {
-              title: '对象数组',
+              header: '对象数组',
             },
             properties: {
               index: {

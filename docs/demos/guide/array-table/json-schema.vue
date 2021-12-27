@@ -8,13 +8,7 @@
 <script>
 import { createForm } from '@formily/core'
 import { FormProvider, createSchemaField } from '@formily/vue'
-import {
-  Submit,
-  FormItem,
-  ArrayTable,
-  Input,
-  Editable,
-} from '@formily/antdv'
+import { Submit, FormItem, ArrayTable, Input, Editable } from '@formily/antdv'
 
 const fields = createSchemaField({
   components: {
@@ -36,6 +30,10 @@ export default {
           type: 'array',
           'x-decorator': 'FormItem',
           'x-component': 'ArrayTable',
+          'x-component-props': {
+            pagination: { pageSize: 10 },
+            scroll: { x: 800 },
+          },
           items: {
             type: 'object',
             properties: {
