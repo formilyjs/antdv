@@ -1,6 +1,6 @@
 import { h } from '@formily/vue'
 import { defineComponent } from '@vue/composition-api'
-import { Space as SpaceProps } from 'ant-design-vue/types/space'
+import type { Space as SpaceProps } from 'ant-design-vue/types/space'
 import { Space } from '../space'
 import { FormBaseItem } from '../form-item'
 import { stylePrefix } from '../__builtins__/configs'

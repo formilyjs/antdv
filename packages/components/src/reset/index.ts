@@ -1,4 +1,4 @@
-import { IFieldResetOptions } from '@formily/core'
+import type { IFieldResetOptions } from '@formily/core'
 import { h, useParentForm } from '@formily/vue'
 import { observer } from '@formily/reactive-vue'
 import { defineComponent } from '@vue/composition-api'

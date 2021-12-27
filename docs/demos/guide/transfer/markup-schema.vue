@@ -6,13 +6,16 @@
         title="单选"
         x-decorator="FormItem"
         x-component="Transfer"
+        :x-component-props="{
+          render: (item) => item.title,
+        }"
         :enum="[
           {
-            label: '选项1',
+            title: '选项1',
             key: 1,
           },
           {
-            label: '选项2',
+            title: '选项2',
             key: 2,
           },
         ]"

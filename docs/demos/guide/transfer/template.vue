@@ -4,14 +4,14 @@
       name="input"
       title="单选"
       :decorator="[FormItem]"
-      :component="[Transfer]"
+      :component="[Transfer, { render: (item) => item.title }]"
       :dataSource="[
         {
-          label: '选项1',
+          title: '选项1',
           key: 1,
         },
         {
-          label: '选项2',
+          title: '选项2',
           key: 2,
         },
       ]"

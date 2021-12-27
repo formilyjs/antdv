@@ -42,11 +42,11 @@ export default {
         array: {
           type: 'array',
           'x-component': 'ArrayCollapse',
+          'x-decorator': 'FormItem',
           maxItems: 3,
-          title: '对象数组',
           items: {
             type: 'object',
-            'x-component': 'ArrayCollapse.Item',
+            'x-component': 'ArrayCollapse.CollapsePanel',
             'x-component-props': {
               header: '对象数组',
             },

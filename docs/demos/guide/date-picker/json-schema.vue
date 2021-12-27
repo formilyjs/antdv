@@ -21,29 +21,23 @@ const schema = {
     },
     week: {
       type: 'string',
-      title: '周',
+      title: '周选择',
       'x-decorator': 'FormItem',
-      'x-component': 'DatePicker',
-      'x-component-props': {
-        type: 'week',
-      },
+      'x-component': 'DatePicker.WeekPicker',
     },
     month: {
       type: 'string',
-      title: '月',
+      title: '月选择',
       'x-decorator': 'FormItem',
-      'x-component': 'DatePicker',
-      'x-component-props': {
-        type: 'month',
-      },
+      'x-component': 'DatePicker.MonthPicker',
     },
     year: {
       type: 'string',
-      title: '年',
+      title: '年选择',
       'x-decorator': 'FormItem',
       'x-component': 'DatePicker',
       'x-component-props': {
-        type: 'year',
+        mode: 'year',
       },
     },
     dateTime: {
@@ -52,44 +46,17 @@ const schema = {
       'x-decorator': 'FormItem',
       'x-component': 'DatePicker',
       'x-component-props': {
-        type: 'datetime',
+        mode: 'time',
       },
     },
-    dates: {
-      type: 'array',
-      title: '多个日期',
-      'x-decorator': 'FormItem',
-      'x-component': 'DatePicker',
-      'x-component-props': {
-        type: 'dates',
-      },
-    },
-    dateRange: {
-      type: 'string',
+    '[startDate,endDate]': {
       title: '日期范围',
       'x-decorator': 'FormItem',
-      'x-component': 'DatePicker',
+      'x-component': 'DatePicker.RangePicker',
       'x-component-props': {
-        type: 'daterange',
+        showTime: true,
       },
-    },
-    monthRange: {
       type: 'string',
-      title: '月范围',
-      'x-decorator': 'FormItem',
-      'x-component': 'DatePicker',
-      'x-component-props': {
-        type: 'monthrange',
-      },
-    },
-    dateTimeRange: {
-      type: 'string',
-      title: '日期时间范围',
-      'x-decorator': 'FormItem',
-      'x-component': 'DatePicker',
-      'x-component-props': {
-        type: 'datetimerange',
-      },
     },
   },
 }

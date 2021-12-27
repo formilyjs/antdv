@@ -16,4 +16,4 @@
 
 ## API
 
-参考 [https://element.eleme.io/#/zh-CN/component/date-picker](https://element.eleme.io/#/zh-CN/component/date-picker)
+参考 [https://antdv.com/components/date-picker-cn/](https://antdv.com/components/date-picker-cn/)

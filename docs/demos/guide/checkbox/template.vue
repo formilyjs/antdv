@@ -14,7 +14,7 @@
         { label: '选项2', value: 2 },
       ]"
       :decorator="[FormItem]"
-      :component="[Checkbox.Group, { optionType: 'button' }]"
+      :component="[Checkbox.Group]"
     >
       <template v-slot:option="{ option }">
         <div>{{ option.label }}</div>

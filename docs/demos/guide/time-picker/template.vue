@@ -14,20 +14,6 @@
         },
       ]"
     />
-    <Field
-      name="[startTime,endTime]"
-      title="时间范围"
-      :decorator="[FormItem]"
-      :component="[
-        TimePicker,
-        {
-          isRange: true,
-          style: {
-            width: '240px',
-          },
-        },
-      ]"
-    />
     <Submit @submit="log">提交</Submit>
   </FormProvider>
 </template>

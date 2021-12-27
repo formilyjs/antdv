@@ -42,8 +42,11 @@ export default {
         array: {
           type: 'array',
           'x-component': 'ArrayCards',
+          'x-decorator': 'FormItem',
           maxItems: 3,
-          title: '对象数组',
+          'x-component-props': {
+            title: '对象数组',
+          },
           items: {
             type: 'object',
             properties: {

@@ -11,8 +11,8 @@
         <SchemaVoidField
           type="void"
           name="tab1"
-          x-component="FormCollapse.Item"
-          :x-component-props="{ title: 'A1' }"
+          x-component="FormCollapse.CollapsePanel"
+          :x-component-props="{ header: 'A1' }"
         >
           <SchemaStringField
             name="aaa"
@@ -24,8 +24,8 @@
         </SchemaVoidField>
         <SchemaVoidField
           name="tab2"
-          x-component="FormCollapse.Item"
-          :x-component-props="{ title: 'A2' }"
+          x-component="FormCollapse.CollapsePanel"
+          :x-component-props="{ header: 'A2' }"
         >
           <SchemaStringField
             name="bbb"
@@ -37,8 +37,8 @@
         </SchemaVoidField>
         <SchemaVoidField
           name="tab3"
-          x-component="FormCollapse.Item"
-          :x-component-props="{ title: 'A3' }"
+          x-component="FormCollapse.CollapsePanel"
+          :x-component-props="{ header: 'A3' }"
         >
           <SchemaStringField
             name="ccc"

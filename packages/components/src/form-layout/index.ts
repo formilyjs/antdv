@@ -1,9 +1,8 @@
+import type { InjectionKey, Ref } from '@vue/composition-api'
 import {
   provide,
   inject,
-  InjectionKey,
   defineComponent,
-  Ref,
   ref,
   watch,
 } from '@vue/composition-api'

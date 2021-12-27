@@ -4,55 +4,23 @@
       name="upload"
       title="上传"
       :decorator="[FormItem]"
-      :component="[
-        Upload,
-        {
-          action: 'https://formily-vue.free.beeceptor.com/file',
-          textContent: '上传',
-        },
-      ]"
+      :component="[NormalUpload]"
       required
     />
     <ArrayField
       name="upload2"
       title="卡片上传"
       :decorator="[FormItem]"
-      :component="[
-        Upload,
-        {
-          listType: 'picture-card',
-          action: 'https://formily-vue.free.beeceptor.com/file',
-        },
-      ]"
+      :component="[CardUpload]"
       required
     />
     <ArrayField
       name="upload3"
       title="拖拽上传"
       :decorator="[FormItem]"
-      :component="[
-        Upload,
-        {
-          action: 'https://formily-vue.free.beeceptor.com/file',
-          textContent: '将文件拖到此处，或者点击上传',
-          drag: true,
-        },
-      ]"
+      :component="[DraggerUpload]"
       required
     />
-    <ArrayField
-      name="custom"
-      title="自定义按钮"
-      :decorator="[FormItem]"
-      :component="[
-        Upload,
-        {
-          action: 'https://formily-vue.free.beeceptor.com/file',
-        },
-      ]"
-      required
-      ><UploadButton
-    /></ArrayField>
     <FormButtonGroup align-form-item>
       <Submit @submit="onSubmit">提交</Submit>
     </FormButtonGroup>
@@ -62,21 +30,80 @@
 <script>
 import { createForm } from '@formily/core'
 import { ArrayField } from '@formily/vue'
-import {
-  Form,
-  FormItem,
-  Upload,
-  Submit,
-  FormButtonGroup,
-} from '@formily/antdv'
-import { Button } from 'ant-design-vue'
+import { defineComponent } from '@vue/composition-api'
+import { Form, FormItem, Upload, Submit, FormButtonGroup } from '@formily/antdv'
+import { Button, Icon } from 'ant-design-vue'
 
 const UploadButton = {
   functional: true,
   render(h) {
-    return h(Button, {}, '上传图片')
+    return <Button>上传图片</Button>
   },
 }
+
+const NormalUpload = defineComponent({
+  name: 'NormalUpload',
+  render(h) {
+    const props = this.$attrs
+    return (
+      <Upload
+        {...props}
+        action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
+        headers={{
+          authorization: 'authorization-text',
+        }}
+      >
+        <Button>
+          <Icon type="upload" />
+          上传文件{' '}
+        </Button>
+      </Upload>
+    )
+  },
+})
+
+const CardUpload = defineComponent({
+  name: 'CardUpload',
+  render(h) {
+    const props = this.$attrs
+
+    return (
+      <Upload
+        {...props}
+        action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
+        listType="picture-card"
+        headers={{
+          authorization: 'authorization-text',
+        }}
+      >
+        <Icon type="upload" style={{ fontSize: 20 }} />
+      </Upload>
+    )
+  },
+})
+
+const DraggerUpload = defineComponent({
+  name: 'DraggerUpload',
+  render(h) {
+    const props = this.$attrs
+
+    return (
+      <Upload.Dragger
+        {...props}
+        action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
+      >
+        <p class="ant-upload-drag-icon">
+          <Icon type="inbox" />
+        </p>
+        <p class="ant-upload-text">Click or drag file to this area to upload</p>
+        <p class="ant-upload-hint">
+          Support for a single or bulk upload. Strictly prohibit from uploading
+          company data or other band files
+        </p>
+      </Upload.Dragger>
+    )
+  },
+})
 
 const form = createForm()
 
@@ -84,8 +111,10 @@ export default {
   components: { UploadButton, Form, ArrayField, Submit, FormButtonGroup },
   data() {
     return {
+      NormalUpload,
+      CardUpload,
+      DraggerUpload,
       FormItem,
-      Upload,
       form,
     }
   },

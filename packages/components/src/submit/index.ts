@@ -1,10 +1,10 @@
 import { h, useParentForm } from '@formily/vue'
-import { IFormFeedback } from '@formily/core'
+import type { IFormFeedback } from '@formily/core'
 import { observer } from '@formily/reactive-vue'
 import { defineComponent } from '@vue/composition-api'
 
 import { Button as AntButton } from 'ant-design-vue'
-import { Button as ButtonProps } from 'ant-design-vue/types/button/button'
+import type { Button as ButtonProps } from 'ant-design-vue/types/button/button'
 
 export interface ISubmitProps extends ButtonProps {
   onClick?: (e: MouseEvent) => any

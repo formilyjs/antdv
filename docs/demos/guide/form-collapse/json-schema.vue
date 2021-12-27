@@ -65,9 +65,9 @@ const schema = {
       properties: {
         tab1: {
           type: 'void',
-          'x-component': 'FormCollapse.Item',
+          'x-component': 'FormCollapse.CollapsePanel',
           'x-component-props': {
-            title: 'A1',
+            header: 'A1',
           },
           properties: {
             aaa: {
@@ -81,9 +81,9 @@ const schema = {
         },
         tab2: {
           type: 'void',
-          'x-component': 'FormCollapse.Item',
+          'x-component': 'FormCollapse.CollapsePanel',
           'x-component-props': {
-            title: 'A2',
+            header: 'A2',
           },
           properties: {
             bbb: {
@@ -97,9 +97,9 @@ const schema = {
         },
         tab3: {
           type: 'void',
-          'x-component': 'FormCollapse.Item',
+          'x-component': 'FormCollapse.CollapsePanel',
           'x-component-props': {
-            title: 'A3',
+            header: 'A3',
           },
           properties: {
             ccc: {

@@ -61,7 +61,7 @@ const schema = {
           type: 'void',
           'x-component': 'FormTab.TabPane',
           'x-component-props': {
-            label: 'A1',
+            tab: 'A1',
           },
           properties: {
             aaa: {
@@ -77,7 +77,7 @@ const schema = {
           type: 'void',
           'x-component': 'FormTab.TabPane',
           'x-component-props': {
-            label: 'A2',
+            tab: 'A2',
           },
           properties: {
             bbb: {
@@ -93,7 +93,7 @@ const schema = {
           type: 'void',
           'x-component': 'FormTab.TabPane',
           'x-component-props': {
-            label: 'A3',
+            tab: 'A3',
           },
           properties: {
             ccc: {

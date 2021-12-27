@@ -8,34 +8,24 @@
     />
     <Field
       name="week"
-      title="周"
+      title="周选择"
       :decorator="[FormItem]"
-      :component="[
-        DatePicker,
-        {
-          type: 'week',
-        },
-      ]"
+      :component="[DatePicker.WeekPicker]"
     />
     <Field
       name="month"
-      title="月"
+      title="月选择"
       :decorator="[FormItem]"
-      :component="[
-        DatePicker,
-        {
-          type: 'month',
-        },
-      ]"
+      :component="[DatePicker.MonthPicker]"
     />
     <Field
       name="year"
-      title="年"
+      title="年选择"
       :decorator="[FormItem]"
       :component="[
         DatePicker,
         {
-          type: 'year',
+          mode: 'year',
         },
       ]"
     />
@@ -46,51 +36,18 @@
       :component="[
         DatePicker,
         {
-          type: 'datetime',
+          mode: 'time',
         },
       ]"
     />
     <ArrayField
-      name="dates"
+      name="[startDate,endDate]"
       title="多个日期"
       :decorator="[FormItem]"
       :component="[
-        DatePicker,
+        DatePicker.RangePicker,
         {
-          type: 'dates',
-        },
-      ]"
-    />
-    <ArrayField
-      name="dateRange"
-      title="日期范围"
-      :decorator="[FormItem]"
-      :component="[
-        DatePicker,
-        {
-          type: 'daterange',
-        },
-      ]"
-    />
-    <ArrayField
-      name="monthRange"
-      title="月范围"
-      :decorator="[FormItem]"
-      :component="[
-        DatePicker,
-        {
-          type: 'monthrange',
-        },
-      ]"
-    />
-    <ArrayField
-      name="dateTimeRange"
-      title="日期时间范围"
-      :decorator="[FormItem]"
-      :component="[
-        DatePicker,
-        {
-          type: 'datetimerange',
+          showTime: true,
         },
       ]"
     />

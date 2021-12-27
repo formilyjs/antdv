@@ -26,7 +26,7 @@
 
 > 表格组件
 
-参考 [https://element.eleme.io/#/zh-CN/component/card](https://element.eleme.io/#/zh-CN/component/card)
+参考 [https://antdv.com/components/card-cn/](https://antdv.com/components/card-cn/)
 
 ### ArrayCards.Addition
 
@@ -38,9 +38,9 @@
 | ------------ | ------- | ---------- | -------- | -------- |
 | title        | string  | 文案       |          |
 | method       | `'push' | 'unshift'` | 添加方式 | `'push'` |
-| defaultValue | any     | 默认值     |          |
+| defaultValue | `any`   | 默认值     |          |
 
-其余参考 [https://element.eleme.io/#/zh-CN/component/button](https://element.eleme.io/#/zh-CN/component/button)
+其余参考 [https://antdv.com/components/button-cn/](https://antdv.com/components/button-cn/)
 
 注意：title 属性可以接收 Field 模型中的 title 映射，也就是在 Field 上传 title 也是生效的
 
@@ -52,7 +52,7 @@
 | ------ | ------ | ---- | ------ |
 | title  | string | 文案 |        |
 
-其余参考 [https://element.eleme.io/#/zh-CN/component/button](https://element.eleme.io/#/zh-CN/component/button)
+其余参考 [https://antdv.com/components/icon-cn/](https://antdv.com/components/icon-cn/)
 
 注意：title 属性可以接收 Field 模型中的 title 映射，也就是在 Field 上传 title 也是生效的
 
@@ -64,7 +64,7 @@
 | ------ | ------ | ---- | ------ |
 | title  | string | 文案 |        |
 
-其余参考 [https://element.eleme.io/#/zh-CN/component/button](https://element.eleme.io/#/zh-CN/component/button)
+其余参考 [https://antdv.com/components/icon-cn/](https://antdv.com/components/icon-cn/)
 
 注意：title 属性可以接收 Field 模型中的 title 映射，也就是在 Field 上传 title 也是生效的
 
@@ -76,7 +76,7 @@
 | ------ | ------ | ---- | ------ |
 | title  | string | 文案 |        |
 
-其余参考 [https://element.eleme.io/#/zh-CN/component/button](https://element.eleme.io/#/zh-CN/component/button)
+其余参考 [https://antdv.com/components/icon-cn/](https://antdv.com/components/icon-cn/)
 
 注意：title 属性可以接收 Field 模型中的 title 映射，也就是在 Field 上传 title 也是生效的
 
