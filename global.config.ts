@@ -15,6 +15,7 @@ global.document.documentElement.style['grid-column-gap'] = true
   const spy = jest.spyOn(console, 'error')
   beforeAll(() => {
     spy.mockImplementation((message) => {
+      // eslint-disable-next-line no-console
       console.log(message)
       throw new Error(message)
     })
