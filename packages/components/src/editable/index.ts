@@ -1,5 +1,10 @@
 import { h, useField } from '@formily/vue'
-import { defineComponent, ref, onBeforeUnmount } from '@vue/composition-api'
+import {
+  defineComponent,
+  ref,
+  onBeforeUnmount,
+  computed,
+} from '@vue/composition-api'
 import { observer } from '@formily/reactive-vue'
 import { Popover as AntdPopover, Icon } from 'ant-design-vue'
 import { composeExport } from '../__builtins__'
@@ -14,9 +19,9 @@ import { reaction } from '@formily/reactive'
 type IPopoverProps = PopoverProps
 export type EditableProps = FormItemProps
 
-const useParentPattern = (fieldRef) => {
+const useInitialPattern = (fieldRef) => {
   const field = fieldRef.value
-  return field?.parent?.pattern || field?.form?.pattern
+  return computed(() => field?.pattern)
 }
 
 const useFormItemProps = (fieldRef): FormItemProps => {
@@ -43,23 +48,20 @@ const EditableInner = observer(
     name: 'Editable',
     setup(props, { attrs, slots, refs }) {
       const fieldRef = useField<Field>()
-
+      const pattern = useInitialPattern(fieldRef)
       const prefixCls = `${stylePrefix}-editable`
       const setEditable = (payload: boolean) => {
-        const pattern = useParentPattern(fieldRef)
-
-        if (pattern !== 'editable') return
+        // console.log('pattern', pattern)
+        if (pattern.value !== 'editable') return
         fieldRef.value.setPattern(payload ? 'editable' : 'readPretty')
       }
 
       const dispose = reaction(
         () => {
-          const pattern = useParentPattern(fieldRef)
-
           return pattern
         },
         (pattern) => {
-          if (pattern === 'editable') {
+          if (pattern.value === 'editable') {
             fieldRef.value.setPattern('readPretty')
           }
         },
@@ -68,15 +70,18 @@ const EditableInner = observer(
         }
       )
 
-      onBeforeUnmount(dispose)
+      onBeforeUnmount(() => {
+        const field = fieldRef.value
+        field.setPattern(pattern.value)
+        dispose()
+      })
 
       return () => {
         const field = fieldRef.value
         const editable = field.pattern === 'editable'
-        const pattern = useParentPattern(fieldRef)
         const itemProps = useFormItemProps(fieldRef)
 
-        const recover = () => {
+        const closeEditable = () => {
           if (editable && !fieldRef.value?.errors?.length) {
             setEditable(false)
           }
@@ -88,7 +93,7 @@ const EditableInner = observer(
           const close = innerRef.querySelector(`.${prefixCls}-close-btn`)
 
           if (target?.contains(close) || close?.contains(target)) {
-            recover()
+            closeEditable()
           } else if (!editable) {
             setTimeout(() => {
               setEditable(true)
@@ -111,16 +116,18 @@ const EditableInner = observer(
             },
             {
               default: () => {
-                return h(
-                  Icon,
-                  {
-                    class: [`${prefixCls}-edit-btn`],
-                    props: {
-                      type: pattern === 'editable' ? 'edit' : 'message',
-                    },
-                  },
-                  {}
-                )
+                return pattern.value === 'editable'
+                  ? h(
+                      Icon,
+                      {
+                        class: [`${prefixCls}-edit-btn`],
+                        props: {
+                          type: 'edit',
+                        },
+                      },
+                      {}
+                    )
+                  : null
               },
             }
           )
@@ -204,7 +211,7 @@ const EditablePopover = observer(
 
       return () => {
         const field = fieldRef.value
-        const pattern = useParentPattern(fieldRef)
+        const pattern = useInitialPattern(fieldRef)
         return h(
           AntdPopover,
           {
@@ -256,7 +263,9 @@ const EditablePopover = observer(
                               class: [`${prefixCls}-edit-btn`],
                               props: {
                                 type:
-                                  pattern === 'editable' ? 'edit' : 'message',
+                                  pattern.value === 'editable'
+                                    ? 'edit'
+                                    : 'message',
                               },
                             },
                             {}
