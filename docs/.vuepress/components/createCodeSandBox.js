@@ -4,11 +4,10 @@ const CodeSandBoxHTML = '<div id="app"></div>'
 const CodeSandBoxJS = `
 import Vue from 'vue'
 import App from './App.vue'
-import Antdv  from 'ant-design-vue';
-import 'ant-design-vue/lib/style/index.css';
+import "@formily/antdv/lib/style";
+import "ant-design-vue/dist/antd.css";
 
 Vue.config.productionTip = false
-Vue.use(Antdv);
 
 new Vue({
   render: h => h(App),
@@ -77,8 +76,8 @@ export function createCodeSandBox(codeStr) {
             '@vue/cli-service': '~4.5.0',
             '@vue/composition-api': 'latest',
             'vue-template-compiler': '^2.6.11',
-            sass: '^1.34.1',
-            'sass-loader': '^8.0.2',
+            less: 'latest',
+            'less-loader': '^5.0.0',
           },
           babel: {
             presets: ['@vue/cli-plugin-babel/preset'],
@@ -87,6 +86,13 @@ export function createCodeSandBox(codeStr) {
             devServer: {
               host: '0.0.0.0',
               disableHostCheck: true, // 必须
+            },
+            css: {
+              loaderOptions: {
+                less: {
+                  javascriptEnabled: true,
+                },
+              },
             },
           },
         },
