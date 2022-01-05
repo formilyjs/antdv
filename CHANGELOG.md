@@ -1,5 +1,23 @@
 # Changelog
 
+## v1.0.0-alpha.2(2022-01-05)
+
+### :bug: Bug Fixes
+
+1. [fix: fix umd build (#7)](https://github.com/formilyjs/antdv/commit/1c03c94) :point_right: ( [zhouxinyong](https://github.com/zhouxinyong) )
+
+1. [fix: fix Editable component can not set default editable](https://github.com/formilyjs/antdv/commit/f867a02) :point_right: ( [zhouxinyong](https://github.com/zhouxinyong) )
+
+### :memo: Documents Changes
+
+1. [docs: fix codesandbox code](https://github.com/formilyjs/antdv/commit/3b8305c) :point_right: ( [zhouxinyong](https://github.com/zhouxinyong) )
+
+1. [docs: change github repo link and doc link](https://github.com/formilyjs/antdv/commit/0503456) :point_right: ( [zhouxinyong](https://github.com/zhouxinyong) )
+
+### :blush: Other Changes
+
+1. [chore: hide npm download badge](https://github.com/formilyjs/antdv/commit/c3f6c58) :point_right: ( [zhouxinyong](https://github.com/zhouxinyong) )
+
 ## v1.0.0-alpha.1(2021-12-28)
 
 ### :tada: Enhancements
