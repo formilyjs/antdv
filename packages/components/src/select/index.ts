@@ -19,3 +19,5 @@ export const Select = connect(
   ),
   mapReadPretty(PreviewText.Select)
 )
+
+export default Select

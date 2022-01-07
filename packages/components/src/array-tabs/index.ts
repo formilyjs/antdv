@@ -123,3 +123,5 @@ export const ArrayTabs = observer(
     },
   })
 )
+
+export default ArrayTabs
