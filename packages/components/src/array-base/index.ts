@@ -419,3 +419,5 @@ export const ArrayBase = composeExport(ArrayBaseInner, {
   useKey: useKey,
   useRecord: useRecord,
 })
+
+export default ArrayBase
