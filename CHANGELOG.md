@@ -1,5 +1,11 @@
 # Changelog
 
+## v1.0.0-alpha.3(2022-01-07)
+
+### :bug: Bug Fixes
+
+1. [fix: add form style (#8)](https://github.com/formilyjs/antdv/commit/acbeda6) :point_right: ( [zhouxinyong](https://github.com/zhouxinyong) )
+
 ## v1.0.0-alpha.2(2022-01-05)
 
 ### :bug: Bug Fixes
