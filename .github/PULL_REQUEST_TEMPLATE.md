@@ -1,6 +1,6 @@
 _Before_ submitting a pull request, please make sure the following is done...
 
-- [ ] Ensure the pull request title and commit message follow the [Commit Specific](https://github.com/alibaba/formily/blob/formily_next/.github/GIT_COMMIT_SPECIFIC.md) in **English**.
+- [ ] Ensure the pull request title and commit message follow the [Commit Specific](https://github.com/formilyjs/antdv/blob/main/.github/CONTRIBUTING.md#git-commit-specific) in **English**.
 - [ ] Fork the repo and create your branch from `main`.
 - [ ] If you've added code that should be tested, add tests!
 - [ ] If you've changed APIs, update the documentation.
