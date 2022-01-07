@@ -1,5 +1,11 @@
 # Changelog
 
+## v1.0.0-alpha.4(2022-01-07)
+
+### :bug: Bug Fixes
+
+1. [fix: add default export(fix #9) (#10)](https://github.com/formilyjs/antdv/commit/480c1ea) :point_right: ( [zhouxinyong](https://github.com/zhouxinyong) )
+
 ## v1.0.0-alpha.3(2022-01-07)
 
 ### :bug: Bug Fixes
