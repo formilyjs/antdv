@@ -115,31 +115,32 @@ const Select = observer(
 )
 
 // eslint-disable-next-line vue/one-component-per-file
-const Input = defineComponent<InputProps>({
-  name: 'PreviewTextInput',
-  props: [],
-  setup(_props, { attrs, slots }) {
-    const placeholder = usePlaceholder(attrs.value)
-    return () => {
-      return h(
-        Space,
-        {
-          class: [prefixCls],
-          style: attrs.style,
-        },
-        {
-          default: () => [
-            slots?.prepend?.(),
-            slots?.prefix?.(),
-            placeholder.value,
-            slots?.suffix?.(),
-            slots?.append?.(),
-          ],
-        }
-      )
-    }
-  },
-})
+const Input = observer(
+  defineComponent<InputProps>({
+    name: 'PreviewTextInput',
+    setup(_props, { attrs, slots }) {
+      return () => {
+        const placeholder = usePlaceholder(attrs.value)
+        return h(
+          Space,
+          {
+            class: [prefixCls],
+            style: attrs.style,
+          },
+          {
+            default: () => [
+              slots?.prepend?.(),
+              slots?.prefix?.(),
+              placeholder.value,
+              slots?.suffix?.(),
+              slots?.append?.(),
+            ],
+          }
+        )
+      }
+    },
+  })
+)
 
 // eslint-disable-next-line vue/one-component-per-file
 const Text = defineComponent<any>({
