@@ -1,5 +1,25 @@
 # Changelog
 
+## v1.0.0-alpha.6(2022-02-14)
+
+### :bug: Bug Fixes
+
+1. [fix: fix select preview label text (#15)](https://github.com/formilyjs/antdv/commit/a7f4d5f) :point_right: ( [zhouxinyong](https://github.com/zhouxinyong) )
+
+### :blush: Other Changes
+
+1. [chore: change codesandbox antdv css path and ant-design-vue version (#16)](https://github.com/formilyjs/antdv/commit/cbcdc0e) :point_right: ( [zhouxinyong](https://github.com/zhouxinyong) )
+
+## v1.0.0-alpha.5(2022-01-17)
+
+### :bug: Bug Fixes
+
+1. [fix: fix Preview.Input content (#12)](https://github.com/formilyjs/antdv/commit/6593e88) :point_right: ( [zhouxinyong](https://github.com/zhouxinyong) )
+
+### :blush: Other Changes
+
+1. [chore: change issue discussion url](https://github.com/formilyjs/antdv/commit/c7cc0d8) :point_right: ( [zhouxinyong](https://github.com/zhouxinyong) )
+
 ## v1.0.0-alpha.4(2022-01-07)
 
 ### :bug: Bug Fixes
