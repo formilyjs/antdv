@@ -1,5 +1,11 @@
 # Changelog
 
+## v1.0.0-alpha.7(2022-03-30)
+
+### :bug: Bug Fixes
+
+1. [fix: upload onchange not work (#17)](https://github.com/formilyjs/antdv/commit/df94dce) :point_right: ( [zhouxinyong](https://github.com/zhouxinyong) )
+
 ## v1.0.0-alpha.6(2022-02-14)
 
 ### :bug: Bug Fixes
