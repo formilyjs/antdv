@@ -1,5 +1,11 @@
 # Changelog
 
+## v1.0.0-alpha.8(2022-05-10)
+
+### :bug: Bug Fixes
+
+1. [fix(switch): fix switch button assign value (#18)](https://github.com/formilyjs/antdv/commit/8df40b2) :point_right: ( [飞流](https://github.com/飞流) )
+
 ## v1.0.0-alpha.7(2022-03-30)
 
 ### :bug: Bug Fixes
