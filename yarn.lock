@@ -1174,105 +1174,56 @@
     minimatch "^3.0.4"
     strip-json-comments "^3.1.1"
 
-"@formily/core@2.0.7", "@formily/core@^2.0.0":
-  version "2.0.7"
-  resolved "https://registry.yarnpkg.com/@formily/core/-/core-2.0.7.tgz#63165cae79dafdd5f92291b16a8d58b854d1ec2d"
-  integrity sha512-fh6V5kqZ35Qq10aCNjbIcJE0Dwsl0KmcZJi1kNRh4iK45nC9KUeeYp/WtgRLs6yf6MHaCO/GCN3cB/g+fQwf7A==
+"@formily/core@2.2.2":
+  version "2.2.2"
+  resolved "https://registry.yarnpkg.com/@formily/core/-/core-2.2.2.tgz#c2ea1240f6992305ed8a29b1b2b5c4f9423f2edf"
+  integrity sha512-6cfxwjLkB9hETNcew35eDZRCP81mp8KS2eiW2lO8KcqXLI/68TVSVur2qctUA/a6+1KKygbd9/crLmSdiWDXug==
   dependencies:
-    "@formily/reactive" "2.0.7"
-    "@formily/shared" "2.0.7"
-    "@formily/validator" "2.0.7"
+    "@formily/reactive" "2.2.2"
+    "@formily/shared" "2.2.2"
+    "@formily/validator" "2.2.2"
 
-"@formily/core@2.1.11":
-  version "2.1.11"
-  resolved "https://registry.yarnpkg.com/@formily/core/-/core-2.1.11.tgz#2c21e10b2bc456f33c8eda35a5f5a73fb3983a58"
-  integrity sha512-tN/iTRIhZOJhQ7bwBKUG36RWc4568AkVA+V2genNEIrTsm8T2DaNPEWQPNdP8nY6q5xoUYI/nsacEI4OuMNT+A==
+"@formily/grid@2.2.2":
+  version "2.2.2"
+  resolved "https://registry.yarnpkg.com/@formily/grid/-/grid-2.2.2.tgz#d99e74827a30db29831aa6d7e1978fa0250437db"
+  integrity sha512-8zG1sCluvMPgasBlJCg1Yo59egSKMJH5LOtlF5DdveIM1T8RYUDVB4RPcN7HEUu+u4eBhFudo39ptPvOHmSGKg==
   dependencies:
-    "@formily/reactive" "2.1.11"
-    "@formily/shared" "2.1.11"
-    "@formily/validator" "2.1.11"
-
-"@formily/grid@2.1.11":
-  version "2.1.11"
-  resolved "https://registry.yarnpkg.com/@formily/grid/-/grid-2.1.11.tgz#34c5346b4f624ce4ca694aaece8bc7eac2927f9f"
-  integrity sha512-w7llFf0gRJmEZd40TGCnGfjQ+xVjI+vIy84B1TFmJHZMQml1ayjlW8xtUMPBZPkWZkW2CRngRnH7edKCkQ1cLQ==
-  dependencies:
-    "@formily/reactive" "2.1.11"
+    "@formily/reactive" "2.2.2"
     "@juggle/resize-observer" "^3.3.1"
 
-"@formily/json-schema@2.0.7":
-  version "2.0.7"
-  resolved "https://registry.yarnpkg.com/@formily/json-schema/-/json-schema-2.0.7.tgz#3488aa0924b910bb19fc86321c364c891b95bc88"
-  integrity sha512-4mx0JdBaLPymlZ0vhh2bpelqQDEuaaAKu5mAQ1B8iA9n99DnbPzBUTWVw71fUpXRvOtVuedySlN5VGAfCJJsPA==
+"@formily/json-schema@2.2.2":
+  version "2.2.2"
+  resolved "https://registry.yarnpkg.com/@formily/json-schema/-/json-schema-2.2.2.tgz#98af2876d5c72cf20339ead2b6a7ad6758bcc126"
+  integrity sha512-nBdvyysoACHptrKcLDzm5dBgjuO1zzXIDGhrKBFsiM4KhMbm9vtE0ItkASOHwve0L2R+7dau9daUM36TKQGuVA==
   dependencies:
-    "@formily/core" "2.0.7"
-    "@formily/reactive" "2.0.7"
-    "@formily/shared" "2.0.7"
+    "@formily/core" "2.2.2"
+    "@formily/reactive" "2.2.2"
+    "@formily/shared" "2.2.2"
 
-"@formily/json-schema@2.1.11":
-  version "2.1.11"
-  resolved "https://registry.yarnpkg.com/@formily/json-schema/-/json-schema-2.1.11.tgz#5014f8a08e95cc8b67d0e58673cdb67298338169"
-  integrity sha512-DOj0w7jrTQXoZ+YhyxHsk+Ih5rBdjMlRx5jc0IygmkrkogrJ74QLwrAJU0QYwOo4vxdtu/R0vOLww7nMv6jELA==
+"@formily/path@2.2.2":
+  version "2.2.2"
+  resolved "https://registry.yarnpkg.com/@formily/path/-/path-2.2.2.tgz#106e93a4e1fe5e14cade408b590f1cb3dce16aba"
+  integrity sha512-hEZYnEGOwzfNQBXsV1j0PsUpTE1qRy46zauajJnNFPFfWXydeKKhsPkg5wCwDeslaT2K+WHMWO2ey/oIIkbLag==
+
+"@formily/reactive-vue@2.2.2":
+  version "2.2.2"
+  resolved "https://registry.yarnpkg.com/@formily/reactive-vue/-/reactive-vue-2.2.2.tgz#d87aef4a759600d3d7f4c72f1ceeebd263ba887f"
+  integrity sha512-hfSGmtPV+Gj8/FUY8dF+YVbchH8QyNwkMVzEcQr3G5WRNKhsfQ/iyrv6f/svtI6TMkuAzZpFiGR8ez+acC54zg==
   dependencies:
-    "@formily/core" "2.1.11"
-    "@formily/reactive" "2.1.11"
-    "@formily/shared" "2.1.11"
+    "@formily/reactive" "2.2.2"
+    vue-demi "^0.13.6"
 
-"@formily/path@2.0.7":
-  version "2.0.7"
-  resolved "https://registry.yarnpkg.com/@formily/path/-/path-2.0.7.tgz#43985e696fdd03e302db781a12c555e27a90a289"
-  integrity sha512-78iiB+Ct8gM71uXH+loekN1ivJ1UxyNNP0wm1RhVd/BKVosvyPrdPZYbVoev/iw3xKfHTu94d8vFdHSd5eTdGA==
+"@formily/reactive@2.2.2":
+  version "2.2.2"
+  resolved "https://registry.yarnpkg.com/@formily/reactive/-/reactive-2.2.2.tgz#c5f315f4c3fdef4625ea8618208cc34862e4d674"
+  integrity sha512-OjirPx9JJcn5bhMkW1NLyxa1mT/C8uKA5z/aaSsFrT92bo3xRn3yW4cb6DbtSChiebCP4R774Y2YYjde8+Wtcw==
 
-"@formily/path@2.1.11":
-  version "2.1.11"
-  resolved "https://registry.yarnpkg.com/@formily/path/-/path-2.1.11.tgz#6cbb858d6fdd71728ec77f63e043ed6f61dd2f4e"
-  integrity sha512-/OteHPiwaJfiFdslIAefcoV8pmBm5oMSHOg5uzRydehsALR441vH3U6kr7IvkUnHYEYMp7y3nxuWPn3k8SlvQA==
-
-"@formily/reactive-vue@2.0.7":
-  version "2.0.7"
-  resolved "https://registry.yarnpkg.com/@formily/reactive-vue/-/reactive-vue-2.0.7.tgz#8b62deb05449d57d695da6f25e71e9813e7e204e"
-  integrity sha512-10rhHoY3p00JwHGvMYl4JnfbDLMoawJU7VsH5IBkwJ6KS20nFUCxA1aCvNbbRFfvwsvz6LJrozPdHxiMFsTuNA==
+"@formily/shared@2.2.2":
+  version "2.2.2"
+  resolved "https://registry.yarnpkg.com/@formily/shared/-/shared-2.2.2.tgz#8a1cd78e7a9b01d89dc604517df4929b336129ed"
+  integrity sha512-NGNMNIpOjMewCAQn/EMjnNyKQuPRLQMSEhRs5AF7bpANwMXH2Scp3VYunzR58ElY/jrNl/EX+EDiB5DLiFBK9g==
   dependencies:
-    "@formily/reactive" "2.0.7"
-    vue-demi "^0.9.0"
-
-"@formily/reactive-vue@2.1.11":
-  version "2.1.11"
-  resolved "https://registry.yarnpkg.com/@formily/reactive-vue/-/reactive-vue-2.1.11.tgz#7ac0c1ae0581caa1b40d9f1f903395e1b0da8522"
-  integrity sha512-JFV5zixTY4NqrauZBLslv0b9fFTL5AhEilExTgnzSI6uYRi+Tj5EU2zURNAj9tMQADaWcapYGx+q4X9XM+pCbA==
-  dependencies:
-    "@formily/reactive" "2.1.11"
-    vue-demi "^0.9.0"
-
-"@formily/reactive@2.0.7":
-  version "2.0.7"
-  resolved "https://registry.yarnpkg.com/@formily/reactive/-/reactive-2.0.7.tgz#3ca3e4dedfabfce98885bbc8ec15eb2fba3364a0"
-  integrity sha512-cXUhcfBGWRCoPrziCCXVRsw3+lJ93fhPDJ2eGFPXMcMXYZ7XpeqQd+9wq+L8GJLYVLAR0k6P93ojc7d9lnS5Vw==
-
-"@formily/reactive@2.1.11":
-  version "2.1.11"
-  resolved "https://registry.yarnpkg.com/@formily/reactive/-/reactive-2.1.11.tgz#51f3c2f749f11c327ce19d968ce230d2b7e79a48"
-  integrity sha512-01PWypF0HVJwyP15ANaavzUzMhP4bjT1SkBu8Nof2PIQeB9aoSnL/8bv7Oqv040ZnEg9zoABnYhnS190HXGcLA==
-
-"@formily/shared@2.0.7":
-  version "2.0.7"
-  resolved "https://registry.yarnpkg.com/@formily/shared/-/shared-2.0.7.tgz#1e62d91accde8f86f48473304f65c3ec386310bd"
-  integrity sha512-io2DzKd5AQg2lebgO5OkB+AOPYxpxSn92rop5LnavcY+NBOsNLSe5zgZdGcA6w2xqCu4AYlkqPimF5GypI1gxQ==
-  dependencies:
-    "@formily/path" "2.0.7"
-    camel-case "^4.1.1"
-    lower-case "^2.0.1"
-    no-case "^3.0.4"
-    param-case "^3.0.4"
-    pascal-case "^3.1.1"
-    upper-case "^2.0.1"
-
-"@formily/shared@2.1.11":
-  version "2.1.11"
-  resolved "https://registry.yarnpkg.com/@formily/shared/-/shared-2.1.11.tgz#85f581222022703e7f52adadec51cde0c0fff8c4"
-  integrity sha512-b1VNRCQ+vz8ywlqTj9JoC+u7TEyq0jBiRy4cH2XRhncN/zWnSqzCLkIwMOZIMYzd9IdOGwdyEii4YM+fgkc3yA==
-  dependencies:
-    "@formily/path" "2.1.11"
+    "@formily/path" "2.2.2"
     camel-case "^4.1.1"
     lower-case "^2.0.1"
     no-case "^3.0.4"
@@ -1310,48 +1261,26 @@
     ts-node "^9.1.1"
     typescript "^4.1.5"
 
-"@formily/validator@2.0.7":
-  version "2.0.7"
-  resolved "https://registry.yarnpkg.com/@formily/validator/-/validator-2.0.7.tgz#9390ed6b65b55760713c18d187db90b47ab7804d"
-  integrity sha512-y/+fzGAiqsLotfvUuOggpZbat3e9AREAofnmiCGrik9SMVeRZYZ2LXFJ3ZDqazGFObq4kHHuXEZRFWJnFY3izg==
+"@formily/validator@2.2.2":
+  version "2.2.2"
+  resolved "https://registry.yarnpkg.com/@formily/validator/-/validator-2.2.2.tgz#52a1851a8712e151c45aba78e6fd51c897f5990f"
+  integrity sha512-yiYCZRs1sd1WaYM0ETm5Nhsmn5Vh8W76ROOJQSwdmZNFsLIwDDo7d3oi597hL26G0FRTF49DUb4e8Ec4Cs3QKg==
   dependencies:
-    "@formily/shared" "2.0.7"
+    "@formily/shared" "2.2.2"
 
-"@formily/validator@2.1.11":
-  version "2.1.11"
-  resolved "https://registry.yarnpkg.com/@formily/validator/-/validator-2.1.11.tgz#acad575a7e8d1daed50df578cda205be38619cbc"
-  integrity sha512-XZJDmwuVQbySWRQFkOEJBv1wzAonWzoROMtJ5uc74qi5Gwo9f0KZQTr9eNA/RIWzZeP4HjRxgBn2ZWdkzdArfg==
+"@formily/vue@2.2.2":
+  version "2.2.2"
+  resolved "https://registry.yarnpkg.com/@formily/vue/-/vue-2.2.2.tgz#3e2e7df692c6029619d8af3487e7060cb6f68584"
+  integrity sha512-f66tLOBJAiFj3iwh8QLuanAzXUJUHENoVXnT0HLzfmi4XqASzuQQrX2XaXaiB1RQv/I5BtL+88P4W27vt6B+oQ==
   dependencies:
-    "@formily/shared" "2.1.11"
-
-"@formily/vue@2.1.11":
-  version "2.1.11"
-  resolved "https://registry.yarnpkg.com/@formily/vue/-/vue-2.1.11.tgz#61d9e9e910954df64cd859c5a93ea92fca25f069"
-  integrity sha512-ziNp9/xO26K4E8TjkrVgSsTgpNjdXxZsIZC9ka1yge1mdkRIHOU57bzEavEyaRhmhAI+GYGL+1mHcznwB/qX/w==
-  dependencies:
-    "@formily/core" "2.1.11"
-    "@formily/json-schema" "2.1.11"
-    "@formily/reactive" "2.1.11"
-    "@formily/reactive-vue" "2.1.11"
-    "@formily/shared" "2.1.11"
-    "@formily/validator" "2.1.11"
+    "@formily/core" "2.2.2"
+    "@formily/json-schema" "2.2.2"
+    "@formily/reactive" "2.2.2"
+    "@formily/reactive-vue" "2.2.2"
+    "@formily/shared" "2.2.2"
+    "@formily/validator" "2.2.2"
     fs-extra "^10.0.0"
-    vue-demi "^0.9.0"
-    vue-frag "^1.1.4"
-
-"@formily/vue@^2.0.0":
-  version "2.0.7"
-  resolved "https://registry.yarnpkg.com/@formily/vue/-/vue-2.0.7.tgz#c26370c198888a852c87813966f91ec492619372"
-  integrity sha512-OxaLsDODNHDHDmKEdgFojuzmGjPJZBwA1dnplaiePYWeMpAa7tr0gxnz+L9c+W7zrqgnqYzhYZun+3WxLOvruQ==
-  dependencies:
-    "@formily/core" "2.0.7"
-    "@formily/json-schema" "2.0.7"
-    "@formily/reactive" "2.0.7"
-    "@formily/reactive-vue" "2.0.7"
-    "@formily/shared" "2.0.7"
-    "@formily/validator" "2.0.7"
-    fs-extra "^10.0.0"
-    vue-demi "^0.9.0"
+    vue-demi "^0.13.6"
     vue-frag "^1.1.4"
 
 "@gar/promisify@^1.0.1":
@@ -16058,15 +15987,10 @@ vm-browserify@^1.0.1:
   resolved "https://registry.yarnpkg.com/vm-browserify/-/vm-browserify-1.1.2.tgz#78641c488b8e6ca91a75f511e7a3b32a86e5dda0"
   integrity sha512-2ham8XPWTONajOR0ohOKOHXkm3+gaBmGut3SRuu75xLd/RRaY6vqgh8NBYYk7+RW3u5AtzPQZG8F10LHkl0lAQ==
 
-vue-demi@^0.13.10:
-  version "0.13.10"
-  resolved "https://registry.yarnpkg.com/vue-demi/-/vue-demi-0.13.10.tgz#e01bccb9d515ea0ed4a50c1387cbce3e60e93256"
-  integrity sha512-/R4QhdqGyGqSysOfhkxmYHKwdETZq2z6HAf/fjeGErdJX9cJifX5ijHJS+VjNblGIhjXz/yQTwe/t7Cip+/aJw==
-
-vue-demi@^0.9.0:
-  version "0.9.1"
-  resolved "https://registry.yarnpkg.com/vue-demi/-/vue-demi-0.9.1.tgz#25d6e1ebd4d4010757ff3571e2bf6a1d7bf3de82"
-  integrity sha512-7s1lufRD2l369eFWPjgLvhqCRk0XzGWJsQc7K4q+0mZtixyGIvsK1Cg88P4NcaRIEiBuuN4q1NN4SZKFKwQswA==
+vue-demi@^0.13.6:
+  version "0.13.11"
+  resolved "https://registry.yarnpkg.com/vue-demi/-/vue-demi-0.13.11.tgz#7d90369bdae8974d87b1973564ad390182410d99"
+  integrity sha512-IR8HoEEGM65YY3ZJYAjMlKygDQn25D5ajNFNoKh9RSDMQtlzCxtfQjdQgv9jjK+m3377SsJXY8ysq8kLCZL25A==
 
 vue-eslint-parser@^7.10.0:
   version "7.11.0"

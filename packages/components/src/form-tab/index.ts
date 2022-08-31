@@ -1,4 +1,4 @@
-import { defineComponent, reactive, computed } from 'vue-demi'
+import { defineComponent, ref, computed } from 'vue-demi'
 import { observer } from '@formily/reactive-vue'
 import { model } from '@formily/reactive'
 import {
@@ -12,6 +12,7 @@ import type { Schema, SchemaKey } from '@formily/json-schema'
 import { Tabs, Badge } from 'ant-design-vue'
 import { stylePrefix } from '../__builtins__/configs'
 
+import type { Ref } from 'vue-demi'
 import type { Tabs as TabsProps } from 'ant-design-vue/types/tabs/tabs'
 import type { TabPane as TabPaneProps } from 'ant-design-vue/types/tabs/tab-pane'
 
@@ -35,12 +36,12 @@ export interface IFormTabPaneProps extends TabPaneProps {
 const useTabs = () => {
   const tabsField = useField().value
   const schema = useFieldSchema().value
-  const tabs: { name: SchemaKey; props: any; schema: Schema }[] = reactive([])
+  const tabs: Ref<{ name: SchemaKey; props: any; schema: Schema }[]> = ref([])
   schema.mapProperties((schema, name) => {
     const field = tabsField.query(tabsField.address.concat(name)).take()
     if (field?.display === 'none' || field?.display === 'hidden') return
     if (schema['x-component']?.indexOf('TabPane') > -1) {
-      tabs.push({
+      tabs.value.push({
         name,
         props: {
           key: schema?.['x-component-props']?.key || name,
@@ -70,13 +71,15 @@ const FormTabInner = observer(
     props: ['formTab'],
     setup(props, { attrs, listeners }) {
       const field = useField().value
+      const tabsRef = useTabs()
       const formTabRef = computed(() => props.formTab ?? createFormTab())
 
       const prefixCls = `${stylePrefix}-form-tab`
 
       return () => {
         const formTab = formTabRef.value
-        const tabs = useTabs()
+        const tabs = tabsRef.value
+
         const activeKey =
           props.activeKey || formTab?.activeKey || tabs?.[0]?.name
         const badgedTab = (key: SchemaKey, props: any) => {

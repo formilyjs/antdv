@@ -1,6 +1,6 @@
 {
-  "name": "formily-antd-11",
-  "version": "1.0.0-alpha.10",
+  "name": "@formily2_2/antdv",
+  "version": "1.0.0-alpha.2",
   "license": "MIT",
   "main": "lib",
   "types": "lib/index.d.ts",
@@ -45,15 +45,15 @@
     }
   },
   "dependencies": {
-    "@formily/core": "2.1.11",
-    "@formily/grid": "2.1.11",
-    "@formily/json-schema": "2.1.11",
-    "@formily/reactive": "2.1.11",
-    "@formily/reactive-vue": "2.1.11",
-    "@formily/shared": "2.1.11",
-    "@formily/vue": "2.1.11",
+    "@formily/core": "2.2.2",
+    "@formily/grid": "2.2.2",
+    "@formily/json-schema": "2.2.2",
+    "@formily/reactive": "2.2.2",
+    "@formily/reactive-vue": "2.2.2",
+    "@formily/shared": "2.2.2",
+    "@formily/vue": "2.2.2",
     "portal-vue": "^2.1.7",
-    "vue-demi": "^0.13.10",
+    "vue-demi": "^0.13.6",
     "vue-slicksort": "^1.2.0"
   },
   "devDependencies": {
