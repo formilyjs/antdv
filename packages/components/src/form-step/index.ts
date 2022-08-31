@@ -1,5 +1,5 @@
-import type { PropType } from '@vue/composition-api'
-import { defineComponent } from '@vue/composition-api'
+import type { PropType } from 'vue-demi'
+import { defineComponent } from 'vue-demi'
 import { action, model, observable } from '@formily/reactive'
 import type { VoidField, Form } from '@formily/core'
 import { observer } from '@formily/reactive-vue'

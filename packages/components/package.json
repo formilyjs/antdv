@@ -1,6 +1,6 @@
 {
-  "name": "@formily/antdv",
-  "version": "1.0.0-alpha.8",
+  "name": "formily-antd-11",
+  "version": "1.0.0-alpha.10",
   "license": "MIT",
   "main": "lib",
   "types": "lib/index.d.ts",
@@ -53,6 +53,7 @@
     "@formily/shared": "2.1.11",
     "@formily/vue": "2.1.11",
     "portal-vue": "^2.1.7",
+    "vue-demi": "^0.13.10",
     "vue-slicksort": "^1.2.0"
   },
   "devDependencies": {

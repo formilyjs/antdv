@@ -5,7 +5,7 @@ import { isValid, clone, uid } from '@formily/shared'
 import type { ArrayField } from '@formily/core'
 import type { Button as ButtonProps } from 'ant-design-vue/types/button/button'
 import type { Schema } from '@formily/json-schema'
-import type { Ref, InjectionKey } from '@vue/composition-api'
+import type { Ref, InjectionKey } from 'vue-demi'
 import {
   defineComponent,
   provide,
@@ -13,7 +13,7 @@ import {
   toRefs,
   ref,
   onBeforeUnmount,
-} from '@vue/composition-api'
+} from 'vue-demi'
 import { HandleDirective } from 'vue-slicksort'
 import { composeExport } from '../__builtins__/shared'
 

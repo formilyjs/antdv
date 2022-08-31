@@ -1,7 +1,7 @@
 import { h, useParentForm } from '@formily/vue'
 import type { IFormFeedback } from '@formily/core'
 import { observer } from '@formily/reactive-vue'
-import { defineComponent } from '@vue/composition-api'
+import { defineComponent } from 'vue-demi'
 
 import { Button as AntButton } from 'ant-design-vue'
 import type { Button as ButtonProps } from 'ant-design-vue/types/button/button'

@@ -1,5 +1,5 @@
-import type { Ref } from '@vue/composition-api'
-import { defineComponent, ref, computed } from '@vue/composition-api'
+import type { Ref } from 'vue-demi'
+import { defineComponent, ref, computed } from 'vue-demi'
 import type { GeneralField, FieldDisplayTypes, ArrayField } from '@formily/core'
 import {
   useField,

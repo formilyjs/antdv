@@ -12,7 +12,7 @@ import {
 import { observer } from '@formily/reactive-vue'
 import type { Schema, SchemaKey } from '@formily/json-schema'
 import type { PropType } from 'vue-demi'
-import { computed, defineComponent } from '@vue/composition-api'
+import { computed, defineComponent } from 'vue-demi'
 import { toArr } from '@formily/shared'
 import { composeExport, stylePrefix } from '../__builtins__'
 import type { GeneralField } from '@formily/core'

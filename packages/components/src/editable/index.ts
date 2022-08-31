@@ -1,10 +1,5 @@
 import { h, useField } from '@formily/vue'
-import {
-  defineComponent,
-  ref,
-  onBeforeUnmount,
-  computed,
-} from '@vue/composition-api'
+import { defineComponent, ref, onBeforeUnmount, computed } from 'vue-demi'
 import { observer } from '@formily/reactive-vue'
 import { Popover as AntdPopover, Icon } from 'ant-design-vue'
 import { composeExport } from '../__builtins__'

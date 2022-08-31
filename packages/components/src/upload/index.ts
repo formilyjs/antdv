@@ -5,7 +5,7 @@ import type {
   UploadFile,
   Upload as AntdUploadProps,
 } from 'ant-design-vue/types/upload'
-import { defineComponent } from '@vue/composition-api'
+import { defineComponent } from 'vue-demi'
 
 export type IUploadOnchange = (fileList: UploadFile[]) => void
 

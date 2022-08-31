@@ -7,8 +7,8 @@ import {
 import { PreviewText } from '../preview-text'
 import { Radio as AntdRadio } from 'ant-design-vue'
 import type { RadioGroup as AntdRadioGroupProps } from 'ant-design-vue/types/radio/radio-group'
-import type { PropType } from '@vue/composition-api'
-import { defineComponent } from '@vue/composition-api'
+import type { PropType } from 'vue-demi'
+import { defineComponent } from 'vue-demi'
 
 const { Button, Group } = AntdRadio
 
