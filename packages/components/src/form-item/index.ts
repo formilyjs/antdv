@@ -1,4 +1,4 @@
-import type { Ref } from '@vue/composition-api'
+import type { Ref } from 'vue-demi'
 import {
   ref,
   defineComponent,
@@ -6,7 +6,7 @@ import {
   onBeforeUnmount,
   watch,
   provide,
-} from '@vue/composition-api'
+} from 'vue-demi'
 import { isVoidField } from '@formily/core'
 import { connect, mapProps, h } from '@formily/vue'
 import { useFormLayout, FormLayoutShallowContext } from '../form-layout'

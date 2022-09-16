@@ -1,5 +1,5 @@
 import type { Component } from 'vue'
-import type { InjectionKey, Ref } from '@vue/composition-api'
+import type { InjectionKey, Ref } from 'vue-demi'
 import {
   defineComponent,
   provide,
@@ -7,7 +7,7 @@ import {
   readonly,
   ref,
   toRef,
-} from '@vue/composition-api'
+} from 'vue-demi'
 
 export type CreateContext<T> = {
   Provider: Component

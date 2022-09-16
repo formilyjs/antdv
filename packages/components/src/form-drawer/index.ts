@@ -10,7 +10,7 @@ import { createForm } from '@formily/core'
 import type { Component, VNode } from 'vue'
 import Vue from 'vue'
 import { stylePrefix } from '../__builtins__/configs'
-import { defineComponent } from '@vue/composition-api'
+import { defineComponent } from 'vue-demi'
 import { Portal, PortalTarget } from 'portal-vue'
 
 import {

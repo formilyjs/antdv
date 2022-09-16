@@ -7,7 +7,7 @@ import type { ISchema } from '@formily/json-schema'
 import { stylePrefix } from '../__builtins__/configs'
 import { ArrayBase } from '../array-base'
 import { composeExport } from '../__builtins__/shared'
-import { defineComponent } from '@vue/composition-api'
+import { defineComponent } from 'vue-demi'
 
 const isAdditionComponent = (schema: ISchema) => {
   return schema['x-component']?.indexOf('Addition') > -1

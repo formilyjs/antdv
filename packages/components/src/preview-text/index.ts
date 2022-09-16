@@ -1,4 +1,4 @@
-import { defineComponent, computed } from '@vue/composition-api'
+import { defineComponent, computed } from 'vue-demi'
 import { h, useField } from '@formily/vue'
 import { isArr, isValid } from '@formily/shared'
 import {
