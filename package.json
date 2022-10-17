@@ -8,6 +8,7 @@
     "packages/*"
   ],
   "scripts": {
+    "postinstall": "vue-demi-fix",
     "start": "vuepress dev docs",
     "build": "formily-tpl build",
     "build:docs": "vuepress build docs",
