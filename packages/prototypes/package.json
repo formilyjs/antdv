@@ -1,17 +1,15 @@
 {
   "name": "@formily/antdv-prototypes",
-  "private": true,
-  "version": "1.0.0-alpha.8",
+  "version": "1.0.0-alpha.0",
   "license": "MIT",
-  "main": "lib",
-  "types": "lib/index.d.ts",
+  "main": "src/index.ts",
   "engines": {
     "npm": ">=3.0.0"
   },
   "module": "esm",
-  "umd:main": "dist/formily.antdv-prototypes.umd.production.js",
-  "unpkg": "dist/formily.antdv-prototypes.umd.production.js",
-  "jsdelivr": "dist/formily.antdv-prototypes.umd.production.js",
+  "umd:main": "dist/formily.element-prototypes.umd.production.js",
+  "unpkg": "dist/formily.element-prototypes.umd.production.js",
+  "jsdelivr": "dist/formily.element-prototypes.umd.production.js",
   "jsnext:main": "esm",
   "sideEffects": [
     "dist/*",
@@ -27,12 +25,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/formilyjs/antdv.git"
+    "url": "git+https://github.com/formilyjs/element.git"
   },
   "bugs": {
-    "url": "https://github.com/formilyjs/antdv/issues"
+    "url": "https://github.com/formilyjs/element/issues"
   },
-  "homepage": "https://github.com/formilyjs/antdv#readme",
+  "homepage": "https://github.com/formilyjs/element#readme",
   "publishConfig": {
     "access": "public"
   },
@@ -45,8 +43,20 @@
       "optional": true
     }
   },
+  "dependencies": {},
   "devDependencies": {
-    "ant-design-vue": "^1.7.8",
-    "vue": "^2.6.14"
+    "@designable/core": "^1.0.0-beta.25",
+    "@formily/antdv-setters": "^1.0.0-alpha.0",
+    "@designable/formily-transformer": "^1.0.0-beta.25",
+    "@designable/shared": "^1.0.0-beta.25",
+    "@formily/antdv": "^1.0.0-alpha.8",
+    "@formily/reactive": "^2.0.0",
+    "@formily/reactive-vue": "^2.0.0",
+    "@formily/shared": "^2.0.0",
+    "@formily/vue": "^2.0.0",
+    "@vue/babel-helper-vue-jsx-merge-props": "^1.2.1",
+    "@vue/babel-preset-jsx": "^1.2.4",
+    "@vue/composition-api": "^1.4.0-beta.0",
+    "babel-loader": "^8.2.3"
   }
 }

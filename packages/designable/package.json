@@ -1,0 +1,50 @@
+{
+  "name": "@formily/antdv-designable",
+  "version": "1.0.0-alpha.0",
+  "license": "MIT",
+  "main": "src/index.ts",
+  "engines": {
+    "npm": ">=3.0.0"
+  },
+  "module": "esm",
+  "umd:main": "dist/formily.antdv.umd.production.js",
+  "unpkg": "dist/formily.antdv.umd.production.js",
+  "jsdelivr": "dist/formily.antdv.umd.production.js",
+  "jsnext:main": "esm",
+  "sideEffects": true,
+  "scripts": {
+    "build": "formily-tpl build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/formilyjs/antdv.git"
+  },
+  "bugs": {
+    "url": "https://github.com/formilyjs/antdv/issues"
+  },
+  "homepage": "https://github.com/formilyjs/antdv#readme",
+  "publishConfig": {
+    "access": "public"
+  },
+  "peerDependencies": {
+    "@vue/composition-api": "^1.0.0-beta.1",
+    "vue": "^2.6.0 || >=3.0.0-rc.0"
+  },
+  "peerDependenciesMeta": {
+    "@vue/composition-api": {
+      "optional": true
+    }
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@designable/core": "^1.0.0-beta.25",
+    "@designable/shared": "^1.0.0-beta.25",
+    "@formily/antdv": "^1.0.0-alpha.8",
+    "@formily/vue": "^2.0.0",
+    "@juggle/resize-observer": "^3.3.1",
+    "@vue/composition-api": "^1.4.0-beta.0",
+    "ant-design-vue": "^1.7.8",
+    "classnames": "^2.3.1",
+    "dateformat": "^4.5.1"
+  }
+}

@@ -1,7 +1,6 @@
 {
   "name": "@formily/antdv-renderer",
-  "private": true,
-  "version": "1.0.0-alpha.8",
+  "version": "1.0.0-alpha.0",
   "license": "MIT",
   "main": "lib",
   "types": "lib/index.d.ts",
@@ -9,9 +8,9 @@
     "npm": ">=3.0.0"
   },
   "module": "esm",
-  "umd:main": "dist/formily.antdv-renderer.umd.production.js",
-  "unpkg": "dist/formily.antdv-renderer.umd.production.js",
-  "jsdelivr": "dist/formily.antdv-renderer.umd.production.js",
+  "umd:main": "dist/formily.element-renderer.umd.production.js",
+  "unpkg": "dist/formily.element-renderer.umd.production.js",
+  "jsdelivr": "dist/formily.element-renderer.umd.production.js",
   "jsnext:main": "esm",
   "sideEffects": [
     "dist/*",
@@ -23,16 +22,17 @@
     "**/*/style.js"
   ],
   "scripts": {
+    "serve": "webpack-dev-server --config src/config/webpack.dev.ts",
     "build": "formily-tpl build"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/formilyjs/antdv.git"
+    "url": "git+https://github.com/formilyjs/element.git"
   },
   "bugs": {
-    "url": "https://github.com/formilyjs/antdv/issues"
+    "url": "https://github.com/formilyjs/element/issues"
   },
-  "homepage": "https://github.com/formilyjs/antdv#readme",
+  "homepage": "https://github.com/formilyjs/element#readme",
   "publishConfig": {
     "access": "public"
   },
@@ -45,8 +45,27 @@
       "optional": true
     }
   },
+  "dependencies": {
+    "core-js": "^3.19.2",
+    "regenerator-runtime": "^0.13.9"
+  },
   "devDependencies": {
-    "ant-design-vue": "^1.7.8",
-    "vue": "^2.6.14"
+    "@babel/plugin-transform-runtime": "^7.16.4",
+    "@babel/preset-typescript": "^7.1.0",
+    "@designable/core": "^1.0.0-beta.25",
+    "@designable/formily-transformer": "^1.0.0-beta.25",
+    "@designable/shared": "1.0.0-beta.25",
+    "@formily/antdv": "^1.0.0-alpha.8",
+    "@formily/antdv-setters": "^1.0.0-alpha.0",
+    "@formily/reactive": "^2.0.0",
+    "@formily/reactive-vue": "^2.0.0",
+    "@formily/shared": "^2.0.0",
+    "@formily/vue": "^2.0.0",
+    "@vue/babel-helper-vue-jsx-merge-props": "^1.2.1",
+    "@vue/babel-preset-jsx": "^1.2.4",
+    "@vue/composition-api": "^1.4.0-beta.0",
+    "babel-loader": "^8.2.3",
+    "vue-codemirror": "^4.0.6",
+    "webpack-cli": "3.3.10"
   }
 }

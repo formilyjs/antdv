@@ -1,17 +1,15 @@
 {
   "name": "@formily/antdv-setters",
-  "private": true,
-  "version": "1.0.0-alpha.8",
+  "version": "1.0.0-alpha.0",
   "license": "MIT",
-  "main": "lib",
-  "types": "lib/index.d.ts",
+  "main": "src/index.ts",
   "engines": {
     "npm": ">=3.0.0"
   },
   "module": "esm",
-  "umd:main": "dist/formily.antdv-setters.umd.production.js",
-  "unpkg": "dist/formily.antdv-setters.umd.production.js",
-  "jsdelivr": "dist/formily.antdv-setters.umd.production.js",
+  "umd:main": "dist/formily.element-setters.umd.production.js",
+  "unpkg": "dist/formily.element-setters.umd.production.js",
+  "jsdelivr": "dist/formily.element-setters.umd.production.js",
   "jsnext:main": "esm",
   "sideEffects": [
     "dist/*",
@@ -27,12 +25,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/formilyjs/antdv.git"
+    "url": "git+https://github.com/formilyjs/element.git"
   },
   "bugs": {
-    "url": "https://github.com/formilyjs/antdv/issues"
+    "url": "https://github.com/formilyjs/element/issues"
   },
-  "homepage": "https://github.com/formilyjs/antdv#readme",
+  "homepage": "https://github.com/formilyjs/element#readme",
   "publishConfig": {
     "access": "public"
   },
@@ -45,8 +43,6 @@
       "optional": true
     }
   },
-  "devDependencies": {
-    "ant-design-vue": "^1.7.8",
-    "vue": "^2.6.14"
-  }
+  "dependencies": {},
+  "devDependencies": {}
 }
