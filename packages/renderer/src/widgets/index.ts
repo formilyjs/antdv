@@ -1,7 +1,7 @@
-import type { VueConstructor } from 'vue/types/umd'
-import ActionsWidget from './actions-widget.vue'
+import ActionsWidget from './actions-widget'
 import SchemaEditorWidget from './schema-editor-widget'
 import PreviewWidget from './preview-widget'
+import type { VueConstructor } from 'vue'
 // import LogoWidget from './logo-widget'
 
 export default function install(

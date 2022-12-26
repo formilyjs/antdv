@@ -13,7 +13,7 @@
   "jsnext:main": "esm",
   "sideEffects": true,
   "scripts": {
-    "build": "formily-tpl build"
+    "build": "ts-node ../../scripts/build.ts"
   },
   "repository": {
     "type": "git",

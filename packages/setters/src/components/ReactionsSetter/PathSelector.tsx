@@ -1,13 +1,13 @@
-import { TreeNode } from '@designable/core'
-import { useSelectedNode } from '@formily/element-plus-prototypes'
-import { ElTreeSelect as TreeSelect } from 'element-plus'
-import type { TreeComponentProps as TreeSelectProps } from 'element-plus/es/components/tree/src/tree.type'
+import { TreeSelect } from 'ant-design-vue'
+import { defineComponent } from 'vue-demi'
+import { useCurrentNode } from '@formily/antdv-designable'
+import type { TreeSelectProps } from 'ant-design-vue/es/tree-select/interface'
+import type { TreeNode } from '@designable/core'
 
-import { CSSProperties, defineComponent } from 'vue'
 export interface IPathSelectorProps extends Omit<TreeSelectProps, 'onChange'> {
   value?: string
   onChange?: (value: string, node: TreeNode) => void
-  style?: CSSProperties
+  style?: Record<string, any>
   className?: string
 }
 
@@ -107,33 +107,16 @@ export const PathSelector = defineComponent({
   },
   emits: ['change'],
   setup(props, { attrs, emit }) {
-    const baseNodeRef = useSelectedNode()
-
+    const baseNode = useCurrentNode()
+    const dataSource = transformDataSource(baseNode.value)
     return () => {
-      const baseNode = baseNodeRef.value
-      const dataSource = transformDataSource(baseNode)
-      const findNode = (dataSource: any[], value: string) => {
-        for (let i = 0; i < dataSource.length; i++) {
-          const item = dataSource[i]
-          if (item.value === value) return item.node
-          if (item.children?.length) {
-            const foundedChild = findNode(item.children, value)
-            if (foundedChild) return foundedChild
-          }
-        }
-      }
-      // onChange={(value) => {
-      //     props.onChange(value, findNode(dataSource, value))
-      // }}
       return (
         <TreeSelect
           {...attrs}
-          {...{
-            modelValue: props.value,
-            'onUpdate:modelValue': (arg) => emit('change', arg),
-          }}
+          onChange={(arg) => emit('change', arg)}
+          value={props.value}
           default-expand-all
-          data={dataSource}
+          treeData={dataSource}
         />
       )
     }

@@ -23,35 +23,29 @@
   ],
   "scripts": {
     "serve": "webpack-dev-server --config src/config/webpack.dev.ts",
-    "build": "formily-tpl build"
+    "build": "ts-node ../../scripts/build.ts",
+    "build:doc": "webpack --config src/config/webpack.prod.ts"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/formilyjs/element.git"
+    "url": "git+https://github.com/formilyjs/antdv.git"
   },
   "bugs": {
-    "url": "https://github.com/formilyjs/element/issues"
+    "url": "https://github.com/formilyjs/antdv/issues"
   },
-  "homepage": "https://github.com/formilyjs/element#readme",
+  "homepage": "https://github.com/formilyjs/antdv#readme",
   "publishConfig": {
     "access": "public"
   },
   "peerDependencies": {
-    "@vue/composition-api": "^1.0.0-beta.1",
-    "vue": "^2.6.0 || >=3.0.0-rc.0"
-  },
-  "peerDependenciesMeta": {
-    "@vue/composition-api": {
-      "optional": true
-    }
+    "vue": "^2.6.0 || >=3.0.0-rc.0",
+    "vue-demi": "*"
   },
   "dependencies": {
     "core-js": "^3.19.2",
     "regenerator-runtime": "^0.13.9"
   },
   "devDependencies": {
-    "@babel/plugin-transform-runtime": "^7.16.4",
-    "@babel/preset-typescript": "^7.1.0",
     "@designable/core": "^1.0.0-beta.25",
     "@designable/formily-transformer": "^1.0.0-beta.25",
     "@designable/shared": "1.0.0-beta.25",
@@ -61,9 +55,6 @@
     "@formily/reactive-vue": "^2.0.0",
     "@formily/shared": "^2.0.0",
     "@formily/vue": "^2.0.0",
-    "@vue/babel-helper-vue-jsx-merge-props": "^1.2.1",
-    "@vue/babel-preset-jsx": "^1.2.4",
-    "@vue/composition-api": "^1.4.0-beta.0",
     "babel-loader": "^8.2.3",
     "vue-codemirror": "^4.0.6",
     "webpack-cli": "3.3.10"

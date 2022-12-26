@@ -9,17 +9,18 @@ export interface IBorderRadiusStyleSetterProps {
 export const BorderRadiusStyleSetter: Vue.Component<IBorderRadiusStyleSetterProps> =
   defineComponent({
     props: { value: String },
+    emits: ['change'],
     setup(props, { emit }) {
       return () => {
         return (
           <BoxStyleSetter
             value={props.value}
-            vOn:change={(value) => emit('change', value)}
+            onChange={(value) => emit('change', value)}
             labels={[
-              <IconWidget infer="TopLeft" size={16} key="1" />,
-              <IconWidget infer="TopRight" size={16} key="2" />,
-              <IconWidget infer="BottomRight" size={16} key="3" />,
-              <IconWidget infer="BottomLeft" size={16} key="4" />,
+              <IconWidget infer="TopLeft" size={16} />,
+              <IconWidget infer="TopRight" size={16} />,
+              <IconWidget infer="BottomRight" size={16} />,
+              <IconWidget infer="BottomLeft" size={16} />,
             ]}
           />
         )

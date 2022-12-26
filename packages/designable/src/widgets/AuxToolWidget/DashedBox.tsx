@@ -2,7 +2,6 @@ import { observer } from '@formily/reactive-vue'
 import { composeExport } from '@formily/antdv/esm/__builtins__'
 import { defineComponent } from 'vue-demi'
 import { isNum } from '@designable/shared'
-import { FragmentComponent as Fragment } from '@formily/vue'
 import {
   useHover,
   usePrefix,
@@ -71,14 +70,12 @@ export const DashedBox = composeExport(
   observer(
     defineComponent({
       setup() {
-        // const hoverRef = useHover()
+        const hoverRef = useHover()
         return () => {
           return (
-            <Fragment
-            // key={hoverRef.value?.node?.id}
-            >
+            <div key={hoverRef.value?.node?.id}>
               <DashBox></DashBox>
-            </Fragment>
+            </div>
           )
         }
       },

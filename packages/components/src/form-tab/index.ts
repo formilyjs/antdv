@@ -1,6 +1,7 @@
 import { defineComponent, reactive, computed } from 'vue-demi'
 import { observer } from '@formily/reactive-vue'
 import { model } from '@formily/reactive'
+import { Tabs, Badge } from 'ant-design-vue'
 import {
   h,
   useField,
@@ -8,14 +9,13 @@ import {
   RecursionField,
   Fragment,
 } from '@formily/vue'
-import type { Schema, SchemaKey } from '@formily/json-schema'
-import { Tabs, Badge } from 'ant-design-vue'
 import { stylePrefix } from '../__builtins__/configs'
+import { composeExport } from '../__builtins__/shared'
+
+import type { Schema, SchemaKey } from '@formily/json-schema'
 
 import type { Tabs as TabsProps } from 'ant-design-vue/types/tabs/tabs'
 import type { TabPane as TabPaneProps } from 'ant-design-vue/types/tabs/tab-pane'
-
-import { composeExport } from '../__builtins__/shared'
 
 const { TabPane } = Tabs
 

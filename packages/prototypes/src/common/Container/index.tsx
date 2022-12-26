@@ -1,10 +1,10 @@
 import { DroppableWidget } from '@formily/antdv-designable'
-import type { VueComponent } from '@formily/vue'
 import './styles.less'
 import { defineComponent } from 'vue-demi'
 import { uid } from '@designable/shared'
+import type { VueComponent } from '@formily/vue'
 
-export const Container: VueComponent<any> = defineComponent({
+export const Container = defineComponent({
   name: 'DnContainer',
   setup(props, { slots }) {
     return () => {
@@ -13,7 +13,7 @@ export const Container: VueComponent<any> = defineComponent({
   },
 })
 
-export const withContainer = (Target: VueComponent<any>) => {
+export const withContainer = (Target: VueComponent) => {
   return defineComponent({
     setup(props, { attrs, slots }) {
       return () => {

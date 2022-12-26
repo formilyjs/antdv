@@ -21,16 +21,16 @@
     "**/*/style.js"
   ],
   "scripts": {
-    "build": "formily-tpl build"
+    "build": "ts-node ../../scripts/build.ts"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/formilyjs/element.git"
+    "url": "git+https://github.com/formilyjs/antdv.git"
   },
   "bugs": {
-    "url": "https://github.com/formilyjs/element/issues"
+    "url": "https://github.com/formilyjs/antdv/issues"
   },
-  "homepage": "https://github.com/formilyjs/element#readme",
+  "homepage": "https://github.com/formilyjs/antdv#readme",
   "publishConfig": {
     "access": "public"
   },
@@ -45,7 +45,8 @@
     }
   },
   "dependencies": {
-    "@monaco-editor/loader": "^1.3.2"
+    "@monaco-editor/loader": "^1.3.2",
+    "vue-color": "^2.8.1"
   },
   "devDependencies": {
     "@designable/core": "^1.0.0-beta.25",
@@ -62,6 +63,7 @@
     "@vue/babel-preset-jsx": "^1.2.4",
     "@vue/composition-api": "^1.4.0-beta.0",
     "babel-loader": "^8.2.3",
-    "monaco-editor": "^0.34.0"
+    "monaco-editor": "^0.34.0",
+    "@types/vue-color": "^2.4.4"
   }
 }

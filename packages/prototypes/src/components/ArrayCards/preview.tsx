@@ -6,12 +6,11 @@ import {
   DroppableWidget,
   useNodeIdProps,
 } from '@formily/antdv-designable'
-import { ArrayBase, Space } from '@formily/antdv'
+import { ArrayBase } from '@formily/antdv'
 import { observer } from '@formily/reactive-vue'
 import cls from 'classnames'
 import { composeExport } from '@formily/antdv/esm/__builtins__'
 import { defineComponent } from 'vue-demi'
-import { FragmentComponent as Fragment } from '@formily/vue'
 import { uid } from '@designable/shared'
 import {
   hasNodeByComponentPath,
@@ -24,9 +23,6 @@ import { useDropTemplate } from '../../hooks'
 import { LoadTemplate } from '../../common/LoadTemplate'
 import { createArrayBehavior } from '../ArrayBase'
 import './styles.less'
-import type { ArrayBaseMixins } from '@formily/antdv'
-import type { DnFC } from '@formily/antdv-designable'
-import type { Card as CardProps } from 'ant-design-vue'
 
 const ensureObjectItemsNode = createEnsureTypeItemsNode('object')
 
@@ -35,7 +31,7 @@ const isArrayCardsOperation = (name: string) =>
   name === 'ArrayCards.MoveDown' ||
   name === 'ArrayCards.MoveUp'
 
-export const ArrayCards: DnFC<CardProps & ArrayBaseMixins> = composeExport(
+export const ArrayCards = composeExport(
   observer(
     defineComponent({
       props: { title: {} },
@@ -126,31 +122,36 @@ export const ArrayCards: DnFC<CardProps & ArrayBaseMixins> = composeExport(
               '*',
               (name) => name.indexOf('ArrayCards.') === -1,
             ])
+
             return (
-              <ArrayBase disabled>
+              <ArrayBase {...{ disabled: true }}>
                 <ArrayBase.Item index={0}>
                   <Card
                     props={props}
                     class={cls('ant-formily-array-cards-item')}
-                    header={props.title}
-                  >
-                    <Row slot="header" justify="space-between" type="flex">
-                      <span>
-                        {indexes.map((node, key) => (
-                          <TreeNodeWidget key={key} node={node} />
-                        ))}
-                        <span data-content-editable="x-component-props.title">
-                          {props.title}
+                    scopedSlots={{
+                      title: () => (
+                        <span>
+                          {indexes.map((node, key) => (
+                            <TreeNodeWidget node={node} />
+                          ))}
+                          <span data-content-editable="x-component-props.title">
+                            {props.title}
+                          </span>
                         </span>
-                      </span>
-                      <span>
-                        {operations.map((node) => (
-                          <TreeNodeWidget key={node.id} node={node} />
-                        ))}
-                        {slots.extra?.()}
-                      </span>
-                    </Row>
-
+                      ),
+                      extra: () => (
+                        <Row justify="space-between" type="flex">
+                          <span>
+                            {operations.map((node) => (
+                              <TreeNodeWidget node={node} />
+                            ))}
+                            {slots.extra?.()}
+                          </span>
+                        </Row>
+                      ),
+                    }}
+                  >
                     <div
                       key={uid()}
                       attrs={{
@@ -162,16 +163,16 @@ export const ArrayCards: DnFC<CardProps & ArrayBaseMixins> = composeExport(
                     >
                       {children.length ? (
                         children.map((node) => (
-                          <TreeNodeWidget key={node.id} node={node} />
+                          <TreeNodeWidget {...{ key: node.id }} node={node} />
                         ))
                       ) : (
-                        <DroppableWidget key={node.id} node={node} />
+                        <DroppableWidget hasChildren={false} />
                       )}
                     </div>
                   </Card>
                   {/* TODO::some how cannot make it working */}
                   <Row justify="center" type="flex">
-                    {additions.map((node) => {
+                    {additions.map(() => {
                       return <ArrayBase.Addition title="添加条目" />
                     })}
                   </Row>
@@ -294,7 +295,6 @@ export const ArrayCards: DnFC<CardProps & ArrayBaseMixins> = composeExport(
           componentName: 'Field',
           props: {
             type: 'array',
-            'x-decorator': 'FormItem',
             'x-component': 'ArrayCards',
             'x-component-props': {
               title: `Title`,

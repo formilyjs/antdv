@@ -11,26 +11,18 @@
   "unpkg": "dist/formily.element-setters.umd.production.js",
   "jsdelivr": "dist/formily.element-setters.umd.production.js",
   "jsnext:main": "esm",
-  "sideEffects": [
-    "dist/*",
-    "esm/*.js",
-    "lib/*.js",
-    "src/*.ts",
-    "*.less",
-    "*.scss",
-    "**/*/style.js"
-  ],
+  "sideEffects": true,
   "scripts": {
-    "build": "formily-tpl build"
+    "build": "ts-node ../../scripts/build.ts"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/formilyjs/element.git"
+    "url": "git+https://github.com/formilyjs/antdv.git"
   },
   "bugs": {
-    "url": "https://github.com/formilyjs/element/issues"
+    "url": "https://github.com/formilyjs/antdv/issues"
   },
-  "homepage": "https://github.com/formilyjs/element#readme",
+  "homepage": "https://github.com/formilyjs/antdv#readme",
   "publishConfig": {
     "access": "public"
   },

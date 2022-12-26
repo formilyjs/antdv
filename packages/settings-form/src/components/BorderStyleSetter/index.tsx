@@ -1,7 +1,7 @@
 import { usePrefix } from '@formily/antdv-designable'
 import { camelCase } from '@formily/shared'
 import { observable } from '@formily/reactive'
-import { useField, Field, FragmentComponent } from '@formily/vue'
+import { useField, Field } from '@formily/vue'
 import { observer } from '@formily/reactive-vue'
 import cls from 'classnames'
 import { defineComponent, unref } from 'vue-demi'
@@ -11,7 +11,6 @@ import { SizeInput } from '../SizeInput'
 import { PositionInput } from '../PositionInput'
 import './styles.less'
 import { Select } from '../FontStyleSetter/select'
-import type { CSSProperties } from '@vue/runtime-dom'
 import type { Field as FieldType } from '@formily/core'
 
 const Positions = ['center', 'top', 'right', 'bottom', 'left']
@@ -62,7 +61,7 @@ const parseInitPosition = (field: FieldType) => {
 }
 export interface IBorderStyleSetterProps {
   class?: string
-  style?: CSSProperties
+  style?: Record<string, any>
 }
 
 export const BorderStyleSetter: Vue.Component<
@@ -82,62 +81,70 @@ export const BorderStyleSetter: Vue.Component<
       return () => {
         const prefix = unref(prefixRef)
         const field = unref(fieldRef)
-        const createReaction =
-          (position: string) => (field: Formily.Core.Models.Field) => {
-            field.display =
-              currentPosition.value === position ? 'visible' : 'hidden'
-            if (position !== 'center') {
-              const borderStyle = field.query('.borderStyle').value()
-              const borderWidth = field.query('.borderWidth').value()
-              const borderColor = field.query('.borderColor').value()
-              if (borderStyle || borderWidth || borderColor) {
-                field.value = undefined
-              }
+        const createReaction = (position: string) => (field: FieldType) => {
+          field.display =
+            currentPosition.value === position ? 'visible' : 'hidden'
+          if (position !== 'center') {
+            const borderStyle = field.query('.borderStyle').value()
+            const borderWidth = field.query('.borderWidth').value()
+            const borderColor = field.query('.borderColor').value()
+            if (borderStyle || borderWidth || borderColor) {
+              field.value = undefined
             }
           }
-
+        }
         return (
-          <FoldItem label={field.title}>
-            <FragmentComponent slot="extra">
-              <div class={cls(prefix)}>
-                <div class={prefix + '-position'}>
-                  <PositionInput
-                    value={currentPosition.value}
-                    vOn:change={(value) => {
-                      currentPosition.value = value
-                    }}
-                  />
+          <FoldItem
+            label={field.title}
+            scopedSlots={{
+              extra: () => (
+                <div class={cls(prefix)}>
+                  <div class={prefix + '-position'}>
+                    <PositionInput
+                      value={currentPosition.value}
+                      onChange={(value) => {
+                        currentPosition.value = value
+                      }}
+                    />
+                  </div>
+                  <div>
+                    {Positions.map((position, key) => {
+                      return (
+                        <div
+                          vShow={currentPosition.value == position}
+                          class={prefix + '-input'}
+                          key={key}
+                        >
+                          <Field
+                            name={createBorderProp(position, 'style')}
+                            basePath={field.address.parent()}
+                            dataSource={BorderStyleOptions}
+                            reactions={createReaction(position)}
+                            component={[
+                              Select,
+                              { placeholder: 'Please Select' },
+                            ]}
+                          />
+                          <Field
+                            name={createBorderProp(position, 'width')}
+                            basePath={field.address.parent()}
+                            reactions={createReaction(position)}
+                            component={[SizeInput, { exclude: ['auto'] }]}
+                          />
+                          <Field
+                            name={createBorderProp(position, 'color')}
+                            basePath={field.address.parent()}
+                            reactions={createReaction(position)}
+                            component={[ColorInput]}
+                          />
+                        </div>
+                      )
+                    })}
+                  </div>
                 </div>
-                <div class={prefix + '-input'}>
-                  {Positions.map((position, key) => {
-                    return (
-                      <FragmentComponent key={key}>
-                        <Field
-                          name={createBorderProp(position, 'style')}
-                          basePath={field.address.parent()}
-                          dataSource={BorderStyleOptions}
-                          reactions={createReaction(position)}
-                          component={[Select, { placeholder: 'Please Select' }]}
-                        />
-                        <Field
-                          name={createBorderProp(position, 'width')}
-                          basePath={field.address.parent()}
-                          reactions={createReaction(position)}
-                          component={[SizeInput, { exclude: ['auto'] }]}
-                        />
-                        <Field
-                          name={createBorderProp(position, 'color')}
-                          basePath={field.address.parent()}
-                          reactions={createReaction(position)}
-                          component={[ColorInput]}
-                        />
-                      </FragmentComponent>
-                    )
-                  })}
-                </div>
-              </div>
-            </FragmentComponent>
-          </FoldItem>
+              ),
+            }}
+          ></FoldItem>
         )
       }
     },

@@ -10,19 +10,20 @@ export interface IDroppableWidgetProps {
   node?: TreeNode
   actions?: Record<string, any>[]
   height?: number
+  hasChildren?: boolean
 }
 
 export const DroppableWidget = observer(
   defineComponent({
     name: 'DnDroppableWidget',
-    props: ['node', 'actions', 'height'],
+    props: ['node', 'actions', 'height', 'hasChildren'],
     setup(props: IDroppableWidgetProps, { slots }) {
       const currentNodeRef = useTreeNode()
       const nodeIdRef = useNodeIdProps(props.node)
 
       return () => {
         const target = props.node ?? currentNodeRef.value
-        const hasChildren = target.children?.length > 0
+        const hasChildren = props.hasChildren ?? target.children?.length > 0
         return (
           <div attrs={{ ...nodeIdRef.value }}>
             {hasChildren ? (
@@ -37,7 +38,7 @@ export const DroppableWidget = observer(
             )}
             {props.actions?.length ? (
               <NodeActionsWidget>
-                {props.actions.map((action, key) => (
+                {props.actions.map((action) => (
                   <NodeActionsWidget.Action
                     {...{ props: action }}
                     // key={key}

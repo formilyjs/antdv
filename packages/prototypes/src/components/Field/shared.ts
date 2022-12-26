@@ -1,8 +1,8 @@
-// import {
-//   ReactionsSetter,
-//   DataSourceSetter,
-//   ValidatorSetter,
-// } from '../../../setters'
+import {
+  ReactionsSetter,
+  DataSourceSetter,
+  ValidatorSetter,
+} from '@formily/antdv-setters'
 import { FormItemSwitcher } from '../../common/FormItemSwitcher'
 import { AllSchemas } from '../../schemas'
 import type { ISchema } from '@formily/json-schema'
@@ -90,7 +90,7 @@ export const createFieldSchema = (
             'x-decorator': 'FormItem',
             'x-component': 'Input',
             'x-component-props': {
-              size: 'mini',
+              size: 'small',
               clearable: true,
             },
           },
@@ -99,7 +99,7 @@ export const createFieldSchema = (
             'x-decorator': 'FormItem',
             'x-component': 'Input',
             'x-component-props': {
-              size: 'mini',
+              size: 'small',
               clearable: true,
             },
           },
@@ -118,7 +118,7 @@ export const createFieldSchema = (
             'x-decorator': 'FormItem',
             'x-component': 'Select',
             'x-component-props': {
-              size: 'mini',
+              size: 'small',
             },
           },
           'x-pattern': {
@@ -128,7 +128,7 @@ export const createFieldSchema = (
             'x-decorator': 'FormItem',
             'x-component': 'Select',
             'x-component-props': {
-              size: 'mini',
+              size: 'small',
             },
           },
           default: {
@@ -137,15 +137,15 @@ export const createFieldSchema = (
           },
           enum: {
             'x-decorator': 'FormItem',
-            'x-component': 'DataSourceSetter',
+            'x-component': DataSourceSetter,
           },
           'x-reactions': {
             'x-decorator': 'FormItem',
-            'x-component': 'ReactionsSetter',
+            'x-component': ReactionsSetter,
           },
           'x-validator': {
             type: 'array',
-            'x-component': 'ValidatorSetter',
+            'x-component': ValidatorSetter,
           },
           required: {
             type: 'boolean',
@@ -175,7 +175,7 @@ export const createVoidFieldSchema = (
             'x-decorator': 'FormItem',
             'x-component': 'Input',
             'x-component-props': {
-              size: 'mini',
+              size: 'small',
               clearable: true,
             },
           },
@@ -184,7 +184,7 @@ export const createVoidFieldSchema = (
             'x-decorator': 'FormItem',
             'x-component': 'Input',
             'x-component-props': {
-              size: 'mini',
+              size: 'small',
               clearable: true,
             },
             'x-reactions': {
@@ -229,12 +229,12 @@ export const createVoidFieldSchema = (
           },
           'x-reactions': {
             'x-decorator': 'FormItem',
-            'x-component': 'ReactionsSetter',
+            'x-component': ReactionsSetter,
           },
           'x-decorator': {
             type: 'string',
             'x-decorator': 'FormItem',
-            'x-component': 'FormItemSwitcher',
+            'x-component': FormItemSwitcher,
           },
         },
       },

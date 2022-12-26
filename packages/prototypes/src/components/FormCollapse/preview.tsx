@@ -11,15 +11,12 @@ import {
 import { toArr } from '@formily/shared'
 import { defineComponent, nextTick, ref } from 'vue-demi'
 import { composeExport } from '@formily/antdv/esm/__builtins__'
-import { uid } from '@designable/shared'
 import { LoadTemplate } from '../../common/LoadTemplate'
 import { useDropTemplate } from '../../hooks'
 import { createVoidFieldSchema } from '../Field'
 import { AllSchemas } from '../../schemas'
 import { AllLocales } from '../../locales'
 import { matchComponent } from '../../shared'
-import type { DnFC } from '@formily/antdv-designable'
-import type { Collapse as CollapseProps } from 'ant-design-vue'
 
 const parseCollapse = (parent: TreeNode) => {
   const tabs: TreeNode[] = []
@@ -34,7 +31,7 @@ const parseCollapse = (parent: TreeNode) => {
 // & {
 //   CollapsePanel?: VueComponent<CollapsePanelProps>
 // }
-export const FormCollapse: DnFC<CollapseProps> = composeExport(
+export const FormCollapse = composeExport(
   observer(
     defineComponent({
       name: 'DnFormCollapse',
@@ -113,17 +110,20 @@ export const FormCollapse: DnFC<CollapseProps> = composeExport(
                       attrs={attrs}
                       key={panel.id}
                       name={panel.id}
+                      scopedSlots={{
+                        header: () => (
+                          <span
+                            // attrs={{
+                            //   [designer.props.nodeIdAttrName]: panel.id,
+                            // }}
+                            data-content-editable="x-component-props.title"
+                            data-content-editable-node-id={panel.id}
+                          >
+                            {props.header}
+                          </span>
+                        ),
+                      }}
                     >
-                      <span
-                        // attrs={{
-                        //   [designer.props.nodeIdAttrName]: panel.id,
-                        // }}
-                        data-content-editable="x-component-props.title"
-                        data-content-editable-node-id={panel.id}
-                        slot="title"
-                      >
-                        {props.title}
-                      </span>
                       <div
                         style={{
                           padding: '20px 0',

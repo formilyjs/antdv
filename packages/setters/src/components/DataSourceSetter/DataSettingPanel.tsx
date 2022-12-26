@@ -1,20 +1,26 @@
-import { watch, ref, defineComponent } from 'vue-demi'
+import { defineComponent, watch } from 'vue-demi'
+import { GlobalRegistry } from '@designable/core'
 import { Button } from 'ant-design-vue'
 import { ArrayItems, Form, Input, FormItem, Space } from '@formily/antdv'
 import { createForm } from '@formily/core'
 import { observer } from '@formily/reactive-vue'
-import { markRaw, isObservable } from '@formily/reactive'
-import { createSchemaField } from '@formily/vue'
+import { createSchemaField, FragmentComponent } from '@formily/vue'
 import { ValueInput } from '@formily/antdv-settings-form'
 import { usePrefix, TextWidget, IconWidget } from '@formily/antdv-designable'
 import { Header } from './Header'
 import { traverseTree } from './shared'
 import './styles.less'
 import type { PropType } from 'vue-demi'
-import type { Form as FormCore, DataField } from '@formily/core'
+import type { Form as FormCore, ArrayField } from '@formily/core'
 import type { ITreeDataSource } from './types'
 
-const { SchemaField } = createSchemaField({
+const {
+  SchemaField,
+  SchemaArrayField,
+  SchemaObjectField,
+  SchemaStringField,
+  SchemaVoidField,
+} = createSchemaField({
   components: {
     FormItem,
     Input,
@@ -46,33 +52,39 @@ export const DataSettingPanel = observer(
     },
     setup(props) {
       const prefixRef = usePrefix('data-source-setter')
-      const formRef = ref()
+      const form = createForm({
+        values: {},
+        effects: props.effects,
+      })
       watch(
         [
-          () => props.treeDataSource?.selectedKey,
-          () => props.treeDataSource?.dataSource?.length,
+          () => props.treeDataSource.selectedKey,
+          () => props.treeDataSource.dataSource,
         ],
-        () => {
-          let values: any
-          traverseTree(props.treeDataSource!.dataSource, (dataItem) => {
-            if (dataItem.key === props.treeDataSource!.selectedKey) {
+        (value) => {
+          const [selectedKey, dataSource] = value
+          let values: any = {}
+          traverseTree(dataSource, (dataItem) => {
+            if (dataItem.key === selectedKey) {
               values = dataItem
             }
           })
-          formRef.value = createForm({
-            values,
-            effects: props.effects,
-          })
+          form.setValues(values, 'overwrite')
         },
         { immediate: true }
       )
+      const labelStr = GlobalRegistry.getDesignerMessage(
+        'SettingComponents.DataSourceSetter.label'
+      )
+      const valueStr = GlobalRegistry.getDesignerMessage(
+        'SettingComponents.DataSourceSetter.value'
+      )
       return () => {
         const prefix = prefixRef.value
-        const form = formRef.value
         const allowExtendOption = props.allowExtendOption
         if (!props.treeDataSource?.selectedKey)
           return (
-            <>
+            <FragmentComponent>
               <Header
                 title={
                   <TextWidget token="SettingComponents.DataSourceSetter.nodeProperty" />
@@ -82,10 +94,10 @@ export const DataSettingPanel = observer(
               <div class={`${prefix + '-layout-item-content'}`}>
                 <TextWidget token="SettingComponents.DataSourceSetter.pleaseSelectNode" />
               </div>
-            </>
+            </FragmentComponent>
           )
         return (
-          <>
+          <FragmentComponent>
             <Header
               title={
                 <TextWidget token="SettingComponents.DataSourceSetter.nodeProperty" />
@@ -94,11 +106,11 @@ export const DataSettingPanel = observer(
                 allowExtendOption ? (
                   <Button
                     text={true}
-                    onClick={() => {
-                      form.setFieldState('map', (state: DataField) => {
+                    onClick={() =>
+                      form.setFieldState('map', (state: ArrayField) => {
                         state.value.push({})
                       })
-                    }}
+                    }
                     icon={<IconWidget infer="Add" />}
                   >
                     <TextWidget token="SettingComponents.DataSourceSetter.addKeyValuePair" />
@@ -108,95 +120,36 @@ export const DataSettingPanel = observer(
             />
             <div class={`${prefix + '-layout-item-content'}`}>
               <Form form={form} labelWidth={60} wrapperWidth={160}>
-                <SchemaField
-                  schema={{
-                    type: 'object',
-                    properties: {
-                      map: {
-                        type: 'array',
-                        'x-component': 'ArrayItems',
-                        items: {
-                          type: 'object',
-                          'x-decorator': 'ArrayItems.Item',
-                          'x-decorator-props': { type: 'divide' },
-                          'x-component': 'Space',
-                          properties: {
-                            label: {
-                              'x-decorator': 'FormItem',
-                              'x-decorator-props': {
-                                label: markRaw(
-                                  <TextWidget token="SettingComponents.DataSourceSetter.label" />
-                                ),
-                              },
-                              'x-disabled': !allowExtendOption,
-                              name: 'label',
-                              'x-component': 'Input',
-                            },
-                            value: {
-                              'x-decorator': 'FormItem',
-                              'x-decorator-props': {
-                                label: markRaw(
-                                  <TextWidget token="SettingComponents.DataSourceSetter.value" />
-                                ),
-                              },
-                              'x-disabled': !allowExtendOption,
-                              name: 'value',
-                              'x-component': 'Input',
-                            },
-                            remove: {
-                              type: 'void',
-                              'x-component': 'ArrayItems.Remove',
-                              'x-visible': allowExtendOption,
-                              'x-component-props': {
-                                style: {
-                                  margin: 5,
-                                  display: 'flex',
-                                  justifyContent: 'center',
-                                  alignItems: 'center',
-                                },
-                              },
-                            },
-                          },
-                        },
-                      },
-                    },
-                  }}
-                >
-                  {/* <SchemaField.Array name="map" x-component="ArrayItems">
-                                        <SchemaField.Object
-                                            x-decorator="ArrayItems.Item"
-                                            x-decorator-props={{ type: 'divide' }}
-                                        >
-                                            <SchemaField.String
-                                                title={
-                                                    <TextWidget token="SettingComponents.DataSourceSetter.label" />
-                                                }
-                                                x-decorator="FormItem"
-                                                x-disabled={!allowExtendOption}
-                                                name="label"
-                                                x-component="Input"
-                                            />
-                                            <SchemaField.String
-                                                title={
-                                                    <TextWidget token="SettingComponents.DataSourceSetter.value" />
-                                                }
-                                                x-decorator="FormItem"
-                                                name="value"
-                                                x-component="ValueInput"
-                                            />
-                                            <SchemaField.Void
-                                                x-component="ArrayItems.Remove"
-                                                x-visible={allowExtendOption}
-                                                x-component-props={{
-
-                                                }}
-                                            />
-                                        </SchemaField.Object>
-                                    </SchemaField.Array> */}
+                <SchemaField>
+                  <SchemaArrayField name="map" x-component="ArrayItems">
+                    <SchemaObjectField
+                      x-decorator="ArrayItems.Item"
+                      x-decorator-props={{ type: 'divide' }}
+                    >
+                      <SchemaStringField
+                        title={labelStr}
+                        x-decorator="FormItem"
+                        x-disabled={!allowExtendOption}
+                        name="label"
+                        x-component="Input"
+                      />
+                      <SchemaStringField
+                        title={valueStr}
+                        x-decorator="FormItem"
+                        name="value"
+                        x-component="ValueInput"
+                      />
+                      <SchemaVoidField
+                        x-component="ArrayItems.Remove"
+                        x-visible={allowExtendOption}
+                        x-component-props={{}}
+                      />
+                    </SchemaObjectField>
+                  </SchemaArrayField>
                 </SchemaField>
               </Form>
             </div>
-          </>
+          </FragmentComponent>
         )
       }
     },

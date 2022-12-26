@@ -108,7 +108,7 @@ const SelectorComponent = observer(
               {parents.slice(0, 4).map((parent) => {
                 return (
                   <Button
-                    // key={parent.id}
+                    key={parent.id}
                     type="primary"
                     vOn:click_prevent_stop={() => {
                       selectionRef.value.select(parent.id)

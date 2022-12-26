@@ -1,4 +1,3 @@
-import type { InjectionKey, Ref } from 'vue-demi'
 import {
   defineComponent,
   provide,
@@ -10,13 +9,14 @@ import {
 import { h } from '@formily/vue'
 import { observer } from '@formily/reactive-vue'
 import { markRaw } from '@formily/reactive'
-import type { IGridOptions } from '@formily/grid'
 import { Grid } from '@formily/grid'
+import { inject } from 'vue-demi'
 import { stylePrefix } from '../__builtins__/configs'
 import { composeExport } from '../__builtins__/shared'
 import { useFormLayout } from '../form-layout'
-import { inject } from 'vue-demi'
+import type { IGridOptions } from '@formily/grid'
 import type { PropType } from 'vue-demi'
+import type { InjectionKey, Ref } from 'vue-demi'
 
 export interface IFormGridProps extends IGridOptions {
   grid?: Grid<HTMLElement>

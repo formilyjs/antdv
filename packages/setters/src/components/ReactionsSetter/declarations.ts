@@ -1,7 +1,4 @@
-import {
-  MonacoInput,
-  getNpmCDNRegistry,
-} from '@formily/element-plus-settings-form'
+import { MonacoInput, getNpmCDNRegistry } from '@formily/antdv-settings-form'
 
 export interface IDependency {
   name: string

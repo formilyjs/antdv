@@ -62,7 +62,7 @@ const InputItemsItem = defineComponent({
       const ctx = ctxRef.value
       return (
         <div
-          class={cls(prefixRef, {
+          class={cls(prefixRef.value, {
             vertical: props.vertical || ctx.vertical,
           })}
           style={{ width: props.width || ctx.width }}

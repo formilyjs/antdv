@@ -1,4 +1,4 @@
-import type { ExtractPropTypes, PropType } from 'vue'
+import type { ExtractPropTypes, PropType, Ref } from 'vue-demi'
 
 export const monacoContainerProps = {
   width: {
@@ -18,7 +18,7 @@ export const monacoContainerProps = {
 
   className: String,
 
-  setContainerRef: Function as PropType<(ref: HTMLElement | null) => void>,
+  setContainerRef: Function as PropType<(ref: Ref<HTMLElement | null>) => void>,
 }
 
 export type MonacoContainerProps = ExtractPropTypes<typeof monacoContainerProps>

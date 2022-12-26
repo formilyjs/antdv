@@ -11,9 +11,9 @@ export interface ISettingPanelProps {
 }
 
 export const SettingsPanel = observer(
-  defineComponent<ISettingPanelProps>({
+  defineComponent({
     props: ['title', 'extra'],
-    setup(props, { slots }) {
+    setup(props: ISettingPanelProps, { slots }) {
       const prefixRef = usePrefix('settings-panel')
       const workbenchRef = useWorkbench()
       const innerVisible = ref(true)

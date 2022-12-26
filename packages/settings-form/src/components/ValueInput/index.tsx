@@ -2,10 +2,12 @@
  * 支持文本、数字、布尔、表达式
  * Todo: JSON、富文本，公式
  */
-import { Select } from 'ant-design-vue'
+import { Select, Popover, Button } from 'ant-design-vue'
 import { InputNumber, Input } from '@formily/antdv'
+import { TextWidget } from '@formily/antdv-designable'
 import { defineComponent } from 'vue-demi'
 import { createPolyInput } from '../PolyInput'
+import { MonacoInput } from '../MonacoInput'
 
 const STARTTAG_REX =
   /<([-A-Za-z0-9_]+)((?:\s+[a-zA-Z_:][-a-zA-Z0-9_:.]*(?:\s*=\s*(?:(?:"[^"]*")|(?:'[^']*')|[^>\s]+))?)*)\s*(\/?)>/
@@ -41,56 +43,65 @@ export const ValueInput = createPolyInput([
     component: Input,
     checker: isNormalText,
   },
-  // {
-  //   type: 'EXPRESSION',
-  //   icon: 'Expression',
-  //   component: (props: any) => {
-  //     return (
-  //       <Popover
-  //         content={
-  //           <div
-  //             style={{
-  //               width: 400,
-  //               height: 200,
-  //               marginLeft: -16,
-  //               marginRight: -16,
-  //               marginBottom: -12,
-  //             }}
-  //           >
-  //             <MonacoInput {...props} language="javascript.expression" />
-  //           </div>
-  //         }
-  //         trigger="click"
-  //       >
-  //         <Button block>
-  //           <TextWidget token="SettingComponents.ValueInput.expression" />
-  //         </Button>
-  //       </Popover>
-  //     )
-  //   },
-  //   checker: isExpression,
-  //   toInputValue: (value) => {
-  //     if (value === '{{}}') return
-  //     const matched = String(value).match(EXPRESSION_REX)
-  //     return matched?.[1] || value || ''
-  //   },
-  //   toChangeValue: (value) => {
-  //     if (value === '{{}}') return
-  //     const matched = String(value).match(EXPRESSION_REX)
-  //     return `{{${matched?.[1] || value || ''}}}`
-  //   },
-  // },
+  {
+    type: 'EXPRESSION',
+    icon: 'Expression',
+    component: defineComponent({
+      setup(props, { attrs }) {
+        return () => (
+          <Popover
+            trigger="click"
+            placement="bottomRight"
+            scopedSlots={{
+              content: () => (
+                <div
+                  style={{
+                    width: '400px',
+                    height: '200px',
+                    marginLeft: '-16px',
+                    marginRight: '-16px',
+                    marginBottom: '-12px',
+                  }}
+                >
+                  <MonacoInput
+                    {...{ ...attrs, ...props }}
+                    language="javascript.expression"
+                  />
+                </div>
+              ),
+            }}
+          >
+            <Button block>
+              <TextWidget token="SettingComponents.ValueInput.expression" />
+            </Button>
+          </Popover>
+        )
+      },
+    }),
+    checker: isExpression,
+    toInputValue: (value) => {
+      if (value === '{{}}') return
+      const matched = String(value).match(EXPRESSION_REX)
+      return matched?.[1] || value || ''
+    },
+    toChangeValue: (value) => {
+      if (value === '{{}}') return
+      const matched = String(value).match(EXPRESSION_REX)
+      return `{{${matched?.[1] || value || ''}}}`
+    },
+  },
   {
     type: 'BOOLEAN',
     icon: 'Boolean',
     component: defineComponent({
       props: ['value'],
+      emits: ['change'],
       setup(props, { emit }) {
         return () => {
           return (
             <Select
               value={props.value}
-              vOn:input={(value) => {
+              onChange={(value) => {
                 emit('change', value)
               }}
             >

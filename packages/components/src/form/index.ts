@@ -1,22 +1,22 @@
-import type { Form as FormType, IFormFeedback } from '@formily/core'
 import { FormProvider as _FormProvider, h, useForm } from '@formily/vue'
 import { defineComponent } from 'vue-demi'
-import type { FormLayoutProps } from '../form-layout'
 import { FormLayout } from '../form-layout'
 import { PreviewText } from '../preview-text'
 import type { Component, VNode } from 'vue'
+import type { Form as FormType, IFormFeedback } from '@formily/core'
+import type { FormLayoutProps } from '../form-layout'
 
 const FormProvider = _FormProvider as unknown as Component
 
 export interface FormProps extends FormLayoutProps {
   form?: FormType
-  component?: Component
+  component?: Component | string
   previewTextPlaceholder: string | (() => VNode)
   onAutoSubmit?: (values: any) => any
   onAutoSubmitFailed?: (feedbacks: IFormFeedback[]) => void
 }
 
-export const Form = defineComponent<FormProps>({
+export const Form = defineComponent({
   name: 'FForm',
   props: [
     'form',
@@ -25,7 +25,7 @@ export const Form = defineComponent<FormProps>({
     'onAutoSubmit',
     'onAutoSubmitFailed',
   ],
-  setup(props, { attrs, slots, listeners }) {
+  setup(props: FormProps, { attrs, slots, listeners }) {
     const top = useForm()
 
     return () => {

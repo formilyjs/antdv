@@ -1,23 +1,18 @@
 import { clone, toArr } from '@formily/shared'
 import { observer } from '@formily/reactive-vue'
-import {
-  IconWidget,
-  TextWidget,
-  usePrefix,
-} from '@formily/element-plus-prototypes'
-import { INodeItem, ITreeDataSource } from './types'
+import { IconWidget, TextWidget, usePrefix } from '@formily/antdv-designable'
+import { defineComponent } from 'vue-demi'
 import { traverseTree } from './shared'
 import './styles.less'
-import { defineComponent } from 'vue'
-import { PropType } from 'vue'
+import type { PropType } from 'vue-demi'
+import type { INodeItem, ITreeDataSource } from './types'
 
 export interface ITitleProps extends INodeItem {
   treeDataSource: ITreeDataSource
 }
 
-const titleInner = defineComponent({
+const titleInner = defineComponent<ITitleProps>({
   props: {
-    key: { type: String as PropType<ITitleProps['key']> },
     duplicateKey: { type: String as PropType<ITitleProps['duplicateKey']> },
     map: { type: Array as PropType<ITitleProps['map']> },
     children: { type: Array as PropType<ITitleProps['children']> },
@@ -61,20 +56,14 @@ const titleInner = defineComponent({
     return () => {
       const prefix = prefixRef.value
       return (
-        <div
-          class={prefix}
-          onClick={(e) => {
-            e.stopPropagation()
-            e.preventDefault()
-          }}
-        >
+        <div class={prefix}>
           <span style={{ marginRight: '5px' }}>
             {renderTitle(props.map || [])}
           </span>
           <IconWidget
-            className={prefix + '-icon'}
+            class={prefix + '-icon'}
             infer="Remove"
-            onClick={(event) => {
+            onClick={() => {
               const newDataSource = clone(props?.treeDataSource?.dataSource)
               traverseTree(newDataSource || [], (dataItem, i, data) => {
                 if (data[i].key === props.duplicateKey) toArr(data).splice(i, 1)

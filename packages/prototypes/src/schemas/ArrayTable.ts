@@ -29,11 +29,24 @@ export const ArrayTable: ISchema & { Addition?: ISchema; Column?: ISchema } = {
     size: {
       default: 'small',
       type: 'string',
-      enum: ['medium', 'small', 'mini'],
+      enum: [
+        {
+          label: 'Large',
+          value: 'large',
+        },
+        {
+          label: 'Small',
+          value: 'small',
+        },
+        {
+          label: 'Default',
+          value: 'default',
+        },
+      ],
       'x-decorator': 'FormItem',
       'x-component': 'Select',
       'x-component-props': {
-        size: 'mini',
+        size: 'small',
       },
     },
   },
@@ -47,7 +60,7 @@ const Column: ISchema = {
       'x-decorator': 'FormItem',
       'x-component': 'Input',
       'x-component-props': {
-        size: 'mini',
+        size: 'small',
         clearable: true,
       },
     },
@@ -56,7 +69,7 @@ const Column: ISchema = {
       'x-decorator': 'FormItem',
       'x-component': 'Input',
       'x-component-props': {
-        size: 'mini',
+        size: 'small',
         clearable: true,
       },
     },
@@ -65,7 +78,7 @@ const Column: ISchema = {
       'x-decorator': 'FormItem',
       'x-component': 'InputNumber',
       'x-component-props': {
-        size: 'mini',
+        size: 'small',
       },
     },
     'min-width': {
@@ -73,7 +86,7 @@ const Column: ISchema = {
       'x-decorator': 'FormItem',
       'x-component': 'InputNumber',
       'x-component-props': {
-        size: 'mini',
+        size: 'small',
       },
     },
     fixed: {
@@ -82,7 +95,7 @@ const Column: ISchema = {
       'x-decorator': 'FormItem',
       'x-component': 'Select',
       'x-component-props': {
-        size: 'mini',
+        size: 'small',
         clearable: true,
       },
       'x-reactions': (field) => {
@@ -111,7 +124,7 @@ const Column: ISchema = {
       'x-decorator': 'FormItem',
       'x-component': 'Select',
       'x-component-props': {
-        size: 'mini',
+        size: 'small',
       },
     },
     'header-align': {
@@ -121,7 +134,7 @@ const Column: ISchema = {
       'x-decorator': 'FormItem',
       'x-component': 'Select',
       'x-component-props': {
-        size: 'mini',
+        size: 'small',
       },
     },
   },
@@ -135,7 +148,7 @@ const Addition: ISchema = {
       'x-decorator': 'FormItem',
       'x-component': 'Input',
       'x-component-props': {
-        size: 'mini',
+        size: 'small',
         clearable: true,
       },
     },
@@ -154,7 +167,7 @@ const Addition: ISchema = {
       'x-decorator': 'FormItem',
       'x-component': 'Input',
       'x-component-props': {
-        size: 'mini',
+        size: 'small',
         clearable: true,
       },
     },

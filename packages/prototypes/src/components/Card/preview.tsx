@@ -5,19 +5,23 @@ import { defineComponent } from 'vue-demi'
 import { createVoidFieldSchema } from '../Field'
 import { AllSchemas } from '../../schemas'
 import { AllLocales } from '../../locales'
-import type { DnFC } from '@formily/antdv-designable'
-import type { VueComponent } from '@formily/vue'
 
-export const Card: DnFC<VueComponent<typeof ElCard>> = composeExport(
+export const Card = composeExport(
   defineComponent({
     props: { title: {} },
     setup(props, { slots }) {
       return () => {
         return (
-          <ElCard {...props}>
-            <span data-content-editable="x-component-props.title" slot="header">
-              {props.title}
-            </span>
+          <ElCard
+            {...props}
+            scopedSlots={{
+              header: () => (
+                <span data-content-editable="x-component-props.title">
+                  {props.title}
+                </span>
+              ),
+            }}
+          >
             {slots.default?.()}
           </ElCard>
         )

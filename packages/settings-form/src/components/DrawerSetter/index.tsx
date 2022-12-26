@@ -1,82 +1,84 @@
-import React, { Fragment, useState, useLayoutEffect } from 'react'
-import { createPortal } from 'react-dom'
-import { observer, useField } from '@formily/react'
-import { FormLayout } from '@formily/antd'
-import { IconWidget, usePrefix, useTreeNode } from '@designable/react'
-import { Button } from 'antd'
+import { defineComponent, ref, onMounted } from 'vue-demi'
+import { observer } from '@formily/reactive-vue'
+import { useField, FragmentComponent } from '@formily/vue'
+import { FormLayout } from '@formily/antdv'
+import { IconWidget, usePrefix } from '@formily/antdv-designable'
+import { Button } from 'ant-design-vue'
 import cls from 'classnames'
 import './styles.less'
 
-export interface IDrawerSetterProps {
-  text: React.ReactNode
-}
-
-export const DrawerSetter: React.FC<IDrawerSetterProps> = observer((props) => {
-  const node = useTreeNode()
-  const field = useField()
-  const [visible, setVisible] = useState(false)
-  const [remove, setRemove] = useState(false)
-  const [root, setRoot] = useState<Element>()
-  const prefix = usePrefix('drawer-setter')
-  const formWrapperCls = usePrefix('settings-form-wrapper')
-  useLayoutEffect(() => {
-    const wrapper = document.querySelector('.' + formWrapperCls)
-    if (wrapper) {
-      setRoot(wrapper)
-    }
-  }, [node])
-
-  const renderDrawer = () => {
-    if (root && visible) {
-      return createPortal(
-        <div
-          className={cls(prefix, 'animate__animated animate__slideInRight', {
-            animate__slideOutRight: remove,
-          })}
-        >
-          <div className={prefix + '-header'} onClick={handleClose}>
-            <IconWidget infer="Return" size={18} />
-            <span className={prefix + '-header-text'}>
-              {props.text || field.title}
-            </span>
-          </div>
-          <div className={prefix + '-body'}>
-            <FormLayout
-              colon={false}
-              labelWidth={120}
-              labelAlign="left"
-              wrapperAlign="right"
-              feedbackLayout="none"
-              tooltipLayout="text"
+export const DrawerSetter = observer(
+  defineComponent({
+    props: ['text', 'children'],
+    setup(props, { slots }) {
+      const field = useField()
+      const visible = ref(false)
+      const remove = ref(false)
+      const root = ref<Element>()
+      const prefix = usePrefix('drawer-setter')
+      const formWrapperCls = usePrefix('settings-form-wrapper')
+      onMounted(() => {
+        const wrapper = document.querySelector('.' + formWrapperCls.value)
+        if (wrapper) {
+          root.value = wrapper
+        }
+      })
+      const renderDrawer = () => {
+        if (root.value && visible.value) {
+          return (
+            <div
+              class={cls(
+                prefix.value,
+                'animate__animated animate__slideInRight',
+                {
+                  animate__slideOutRight: remove.value,
+                }
+              )}
             >
-              {props.children}
-            </FormLayout>
-          </div>
-        </div>,
-        root
+              <div class={prefix.value + '-header'} onClick={handleClose}>
+                <IconWidget infer="Return" size={18} />
+                <span class={prefix.value + '-header-text'}>
+                  {props.text || field.value.title}
+                </span>
+              </div>
+              <div class={prefix.value + '-body'}>
+                <FormLayout
+                  colon={false}
+                  labelWidth={120}
+                  labelAlign="left"
+                  wrapperAlign="right"
+                  feedbackLayout="none"
+                  tooltipLayout="text"
+                >
+                  {slots?.default?.()}
+                </FormLayout>
+              </div>
+            </div>
+          )
+        }
+        return null
+      }
+
+      const handleOpen = () => {
+        visible.value = true
+      }
+
+      const handleClose = () => {
+        remove.value = true
+        setTimeout(() => {
+          visible.value = false
+          remove.value = false
+        }, 150)
+      }
+
+      return () => (
+        <FragmentComponent>
+          <Button block onClick={handleOpen}>
+            {props.text || field.value.title}
+          </Button>
+          {renderDrawer()}
+        </FragmentComponent>
       )
-    }
-    return null
-  }
-
-  const handleOpen = () => {
-    setVisible(true)
-  }
-
-  const handleClose = () => {
-    setRemove(true)
-    setTimeout(() => {
-      setVisible(false)
-      setRemove(false)
-    }, 150)
-  }
-
-  return (
-    <Fragment>
-      <Button block onClick={handleOpen}>
-        {props.text || field.title}
-      </Button>
-      {renderDrawer()}
-    </Fragment>
-  )
-})
+    },
+  })
+)

@@ -1,4 +1,4 @@
-import { defineComponent, computed } from 'vue-demi'
+import { defineComponent, computed, ref, onMounted } from 'vue-demi'
 import Loading from '../loading'
 import { monacoContainerProps } from './types'
 import styles from './style'
@@ -7,7 +7,8 @@ import type { MonacoContainerProps } from './types'
 
 export default defineComponent({
   props: monacoContainerProps,
-  setup(props: MonacoContainerProps, { slots }) {
+  setup(props: MonacoContainerProps) {
+    const containerRef = ref(null)
     const wrapperStyle = computed(() => {
       const { width, height } = props
       return {
@@ -23,13 +24,29 @@ export default defineComponent({
         ...(!props.isEditorReady && styles.hide),
       }
     })
+    onMounted(() => {
+      props.setContainerRef(containerRef)
+    })
 
-    return () => (
-      <div style={wrapperStyle.value}>
+    return {
+      containerRef,
+      wrapperStyle,
+      containerStyle,
+    }
+  },
+  render() {
+    const {
+      wrapperStyle,
+      $scopedSlots: slots,
+      containerStyle,
+      $props: props,
+    } = this
+    return (
+      <div style={wrapperStyle}>
         {!props.isEditorReady && <Loading>{slots.default?.()}</Loading>}
         <div
-          ref={props.setContainerRef as any}
-          style={containerStyle.value}
+          ref="containerRef"
+          style={containerStyle}
           class={props.className}
         />
       </div>

@@ -16,6 +16,7 @@ const createUnitType = (type: string) => {
     component: defineComponent({
       name: 'DnUnitType',
       props: ['value'],
+      emits: ['change'],
       setup(props, { attrs, emit }) {
         return () => {
           return (
@@ -25,7 +26,7 @@ const createUnitType = (type: string) => {
               onChange={(cb) => {
                 emit('change', cb)
               }}
-              props={{ 'controls-position': 'right', size: 'small', ...props }}
+              props={{ 'controls-position': 'right', ...props }}
             ></InputNumber>
           )
         }

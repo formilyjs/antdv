@@ -11,7 +11,23 @@ export const Input = {
         'prefix-icon': '输入框头部图标',
         'suffix-icon': '输入框尾部图标',
         autofocus: '获取焦点',
-        size: '尺寸',
+        size: {
+          title: '尺寸',
+          dataSource: [
+            {
+              label: '大',
+              value: 'large',
+            },
+            {
+              label: '小',
+              value: 'small',
+            },
+            {
+              label: '默认',
+              value: 'default',
+            },
+          ],
+        },
         rows: '行数',
         autoSize: {
           title: '自适应高度',
@@ -32,7 +48,23 @@ export const Input = {
         'prefix-icon': '输入框头部图标',
         'suffix-icon': '输入框尾部图标',
         autofocus: '获取焦点',
-        size: '尺寸',
+        size: {
+          title: '尺寸',
+          dataSource: [
+            {
+              label: 'large',
+              value: 'large',
+            },
+            {
+              label: 'small',
+              value: 'small',
+            },
+            {
+              label: 'default',
+              value: 'default',
+            },
+          ],
+        },
         autoSize: {
           title: '自适应高度',
           tooltip: '可设置为 true | false 或对象：{ minRows: 2, maxRows: 6 }',

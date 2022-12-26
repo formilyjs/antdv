@@ -1,9 +1,9 @@
-import { TextWidget, usePrefix } from '@formily/element-plus-prototypes'
-import { ElMenu as Menu, ElMenuItem as MenuItem } from 'element-plus'
-import { MonacoInput } from '@formily/element-plus-settings-form'
+import { TextWidget, usePrefix } from '@formily/antdv-designable'
+import { Menu } from 'ant-design-vue'
+import { MonacoInput } from '@formily/antdv-settings-form'
+import { defineComponent, ref } from 'vue-demi'
 import { isPlainObj, reduce } from '@formily/shared'
 import { FieldProperties } from './properties'
-import { defineComponent, ref } from 'vue'
 
 export interface IFieldProperty {
   [key: string]: string
@@ -33,7 +33,7 @@ export const FieldPropertySetter = defineComponent({
       return String(expression).match(/^\{\{([\s\S]*)\}\}$/)?.[1] || ''
     }
 
-    const filterEmpty = (value: object) => {
+    const filterEmpty = (value) => {
       return reduce(
         value,
         (buf, value, key) => {
@@ -71,21 +71,21 @@ export const FieldPropertySetter = defineComponent({
             {FieldProperties.map((key) => {
               if (isPlainObj(key)) {
                 return (
-                  <MenuItem index={key.key}>
+                  <Menu.Item index={key.key}>
                     <TextWidget
                       token={`SettingComponents.ReactionsSetter.${
                         key.token || key.key
                       }`}
                     />
-                  </MenuItem>
+                  </Menu.Item>
                 )
               }
               return (
-                <MenuItem index={key}>
+                <Menu.Item index={key}>
                   <TextWidget
                     token={`SettingComponents.ReactionsSetter.${key}`}
                   />
-                </MenuItem>
+                </Menu.Item>
               )
             })}
           </Menu>

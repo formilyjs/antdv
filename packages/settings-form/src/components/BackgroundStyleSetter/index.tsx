@@ -20,13 +20,19 @@ export const BackgroundStyleSetter = defineComponent({
     return () => {
       const field = unref(fieldRef)
       return (
-        <FoldItem class={cls(prefixRef.value)} label={field.title}>
-          <Field
-            slot="base"
-            name="backgroundColor"
-            basePath={field.address.parent()}
-            component={[ColorInput]}
-          />
+        <FoldItem
+          class={cls(prefixRef.value)}
+          label={field.title}
+          scopedSlots={{
+            base: () => (
+              <Field
+                name="backgroundColor"
+                basePath={field.address.parent()}
+                component={[ColorInput]}
+              />
+            ),
+          }}
+        >
           {/* <FragmentComponent slot="extra">
             <InputItems>
               <InputItems.Item icon="Image">

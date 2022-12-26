@@ -9,9 +9,22 @@ export const Cascader: ISchema = {
       'x-component': 'PreviewText.Input',
     },
     size: {
-      default: 'medium',
+      default: 'default',
       type: 'string',
-      enum: ['medium', 'small', 'mini', null],
+      enum: [
+        {
+          label: 'Large',
+          value: 'large',
+        },
+        {
+          label: 'Small',
+          value: 'small',
+        },
+        {
+          label: 'Default',
+          value: 'default',
+        },
+      ],
       'x-decorator': 'FormItem',
       'x-component': 'Select',
     },
@@ -20,7 +33,7 @@ export const Cascader: ISchema = {
       'x-decorator': 'FormItem',
       'x-component': 'Input',
       'x-component-props': {
-        size: 'mini',
+        size: 'small',
         clearable: true,
       },
     },
@@ -45,7 +58,7 @@ export const Cascader: ISchema = {
       'x-decorator': 'FormItem',
       'x-component': 'Input',
       'x-component-props': {
-        size: 'mini',
+        size: 'small',
         clearable: true,
       },
     },
@@ -65,7 +78,7 @@ export const Cascader: ISchema = {
       'x-decorator': 'FormItem',
       'x-component': 'InputNumber',
       'x-component-props': {
-        size: 'mini',
+        size: 'small',
       },
     },
     'before-filter': {
@@ -78,7 +91,7 @@ export const Cascader: ISchema = {
       'x-decorator': 'FormItem',
       'x-component': 'Input',
       'x-component-props': {
-        size: 'mini',
+        size: 'small',
       },
     },
   },

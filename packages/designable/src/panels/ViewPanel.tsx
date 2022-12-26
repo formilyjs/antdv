@@ -39,7 +39,6 @@ const ViewPanelComponent = defineComponent({
 
     return () => {
       if (workbenchRef.value.type !== props.type) return null
-
       const render = () => {
         return slots.default?.(treeRef.value, (payload) => {
           treeRef.value.from(payload)
@@ -54,7 +53,6 @@ const ViewPanelComponent = defineComponent({
           </Viewport>
         )
       }
-
       return (
         <div
           style={{

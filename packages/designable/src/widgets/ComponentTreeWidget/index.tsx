@@ -1,13 +1,13 @@
 import { FragmentComponent as Fragment } from '@formily/vue'
-import { useTree, usePrefix, useDesigner, useComponents } from '../../hooks'
-import type { TreeNode } from '@designable/core'
 import { GlobalRegistry } from '@designable/core'
 import { observer } from '@formily/reactive-vue'
 import cls from 'classnames'
-import './styles.less'
 import { defineComponent, provide, ref, toRef } from 'vue-demi'
 import { composeExport } from '@formily/antdv/esm/__builtins__'
+import { useTree, usePrefix, useDesigner, useComponents } from '../../hooks'
+import './styles.less'
 import { TreeNodeSymbol, DesignerComponentsSymbol } from '../../context'
+import type { TreeNode } from '@designable/core'
 import type { IDesignerComponents } from '../../types'
 
 export interface IComponentTreeWidgetProps {

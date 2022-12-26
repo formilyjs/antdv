@@ -4,4 +4,7 @@ export const BuilderConfig: IBuilderConfig = {
   targetLibName: 'element',
   targetLibCjsDir: 'lib',
   targetLibEsDir: 'es',
+  externals: {
+    '@formily/antdv': 'Formily.Antdv',
+  },
 }

@@ -3,7 +3,6 @@ import { usePrefix, IconWidget } from '@formily/antdv-designable'
 import cls from 'classnames'
 import './styles.less'
 import { defineComponent, ref, unref, watch } from 'vue-demi'
-import { uid } from '@formily/shared'
 
 export interface IInput {
   value: any
@@ -55,13 +54,12 @@ export function createPolyInput(polyTypes: PolyTypes = []) {
   return defineComponent({
     name: 'DnPolyInput',
     props: ['value', 'exclude', 'include'],
-    setup(props, { attrs, emit }) {
+    emits: ['change'],
+    setup(props, { emit }) {
       const prefixRef = usePrefix('poly-input')
       const types = createTypes(polyTypes, props.exclude, props.include)
       const current = ref(types?.[0]?.type)
-
       const typesValue = ref({})
-
       watch(
         () => props.value,
         () => {
@@ -73,7 +71,6 @@ export function createPolyInput(polyTypes: PolyTypes = []) {
         },
         { immediate: true }
       )
-
       const getNextType = () => {
         const currentIndex = types?.findIndex(
           ({ type }) => type === unref(current)
@@ -86,39 +83,38 @@ export function createPolyInput(polyTypes: PolyTypes = []) {
       const transformOnChangeValue = (value: any, type: IPolyType) => {
         return type?.toChangeValue ? type?.toChangeValue(value) : value
       }
-
       return () => {
         const type = types?.find(({ type }) => type === current.value)
-        const component = type?.component
+        const typeComponent = type?.component
         return (
           // style={style} className
-          <div class={cls(prefixRef.value)} key={uid()}>
-            {component && (
+          <div class={cls(prefixRef.value)}>
+            {typeComponent && (
               <div class={prefixRef.value + '-content'}>
-                <component
-                  attrs={{ ...attrs, size: 'mini' }}
-                  value={
-                    type?.toInputValue
+                <typeComponent
+                  props={{
+                    ...props,
+                    value: type?.toInputValue
                       ? type?.toInputValue(props.value)
-                      : props.value
-                  }
+                      : props.value,
+                  }}
                   onChange={(event: any) => {
                     const value = getEventValue(event)
                     typesValue.value[type?.type] = event
                     emit('change', transformOnChangeValue(value, type))
                   }}
-                ></component>
+                ></typeComponent>
               </div>
             )}
             <Button
               class={prefixRef.value + '-controller'}
               style={{
-                width: !component ? '100%' : 'auto',
+                width: !typeComponent ? '100%' : 'auto',
               }}
               size="small"
               onClick={() => {
                 const nextType = getNextType()
-                if (nextType === type) return
+                if (nextType.type === type.type) return
                 current.value = nextType?.type
                 emit(
                   'change',

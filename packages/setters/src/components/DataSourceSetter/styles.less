@@ -1,5 +1,5 @@
 @root-entry-name: 'default';
-
+@border-color-base: #f0f0f0;
 .dn-data-source-setter {
   ::-webkit-scrollbar {
     width: 5px;
@@ -33,7 +33,7 @@
   &-layout {
     display: flex;
     justify-content: space-around;
-    border: 1px solid var(--el-border-color);
+    border: 1px solid @border-color-base;
     border-radius: 3px;
 
     .el-tree-treenode {
@@ -52,7 +52,7 @@
 
       &.left {
         width: 40%;
-        border-right: 1px solid var(--el-border-color);
+        border-right: 1px solid @border-color-base;
       }
 
       &.right {
@@ -66,7 +66,7 @@
         justify-content: space-between;
         height: 40px;
         padding: 8px 12px 9px;
-        border-bottom: 1px solid var(--el-border-color);
+        border-bottom: 1px solid @border-color-base;
         border-radius: 2px 2px 0 0;
       }
 

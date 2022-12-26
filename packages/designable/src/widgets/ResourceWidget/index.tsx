@@ -6,24 +6,23 @@ import { defineComponent, ref, unref } from 'vue-demi'
 import { usePrefix } from '../../hooks'
 import { IconWidget } from '../IconWidget'
 import { TextWidget } from '../TextWidget'
-import type { VNode } from 'vue-demi'
 import type { IResourceLike, IResource } from '@designable/core'
 import './styles.less'
 
 export interface IResourceWidgetProps {
-  title: VNode
+  title: string
   sources?: IResourceLike[]
   defaultExpand?: boolean
 }
 
 export const ResourceWidget = observer(
-  defineComponent<IResourceWidgetProps>({
+  defineComponent({
     props: {
       defaultExpand: { type: Boolean, default: true },
       sources: { type: Array, default: () => [] },
       title: String,
     },
-    setup(props, { slots }) {
+    setup(props: IResourceWidgetProps, { slots }) {
       const prefixRef = usePrefix('resource')
       const expand = ref(props.defaultExpand)
 

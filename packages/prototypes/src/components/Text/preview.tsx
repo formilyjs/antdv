@@ -5,20 +5,17 @@ import { defineComponent } from 'vue-demi'
 import { createVoidFieldSchema } from '../Field'
 import { AllSchemas } from '../../schemas'
 import { AllLocales } from '../../locales'
-import type { DnFC } from '@formily/antdv-designable'
-import type { CSSProperties } from '@vue/runtime-dom'
-import type { VueComponent } from '@formily/vue'
 import './styles.less'
 
 export interface IDesignableTextProps {
   value?: string
   content?: string
   mode?: 'normal' | 'h1' | 'h2' | 'h3' | 'p'
-  style?: CSSProperties
+  style?: Record<string, any>
   className?: string
 }
 
-export const Text: DnFC<IDesignableTextProps> = composeExport(
+export const Text = composeExport(
   defineComponent({
     props: ['mode', 'content'],
     setup(props, { attrs }) {

@@ -24,7 +24,23 @@ export const NumberPicker = {
         },
         controls: '控制按钮',
         'step-strictly': '输入 step 的倍数',
-        size: { title: '尺寸', dataSource: ['大', '小', '迷你', '继承'] },
+        size: {
+          title: '尺寸',
+          dataSource: [
+            {
+              label: '大',
+              value: 'large',
+            },
+            {
+              label: '小',
+              value: 'small',
+            },
+            {
+              label: '默认',
+              value: 'default',
+            },
+          ],
+        },
       },
     },
   },

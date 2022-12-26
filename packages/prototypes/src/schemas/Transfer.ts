@@ -14,7 +14,7 @@ export const Transfer: ISchema = {
       'x-decorator': 'FormItem',
       'x-component-props': {
         clearable: true,
-        size: 'mini',
+        size: 'small',
       },
     },
     'filter-method': {
@@ -37,7 +37,7 @@ export const Transfer: ISchema = {
           type: 'string',
           'x-component': 'Input',
           'x-component-props': {
-            size: 'mini',
+            size: 'small',
             clearable: true,
           },
         },
@@ -45,7 +45,7 @@ export const Transfer: ISchema = {
           type: 'string',
           'x-component': 'Input',
           'x-component-props': {
-            size: 'mini',
+            size: 'small',
             clearable: true,
           },
         },
@@ -60,7 +60,7 @@ export const Transfer: ISchema = {
           type: 'string',
           'x-component': 'Input',
           'x-component-props': {
-            size: 'mini',
+            size: 'small',
             clearable: true,
           },
         },
@@ -68,7 +68,7 @@ export const Transfer: ISchema = {
           type: 'string',
           'x-component': 'Input',
           'x-component-props': {
-            size: 'mini',
+            size: 'small',
             clearable: true,
           },
         },
@@ -108,7 +108,7 @@ export const Transfer: ISchema = {
             'x-decorator': 'FormItem',
             'x-component': 'Input',
             'x-component-props': {
-              size: 'mini',
+              size: 'small',
               clearable: true,
             },
           },
@@ -146,7 +146,7 @@ export const Transfer: ISchema = {
             'x-decorator': 'FormItem',
             'x-component': 'Input',
             'x-component-props': {
-              size: 'mini',
+              size: 'small',
               clearable: true,
             },
           },

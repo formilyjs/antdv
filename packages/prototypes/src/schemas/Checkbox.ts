@@ -20,18 +20,31 @@ Checkbox.Group = {
       'x-decorator': 'FormItem',
       'x-component': 'Radio.Group',
       'x-component-props': {
-        size: 'mini',
+        size: 'small',
         optionType: 'button',
       },
     },
     size: {
-      default: 'medium',
+      default: 'default',
       type: 'string',
-      enum: ['medium', 'small', 'mini', null],
+      enum: [
+        {
+          label: 'Large',
+          value: 'large',
+        },
+        {
+          label: 'Small',
+          value: 'small',
+        },
+        {
+          label: 'Default',
+          value: 'default',
+        },
+      ],
       'x-decorator': 'FormItem',
       'x-component': 'Select',
       'x-component-props': {
-        size: 'mini',
+        size: 'small',
       },
       'x-reactions': (field) => {
         field.visible =

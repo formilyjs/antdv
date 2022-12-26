@@ -45,20 +45,17 @@ const DesignerToolsWidgetComponent = defineComponent<IDesignerToolsWidgetProps>(
           return (
             <Fragment>
               <InputNumber
-                size="mini"
+                props={{
+                  size: 'small',
+                }}
                 controls={false}
                 value={screenRef.value.width}
                 style={{ width: '110px', textAlign: 'center' }}
-                vOn:change={(value) => {
+                onChange={(value) => {
                   sizeRef.width = value
                 }}
-                vOn:keyup_native={(e: KeyboardEvent) => {
-                  if (e.key === 'Enter') {
-                    screenRef.value.setSize(
-                      sizeRef.width,
-                      screenRef.value.height
-                    )
-                  }
+                onPressEnter={() => {
+                  screenRef.value.setSize(sizeRef.width, screenRef.value.height)
                 }}
               />
               <IconWidget
@@ -68,7 +65,9 @@ const DesignerToolsWidgetComponent = defineComponent<IDesignerToolsWidgetProps>(
                 style={{ padding: '0 3px', color: '#999' }}
               />
               <InputNumber
-                size="mini"
+                props={{
+                  size: 'small',
+                }}
                 controls={false}
                 value={screenRef.value.height}
                 style={{
@@ -76,16 +75,11 @@ const DesignerToolsWidgetComponent = defineComponent<IDesignerToolsWidgetProps>(
                   textAlign: 'center',
                   marginRight: '10px',
                 }}
-                vOn:change={(value) => {
+                onChange={(value) => {
                   sizeRef.height = value
                 }}
-                vOn:keyup_native={(e: KeyboardEvent) => {
-                  if (e.key === 'Enter') {
-                    screenRef.value.setSize(
-                      screenRef.value.width,
-                      sizeRef.height
-                    )
-                  }
+                onPressEnter={() => {
+                  screenRef.value.setSize(screenRef.value.width, sizeRef.height)
                 }}
               />
               {(screenRef.value.width !== '100%' ||
@@ -202,7 +196,7 @@ const DesignerToolsWidgetComponent = defineComponent<IDesignerToolsWidgetProps>(
             <Button.Group
               style={{ marginRight: '20px' }}
               key="renderCursorController"
-              // size="small"
+              size="small"
             >
               <Button
                 size="small"

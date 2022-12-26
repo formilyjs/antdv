@@ -25,7 +25,23 @@ export const Field = {
       'component-style-group': '组件样式',
       'decorator-style-group': '容器样式',
       'x-component-props': {
-        size: { title: '尺寸', dataSource: ['大', '小', '迷你', '继承'] },
+        size: {
+          title: '尺寸',
+          dataSource: [
+            {
+              label: '大',
+              value: 'large',
+            },
+            {
+              label: '小',
+              value: 'small',
+            },
+            {
+              label: '默认',
+              value: 'default',
+            },
+          ],
+        },
         allowClear: '允许清除内容',
         autoFocus: '自动获取焦点',
         showSearch: '支持搜索',
@@ -73,7 +89,27 @@ export const Field = {
         inset: '内联布局',
         shallow: '是否浅传递',
         bordered: '是否有边框',
-        size: { title: '尺寸', dataSource: ['大', '小', '迷你', '继承'] },
+        size: {
+          title: '尺寸',
+          dataSource: [
+            {
+              label: '大',
+              value: 'large',
+            },
+            {
+              label: '小',
+              value: 'small',
+            },
+            {
+              label: '默认',
+              value: 'default',
+            },
+            {
+              label: '继承',
+              value: 'inherit',
+            },
+          ],
+        },
         layout: { title: '布局', dataSource: ['垂直', '水平', '内联', '继承'] },
         feedbackLayout: {
           title: '反馈布局',
@@ -134,7 +170,20 @@ export const Field = {
       'x-component-props': {
         size: {
           title: 'Size',
-          dataSource: ['Large', 'Small', 'Default', 'Inherit'],
+          dataSource: [
+            {
+              label: 'Large',
+              value: 'large',
+            },
+            {
+              label: 'Small',
+              value: 'small',
+            },
+            {
+              label: 'Default',
+              value: 'default',
+            },
+          ],
         },
         allowClear: 'Allow Clear',
         autoFocus: 'Auto Focus',
@@ -183,7 +232,20 @@ export const Field = {
         bordered: 'Bordered',
         size: {
           title: 'Size',
-          dataSource: ['Large', 'Small', 'Default', 'Inherit'],
+          dataSource: [
+            {
+              label: 'Large',
+              value: 'large',
+            },
+            {
+              label: 'Small',
+              value: 'small',
+            },
+            {
+              label: 'Default',
+              value: 'default',
+            },
+          ],
         },
         layout: {
           title: 'Layout',

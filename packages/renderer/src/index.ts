@@ -1,7 +1,7 @@
 import './styles.less'
 import Vue from 'vue'
 import VueCompositionAPI from '@vue/composition-api'
-import App from './app.vue'
+import App from './app'
 
 import WidgetsInstaller from './widgets'
 

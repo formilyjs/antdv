@@ -21,7 +21,7 @@ export interface ISelectionBoxProps {
 export const SelectionBox = defineComponent({
   inheritAttrs: false,
   props: ['node', 'showHelpers'],
-  setup(props, { attrs }) {
+  setup(props) {
     const prefixRef = usePrefix('aux-selection-box')
     const nodeRectRef = useValidNodeOffsetRect(props.node)
 
@@ -87,7 +87,7 @@ const SelectionComponent = observer(
               if (node.hidden) return
               return (
                 <SelectionBox
-                  // key={id}
+                  key={id}
                   node={node}
                   showHelpers={selectionRef.value.selected.length === 1}
                 />

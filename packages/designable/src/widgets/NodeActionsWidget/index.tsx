@@ -49,8 +49,9 @@ const NodeActionsWidgetComponent = observer(
   })
 )
 
-const ActionComponent = defineComponent<INodeActionsWidgetActionProps>({
+const ActionComponent = defineComponent({
   props: ['icon', 'title'],
+  emits: ['click'],
   setup(props, { attrs, emit }) {
     const prefixRef = usePrefix('node-actions-item')
     return () => {

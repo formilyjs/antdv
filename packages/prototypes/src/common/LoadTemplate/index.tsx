@@ -1,7 +1,6 @@
 import { NodeActionsWidget } from '@formily/antdv-designable'
 import { defineComponent } from 'vue-demi'
-import type { VNode, CSSProperties } from '@vue/runtime-dom'
-import type { VueComponent } from '@formily/vue'
+import type { VNode } from 'vue'
 
 export interface ITemplateAction {
   title: VNode
@@ -12,13 +11,13 @@ export interface ITemplateAction {
 
 export interface ILoadTemplateProps {
   className?: string
-  style?: CSSProperties
+  style?: Record<string, any>
   actions?: ITemplateAction[]
 }
 
-export const LoadTemplate: VueComponent<ILoadTemplateProps> = defineComponent({
+export const LoadTemplate = defineComponent({
   props: { actions: Array },
-  setup(props: ILoadTemplateProps, { attrs, slots }) {
+  setup(props: ILoadTemplateProps) {
     return () => {
       return (
         <NodeActionsWidget>

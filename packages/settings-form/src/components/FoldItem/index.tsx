@@ -5,16 +5,22 @@ import { observable } from '@formily/reactive'
 import { IconWidget, usePrefix } from '@formily/antdv-designable'
 import cls from 'classnames'
 import './styles.less'
-import { defineComponent, ref, unref } from 'vue-demi'
+import { defineComponent, unref } from 'vue-demi'
 import { composeExport } from '@formily/antdv/esm/__builtins__'
+import type { PropType } from 'vue-demi'
 
 const ExpandedMap = new Map<string, boolean>()
+
+export type FoldItemProps = {
+  label: PropType<string>
+}
 
 const FoldItemComponent = observer(
   defineComponent({
     name: 'DnFoldItem',
     props: ['label'],
-    setup(props, { attrs, slots }) {
+    slots: ['base', 'extra'],
+    setup(props: FoldItemProps, { attrs, slots }) {
       const fieldRef = useField()
       const expand = observable.ref(
         ExpandedMap.get(fieldRef.value.address.toString())

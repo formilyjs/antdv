@@ -5,31 +5,28 @@ import { withContainer } from '../../common/Container'
 import { createVoidFieldSchema } from '../Field'
 import { AllSchemas } from '../../schemas'
 import { AllLocales } from '../../locales'
-import type { DnFC } from '@formily/antdv-designable'
-import type { VueComponent } from '@formily/vue'
 
-export const FormLayout: DnFC<VueComponent<typeof FormilyFormLayout>> =
-  composeExport(withContainer(FormilyFormLayout), {
-    Behavior: createBehavior({
-      name: 'FormLayout',
-      extends: ['Field'],
-      selector: (node) => node.props['x-component'] === 'FormLayout',
-      designerProps: {
-        droppable: true,
-        propsSchema: createVoidFieldSchema(AllSchemas.FormLayout),
-      },
-      designerLocales: AllLocales.FormLayout,
-    }),
-    Resource: createResource({
-      icon: 'FormLayoutSource',
-      elements: [
-        {
-          componentName: 'Field',
-          props: {
-            type: 'void',
-            'x-component': 'FormLayout',
-          },
+export const FormLayout = composeExport(withContainer(FormilyFormLayout), {
+  Behavior: createBehavior({
+    name: 'FormLayout',
+    extends: ['Field'],
+    selector: (node) => node.props['x-component'] === 'FormLayout',
+    designerProps: {
+      droppable: true,
+      propsSchema: createVoidFieldSchema(AllSchemas.FormLayout),
+    },
+    designerLocales: AllLocales.FormLayout,
+  }),
+  Resource: createResource({
+    icon: 'FormLayoutSource',
+    elements: [
+      {
+        componentName: 'Field',
+        props: {
+          type: 'void',
+          'x-component': 'FormLayout',
         },
-      ],
-    }),
-  })
+      },
+    ],
+  }),
+})

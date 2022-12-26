@@ -1,5 +1,4 @@
 // import React, { useRef, useContext, useEffect } from 'react'
-import type { TreeNode } from '@designable/core'
 import { ClosestPosition, CursorStatus, DragMoveEvent } from '@designable/core'
 import { isFn } from '@designable/shared'
 import { autorun } from '@formily/reactive'
@@ -15,10 +14,11 @@ import {
 } from '../../hooks'
 import { IconWidget } from '../IconWidget'
 import { NodeTitleWidget } from '../NodeTitleWidget'
-import { NodeSymbol } from './context'
 import './styles.less'
 import { useStyle } from '../../shared'
 import { useContext } from '../../context'
+import { NodeSymbol } from './context'
+import type { TreeNode } from '@designable/core'
 
 export interface IOutlineTreeNodeProps {
   node: TreeNode

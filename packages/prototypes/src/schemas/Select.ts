@@ -13,13 +13,26 @@ export const Select: ISchema = {
       'x-decorator': 'FormItem',
       'x-component': 'Input',
       'x-component-props': {
-        size: 'mini',
+        size: 'small',
       },
     },
     size: {
-      default: 'medium',
+      default: 'default',
       type: 'string',
-      enum: ['medium', 'small', 'mini', null],
+      enum: [
+        {
+          label: 'Large',
+          value: 'large',
+        },
+        {
+          label: 'Small',
+          value: 'small',
+        },
+        {
+          label: 'Default',
+          value: 'default',
+        },
+      ],
       'x-decorator': 'FormItem',
       'x-component': 'Select',
     },
@@ -39,7 +52,7 @@ export const Select: ISchema = {
       'x-decorator': 'FormItem',
       'x-component': 'InputNumber',
       'x-component-props': {
-        size: 'mini',
+        size: 'small',
       },
     },
     placeholder: {
@@ -47,7 +60,7 @@ export const Select: ISchema = {
       'x-decorator': 'FormItem',
       'x-component': 'Input',
       'x-component-props': {
-        size: 'mini',
+        size: 'small',
       },
     },
     filterable: {
@@ -65,7 +78,7 @@ export const Select: ISchema = {
       'x-decorator': 'FormItem',
       'x-component': 'Input',
       'x-component-props': {
-        size: 'mini',
+        size: 'small',
       },
     },
     'no-data-text': {
@@ -73,7 +86,7 @@ export const Select: ISchema = {
       'x-decorator': 'FormItem',
       'x-component': 'Input',
       'x-component-props': {
-        size: 'mini',
+        size: 'small',
       },
     },
     'popper-class': {
@@ -81,7 +94,7 @@ export const Select: ISchema = {
       'x-decorator': 'FormItem',
       'x-component': 'Input',
       'x-component-props': {
-        size: 'mini',
+        size: 'small',
       },
     },
     'reserve-keyword': {

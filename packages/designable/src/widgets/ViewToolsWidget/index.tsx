@@ -69,6 +69,4 @@ const VireToolsWidgetComponent = defineComponent({
   },
 })
 
-export const ViewToolsWidget: Vue.Component<IViewToolsWidget> = observer(
-  VireToolsWidgetComponent
-)
+export const ViewToolsWidget = observer(VireToolsWidgetComponent)

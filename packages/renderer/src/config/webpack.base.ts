@@ -38,7 +38,7 @@ export default {
     children: false,
   },
   entry: {
-    playground: path.resolve(__dirname, '../main'),
+    playground: path.resolve(__dirname, '../index'),
   },
   output: {
     path: path.resolve(__dirname, '../../../../docs/.vuepress/public/designer'),
@@ -53,7 +53,7 @@ export default {
       '@formily/reactive': require.resolve(`@formily/reactive`),
       '@formily/core': require.resolve(`@formily/core`),
       '@formily/shared': require.resolve(`@formily/shared`),
-      '@vue/composition-api': require.resolve(`@vue/composition-api`),
+      // '@vue/composition-api': require.resolve(`@vue/composition-api`),
       'ant-design-vue': path.resolve(
         __dirname,
         '../../../../node_modules/ant-design-vue'

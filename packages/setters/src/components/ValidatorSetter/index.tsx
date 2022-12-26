@@ -1,67 +1,94 @@
-import { defineComponent, unref, provide, toRef } from 'vue-demi'
-import { ArrayField } from '@formily/core'
-import { useField, Schema, ISchema, SchemaSymbol } from '@formily/vue'
+import { defineComponent, unref } from 'vue-demi'
+import { useField, createSchemaField, FragmentComponent } from '@formily/vue'
 import { observer } from '@formily/reactive-vue'
 import { GlobalRegistry } from '@designable/core'
-import { ArrayItems } from '@formily/element-plus'
-import { FoldItem } from '@formily/element-plus-settings-form'
-import { ElSelect as Select, ElOption as Option } from 'element-plus'
-import { isStr } from '@designable/shared'
-
+import { createForm } from '@formily/vue'
+import {
+  ArrayItems,
+  FormItem,
+  Input,
+  Space,
+  Select,
+  Switch,
+  Form,
+  InputNumber,
+} from '@formily/antdv'
+import { FoldItem } from '@formily/antdv-settings-form'
+import { DrawerSetter, ValueInput } from '@formily/antdv-settings-form'
+import { Select as ASelect } from 'ant-design-vue'
+import { onFormInputChange } from '@formily/core'
+import type { ArrayField } from '@formily/core'
+import type { ISchema } from '@formily/json-schema'
 export interface IValidatorSetterProps {
   value?: any
   onChange?: (value: any) => void
 }
 
-const SchemaContextProvider = defineComponent({
-  props: ['value'],
-  setup(props, { slots }) {
-    provide(SchemaSymbol, toRef(props, 'value'))
-    return () => {
-      return slots.default?.()
-    }
+const { SchemaField } = createSchemaField({
+  components: {
+    ArrayItems,
+    FormItem,
+    Input,
+    Space,
+    Select,
+    Switch,
+    InputNumber,
+    DrawerSetter,
+    ValueInput,
   },
 })
 
 const ValidatorSchema: ISchema = {
-  type: 'array',
-  items: {
-    type: 'object',
-    'x-decorator': 'ArrayItems.Item',
-    'x-decorator-props': {
-      style: {
-        alignItems: 'center',
-        borderRadius: 3,
-        paddingTop: 6,
-        paddingBottom: 6,
-      },
-    },
-    properties: {
-      space: {
-        type: 'void',
-        'x-component': 'Space',
-        'x-decorator': 'FormLayout',
+  type: 'void',
+  properties: {
+    array: {
+      type: 'array',
+      'x-component': 'ArrayItems',
+      items: {
+        type: 'object',
+        'x-decorator': 'ArrayItems.Item',
         'x-decorator-props': {
-          spaceGap: 2,
+          style: {
+            alignItems: 'center',
+            borderRadius: '3px',
+            paddingTop: '6px',
+            paddingBottom: '6px',
+          },
         },
         properties: {
           sortable: {
             type: 'void',
             'x-component': 'ArrayItems.SortHandle',
-            'x-component-props': { style: { marginRight: 10 } },
+            'x-component-props': { style: { marginRight: '10px' } },
           },
           drawer: {
             type: 'void',
             'x-component': 'DrawerSetter',
+            title: GlobalRegistry.getDesignerMessage(
+              'settings.x-validator.drawer'
+            ),
             properties: {
               triggerType: {
                 type: 'string',
-                enum: ['onInput', 'onFocus', 'onBlur'],
+                title: GlobalRegistry.getDesignerMessage(
+                  'settings.x-validator.triggerType.title'
+                ),
+                enum: GlobalRegistry.getDesignerMessage(
+                  'settings.x-validator.triggerType.dataSource'
+                ),
                 'x-decorator': 'FormItem',
                 'x-component': 'Select',
+                'x-component-props': {
+                  placeholder: GlobalRegistry.getDesignerMessage(
+                    'settings.x-validator.triggerType.placeholder'
+                  ),
+                },
               },
               validator: {
                 type: 'string',
+                title: GlobalRegistry.getDesignerMessage(
+                  'settings.x-validator.validator.title'
+                ),
                 'x-decorator': 'FormItem',
                 'x-component': 'ValueInput',
                 'x-component-props': {
@@ -70,58 +97,91 @@ const ValidatorSchema: ISchema = {
               },
               message: {
                 type: 'string',
+                title: GlobalRegistry.getDesignerMessage(
+                  'settings.x-validator.message.title'
+                ),
                 'x-decorator': 'FormItem',
                 'x-component': 'Input.TextArea',
               },
               format: {
                 type: 'string',
+                title: GlobalRegistry.getDesignerMessage(
+                  'settings.x-validator.format.title'
+                ),
                 'x-decorator': 'FormItem',
                 'x-component': 'Select',
                 'x-component-props': {
-                  clearable: true,
+                  allowClear: true,
+                  placeholder: GlobalRegistry.getDesignerMessage(
+                    'settings.x-validator.format.placeholder'
+                  ),
                 },
               },
               pattern: {
                 type: 'string',
+                title: GlobalRegistry.getDesignerMessage(
+                  'settings.x-validator.pattern'
+                ),
                 'x-decorator': 'FormItem',
                 'x-component': 'Input',
                 'x-component-props': {
-                  'suffix-icon': () => <i>/</i>,
-                  'prefix-icon': () => <i>/</i>,
+                  prefix: '/',
+                  suffix: '/',
                 },
               },
               len: {
                 type: 'string',
+                title: GlobalRegistry.getDesignerMessage(
+                  'settings.x-validator.len'
+                ),
                 'x-decorator': 'FormItem',
                 'x-component': 'InputNumber',
               },
               max: {
+                title: GlobalRegistry.getDesignerMessage(
+                  'settings.x-validator.max'
+                ),
                 type: 'string',
                 'x-decorator': 'FormItem',
                 'x-component': 'InputNumber',
               },
               min: {
                 type: 'string',
+                title: GlobalRegistry.getDesignerMessage(
+                  'settings.x-validator.min'
+                ),
                 'x-decorator': 'FormItem',
                 'x-component': 'InputNumber',
               },
               exclusiveMaximum: {
                 type: 'string',
+                title: GlobalRegistry.getDesignerMessage(
+                  'settings.x-validator.exclusiveMaximum'
+                ),
                 'x-decorator': 'FormItem',
                 'x-component': 'InputNumber',
               },
               exclusiveMinimum: {
                 type: 'string',
+                title: GlobalRegistry.getDesignerMessage(
+                  'settings.x-validator.exclusiveMinimum'
+                ),
                 'x-decorator': 'FormItem',
                 'x-component': 'InputNumber',
               },
               whitespace: {
                 type: 'string',
+                title: GlobalRegistry.getDesignerMessage(
+                  'settings.x-validator.whitespace'
+                ),
                 'x-decorator': 'FormItem',
                 'x-component': 'Switch',
               },
               required: {
                 type: 'string',
+                title: GlobalRegistry.getDesignerMessage(
+                  'settings.x-validator.required'
+                ),
                 'x-decorator': 'FormItem',
                 'x-component': 'Switch',
               },
@@ -130,76 +190,73 @@ const ValidatorSchema: ISchema = {
           moveDown: {
             type: 'void',
             'x-component': 'ArrayItems.MoveDown',
-            'x-component-props': { style: { marginLeft: 10 } },
+            'x-component-props': { style: { marginLeft: '10px' } },
           },
           moveUp: {
             type: 'void',
             'x-component': 'ArrayItems.MoveUp',
-            'x-component-props': { style: { marginLeft: 5 } },
+            'x-component-props': { style: { marginLeft: '5px' } },
           },
           remove: {
             type: 'void',
             'x-component': 'ArrayItems.Remove',
-            'x-component-props': { style: { marginLeft: 5 } },
+            'x-component-props': { style: { marginLeft: '5px' } },
           },
         },
       },
-    },
-  },
-  properties: {
-    addValidatorRules: {
-      type: 'void',
-      'x-component': 'ArrayItems.Addition',
-      'x-component-props': {
-        style: {
-          marginBottom: '10px',
+      properties: {
+        addValidatorRules: {
+          type: 'void',
+          'x-component': 'ArrayItems.Addition',
+          title: GlobalRegistry.getDesignerMessage(
+            'settings.x-validator.addValidatorRules'
+          ),
         },
       },
     },
   },
 }
-
 export const ValidatorSetter = observer(
   defineComponent({
     props: ['value', 'onChange'],
-    setup(props, { attrs, slots }) {
+    emits: ['change'],
+    setup(props, { emit }) {
       const fieldRef = useField<ArrayField>()
-
+      const form = createForm({
+        effects() {
+          onFormInputChange((res) => {
+            const decorator = res.values?.array || []
+            props.onChange?.(decorator)
+            emit('change', decorator)
+          })
+        },
+      })
       return () => {
         const field = unref(fieldRef)
         return (
           <FoldItem
             label={field.title}
-            v-slots={{
-              base: () => {
-                return (
-                  <Select
-                    modelValue={
-                      Array.isArray(props.value) ? undefined : props.value
-                    }
-                    {...{
-                      'onUpdate:modelValue': props.onChange,
-                    }}
-                    clearable={true}
-                    placeholder={GlobalRegistry.getDesignerMessage(
-                      'SettingComponents.ValidatorSetter.pleaseSelect'
-                    )}
-                  >
-                    {GlobalRegistry.getDesignerMessage(
-                      'SettingComponents.ValidatorSetter.formats'
-                    ).map((item) => {
-                      return <Option label={item.label} value={item.value} />
-                    })}
-                  </Select>
-                )
-              },
-              extra: () => {
-                return (
-                  <SchemaContextProvider value={new Schema(ValidatorSchema)}>
-                    <ArrayItems />
-                  </SchemaContextProvider>
-                )
-              },
+            scopedSlots={{
+              base: () => (
+                <ASelect
+                  value={Array.isArray(props.value) ? undefined : props.value}
+                  onChange={(value) => {
+                    props.onChange?.(value)
+                  }}
+                  clearable={true}
+                  options={GlobalRegistry.getDesignerMessage(
+                    'SettingComponents.ValidatorSetter.formats'
+                  )}
+                  placeholder={GlobalRegistry.getDesignerMessage(
+                    'SettingComponents.ValidatorSetter.pleaseSelect'
+                  )}
+                ></ASelect>
+              ),
+              extra: () => (
+                <Form form={form}>
+                  <SchemaField schema={ValidatorSchema}></SchemaField>
+                </Form>
+              ),
             }}
           ></FoldItem>
         )

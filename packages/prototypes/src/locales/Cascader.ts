@@ -4,7 +4,23 @@ export const Cascader = {
     settings: {
       'x-component-props': {
         props: '属性',
-        size: { title: '尺寸', dataSource: ['大', '小', '迷你', '继承'] },
+        size: {
+          title: '尺寸',
+          dataSource: [
+            {
+              label: '大',
+              value: 'large',
+            },
+            {
+              label: '小',
+              value: 'small',
+            },
+            {
+              label: '默认',
+              value: 'default',
+            },
+          ],
+        },
         'show-all-levels': {
           title: '路径',
           tooltip: '输入框中是否显示选中值的完整路径',

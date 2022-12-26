@@ -1,20 +1,20 @@
 import { connect, mapProps, h, mapReadPretty } from '@formily/vue'
-import { defineComponent } from '@vue/composition-api'
+import { defineComponent } from 'vue-demi'
 import { PreviewText } from '@formily/antdv'
-import { Select as ElSelect, Option as ElOption } from 'ant-design-vue'
+import { Select as ElSelect } from 'ant-design-vue'
 import { resolveComponent } from '@formily/antdv/esm/__builtins__'
-import type {
-  Select as ElSelectProps,
-  Option as ElOptionProps,
-} from 'ant-design-vue'
+import type { Select as ElSelectProps } from 'ant-design-vue'
+
+const ElOption = ElSelect.Option
+type ElOptionProps = typeof ElOption
+
 export type SelectProps = ElSelectProps & {
   options?: Array<ElOptionProps & { component: Vue.Component }>
 }
-
 const SelectOption = defineComponent<SelectProps>({
   name: 'FSelect',
   props: ['options'],
-  setup(customProps, { attrs, slots, listeners }) {
+  setup(customProps: SelectProps, { attrs, slots, listeners }) {
     return () => {
       const options = customProps.options || []
       const children =
@@ -42,9 +42,12 @@ const SelectOption = defineComponent<SelectProps>({
                       },
                       {
                         default: () => [
-                          resolveComponent(slots?.option ?? option.component, {
-                            option,
-                          }),
+                          resolveComponent(
+                            slots?.option ?? (option.component || option.label),
+                            {
+                              option,
+                            }
+                          ),
                         ],
                       }
                     )

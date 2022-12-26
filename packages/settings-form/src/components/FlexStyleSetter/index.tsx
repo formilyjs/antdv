@@ -47,7 +47,7 @@ export const FlexStyleSetter = observer(
                 decorator={[InputItems.Item]}
                 component={[
                   Radio.Group,
-                  { optionType: 'button', size: 'mini' },
+                  { optionType: 'button', size: 'small' },
                 ]}
               />
               <Field
@@ -75,7 +75,7 @@ export const FlexStyleSetter = observer(
                 decorator={[InputItems.Item]}
                 component={[
                   Radio.Group,
-                  { optionType: 'button', size: 'mini' },
+                  { optionType: 'button', size: 'small' },
                 ]}
               />
               <Field
@@ -134,7 +134,7 @@ export const FlexStyleSetter = observer(
                 decorator={[InputItems.Item]}
                 component={[
                   Radio.Group,
-                  { optionType: 'button', size: 'mini' },
+                  { optionType: 'button', size: 'small' },
                 ]}
               />
               <Field
@@ -192,7 +192,7 @@ export const FlexStyleSetter = observer(
                 decorator={[InputItems.Item]}
                 component={[
                   Radio.Group,
-                  { optionType: 'button', size: 'mini' },
+                  { optionType: 'button', size: 'small' },
                 ]}
               />
               <Field
@@ -244,7 +244,7 @@ export const FlexStyleSetter = observer(
                 decorator={[InputItems.Item]}
                 component={[
                   Radio.Group,
-                  { optionType: 'button', size: 'mini' },
+                  { optionType: 'button', size: 'small' },
                 ]}
               />
             </InputItems>

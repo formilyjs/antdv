@@ -1,4 +1,4 @@
-import { composeExport } from '@formily/antdv/src/__builtins__'
+import { composeExport } from '@formily/antdv/esm/__builtins__'
 import { defineComponent, onBeforeUnmount, watch, shallowRef } from 'vue-demi'
 import {
   TextWidget,
@@ -25,6 +25,13 @@ export interface MonacoInputProps extends EditorProps {
   helpCode?: string
   helpCodeViewWidth?: number | string
   extraLib?: string
+  lineNumbers?: string
+  wordWrap?: string
+  glyphMargin?: boolean
+  folding?: boolean
+  lineDecorationsWidth?: number
+  lineNumbersMinChars?: number
+  minimap: Record<string, any>
   // onChange?: (value: string) => void
 }
 // React.FC<MonacoInputProps> & {
@@ -50,7 +57,7 @@ const MonacoInputInner = defineComponent({
   },
   emits: ['change'],
   inheritAttrs: false,
-  setup(props, { attrs, emit }) {
+  setup(props: MonacoInputProps, { attrs, emit }) {
     const loadedRef = shallowRef(false)
     const setLoaded = (value: boolean) => (loadedRef.value = value)
     const themeRef = useTheme()
@@ -109,8 +116,8 @@ const MonacoInputInner = defineComponent({
       return (
         href && (
           <Tooltip
-            v-slots={{
-              content: () => (
+            scopedSlots={{
+              title: () => (
                 <TextWidget token="SettingComponents.MonacoInput.helpDocument" />
               ),
             }}
@@ -330,7 +337,6 @@ const MonacoInputInner = defineComponent({
       )
         ? 'typescript'
         : computedLanguage.value
-
       return (
         <div
           class={cls(prefix, {

@@ -5,23 +5,15 @@ import {
   useNodeIdProps,
   DroppableWidget,
 } from '@formily/antdv-designable'
-import { observer } from '@formily/reactive-vue'
 import { composeExport } from '@formily/antdv/esm/__builtins__'
 import { defineComponent } from 'vue-demi'
-import { FragmentComponent as Fragment, h as CreateElement } from '@formily/vue'
 import { LoadTemplate } from '../../common/LoadTemplate'
 import { createFieldSchema } from '../Field'
 import { AllSchemas } from '../../schemas'
 import { AllLocales } from '../../locales'
-import type { VueComponent } from '@formily/vue'
-import type { DnFC } from '@formily/antdv-designable'
 import './styles.less'
 
-type formilyGrid = typeof FormilyGird
-
-export const FormGrid: DnFC<VueComponent<formilyGrid>> & {
-  GridColumn?: VueComponent<formilyGrid['GridColumn']>
-} = composeExport(
+export const FormGrid = composeExport(
   defineComponent({
     inheritAttrs: false,
     setup(props, { slots, attrs }) {
@@ -30,7 +22,7 @@ export const FormGrid: DnFC<VueComponent<formilyGrid>> & {
 
       return () => {
         if (nodeRef.value.children.length === 0)
-          return <DroppableWidget attrs={attrs} />
+          return <DroppableWidget {...attrs} />
         const totalColumns = nodeRef.value.children.reduce(
           (buf, child) =>
             buf + (child.props?.['x-component-props']?.gridSpan ?? 1),
@@ -71,11 +63,13 @@ export const FormGrid: DnFC<VueComponent<formilyGrid>> & {
         return () => {
           return (
             <DroppableWidget
-              attrs={attrs}
-              data-span={props.gridSpan}
-              style={{
-                gridColumnStart: `span ${props.gridSpan || 1}`,
+              {...{
+                attrs: attrs,
+                style: {
+                  gridColumnStart: `span ${props.gridSpan || 1}`,
+                },
               }}
+              data-span={props.gridSpan}
             >
               {slots.default?.()}
             </DroppableWidget>

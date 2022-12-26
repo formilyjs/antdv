@@ -7,13 +7,11 @@ export const FormLayout: ISchema = {
       type: 'number',
       'x-decorator': 'FormItem',
       'x-component': 'InputNumber',
-      'x-component-props': { size: 'small' },
     },
     wrapperCol: {
       type: 'number',
       'x-decorator': 'FormItem',
       'x-component': 'InputNumber',
-      'x-component-props': { size: 'small' },
     },
     labelWidth: {
       'x-decorator': 'FormItem',

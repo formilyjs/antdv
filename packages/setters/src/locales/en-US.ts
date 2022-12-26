@@ -51,6 +51,9 @@ export default {
       },
     },
     SettingComponents: {
+      ValueInput: {
+        expression: 'Expression',
+      },
       DataSourceSetter: {
         nodeProperty: 'Node Property',
         pleaseSelectNode: 'please select node from the tree on the left',

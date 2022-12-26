@@ -1,5 +1,7 @@
 // import React, { useEffect, useRef } from 'react'
 import { CursorStatus, CursorType } from '@designable/core'
+import { composeExport } from '@formily/antdv/esm/__builtins__'
+import { computed, defineComponent, onBeforeUnmount } from 'vue-demi'
 import {
   useViewport,
   useCursor,
@@ -13,8 +15,6 @@ import { FreeSelection } from './FreeSelection'
 import { Cover } from './Cover'
 import { DashedBox } from './DashedBox'
 import './styles.less'
-import { composeExport } from '@formily/antdv/esm/__builtins__'
-import { computed, defineComponent, onBeforeUnmount } from 'vue-demi'
 
 const setCursorState = (contentWindow: Window, state: string) => {
   const valueRoot = document?.getElementsByTagName?.('html')?.[0]

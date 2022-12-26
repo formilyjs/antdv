@@ -1,12 +1,18 @@
-import { defineComponent, computed } from '@vue/composition-api'
+import { defineComponent, computed } from 'vue-demi'
 import { transformToSchema } from '@designable/formily-transformer'
 import { createForm } from '@formily/core'
 import { Form } from '@formily/antdv'
 import * as ElementUI from '@formily/antdv'
 import { createSchemaField } from '@formily/vue'
 import { Text } from '@formily/antdv-prototypes'
+import type { Component } from 'vue'
+import type { SchemaVueComponents } from '@formily/vue'
+
 const SchemaFields = createSchemaField({
-  components: { Text, ...ElementUI },
+  components: {
+    Text: Text as Component,
+    ...(ElementUI as SchemaVueComponents),
+  },
 })
 
 export default defineComponent({

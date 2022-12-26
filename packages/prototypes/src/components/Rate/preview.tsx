@@ -4,10 +4,8 @@ import { createBehavior, createResource } from '@designable/core'
 import { createFieldSchema } from '../Field'
 import { AllSchemas } from '../../schemas'
 import { AllLocales } from '../../locales'
-import type { DnFC } from '@formily/antdv-designable'
-import type { VueComponent } from '@formily/vue'
 
-export const Rate: DnFC<VueComponent<typeof ElRate>> = composeExport(ElRate, {
+export const Rate = composeExport(ElRate, {
   Behavior: createBehavior({
     name: 'Rate',
     extends: ['Field'],

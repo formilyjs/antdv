@@ -79,7 +79,7 @@ export const Upload: ISchema & { Dragger?: ISchema } = {
       'x-component-props': {
         defaultValue: 'text',
         optionType: 'button',
-        size: 'mini',
+        size: 'small',
       },
     },
     'auto-upload': {
@@ -92,7 +92,7 @@ export const Upload: ISchema & { Dragger?: ISchema } = {
       'x-decorator': 'FormItem',
       'x-component': 'InputNumber',
       'x-component-props': {
-        size: 'mini',
+        size: 'small',
       },
     },
     // fileList: {}

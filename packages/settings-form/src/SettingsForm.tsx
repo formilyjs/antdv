@@ -67,7 +67,6 @@ export const SettingsForm = defineComponent({
     const selectedRef = useSelected(currentWorkspaceId)
     const keyupRef = useKeyUp()
     const idleTaskRef = ref(null)
-
     const sources = reactive({
       key: nodeRef.value.id,
       schema: nodeRef.value?.designerProps?.propsSchema,
@@ -104,11 +103,11 @@ export const SettingsForm = defineComponent({
     }
     requestIdleTask()
 
-    observe(nodeRef.value, () => {
-      nextTick(() => {
-        requestIdleTask()
-      })
-    })
+    // observe(nodeRef.value, () => {
+    //   nextTick(() => {
+    //     requestIdleTask()
+    //   })
+    // })
 
     watch(selectedRef, () => {
       nextTick(() => {
@@ -123,7 +122,6 @@ export const SettingsForm = defineComponent({
 
     return () => {
       const prefix = prefixRef.value
-
       const render = () => {
         if (!sources.isEmpty && formRef.value) {
           return (

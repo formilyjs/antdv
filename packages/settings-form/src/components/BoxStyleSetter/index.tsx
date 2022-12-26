@@ -1,8 +1,8 @@
 import { useField, FragmentComponent } from '@formily/vue'
 import { usePrefix } from '@formily/antdv-designable'
+import { uid } from '@formily/shared'
 import cls from 'classnames'
 import { defineComponent, unref } from 'vue-demi'
-import { uid } from '@formily/shared'
 import { FoldItem } from '../FoldItem'
 import { SizeInput } from '../SizeInput'
 import { InputItems } from '../InputItems'
@@ -27,6 +27,7 @@ const BoxRex =
 
 export const BoxStyleSetter = defineComponent({
   name: 'DnBoxStyleSetter',
+  emits: ['change'],
   props: {
     value: String,
     labels: {
@@ -85,47 +86,51 @@ export const BoxStyleSetter = defineComponent({
         left: createPositionHandler('left', props),
       }
       return (
-        <FoldItem class={cls(prefix)} label={field.title}>
-          <FragmentComponent slot="base" key={uid()}>
-            <SizeInput
-              value={positionHandlers.all.value}
-              vOn:change={positionHandlers.all.onChange}
-              exclude={['auto', 'inherit']}
-            />
-          </FragmentComponent>
-          <FragmentComponent slot="extra" key={uid()}>
-            <InputItems width="50%">
-              <InputItems.Item icon={props.labels[0]}>
-                <SizeInput
-                  value={positionHandlers.top.value}
-                  vOn:change={positionHandlers.top.onChange}
-                  exclude={['auto', 'inherit']}
-                />
-              </InputItems.Item>
-              <InputItems.Item icon={props.labels[1]}>
-                <SizeInput
-                  value={positionHandlers.right.value}
-                  vOn:change={positionHandlers.right.onChange}
-                  exclude={['auto', 'inherit']}
-                />
-              </InputItems.Item>
-              <InputItems.Item icon={props.labels[2]}>
-                <SizeInput
-                  value={positionHandlers.bottom.value}
-                  vOn:change={positionHandlers.bottom.onChange}
-                  exclude={['auto', 'inherit']}
-                />
-              </InputItems.Item>
-              <InputItems.Item icon={props.labels[3]}>
-                <SizeInput
-                  value={positionHandlers.left.value}
-                  vOn:change={positionHandlers.left.onChange}
-                  exclude={['auto', 'inherit']}
-                />
-              </InputItems.Item>
-            </InputItems>
-          </FragmentComponent>
-        </FoldItem>
+        <FoldItem
+          {...{ class: cls(prefix) }}
+          label={field.title}
+          scopedSlots={{
+            base: () => (
+              <SizeInput
+                value={positionHandlers.all.value}
+                onChange={positionHandlers.all.onChange}
+                exclude={['auto', 'inherit']}
+              />
+            ),
+            extra: () => (
+              <InputItems width="50%">
+                <InputItems.Item icon={props.labels[0]}>
+                  <SizeInput
+                    value={positionHandlers.top.value}
+                    onChange={positionHandlers.top.onChange}
+                    exclude={['auto', 'inherit']}
+                  />
+                </InputItems.Item>
+                <InputItems.Item icon={props.labels[1]}>
+                  <SizeInput
+                    value={positionHandlers.right.value}
+                    onChange={positionHandlers.right.onChange}
+                    exclude={['auto', 'inherit']}
+                  />
+                </InputItems.Item>
+                <InputItems.Item icon={props.labels[2]}>
+                  <SizeInput
+                    value={positionHandlers.bottom.value}
+                    onChange={positionHandlers.bottom.onChange}
+                    exclude={['auto', 'inherit']}
+                  />
+                </InputItems.Item>
+                <InputItems.Item icon={props.labels[3]}>
+                  <SizeInput
+                    value={positionHandlers.left.value}
+                    onChange={positionHandlers.left.onChange}
+                    exclude={['auto', 'inherit']}
+                  />
+                </InputItems.Item>
+              </InputItems>
+            ),
+          }}
+        ></FoldItem>
       )
     }
   },

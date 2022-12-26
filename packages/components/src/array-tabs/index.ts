@@ -1,9 +1,9 @@
 import { defineComponent, ref } from 'vue-demi'
 import { observer } from '@formily/reactive-vue'
-import type { ArrayField } from '@formily/core'
+import { Tabs, Badge } from 'ant-design-vue'
 import { h, useField, useFieldSchema, RecursionField } from '@formily/vue'
 import { stylePrefix } from '../__builtins__/configs'
-import { Tabs, Badge } from 'ant-design-vue'
+import type { ArrayField } from '@formily/core'
 
 import type { Tabs as TabsProps } from 'ant-design-vue/types/tabs/tabs'
 

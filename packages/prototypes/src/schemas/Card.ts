@@ -15,7 +15,7 @@ export const Card: ISchema & { Addition?: ISchema } = {
       'x-decorator': 'FormItem',
       'x-component': 'Select',
       'x-component-props': {
-        size: 'mini',
+        size: 'small',
       },
     },
   },

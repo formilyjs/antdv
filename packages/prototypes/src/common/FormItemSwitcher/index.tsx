@@ -13,6 +13,7 @@ export const FormItemSwitcher: Vue.Component<
   IFormItemSwitcherProps
 > = defineComponent({
   props: { value: {} },
+  emits: ['change'],
   setup(props, { emit }) {
     return () => {
       return (

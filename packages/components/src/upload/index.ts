@@ -1,15 +1,16 @@
 import { connect, mapProps, h } from '@formily/vue'
-import { Upload as AntdUpload } from 'ant-design-vue'
+import { Upload as AntdUpload, Button, Icon } from 'ant-design-vue'
+import { defineComponent } from 'vue-demi'
 import { composeExport } from '../__builtins__'
 import type {
   UploadFile,
   Upload as AntdUploadProps,
 } from 'ant-design-vue/types/upload'
-import { defineComponent } from 'vue-demi'
 
 export type IUploadOnchange = (fileList: UploadFile[]) => void
 
 export type IUploadProps = Omit<AntdUploadProps, 'onChange'> & {
+  textContent?: string
   onChange?: IUploadOnchange
 }
 
@@ -19,12 +20,10 @@ export type IDraggerUploadProps = Omit<AntdUploadProps, 'onChange'> & {
 
 const UploadWrapper = defineComponent<IUploadProps>({
   name: 'UploadWrapper',
-  setup(props, { slots, attrs, listeners, emit }) {
+  props: ['textContent', 'onChange'],
+  emits: ['change'],
+  setup(props, { attrs, listeners, emit }) {
     return () => {
-      const children = {
-        ...slots,
-      }
-
       return h(
         AntdUpload,
         {
@@ -37,7 +36,28 @@ const UploadWrapper = defineComponent<IUploadProps>({
             },
           },
         },
-        children
+        {
+          default: () => [
+            h(
+              Button,
+              {},
+              {
+                default: () => [
+                  h(
+                    Icon,
+                    {
+                      props: {
+                        type: 'upload',
+                      },
+                    },
+                    {}
+                  ),
+                  props.textContent || '上传',
+                ],
+              }
+            ),
+          ],
+        }
       )
     }
   },
@@ -45,6 +65,7 @@ const UploadWrapper = defineComponent<IUploadProps>({
 
 const UploaDraggerdWrapper = defineComponent<IUploadProps>({
   name: 'UploaDraggerdWrapper',
+  emits: ['change'],
   setup(props, { slots, attrs, listeners, emit }) {
     return () => {
       const children = {

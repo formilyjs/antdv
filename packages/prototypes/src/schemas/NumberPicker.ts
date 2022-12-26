@@ -7,7 +7,7 @@ export const NumberPicker: ISchema = {
       'x-decorator': 'FormItem',
       'x-component': 'InputNumber',
       'x-component-props': {
-        size: 'mini',
+        size: 'small',
       },
     },
     max: {
@@ -15,7 +15,7 @@ export const NumberPicker: ISchema = {
       'x-decorator': 'FormItem',
       'x-component': 'InputNumber',
       'x-component-props': {
-        size: 'mini',
+        size: 'small',
       },
     },
     step: {
@@ -23,7 +23,7 @@ export const NumberPicker: ISchema = {
       'x-decorator': 'FormItem',
       'x-component': 'InputNumber',
       'x-component-props': {
-        size: 'mini',
+        size: 'small',
       },
     },
     'step-strictly': {
@@ -36,17 +36,30 @@ export const NumberPicker: ISchema = {
       'x-decorator': 'FormItem',
       'x-component': 'InputNumber',
       'x-component-props': {
-        size: 'mini',
+        size: 'small',
       },
     },
     size: {
-      default: 'medium',
+      default: 'default',
       type: 'string',
-      enum: ['medium', 'small', 'mini', null],
+      enum: [
+        {
+          label: 'Large',
+          value: 'large',
+        },
+        {
+          label: 'Small',
+          value: 'small',
+        },
+        {
+          label: 'Default',
+          value: 'default',
+        },
+      ],
       'x-decorator': 'FormItem',
       'x-component': 'Select',
       'x-component-props': {
-        size: 'mini',
+        size: 'small',
       },
     },
     controls: {
@@ -66,7 +79,7 @@ export const NumberPicker: ISchema = {
       'x-decorator': 'FormItem',
       'x-component': 'Input',
       'x-component-props': {
-        size: 'mini',
+        size: 'small',
       },
     },
   },

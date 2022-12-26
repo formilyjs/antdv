@@ -1,7 +1,5 @@
 import { Collapse, Badge } from 'ant-design-vue'
 import { model, markRaw } from '@formily/reactive'
-import type { Collapse as CollapseProps } from 'ant-design-vue/types/collapse/collapse'
-import type { CollapsePanel as CollapsePanelProps } from 'ant-design-vue/types/collapse/collapse-panel'
 import {
   useField,
   useFieldSchema,
@@ -10,11 +8,13 @@ import {
   Fragment,
 } from '@formily/vue'
 import { observer } from '@formily/reactive-vue'
-import type { Schema, SchemaKey } from '@formily/json-schema'
-import type { PropType } from 'vue-demi'
 import { computed, defineComponent } from 'vue-demi'
 import { toArr } from '@formily/shared'
 import { composeExport, stylePrefix } from '../__builtins__'
+import type { Schema, SchemaKey } from '@formily/json-schema'
+import type { PropType } from 'vue-demi'
+import type { Collapse as CollapseProps } from 'ant-design-vue/types/collapse/collapse'
+import type { CollapsePanel as CollapsePanelProps } from 'ant-design-vue/types/collapse/collapse-panel'
 import type { GeneralField } from '@formily/core'
 
 type ActiveKeys = string | number | Array<string | number>

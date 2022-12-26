@@ -18,8 +18,8 @@ import {
   useTreeNode,
 } from '@formily/antdv-designable'
 import { isArr, isFn, isStr } from '@designable/shared'
-import { defineComponent } from '@vue/composition-api'
-import { composeExport } from '@formily/antdv/lib/__builtins__'
+import { defineComponent } from 'vue-demi'
+import { composeExport } from '@formily/antdv/esm/__builtins__'
 import { Container } from '../../common/Container'
 import { AllLocales } from '../../locales'
 import type { DnFC } from '@formily/antdv-designable'
@@ -133,7 +133,6 @@ const toDesignableFieldProps = (
   }
   // vue为异步渲染需要进行缓存 不然就变成了函数
   const title = results.title
-  const description = results.description
   results.title =
     results.title && (() => <span data-content-editable="title">{title}</span>)
   // TODO::formily vue 貌似不支持呢
@@ -160,7 +159,7 @@ const FieldComponent = observer(
         if (props.type === 'object') {
           return (
             <Container>
-              <ObjectField attrs={{ ...fieldProps, name: nodeRef.value.id }}>
+              <ObjectField {...{ ...fieldProps, name: nodeRef.value.id }}>
                 {slots.default?.()}
               </ObjectField>
             </Container>

@@ -1,27 +1,16 @@
 import cls from 'classnames'
-import { ElDialog as Modal, ElButton as Button, ElSpace } from 'element-plus'
-import { Form } from '@formily/core'
-import { observable } from '@formily/reactive'
+import { Modal, Button, Space } from 'ant-design-vue'
+import { FragmentComponent } from '@formily/vue'
 import { observer } from '@formily/reactive-vue'
-import {
-  usePrefix,
-  useTheme,
-  TextWidget,
-} from '@formily/element-plus-prototypes'
+import { usePrefix, useTheme, TextWidget } from '@formily/antdv-designable'
+import { defineComponent, ref, watch, reactive } from 'vue-demi'
 import { DataSettingPanel } from './DataSettingPanel'
 import { TreePanel } from './TreePanel'
 import { transformDataToValue, transformValueToData } from './shared'
-import { IDataSourceItem, ITreeDataSource } from './types'
 import './styles.less'
-
-import {
-  CSSProperties,
-  defineComponent,
-  PropType,
-  ref,
-  watch,
-  markRaw,
-} from 'vue'
+import type { Form } from '@formily/core'
+import type { IDataSourceItem, INodeItem } from './types'
+import type { PropType } from 'vue-demi'
 
 export interface IDataSourceSetterProps {
   onChange: (dataSource: IDataSourceItem[]) => void
@@ -65,55 +54,55 @@ export const DataSourceSetter = observer(
       const theme = useTheme()
       const prefixRef = usePrefix('data-source-setter')
       const modalVisibleRef = ref(false)
-      const treeDataSourceRef = ref()
+      const treeDataSourceRef = reactive({
+        dataSource: [],
+        selectedKey: '',
+      })
       watch(
         [() => props.value, modalVisibleRef],
         () => {
-          treeDataSourceRef.value = markRaw(
-            observable({
-              dataSource: transformValueToData(props.value),
-              selectedKey: '',
-            })
-          )
+          treeDataSourceRef.selectedKey = ''
+          treeDataSourceRef.dataSource = transformValueToData(props.value)
         },
         { immediate: true }
       )
-
       const openModal = () => (modalVisibleRef.value = true)
       const closeModal = () => (modalVisibleRef.value = false)
       return () => {
         const modalVisible = modalVisibleRef.value
-        const treeDataSource = treeDataSourceRef.value
+        const treeDataSource = treeDataSourceRef
         const prefix = prefixRef.value
         return (
-          <>
+          <FragmentComponent>
             <Button onClick={openModal}>
               <TextWidget token="SettingComponents.DataSourceSetter.configureDataSource" />
             </Button>
             <Modal
-              {...{ onClosed: closeModal }}
-              v-slots={{
-                header: () => (
+              onCancel={closeModal}
+              scopedSlots={{
+                title: () => (
                   <TextWidget token="SettingComponents.DataSourceSetter.configureDataSource" />
                 ),
                 footer: () => (
-                  <ElSpace>
+                  <Space>
                     <Button onClick={closeModal}>Cancel</Button>
                     <Button
                       onClick={() => {
-                        props.onChange?.(
+                        emit(
+                          'change',
                           transformDataToValue(treeDataSource.dataSource)
                         )
+
                         closeModal()
                       }}
                       type="primary"
                     >
                       OK
                     </Button>
-                  </ElSpace>
+                  </Space>
                 ),
               }}
-              modelValue={modalVisible}
+              visible={modalVisible}
               width="65%"
               destroyOnClose
             >
@@ -127,6 +116,9 @@ export const DataSourceSetter = observer(
                     defaultOptionValue={props.defaultOptionValue}
                     allowTree={props.allowTree}
                     treeDataSource={treeDataSource}
+                    onData-source-change={(data: INodeItem[]) => {
+                      treeDataSourceRef.dataSource = data
+                    }}
                   ></TreePanel>
                 </div>
                 <div class={`${prefix + '-layout-item right'}`}>
@@ -138,7 +130,7 @@ export const DataSourceSetter = observer(
                 </div>
               </div>
             </Modal>
-          </>
+          </FragmentComponent>
         )
       }
     },

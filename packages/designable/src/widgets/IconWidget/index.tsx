@@ -1,4 +1,4 @@
-import { isStr, isFn, isObj, isPlainObj } from '@designable/shared'
+import { isStr, isFn, isPlainObj } from '@designable/shared'
 import { observer } from '@formily/reactive-vue'
 import { Tooltip } from 'ant-design-vue'
 import './styles.less'
@@ -40,8 +40,9 @@ export interface IIconWidgetProps extends HTMLElement {
 
 const __IconWidgetInner = defineComponent({
   name: 'DnIconWidget',
+  emits: ['click'],
   props: {
-    tooltip: { type: Object },
+    tooltip: { type: [Object, String] },
     infer: { type: [String, Function, Object] },
     size: { type: [Number, String] },
   },
@@ -124,12 +125,8 @@ const __IconWidgetInner = defineComponent({
         const tooltip =
           props.tooltip || registry.getDesignerMessage(`icons.${props.infer}`)
         if (tooltip) {
-          const props = isObj(tooltip) ? tooltip : { content: tooltip }
-          return (
-            <Tooltip {...{ props: { ...props, 'open-delay': 200 } }}>
-              {children}
-            </Tooltip>
-          )
+          // const props = isObj(tooltip) ? tooltip : { content: tooltip }
+          return <Tooltip title={tooltip}>{children}</Tooltip>
         }
         return children
       }

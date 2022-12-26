@@ -1,5 +1,4 @@
 // import React, { Fragment, useState } from 'react'
-import { FragmentComponent as Fragment } from '@formily/vue'
 import { observer } from '@formily/reactive-vue'
 import { Tabs } from 'ant-design-vue'
 import { TreeNode, createBehavior, createResource } from '@designable/core'
@@ -11,7 +10,7 @@ import {
   useSelection,
 } from '@formily/antdv-designable'
 import { composeExport } from '@formily/antdv/esm/__builtins__'
-import { defineComponent, nextTick, ref } from 'vue-demi'
+import { defineComponent, ref } from 'vue-demi'
 import { uid } from '@designable/shared'
 import { LoadTemplate } from '../../common/LoadTemplate'
 import { useDropTemplate } from '../../hooks'
@@ -21,7 +20,7 @@ import { AllLocales } from '../../locales'
 import { matchComponent } from '../../shared'
 import type { VueComponent } from '@formily/vue'
 import type { DnFC } from '@formily/antdv-designable'
-import type { Tabs as TabsProps } from 'ant-design-vue'
+// import type { Tabs as TabsProps } from 'ant-design-vue'
 
 const parseTabs = (parent: TreeNode) => {
   const tabs: TreeNode[] = []
@@ -41,7 +40,9 @@ const getCorrectActiveKey = (activeKey: string, tabs: TreeNode[]) => {
 //  {
 //   TabPane?: VueComponent<TabPaneProps>
 // }
-export const FormTab: DnFC<VueComponent<TabsProps>> = composeExport(
+export const FormTab: DnFC<VueComponent> & {
+  TabPane?: VueComponent
+} = composeExport(
   observer(
     defineComponent({
       setup(props, { attrs }) {
@@ -96,14 +97,17 @@ export const FormTab: DnFC<VueComponent<TabsProps>> = composeExport(
                       style={{ ...props.style }}
                       name={tab.id}
                       key={tab.id}
+                      scopedSlots={{
+                        tab: () => (
+                          <span
+                            data-content-editable="x-component-props.label"
+                            data-content-editable-node-id={tab.id}
+                          >
+                            {props.label}
+                          </span>
+                        ),
+                      }}
                     >
-                      <span
-                        data-content-editable="x-component-props.label"
-                        data-content-editable-node-id={tab.id}
-                        slot="label"
-                      >
-                        {props.label}
-                      </span>
                       <div
                         key={uid()}
                         style={{

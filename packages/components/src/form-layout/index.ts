@@ -1,8 +1,8 @@
-import type { InjectionKey, Ref } from 'vue-demi'
 import { provide, inject, defineComponent, ref, watch } from 'vue-demi'
 import { h } from '@formily/vue'
 import { stylePrefix } from '../__builtins__/configs'
 import { useResponsiveFormLayout } from './useResponsiveFormLayout'
+// import type { InjectionKey, Ref } from 'vue-demi'
 
 export type FormLayoutProps = {
   className?: string
@@ -34,23 +34,19 @@ export type FormLayoutProps = {
   gridRowGap?: number
 }
 
-export const FormLayoutDeepContext: InjectionKey<Ref<FormLayoutProps>> = Symbol(
-  'FormLayoutDeepContext'
-)
+export const FormLayoutDeepContext = Symbol('FormLayoutDeepContext')
 
-export const FormLayoutShallowContext: InjectionKey<Ref<FormLayoutProps>> =
-  Symbol('FormLayoutShallowContext')
+export const FormLayoutShallowContext = Symbol('FormLayoutShallowContext')
 
-export const useFormDeepLayout = (): Ref<FormLayoutProps> =>
-  inject(FormLayoutDeepContext, ref({}))
+export const useFormDeepLayout = () => inject(FormLayoutDeepContext, ref({}))
 
-export const useFormShallowLayout = (): Ref<FormLayoutProps> =>
+export const useFormShallowLayout = () =>
   inject(FormLayoutShallowContext, ref({}))
 
-export const useFormLayout = (): Ref<FormLayoutProps> => {
+export const useFormLayout = () => {
   const shallowLayout = useFormShallowLayout()
   const deepLayout = useFormDeepLayout()
-  const formLayout = ref({
+  const formLayout = ref<Record<string, any>>({
     ...deepLayout.value,
     ...shallowLayout.value,
   })
@@ -70,7 +66,7 @@ export const useFormLayout = (): Ref<FormLayoutProps> => {
   return formLayout
 }
 
-export const FormLayout = defineComponent<FormLayoutProps>({
+export const FormLayout = defineComponent({
   name: 'FFormLayout',
   props: {
     className: {},
@@ -97,11 +93,13 @@ export const FormLayout = defineComponent<FormLayoutProps>({
     gridColumnGap: {},
     gridRowGap: {},
   },
-  setup(customProps, { slots, refs }) {
+  setup(customProps: FormLayoutProps, { slots, refs }) {
     const { props } = useResponsiveFormLayout(customProps, refs)
 
     const deepLayout = useFormDeepLayout()
     const newDeepLayout = ref({
+      size: undefined,
+      colon: undefined,
       ...deepLayout,
     })
     const shallowProps = ref({})

@@ -24,7 +24,20 @@ export default {
         triggerType: {
           title: '触发类型',
           placeholder: '请选择',
-          dataSource: ['输入时', '聚焦时', '失焦时'],
+          dataSource: [
+            {
+              label: '输入时',
+              value: 'onInput',
+            },
+            {
+              label: '聚焦时',
+              value: 'onFocus',
+            },
+            {
+              label: '失焦时',
+              value: 'onBlur',
+            },
+          ],
         },
         format: {
           title: '格式校验',
@@ -51,6 +64,9 @@ export default {
       },
     },
     SettingComponents: {
+      ValueInput: {
+        expression: '表达式',
+      },
       DataSourceSetter: {
         nodeProperty: '节点属性',
         pleaseSelectNode: '请先选择左侧树节点',

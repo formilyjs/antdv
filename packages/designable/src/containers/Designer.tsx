@@ -18,13 +18,13 @@ import type { Engine } from '@designable/core'
 
 GlobalRegistry.registerDesignerIcons(icons)
 
-export const Designer = defineComponent<IDesignerProps>({
+export const Designer = defineComponent({
   props: {
     engine: {},
     theme: { type: String, default: 'light' },
     prefixCls: { type: String, default: 'dn-' },
   },
-  setup(props, { slots }) {
+  setup(props: IDesignerProps, { slots }) {
     const engine = useDesigner()
     const refInstance = ref<Engine>(null)
 

@@ -8,7 +8,23 @@ export const Select = {
           title: '键名',
           tooltip: '作为 value 唯一标识的键名，绑定值为对象类型时必填',
         },
-        size: { title: '尺寸', dataSource: ['大', '小', '迷你', '继承'] },
+        size: {
+          title: '尺寸',
+          dataSource: [
+            {
+              label: '大',
+              value: 'large',
+            },
+            {
+              label: '小',
+              value: 'small',
+            },
+            {
+              label: '默认',
+              value: 'default',
+            },
+          ],
+        },
         clearable: { title: '可以清空选项' },
         'collapse-tags': {
           title: '文字展示',
@@ -53,7 +69,23 @@ export const Select = {
           title: '键名',
           tooltip: '作为 value 唯一标识的键名，绑定值为对象类型时必填',
         },
-        size: { title: '尺寸', dataSource: ['大', '小', '迷你', '继承'] },
+        size: {
+          title: '尺寸',
+          dataSource: [
+            {
+              label: '大',
+              value: 'large',
+            },
+            {
+              label: '小',
+              value: 'small',
+            },
+            {
+              label: '默认',
+              value: 'default',
+            },
+          ],
+        },
         clearable: { title: '可以清空选项' },
         'collapse-tags': {
           title: '文字展示',

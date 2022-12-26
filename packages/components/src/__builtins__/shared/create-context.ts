@@ -32,7 +32,6 @@ export const createContext = <T>(defaultValue?: T): CreateContext<T> => {
       setup(props, { slots }) {
         const value = toRef(props, 'value')
         provide(injectKey, readonly(value))
-
         return () => slots?.default?.()
       },
     }),

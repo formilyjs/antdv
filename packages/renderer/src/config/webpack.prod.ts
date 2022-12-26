@@ -3,7 +3,6 @@ import HtmlWebpackPlugin from 'html-webpack-plugin'
 import MiniCssExtractPlugin from 'mini-css-extract-plugin'
 import { VueLoaderPlugin } from 'vue-loader'
 import baseConfig from './webpack.base'
-
 const createPages = (pages) => {
   return pages.map(({ filename, template, chunk }) => {
     return new HtmlWebpackPlugin({

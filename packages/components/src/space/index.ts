@@ -1,8 +1,8 @@
 import { h } from '@formily/vue'
-import type { Space as AntSpaceProps } from 'ant-design-vue/types/space'
+import { defineComponent } from 'vue-demi'
 import { useFormLayout } from '../form-layout'
 import type { VNode } from 'vue'
-import { defineComponent } from 'vue-demi'
+import type { Space as AntSpaceProps } from 'ant-design-vue/types/space'
 
 const spaceSize = {
   small: 8,

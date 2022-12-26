@@ -10,6 +10,7 @@ export interface ImageInputProps {
 }
 
 export const ImageInput = defineComponent({
+  emits: ['change'],
   props: { value: String },
   setup(props, { emit }) {
     const prefixRef = usePrefix('image-input')
@@ -21,35 +22,39 @@ export const ImageInput = defineComponent({
       return (
         <div class={cls(prefix)}>
           <Input
-            {...props}
-            vOn:input={(e) => {
+            props={{
+              ...props,
+            }}
+            onInput={(e) => {
               emit('change', e)
             }}
-          >
-            <Upload
-              slot="prefix"
-              action={context.uploadAction}
-              headers={{}}
-              multiple={false}
-              onChange={(params) => {
-                const response = params.file?.response
-                const url =
-                  response?.url ||
-                  response?.downloadURL ||
-                  response?.imageURL ||
-                  response?.thumbUrl ||
-                  response?.data
-                if (!url) return
-                emit('change', url)
-              }}
-            >
-              <IconWidget
-                infer="CloudUpload"
-                style={{ cursor: 'pointer' }}
-                size={16}
-              />
-            </Upload>
-          </Input>
+            scopedSlots={{
+              prefix: () => (
+                <Upload
+                  action={context.uploadAction}
+                  headers={{}}
+                  multiple={false}
+                  onChange={(params) => {
+                    const response = params.file?.response
+                    const url =
+                      response?.url ||
+                      response?.downloadURL ||
+                      response?.imageURL ||
+                      response?.thumbUrl ||
+                      response?.data
+                    if (!url) return
+                    emit('change', url)
+                  }}
+                >
+                  <IconWidget
+                    infer="CloudUpload"
+                    {...{ style: { cursor: 'pointer' } }}
+                    size={16}
+                  />
+                </Upload>
+              ),
+            }}
+          ></Input>
         </div>
       )
     }
@@ -58,6 +63,7 @@ export const ImageInput = defineComponent({
 
 export const BackgroundImageInput = defineComponent({
   props: { value: String },
+  emits: ['change'],
   setup(props, { emit }) {
     return () => {
       const addBgValue = (value: any) => {

@@ -1,4 +1,4 @@
-import type { ISchema } from '@formily,vue'
+import type { ISchema } from '@formily/vue'
 
 export const FormTab: ISchema & { TabPane?: ISchema } = {
   type: 'object',
@@ -59,7 +59,7 @@ FormTab.TabPane = {
       'x-decorator': 'FormItem',
       'x-component': 'Input',
       'x-component-props': {
-        size: 'mini',
+        size: 'small',
         clearable: true,
       },
     },
@@ -74,7 +74,7 @@ FormTab.TabPane = {
       'x-decorator': 'FormItem',
       'x-component': 'Input',
       'x-component-props': {
-        size: 'mini',
+        size: 'small',
         clearable: true,
       },
     },

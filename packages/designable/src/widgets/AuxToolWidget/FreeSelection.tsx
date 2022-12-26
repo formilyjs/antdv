@@ -3,15 +3,17 @@ import { CursorStatus, CursorType } from '@designable/core'
 import { calcRectByStartEndPoint, isNum } from '@designable/shared'
 import cls from 'classnames'
 import { defineComponent } from 'vue-demi'
-import { useCursor, usePrefix, useViewport } from '../../hooks'
+import { useCursor, useOperation, usePrefix, useViewport } from '../../hooks'
 
 export const FreeSelection = observer(
   defineComponent({
     props: [],
     setup() {
+      const operationRef = useOperation()
       const cursorRef = useCursor()
       const viewportRef = useViewport()
       const prefixRef = usePrefix('aux-free-selection')
+
       return () => {
         const createSelectionStyle = () => {
           const startDragPoint = viewportRef.value.getOffsetPoint({
@@ -46,9 +48,12 @@ export const FreeSelection = observer(
           }
           return baseStyle
         }
+
+        const hasDragNodes = operationRef.value.getDragNodes().length > 0
         if (
+          hasDragNodes ||
           cursorRef.value.status !== CursorStatus.Dragging ||
-          cursorRef.value.type !== CursorType.Selection
+          cursorRef.value.type !== CursorType.Move
         )
           return null
         return (

@@ -47,6 +47,7 @@ export const StudioPanel = defineComponent<IStudioPanelProps>({
     theme: { type: String, default: 'light' },
     prefixCls: { type: String, default: 'dn-' },
   },
+  slots: ['logo', 'actions'],
   setup(props, { slots }) {
     const scopedSlots = {
       logo: slots.logo,

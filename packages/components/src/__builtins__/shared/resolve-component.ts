@@ -1,7 +1,7 @@
-import type { Component } from 'vue'
 import { h, toRaw } from 'vue-demi'
-import type { SlotTypes } from '.'
 import { isVnode } from './utils'
+import type { SlotTypes } from '.'
+import type { Component } from 'vue'
 
 export const resolveComponent = (
   child?: SlotTypes,

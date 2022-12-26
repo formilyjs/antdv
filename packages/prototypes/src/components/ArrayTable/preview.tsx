@@ -8,7 +8,6 @@ import {
 } from '@formily/antdv-designable'
 import { ArrayBase } from '@formily/antdv'
 import { observer } from '@formily/reactive-vue'
-import cls from 'classnames'
 import { composeExport } from '@formily/antdv/esm/__builtins__'
 import { defineComponent, getCurrentInstance, onMounted } from 'vue-demi'
 import { uid } from '@designable/shared'
@@ -25,9 +24,6 @@ import {
 } from '../../shared'
 import { LoadTemplate } from '../../common/LoadTemplate'
 import './styles.less'
-import type { VueComponent } from '@formily/vue'
-import type { DnFC } from '@formily/antdv-designable'
-import type { Table as TableProps } from 'ant-design-vue'
 
 const ensureObjectItemsNode = createEnsureTypeItemsNode('object')
 
@@ -66,11 +62,11 @@ const BodyCell = defineComponent({
 })
 
 // TableProps<any>
-export const ArrayTable: DnFC<TableProps> = composeExport(
+export const ArrayTable = composeExport(
   observer(
     defineComponent({
       props: { className: {} },
-      setup(props, { attrs, slots }) {
+      setup(props, { attrs }) {
         const nodeRef = useTreeNode()
         const nodeIdRef = useNodeIdProps()
         useDropTemplate('ArrayTable', (source) => {
@@ -205,7 +201,7 @@ export const ArrayTable: DnFC<TableProps> = composeExport(
           const renderTable = () => {
             if (node.children.length === 0) return <DroppableWidget />
             return (
-              <ArrayBase disabled>
+              <ArrayBase {...{ disabled: true }}>
                 {/* TODO:: rerender table cuz table resizes when insert new value */}
                 <Table
                   size="small"
@@ -217,9 +213,9 @@ export const ArrayTable: DnFC<TableProps> = composeExport(
                   style={{ marginBottom: '10px' }}
                   data={[{ id: '1' }]}
                 >
-                  {columns.map((node, index) => {
+                  {columns.map((node) => {
                     const children = node.children.map((child) => {
-                      return <TreeNodeWidget node={child} key={child.id} />
+                      return <TreeNodeWidget node={child} />
                     })
                     const props = node.props['x-component-props']
                     return (
@@ -229,7 +225,7 @@ export const ArrayTable: DnFC<TableProps> = composeExport(
                         dataIndex={node.id}
                         class={`data-id:${node.id}`}
                         scopedSlots={{
-                          default: ({ row, column, $index }) => {
+                          default: ({ $index }) => {
                             return (
                               <BodyCell
                               // attrs={{ className: `data-id:${node.id}` }}
@@ -240,7 +236,7 @@ export const ArrayTable: DnFC<TableProps> = composeExport(
                               </BodyCell>
                             )
                           },
-                          header: ({ column, $index }) => {
+                          header: () => {
                             return (
                               <HeaderCell
                               // attrs={{ className: `data-id:${node.id}` }}
@@ -263,7 +259,7 @@ export const ArrayTable: DnFC<TableProps> = composeExport(
                 </Table>
                 {/* TODO::some how cannot make it working */}
                 <Row justify="center" type="flex">
-                  {additions.map((node) => {
+                  {additions.map(() => {
                     return <ArrayBase.Addition title="添加条目" />
                   })}
                 </Row>
@@ -294,7 +290,7 @@ export const ArrayTable: DnFC<TableProps> = composeExport(
                           type: 'void',
                           'x-component': 'ArrayTable.Column',
                           'x-component-props': {
-                            label: `排序`,
+                            title: `排序`,
                           },
                         },
                         children: [
@@ -329,7 +325,7 @@ export const ArrayTable: DnFC<TableProps> = composeExport(
                           type: 'void',
                           'x-component': 'ArrayTable.Column',
                           'x-component-props': {
-                            label: `序号`,
+                            title: `序号`,
                           },
                         },
                         children: [
@@ -377,7 +373,7 @@ export const ArrayTable: DnFC<TableProps> = composeExport(
                           type: 'void',
                           'x-component': 'ArrayTable.Column',
                           'x-component-props': {
-                            label: `Title`,
+                            title: `Title`,
                           },
                         },
                       })
@@ -415,7 +411,7 @@ export const ArrayTable: DnFC<TableProps> = composeExport(
                             type: 'void',
                             'x-component': 'ArrayTable.Column',
                             'x-component-props': {
-                              label: `操作`,
+                              title: `操作`,
                             },
                           },
                           children: [
@@ -486,7 +482,6 @@ export const ArrayTable: DnFC<TableProps> = composeExport(
           componentName: 'Field',
           props: {
             type: 'array',
-            'x-decorator': 'FormItem',
             'x-component': 'ArrayTable',
           },
         },

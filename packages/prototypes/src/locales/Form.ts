@@ -60,7 +60,20 @@ export const Form = createLocales(Component, {
       bordered: 'Bordered',
       size: {
         title: 'Size',
-        dataSource: ['Large', 'Small', 'Default', 'Inherit'],
+        dataSource: [
+          {
+            label: 'Large',
+            value: 'large',
+          },
+          {
+            label: 'Small',
+            value: 'small',
+          },
+          {
+            label: 'Default',
+            value: 'default',
+          },
+        ],
       },
       layout: {
         title: 'Layout',

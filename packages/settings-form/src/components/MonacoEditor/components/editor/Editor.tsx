@@ -26,8 +26,8 @@ export default defineComponent({
       Nullable<monacoEditor.editor.ICodeEditorViewState>
     >()
     const containerRef = shallowRef<Nullable<HTMLElement>>(null)
-    const setContainerRef = (el: Nullable<HTMLElement>) =>
-      (containerRef.value = el)
+    const setContainerRef = (el: Ref<Nullable<HTMLElement>>) =>
+      (containerRef.value = el.value)
     const { monacoRef, unload } = useMonaco()
     const { editorRef } = useEditor(props, monacoRef, containerRef)
     const { disposeValidator } = useValidator(props, monacoRef, editorRef)
@@ -105,7 +105,6 @@ export default defineComponent({
         }
       }
     )
-
     return () => (
       <MonacoContainer
         setContainerRef={setContainerRef}
@@ -155,7 +154,6 @@ function useEditor(
       props.language || props.defaultLanguage,
       autoCreatedModelPath
     )
-
     editorRef.value = monacoRef.value.editor.create(
       containerRef.value,
       {

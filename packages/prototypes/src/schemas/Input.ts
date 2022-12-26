@@ -9,7 +9,7 @@ export const Input: ISchema & { TextArea?: ISchema } = {
       'x-decorator': 'FormItem',
       'x-component': 'InputNumber',
       'x-component-props': {
-        size: 'mini',
+        size: 'small',
       },
     },
     minlength: {
@@ -17,7 +17,7 @@ export const Input: ISchema & { TextArea?: ISchema } = {
       'x-decorator': 'FormItem',
       'x-component': 'InputNumber',
       'x-component-props': {
-        size: 'mini',
+        size: 'small',
       },
     },
     'show-word-limit': {
@@ -25,7 +25,7 @@ export const Input: ISchema & { TextArea?: ISchema } = {
       'x-decorator': 'FormItem',
       'x-component': 'InputNumber',
       'x-component-props': {
-        size: 'mini',
+        size: 'small',
       },
     },
     placeholder: {
@@ -34,7 +34,7 @@ export const Input: ISchema & { TextArea?: ISchema } = {
       'x-component': 'Input',
       'x-component-props': {
         clearable: true,
-        size: 'mini',
+        size: 'small',
       },
     },
     clearable: {
@@ -47,7 +47,7 @@ export const Input: ISchema & { TextArea?: ISchema } = {
       'x-decorator': 'FormItem',
       'x-component': 'Input',
       'x-component-props': {
-        size: 'mini',
+        size: 'small',
       },
     },
     'suffix-icon': {
@@ -55,7 +55,7 @@ export const Input: ISchema & { TextArea?: ISchema } = {
       'x-decorator': 'FormItem',
       'x-component': 'Input',
       'x-component-props': {
-        size: 'mini',
+        size: 'small',
       },
     },
     autofocus: {
@@ -64,9 +64,22 @@ export const Input: ISchema & { TextArea?: ISchema } = {
       'x-component': 'Switch',
     },
     size: {
-      default: 'medium',
+      default: 'default',
       type: 'string',
-      enum: ['medium', 'small', 'mini', null],
+      enum: [
+        {
+          label: 'Large',
+          value: 'large',
+        },
+        {
+          label: 'Small',
+          value: 'small',
+        },
+        {
+          label: 'Default',
+          value: 'default',
+        },
+      ],
       'x-decorator': 'FormItem',
       'x-component': 'Select',
     },
@@ -80,7 +93,7 @@ Input.TextArea = merge(Input, {
       'x-decorator': 'FormItem',
       'x-component': 'InputNumber',
       'x-component-props': {
-        size: 'mini',
+        size: 'small',
       },
     },
     autoSize: {
