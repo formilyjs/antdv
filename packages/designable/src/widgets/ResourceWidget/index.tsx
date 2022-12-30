@@ -29,7 +29,6 @@ export const ResourceWidget = observer(
       const renderNode = (source: IResource) => {
         const prefix = unref(prefixRef)
         const { node, icon, title, thumb, span } = source
-
         return (
           <div
             class={prefix + '-item'}
@@ -39,7 +38,6 @@ export const ResourceWidget = observer(
             {thumb && <img class={prefix + '-item-thumb'} src={thumb} />}
             {icon && (
               <IconWidget
-                // @ts-ignore
                 class={prefix + '-item-icon'}
                 style={{ width: '150px', height: '40px' }}
                 infer={icon}

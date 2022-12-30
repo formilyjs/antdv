@@ -1,4 +1,3 @@
-// import React, { useRef } from 'react'
 import { observer } from '@formily/reactive-vue'
 import {
   DragStartEvent,
@@ -12,15 +11,20 @@ import {
   isStr,
 } from '@designable/shared'
 import cls from 'classnames'
-import { computed, defineComponent, nextTick, onBeforeUnmount } from 'vue-demi'
+import {
+  computed,
+  defineComponent,
+  nextTick,
+  onBeforeUnmount,
+} from 'vue-demi'
 import { observe } from '@formily/reactive'
 import { useScreen, useDesigner, usePrefix } from '../../hooks'
 import { IconWidget } from '../../widgets'
 import { ResizeHandle, ResizeHandleType } from './handle'
+import './styles.less'
+
 import type { Ref } from 'vue-demi'
 import type { Engine } from '@designable/core'
-
-import './styles.less'
 
 const useResizeEffect = (
   container: Ref<HTMLDivElement>, // React.MutableRefObject<HTMLDivElement>,
@@ -126,14 +130,14 @@ const useResizeEffect = (
  * InputNumber ElmentUI 显示不了100%
  * @param content
  */
-function useScreenModifier(screen, content: HTMLDivElement) {
+function useScreenModifier(screen, content: Ref<HTMLDivElement>) {
   const dispose = observe(screen, () => {
     nextTick(() => {
-      screen.setSize(content.clientWidth, content.clientHeight)
+      screen.setSize(content.value?.clientWidth, content.value?.clientHeight)
     })
   })
   nextTick(() => {
-    screen.setSize(content.clientWidth, content.clientHeight)
+    screen.setSize(content.value?.clientWidth, content.value?.clientHeight)
   })
   onBeforeUnmount(() => {
     dispose()
@@ -155,7 +159,8 @@ const ResponsiveSimulatorComponent = defineComponent({
     useDesigner((engine) => {
       useResizeEffect(container, content, engine)
     })
-    useScreenModifier(screenRef.value, content.value)
+
+    useScreenModifier(screenRef.value, content)
 
     return () => {
       return (

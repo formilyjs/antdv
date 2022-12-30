@@ -1,8 +1,15 @@
-import { provide, inject, defineComponent, ref, watch } from 'vue-demi'
+import {
+  provide,
+  inject,
+  defineComponent,
+  ref,
+  watch,
+  InjectionKey,
+  Ref,
+} from 'vue-demi'
 import { h } from '@formily/vue'
 import { stylePrefix } from '../__builtins__/configs'
 import { useResponsiveFormLayout } from './useResponsiveFormLayout'
-// import type { InjectionKey, Ref } from 'vue-demi'
 
 export type FormLayoutProps = {
   className?: string
@@ -34,16 +41,19 @@ export type FormLayoutProps = {
   gridRowGap?: number
 }
 
-export const FormLayoutDeepContext = Symbol('FormLayoutDeepContext')
+export const FormLayoutDeepContext: InjectionKey<Ref<FormLayoutProps>> = Symbol(
+  'FormLayoutDeepContext'
+)
 
 export const FormLayoutShallowContext = Symbol('FormLayoutShallowContext')
 
-export const useFormDeepLayout = () => inject(FormLayoutDeepContext, ref({}))
+export const useFormDeepLayout = (): Ref<FormLayoutProps> =>
+  inject(FormLayoutDeepContext, ref({}))
 
-export const useFormShallowLayout = () =>
+export const useFormShallowLayout = (): Ref<FormLayoutProps> =>
   inject(FormLayoutShallowContext, ref({}))
 
-export const useFormLayout = () => {
+export const useFormLayout = (): Ref<FormLayoutProps> => {
   const shallowLayout = useFormShallowLayout()
   const deepLayout = useFormDeepLayout()
   const formLayout = ref<Record<string, any>>({
@@ -98,8 +108,6 @@ export const FormLayout = defineComponent({
 
     const deepLayout = useFormDeepLayout()
     const newDeepLayout = ref({
-      size: undefined,
-      colon: undefined,
       ...deepLayout,
     })
     const shallowProps = ref({})
