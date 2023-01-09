@@ -1,12 +1,14 @@
-import { FragmentComponent as Fragment } from '@formily/vue'
-import { GlobalRegistry } from '@designable/core'
-import { observer } from '@formily/reactive-vue'
 import cls from 'classnames'
 import { defineComponent, provide, ref, toRef } from 'vue-demi'
+import { GlobalRegistry } from '@designable/core'
+import { FragmentComponent as Fragment } from '@formily/vue'
+import { observer } from '@formily/reactive-vue'
 import { composeExport } from '@formily/antdv/esm/__builtins__'
 import { useTree, usePrefix, useDesigner, useComponents } from '../../hooks'
-import './styles.less'
 import { TreeNodeSymbol, DesignerComponentsSymbol } from '../../context'
+import './styles.less'
+
+// Types
 import type { TreeNode } from '@designable/core'
 import type { IDesignerComponents } from '../../types'
 
@@ -16,7 +18,6 @@ export interface IComponentTreeWidgetProps {
 
 export interface ITreeNodeWidgetProps {
   node: TreeNode
-  // children?: React.ReactChild
 }
 
 export const TreeNodeWidgetComponent = defineComponent({
@@ -35,12 +36,7 @@ export const TreeNodeWidgetComponent = defineComponent({
       const renderChildren = () => {
         if (node?.designerProps?.selfRenderChildren) return []
         return node?.children?.map((child) => {
-          return (
-            <TreeNodeWidget
-              node={child}
-              // key={child.id}
-            />
-          )
+          return <TreeNodeWidget key={child.id} node={child} />
         })
       }
 

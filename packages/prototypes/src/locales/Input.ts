@@ -1,37 +1,24 @@
+import { createLocales } from '@designable/core'
+
 export const Input = {
   'zh-CN': {
     title: '输入框',
     settings: {
       'x-component-props': {
-        maxlength: '最大输入长度',
-        minlength: '最小输入长度',
-        'show-word-limit': '显示输入字数',
+        maxLength: '最大输入长度',
         placeholder: '占位提示',
-        clearable: '可清空',
-        'prefix-icon': '输入框头部图标',
-        'suffix-icon': '输入框尾部图标',
-        autofocus: '获取焦点',
+        allowClear: '可清空',
+        prefix: '前缀图标',
+        suffix: '后缀图标',
+        disabled: '禁用',
+        type: {
+          title: 'input 类型',
+          tooltip:
+            '同原生 input 标签的 type 属性,(请直接使用 Input.TextArea 代替 type="textarea")',
+        },
         size: {
           title: '尺寸',
-          dataSource: [
-            {
-              label: '大',
-              value: 'large',
-            },
-            {
-              label: '小',
-              value: 'small',
-            },
-            {
-              label: '默认',
-              value: 'default',
-            },
-          ],
-        },
-        rows: '行数',
-        autoSize: {
-          title: '自适应高度',
-          tooltip: '可设置为 true | false 或对象：{ minRows: 2, maxRows: 6 }',
+          dataSource: ['大', '小', '默认'],
         },
       },
     },
@@ -40,31 +27,30 @@ export const Input = {
     title: 'Input',
     settings: {
       'x-component-props': {
-        maxlength: '最大输入长度',
-        minlength: '最小输入长度',
-        'show-word-limit': '显示输入字数',
-        placeholder: '占位提示',
-        clearable: '可清空',
-        'prefix-icon': '输入框头部图标',
-        'suffix-icon': '输入框尾部图标',
-        autofocus: '获取焦点',
-        size: {
-          title: '尺寸',
-          dataSource: [
-            {
-              label: 'large',
-              value: 'large',
-            },
-            {
-              label: 'small',
-              value: 'small',
-            },
-            {
-              label: 'default',
-              value: 'default',
-            },
-          ],
+        maxLength: 'Max length',
+        placeholder: 'Placehoder',
+        allowClear: 'Allow clear',
+        prefix: 'Prefix icon',
+        suffix: 'Suffix icon',
+        disabled: 'Disabled',
+        type: {
+          title: 'Type of input',
+          tooltips: 'use Input.TextArea instead of type="textarea"',
         },
+        size: {
+          title: 'Size',
+          dataSource: ['Large', 'Small', 'Default'],
+        },
+      },
+    },
+  },
+}
+
+export const TextArea = createLocales(Input, {
+  'zh-CN': {
+    title: '多行输入',
+    settings: {
+      'x-component-props': {
         autoSize: {
           title: '自适应高度',
           tooltip: '可设置为 true | false 或对象：{ minRows: 2, maxRows: 6 }',
@@ -72,4 +58,14 @@ export const Input = {
       },
     },
   },
-}
+  'en-US': {
+    title: 'TextArea',
+    settings: {
+      autoSize: {
+        title: 'Auto size',
+        tooltip:
+          'Height autosize feature, can be set to true|false or an object { minRows: 2, maxRows: 6 }',
+      },
+    },
+  },
+})

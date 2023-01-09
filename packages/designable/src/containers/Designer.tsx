@@ -50,7 +50,7 @@ export const Designer = defineComponent({
 
     if (engine.value)
       throw new Error(
-        'There can only be one Designable Engine Context in the React Tree'
+        'There can only be one Designable Engine Context in the Vue Tree'
       )
 
     return () => {

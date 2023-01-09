@@ -116,8 +116,7 @@ export const CompositePanelComponent = defineComponent<ICompositePanelProps>({
               </div>
               {!pinning.value && (
                 <IconWidget
-                  // key={prefix + '-tabs-header-pin'}
-                  // @ts-ignore
+                  key={prefix + '-tabs-header-pin'}
                   class={prefix + '-tabs-header-pin'}
                   infer="PushPinOutlined"
                   onClick={() => {
@@ -127,8 +126,7 @@ export const CompositePanelComponent = defineComponent<ICompositePanelProps>({
               )}
               {pinning.value && (
                 <IconWidget
-                  // key={prefix + '-tabs-header-pin-filled'}
-                  // @ts-ignore
+                  key={prefix + '-tabs-header-pin-filled'}
                   class={prefix + '-tabs-header-pin-filled'}
                   infer="PushPinFilled"
                   onClick={() => {
@@ -137,7 +135,6 @@ export const CompositePanelComponent = defineComponent<ICompositePanelProps>({
                 />
               )}
               <IconWidget
-                // @ts-ignore
                 class={prefix + '-tabs-header-close'}
                 infer="Close"
                 onClick={() => {
@@ -171,7 +168,7 @@ export const CompositePanelComponent = defineComponent<ICompositePanelProps>({
                       props.showNavTitle
                         ? null
                         : {
-                            content: <TextWidget>{item.title}</TextWidget>,
+                            title: <TextWidget>{item.title}</TextWidget>,
                             placement:
                               props.direction === 'right' ? 'left' : 'right',
                           }

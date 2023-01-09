@@ -25,7 +25,7 @@ export const Input: DnFC<Vue.Component<any, any, any, typeof FormilyInput>> =
         designerProps: {
           propsSchema: createFieldSchema(AllSchemas.Input.TextArea),
         },
-        designerLocales: AllLocales.Input,
+        designerLocales: AllLocales.TextArea,
       }
     ),
     Resource: createResource(

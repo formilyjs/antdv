@@ -1,7 +1,5 @@
-import { isStr, isFn, isPlainObj } from '@designable/shared'
-import { observer } from '@formily/reactive-vue'
+import cls from 'classnames'
 import { Tooltip } from 'ant-design-vue'
-import './styles.less'
 import {
   computed,
   defineComponent,
@@ -11,12 +9,15 @@ import {
   ref,
   unref,
 } from 'vue-demi'
+import { isStr, isObj, isFn, isPlainObj } from '@designable/shared'
+import { observer } from '@formily/reactive-vue'
 import { composeExport } from '@formily/antdv/esm/__builtins__'
 import { FragmentComponent as Fragment } from '@formily/vue'
-import cls from 'classnames'
 import { cloneElement, isVNode, useStyle } from '../../shared/util'
 import { useContext } from '../../context'
 import { usePrefix, useRegistry, useTheme } from '../../hooks'
+import './styles.less'
+
 import type { InjectionKey, Ref } from 'vue-demi'
 import type { Tooltip as TooltipProps } from 'ant-design-vue'
 
@@ -125,8 +126,8 @@ const __IconWidgetInner = defineComponent({
         const tooltip =
           props.tooltip || registry.getDesignerMessage(`icons.${props.infer}`)
         if (tooltip) {
-          // const props = isObj(tooltip) ? tooltip : { content: tooltip }
-          return <Tooltip title={tooltip}>{children}</Tooltip>
+          const props = isObj(tooltip) ? tooltip : { title: tooltip }
+          return <Tooltip {...{ props }}>{children}</Tooltip>
         }
         return children
       }

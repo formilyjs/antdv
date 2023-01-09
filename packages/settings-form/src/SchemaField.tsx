@@ -1,5 +1,5 @@
 import { createSchemaField } from '@formily/vue'
-import * as ElementUI from '@formily/antdv'
+import * as AntdvUI from '@formily/antdv'
 import {
   ColorInput,
   CollapseItem,
@@ -14,12 +14,14 @@ import {
   ValueInput,
 } from './components'
 
+// Types
+import type { SchemaVueComponents } from '@formily/vue'
+
 const SchemaFields = createSchemaField({
-  // @ts-ignore TODO: type error
   components: {
     CollapseItem,
     ColorInput,
-    ...ElementUI,
+    ...(AntdvUI as SchemaVueComponents),
     SizeInput,
     DisplayStyleSetter,
     BackgroundStyleSetter,

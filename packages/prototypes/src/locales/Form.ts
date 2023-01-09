@@ -24,8 +24,14 @@ export const Form = createLocales(Component, {
       inset: '内联布局',
       shallow: '是否浅传递',
       bordered: '是否有边框',
-      size: { title: '尺寸', dataSource: ['大', '小', '默认', '继承'] },
-      layout: { title: '布局', dataSource: ['垂直', '水平', '内联', '继承'] },
+      size: {
+        title: '尺寸',
+        dataSource: ['大', '小', '默认', '继承'],
+      },
+      layout: {
+        title: '布局',
+        dataSource: ['垂直', '水平', '内联', '继承'],
+      },
       feedbackLayout: {
         title: '反馈布局',
         dataSource: ['宽松', '紧凑', '弹层', '无', '继承'],
@@ -60,20 +66,7 @@ export const Form = createLocales(Component, {
       bordered: 'Bordered',
       size: {
         title: 'Size',
-        dataSource: [
-          {
-            label: 'Large',
-            value: 'large',
-          },
-          {
-            label: 'Small',
-            value: 'small',
-          },
-          {
-            label: 'Default',
-            value: 'default',
-          },
-        ],
+        dataSource: ['Large', 'Small', 'Default', 'Inherit'],
       },
       layout: {
         title: 'Layout',

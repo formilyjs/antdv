@@ -26,8 +26,8 @@ export type FormItemProps = {
   labelStyle?: Record<string, any>
   labelAlign?: 'left' | 'right'
   labelWrap?: boolean
-  labelWidth?: number
-  wrapperWidth?: number
+  labelWidth?: number | string
+  wrapperWidth?: number | string
   labelCol?: number
   wrapperCol?: number
   wrapperAlign?: 'left' | 'right'
@@ -197,12 +197,24 @@ export const FormBaseItem = defineComponent<FormItemProps>({
       let enableCol = false
       if (labelWidth || wrapperWidth) {
         if (labelWidth) {
-          labelStyle.width = `${labelWidth}px`
-          labelStyle.maxWidth = `${labelWidth}px`
+          const _labelWidth =
+            labelWidth === 'auto'
+              ? undefined
+              : typeof labelWidth === 'number'
+              ? `${labelWidth}px`
+              : labelWidth
+          labelStyle.width = _labelWidth
+          labelStyle.maxWidth = _labelWidth
         }
         if (wrapperWidth) {
-          wrapperStyle.width = `${wrapperWidth}px`
-          wrapperStyle.maxWidth = `${wrapperWidth}px`
+          const _wrapperWidth =
+            wrapperWidth === 'auto'
+              ? undefined
+              : typeof wrapperWidth === 'number'
+              ? `${wrapperWidth}px`
+              : wrapperWidth
+          wrapperStyle.width = _wrapperWidth
+          wrapperStyle.maxWidth = _wrapperWidth
         }
         // 栅格模式
       } else if (labelCol || wrapperCol) {
@@ -279,7 +291,7 @@ export const FormBaseItem = defineComponent<FormItemProps>({
             },
             {
               default: () => [labelChildren],
-              content: () =>
+              title: () =>
                 h(
                   'div',
                   {},
@@ -314,7 +326,7 @@ export const FormBaseItem = defineComponent<FormItemProps>({
                   },
                   {
                     default: () => [h('i', { class: 'el-icon-info' }, {})],
-                    content: () =>
+                    title: () =>
                       h(
                         'div',
                         {

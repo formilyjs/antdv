@@ -96,11 +96,7 @@
       "commit-msg": "commitlint --edit"
     }
   },
-  "dependencies": {
-    "html-webpack-plugin": "3.2.0",
-    "lodash-es": "^4.17.21",
-    "vue-template-compiler": "2.6.14"
-  },
+  "dependencies":{},
   "peerDependencies": {
     "@vue/composition-api": "^1.0.0-beta.1",
     "vue": "^2.6.0 || >=3.0.0-rc.0"

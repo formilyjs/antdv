@@ -1,5 +1,16 @@
+import cls from 'classnames'
+import {
+  computed,
+  defineComponent,
+  nextTick,
+  onBeforeUnmount,
+  provide,
+  reactive,
+  ref,
+  watch,
+} from 'vue-demi'
 import { createForm } from '@formily/core'
-import { Form as ElForm } from '@formily/antdv'
+import { Form } from '@formily/antdv'
 import { observe } from '@formily/reactive'
 import {
   IconWidget,
@@ -11,32 +22,17 @@ import {
   useWorkbench,
 } from '@formily/antdv-designable'
 import { Empty } from 'ant-design-vue'
-import cls from 'classnames'
-import './styles.less'
-import {
-  computed,
-  defineComponent,
-  nextTick,
-  onBeforeUnmount,
-  provide,
-  reactive,
-  ref,
-  watch,
-} from 'vue-demi'
 import { uid, cancelIdle, requestIdle } from '@designable/shared'
 import { SchemaField } from './SchemaField'
 import { SettingsFormSymbol } from './shared/context'
 import { useLocales, useSnapshot } from './effects'
+import './styles.less'
+
 // eslint-disable-next-line
 const GlobalState = {
   idleRequest: null,
 }
-// className?: string
-// style?: CSSProperties
-// uploadAction?: string
-// components?: Record<string, VueComponent<any>>
-// effects?: (form: Form) => void
-// scope?: any
+
 function useKeyUp() {
   const keyboardRef = ref(false)
 
@@ -51,6 +47,14 @@ function useKeyUp() {
 
   return keyboardRef
 }
+
+// className?: string
+// style?: CSSProperties
+// uploadAction?: string
+// components?: Record<string, VueComponent<any>>
+// effects?: (form: Form) => void
+// scope?: any
+
 export const SettingsForm = defineComponent({
   props: ['uploadAction', 'components', 'effects', 'scope', 'headers'],
   setup(props) {
@@ -103,11 +107,11 @@ export const SettingsForm = defineComponent({
     }
     requestIdleTask()
 
-    // observe(nodeRef.value, () => {
-    //   nextTick(() => {
-    //     requestIdleTask()
-    //   })
-    // })
+    observe(nodeRef.value, () => {
+      nextTick(() => {
+        requestIdleTask()
+      })
+    })
 
     watch(selectedRef, () => {
       nextTick(() => {
@@ -126,10 +130,10 @@ export const SettingsForm = defineComponent({
         if (!sources.isEmpty && formRef.value) {
           return (
             <div class={cls(prefix)} key={sources.key}>
-              <ElForm
-                // key={uid()}
+              <Form
+                key={uid()}
                 form={formRef.value}
-                labelWidth={110}
+                labelWidth="110px"
                 labelAlign="left"
                 wrapperAlign="right"
                 feedbackLayout="none"
@@ -140,7 +144,7 @@ export const SettingsForm = defineComponent({
                   components={props.components}
                   scope={props.scope}
                 />
-              </ElForm>
+              </Form>
             </div>
           )
         }

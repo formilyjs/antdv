@@ -42,13 +42,7 @@ export const Form = composeExport(FormComponent, {
         cloneable: !node.isRoot,
         deletable: !node.isRoot,
         droppable: true,
-        propsSchema: {
-          type: 'object',
-          properties: {
-            ...(AllSchemas.FormLayout.properties as any),
-            style: AllSchemas.CSSStyle,
-          },
-        },
+        propsSchema: AllSchemas.Form,
         defaultProps: {
           labelCol: 6,
           wrapperCol: 12,
