@@ -2,7 +2,8 @@
   "name": "@formily/antdv-prototypes",
   "version": "1.0.0-alpha.0",
   "license": "MIT",
-  "main": "src/index.ts",
+  "main": "lib",
+  "types": "lib/index.d.ts",
   "engines": {
     "npm": ">=3.0.0"
   },
