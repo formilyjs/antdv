@@ -5,6 +5,6 @@ export const BuilderConfig: IBuilderConfig = {
   targetLibCjsDir: 'lib',
   targetLibEsDir: 'es',
   externals: {
-    'ant-design-vue': 'Antd',
+    'ant-design-vue': 'antd',
   },
 }

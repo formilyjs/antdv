@@ -42,7 +42,7 @@ const buildAll = async (inputs: RollupOptions[]) => {
 
 const presets = () => {
   const externals = {
-    antd: 'Antd',
+    antd: 'antd',
     vue: 'Vue',
     react: 'React',
     moment: 'moment',
@@ -50,7 +50,8 @@ const presets = () => {
     '@alifd/next': 'Next',
     'react-dom': 'ReactDOM',
     'element-ui': 'Element',
-    'ant-design-vue': 'Antd',
+    'ant-design-vue': 'antd',
+    vant: 'vant',
     '@ant-design/icons': 'icons',
     '@vue/composition-api': 'VueCompositionAPI',
     '@formily/reactive-react': 'Formily.ReactiveReact',
