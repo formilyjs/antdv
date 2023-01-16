@@ -1,3 +1,4 @@
+import { computed, defineComponent } from 'vue-demi'
 import { Collapse, Badge } from 'ant-design-vue'
 import { model, markRaw } from '@formily/reactive'
 import {
@@ -8,14 +9,14 @@ import {
   Fragment,
 } from '@formily/vue'
 import { observer } from '@formily/reactive-vue'
-import { computed, defineComponent } from 'vue-demi'
 import { toArr } from '@formily/shared'
-import { composeExport, stylePrefix } from '../__builtins__'
-import type { Schema, SchemaKey } from '@formily/json-schema'
+import { composeExport, usePrefixCls } from '../__builtins__'
+
 import type { PropType } from 'vue-demi'
+import type { GeneralField } from '@formily/core'
+import type { Schema, SchemaKey } from '@formily/json-schema'
 import type { Collapse as CollapseProps } from 'ant-design-vue/types/collapse/collapse'
 import type { CollapsePanel as CollapsePanelProps } from 'ant-design-vue/types/collapse/collapse-panel'
-import type { GeneralField } from '@formily/core'
 
 type ActiveKeys = string | number | Array<string | number>
 
@@ -110,7 +111,10 @@ const _FormCollapse = observer(
     setup(props, { attrs, emit }) {
       const field = useField()
       const schema = useFieldSchema()
-      const prefixCls = `${stylePrefix}-form-collapse`
+      const prefixCls = usePrefixCls(
+        'formily-form-collapse',
+        attrs.prefixCls as string
+      )
       const _formCollapse = computed(
         () => props.formCollapse ?? createFormCollapse()
       )

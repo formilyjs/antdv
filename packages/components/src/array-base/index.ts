@@ -1,11 +1,3 @@
-import { Button, Icon } from 'ant-design-vue'
-import { stylePrefix } from '../__builtins__/configs'
-import { Fragment, useField, useFieldSchema, h } from '@formily/vue'
-import { isValid, clone, uid } from '@formily/shared'
-import type { ArrayField } from '@formily/core'
-import type { Button as ButtonProps } from 'ant-design-vue/types/button/button'
-import type { Schema } from '@formily/json-schema'
-import type { Ref, InjectionKey } from 'vue-demi'
 import {
   defineComponent,
   provide,
@@ -14,8 +6,16 @@ import {
   ref,
   onBeforeUnmount,
 } from 'vue-demi'
+import { Button, Icon } from 'ant-design-vue'
 import { HandleDirective } from 'vue-slicksort'
-import { composeExport } from '../__builtins__/shared'
+import { Fragment, useField, useFieldSchema, h } from '@formily/vue'
+import { isValid, clone, uid } from '@formily/shared'
+import { resolveComponent, composeExport, usePrefixCls } from '../__builtins__'
+
+import type { ArrayField } from '@formily/core'
+import type { Button as ButtonProps } from 'ant-design-vue/types/button/button'
+import type { Schema } from '@formily/json-schema'
+import type { Ref, InjectionKey } from 'vue-demi'
 
 export type KeyMapProps =
   | WeakMap<Record<string, unknown>, string>
@@ -177,7 +177,10 @@ const ArrayBaseSortHandle = defineComponent({
   },
   setup(props, { attrs }) {
     const array = useArray()
-    const prefixCls = `${stylePrefix}-array-base`
+    const prefixCls = usePrefixCls(
+      'formily-array-base',
+      attrs.prefixCls as string
+    )
 
     return () => {
       if (!array) return null
@@ -206,7 +209,10 @@ const ArrayBaseIndex = defineComponent({
   name: 'ArrayBaseIndex',
   setup(props, { attrs }) {
     const index = useIndex()
-    const prefixCls = `${stylePrefix}-array-base`
+    const prefixCls = usePrefixCls(
+      'formily-array-base',
+      attrs.prefixCls as string
+    )
     return () => {
       return h(
         'span',
@@ -225,10 +231,13 @@ const ArrayBaseIndex = defineComponent({
 const ArrayBaseAddition = defineComponent({
   name: 'ArrayBaseAddition',
   props: ['title', 'method', 'defaultValue'],
-  setup(props: IArrayBaseAdditionProps, { listeners }) {
+  setup(props: IArrayBaseAdditionProps, { attrs, listeners }) {
     const self = useField()
     const array = useArray()
-    const prefixCls = `${stylePrefix}-array-base`
+    const prefixCls = usePrefixCls(
+      'formily-array-base',
+      attrs.prefixCls as string
+    )
     return () => {
       if (!array) return null
       if (
@@ -270,7 +279,7 @@ const ArrayBaseAddition = defineComponent({
         {
           default: () => [
             h(Icon, { props: { type: 'plus' } }, {}),
-            self.value.title || props.title,
+            resolveComponent(props.title || self.value.title),
           ],
         }
       )
@@ -284,7 +293,10 @@ const ArrayBaseRemove = defineComponent<{ title?: string; index?: number }>({
   setup(props, { attrs, listeners }) {
     const indexRef = useIndex(props.index)
     const base = useArray()
-    const prefixCls = `${stylePrefix}-array-base`
+    const prefixCls = usePrefixCls(
+      'formily-array-base',
+      attrs.prefixCls as string
+    )
     return () => {
       if (base?.field.value.pattern !== 'editable') return null
       return h(
@@ -324,7 +336,10 @@ const ArrayBaseMoveDown = defineComponent<{ title?: string; index?: number }>({
   setup(props, { attrs, listeners }) {
     const indexRef = useIndex(props.index)
     const base = useArray()
-    const prefixCls = `${stylePrefix}-array-base`
+    const prefixCls = usePrefixCls(
+      'formily-array-base',
+      attrs.prefixCls as string
+    )
     return () => {
       if (base?.field.value.pattern !== 'editable') return null
       return h(
@@ -368,7 +383,10 @@ const ArrayBaseMoveUp = defineComponent<{ title?: string; index?: number }>({
   setup(props, { attrs, listeners }) {
     const indexRef = useIndex(props.index)
     const base = useArray()
-    const prefixCls = `${stylePrefix}-array-base`
+    const prefixCls = usePrefixCls(
+      'formily-array-base',
+      attrs.prefixCls as string
+    )
     return () => {
       if (base?.field.value.pattern !== 'editable') return null
       return h(

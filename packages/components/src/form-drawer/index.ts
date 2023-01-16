@@ -1,17 +1,17 @@
+import { defineComponent } from 'vue-demi'
 import { Button, Drawer, Space } from 'ant-design-vue'
-import type { Drawer as DrawerProps } from 'ant-design-vue/types/drawer'
+import { Portal, PortalTarget } from 'portal-vue'
+import { createForm } from '@formily/core'
 import { FormProvider, h, Fragment } from '@formily/vue'
 import { observer } from '@formily/reactive-vue'
-import type { IMiddleware } from '@formily/shared'
 import { isNum, isStr, isBool, isFn, applyMiddleware } from '@formily/shared'
 import { toJS } from '@formily/reactive'
-import type { Form, IFormProps } from '@formily/core'
-import { createForm } from '@formily/core'
+import { usePrefixCls } from '../__builtins__'
+
 import type { Component, VNode } from 'vue'
-import Vue from 'vue'
-import { stylePrefix } from '../__builtins__/configs'
-import { defineComponent } from 'vue-demi'
-import { Portal, PortalTarget } from 'portal-vue'
+import type { Form, IFormProps } from '@formily/core'
+import type { IMiddleware } from '@formily/shared'
+import type { Drawer as DrawerProps } from 'ant-design-vue/types/drawer'
 
 import {
   isValidElement,
@@ -84,7 +84,7 @@ export function FormDrawer(
     id = 'form-drawer'
   }
 
-  const prefixCls = `${stylePrefix}-form-drawer`
+  const prefixCls = usePrefixCls('formily-form-drawer')
   const env = {
     root: document.createElement('div'),
     form: null,
@@ -140,7 +140,7 @@ export function FormDrawer(
   ) => {
     if (!env.instance) {
       const ComponentConstructor = observer(
-        Vue.extend({
+        defineComponent({
           props: ['drawerProps'],
           data() {
             return {

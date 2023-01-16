@@ -1,7 +1,5 @@
-import type { Ref } from 'vue-demi'
 import { defineComponent, ref, watchEffect } from 'vue-demi'
 import { Badge, Card, Collapse, Empty } from 'ant-design-vue'
-import type { ArrayField } from '@formily/core'
 import {
   RecursionField,
   useField,
@@ -10,13 +8,15 @@ import {
   Fragment,
 } from '@formily/vue'
 import { observer } from '@formily/reactive-vue'
-import type { ISchema } from '@formily/json-schema'
-import { stylePrefix } from '../__builtins__/configs'
+import { toArr } from '@formily/shared'
 import { ArrayBase } from '../array-base'
-import { composeExport } from '../__builtins__/shared'
+import { composeExport, usePrefixCls } from '../__builtins__'
+
+import type { Ref } from 'vue-demi'
+import type { ArrayField } from '@formily/core'
+import type { ISchema } from '@formily/json-schema'
 import type { Collapse as CollapseProps } from 'ant-design-vue/types/collapse/collapse'
 import type { CollapsePanel as CollapsePanelProps } from 'ant-design-vue/types/collapse/collapse-panel'
-import { toArr } from '@formily/shared'
 
 export interface IArrayCollapseProps extends CollapseProps {
   defaultOpenPanelCount?: number
@@ -82,7 +82,10 @@ const ArrayCollapseInner = observer(
       const fieldRef = useField<ArrayField>()
       const schemaRef = useFieldSchema()
 
-      const prefixCls = `${stylePrefix}-array-collapse`
+      const prefixCls = usePrefixCls(
+        'formily-array-collapse',
+        attrs.prefixCls as string
+      )
       const activeKeys: Ref<number[]> = ref([])
 
       watchEffect(() => {

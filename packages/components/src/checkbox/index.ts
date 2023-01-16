@@ -1,7 +1,8 @@
-import { connect, mapProps, mapReadPretty } from '@formily/vue'
 import { Checkbox as AntdCheckbox } from 'ant-design-vue'
+import { connect, mapProps, mapReadPretty } from '@formily/vue'
+import { composeExport } from '../__builtins__'
 import { PreviewText } from '../preview-text'
-import { composeExport } from '../__builtins__/shared'
+
 const { Group } = AntdCheckbox
 
 const CheckboxGroup = connect(

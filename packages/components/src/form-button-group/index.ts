@@ -1,9 +1,10 @@
-import { h } from '@formily/vue'
 import { defineComponent } from 'vue-demi'
-import type { Space as SpaceProps } from 'ant-design-vue/types/space'
+import { h } from '@formily/vue'
+import { usePrefixCls } from '../__builtins__'
 import { Space } from '../space'
 import { FormBaseItem } from '../form-item'
-import { stylePrefix } from '../__builtins__/configs'
+
+import type { Space as SpaceProps } from 'ant-design-vue/types/space'
 
 export type FormButtonGroupProps = Omit<SpaceProps, 'align' | 'size'> & {
   align?: 'left' | 'right' | 'center'
@@ -29,7 +30,11 @@ export const FormButtonGroup = defineComponent<FormButtonGroupProps>({
     },
   },
   setup(props, { slots, attrs }) {
-    const prefixCls = `${stylePrefix}-form-button-group`
+    const prefixCls = usePrefixCls(
+      'formily-form-button-group',
+      attrs.prefixCls as string
+    )
+
     return () => {
       if (props.alignFormItem) {
         return h(

@@ -1,6 +1,8 @@
-import { h } from '@formily/vue'
 import { defineComponent } from 'vue-demi'
+import { h } from '@formily/vue'
+import { usePrefixCls } from '../__builtins__'
 import { useFormLayout } from '../form-layout'
+
 import type { VNode } from 'vue'
 import type { Space as AntSpaceProps } from 'ant-design-vue/types/space'
 
@@ -13,8 +15,7 @@ const spaceSize = {
 export const Space = defineComponent<AntSpaceProps>({
   name: 'Space',
   props: ['size', 'align', 'direction'],
-  // inject: 'configProvider',
-  setup(props, { slots }) {
+  setup(props, { attrs, slots }) {
     const layout = useFormLayout()
 
     return () => {
@@ -23,7 +24,7 @@ export const Space = defineComponent<AntSpaceProps>({
         size = layout.value?.spaceGap ?? 'small',
         direction = 'horizontal',
       } = props
-      const prefixCls = `ant-space`
+      const prefixCls = usePrefixCls('space', attrs.prefixCls as string)
       const children = slots.default?.()
       let items = []
       if (Array.isArray(children)) {

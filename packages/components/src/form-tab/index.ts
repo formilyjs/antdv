@@ -1,7 +1,7 @@
 import { defineComponent, reactive, computed } from 'vue-demi'
-import { observer } from '@formily/reactive-vue'
-import { model } from '@formily/reactive'
 import { Tabs, Badge } from 'ant-design-vue'
+import { model } from '@formily/reactive'
+import { observer } from '@formily/reactive-vue'
 import {
   h,
   useField,
@@ -9,11 +9,9 @@ import {
   RecursionField,
   Fragment,
 } from '@formily/vue'
-import { stylePrefix } from '../__builtins__/configs'
-import { composeExport } from '../__builtins__/shared'
+import { composeExport, usePrefixCls } from '../__builtins__'
 
 import type { Schema, SchemaKey } from '@formily/json-schema'
-
 import type { Tabs as TabsProps } from 'ant-design-vue/types/tabs/tabs'
 import type { TabPane as TabPaneProps } from 'ant-design-vue/types/tabs/tab-pane'
 
@@ -72,7 +70,10 @@ const FormTabInner = observer(
       const field = useField().value
       const formTabRef = computed(() => props.formTab ?? createFormTab())
 
-      const prefixCls = `${stylePrefix}-form-tab`
+      const prefixCls = usePrefixCls(
+        'formily-form-tab',
+        attrs.prefixCls as string
+      )
 
       return () => {
         const formTab = formTabRef.value

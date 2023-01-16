@@ -1,13 +1,19 @@
 import { defineComponent, computed } from 'vue-demi'
-import { h, useField } from '@formily/vue'
+import { Tag } from 'ant-design-vue'
 import { isArr, isValid } from '@formily/shared'
+import { observer } from '@formily/reactive-vue'
+import { h, useField } from '@formily/vue'
 import {
   createContext,
   resolveComponent,
   useContext,
   composeExport,
-} from '../__builtins__/shared'
-import { stylePrefix } from '../__builtins__/configs'
+  formatMomentValue,
+  usePrefixCls,
+} from '../__builtins__'
+import { Space } from '../space'
+
+import type { Field } from '@formily/core'
 import type { Input as InputProps } from 'ant-design-vue/types/input/input'
 import type { Select as SelectProps } from 'ant-design-vue/types/select/select'
 import type {
@@ -18,14 +24,6 @@ import type { TimePicker as TimePickerProps } from 'ant-design-vue/types/time-pi
 import type { DatePicker as DatePickerProps } from 'ant-design-vue/types/date-picker/date-picker'
 import type { RangePicker as RangePickerProps } from 'ant-design-vue/types/date-picker/range-picker'
 
-import { Tag } from 'ant-design-vue'
-
-import { Space } from '../space'
-import { observer } from '@formily/reactive-vue'
-import type { Field } from '@formily/core'
-import { formatMomentValue } from '../__builtins__'
-
-const prefixCls = `${stylePrefix}-preview-text`
 const PlaceholderContext = createContext('N/A')
 
 export const usePlaceholder = (value?: any) => {
@@ -45,6 +43,10 @@ const Select = observer(
     name: 'PreviewTextSelect',
     props: [],
     setup(_props, { attrs }) {
+      const prefixCls = usePrefixCls(
+        'formily-preview-text',
+        attrs.prefixCls as string
+      )
       const fieldRef = useField<Field>()
       const field = fieldRef.value
       const props = attrs as unknown as SelectProps
@@ -119,6 +121,10 @@ const Input = observer(
   defineComponent<InputProps>({
     name: 'PreviewTextInput',
     setup(_props, { attrs, slots }) {
+      const prefixCls = usePrefixCls(
+        'formily-preview-text',
+        attrs.prefixCls as string
+      )
       return () => {
         const placeholder = usePlaceholder(attrs.value)
         return h(
@@ -146,6 +152,10 @@ const Input = observer(
 const Text = defineComponent<any>({
   name: 'PreviewText',
   setup(_props, { attrs }) {
+    const prefixCls = usePrefixCls(
+      'formily-preview-text',
+      attrs.prefixCls as string
+    )
     const placeholder = usePlaceholder()
 
     return () => {
@@ -172,6 +182,10 @@ const Cascader = observer(
     name: 'PreviewTextCascader',
     props: [],
     setup(_props, { attrs }) {
+      const prefixCls = usePrefixCls(
+        'formily-preview-text',
+        attrs.prefixCls as string
+      )
       const fieldRef = useField<Field>()
       const field = fieldRef.value
       const props = attrs as unknown as PreviewCascaderProps
@@ -243,6 +257,10 @@ const TimePicker = defineComponent<TimePickerProps>({
   name: 'PreviewTextTimePicker',
   setup(_props, { attrs }) {
     const props = attrs as unknown as TimePickerProps
+    const prefixCls = usePrefixCls(
+      'formily-preview-text',
+      attrs.prefixCls as string
+    )
     const placeholder = usePlaceholder()
     const getLabels = () => {
       const labels = formatMomentValue(
@@ -272,6 +290,10 @@ const DatePicker = defineComponent<DatePickerProps>({
   name: 'PreviewTextDatePicker',
   setup(_props, { attrs }) {
     const props = attrs as unknown as DatePickerProps
+    const prefixCls = usePrefixCls(
+      'formily-preview-text',
+      attrs.prefixCls as string
+    )
     const placeholder = usePlaceholder()
     const getLabels = () => {
       const labels = formatMomentValue(
@@ -301,6 +323,10 @@ const DateRangePicker = defineComponent<RangePickerProps>({
   name: 'PreviewTextDatePicker',
   setup(_props, { attrs }) {
     const props = attrs as unknown as RangePickerProps
+    const prefixCls = usePrefixCls(
+      'formily-preview-text',
+      attrs.prefixCls as string
+    )
     const placeholder = usePlaceholder()
     const getLabels = () => {
       const labels = formatMomentValue(

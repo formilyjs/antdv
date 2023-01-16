@@ -1,7 +1,6 @@
-import type { PropType } from 'vue-demi'
 import { defineComponent } from 'vue-demi'
+import { Steps } from 'ant-design-vue'
 import { action, model, observable } from '@formily/reactive'
-import type { VoidField, Form } from '@formily/core'
 import { observer } from '@formily/reactive-vue'
 import {
   h,
@@ -10,13 +9,13 @@ import {
   RecursionField,
   Fragment,
 } from '@formily/vue'
-import type { Schema, SchemaKey } from '@formily/json-schema'
-import { Steps } from 'ant-design-vue'
-import { stylePrefix } from '../__builtins__/configs'
+import { composeExport, usePrefixCls } from '../__builtins__'
 
+import type { PropType } from 'vue-demi'
+import type { VoidField, Form } from '@formily/core'
+import type { Schema, SchemaKey } from '@formily/json-schema'
 import type { Steps as StepsProps } from 'ant-design-vue/types/steps/steps'
 import type { Step as StepProps } from 'ant-design-vue/types/steps/step'
-import { composeExport } from '../__builtins__/shared'
 
 const { Step } = Steps
 
@@ -143,7 +142,10 @@ const FormStepInner = observer(
     },
     setup(props, { attrs }) {
       const field = useField<VoidField>().value
-      const prefixCls = `${stylePrefix}-form-step`
+      const prefixCls = usePrefixCls(
+        'formily-form-step',
+        attrs.prefixCls as string
+      )
       const fieldSchemaRef = useFieldSchema()
 
       const steps = parseSteps(fieldSchemaRef.value)

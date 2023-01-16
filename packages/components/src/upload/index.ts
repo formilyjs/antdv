@@ -1,7 +1,8 @@
-import { connect, mapProps, h } from '@formily/vue'
-import { Upload as AntdUpload, Button, Icon } from 'ant-design-vue'
 import { defineComponent } from 'vue-demi'
+import { Upload as AntdUpload, Button, Icon } from 'ant-design-vue'
+import { connect, mapProps, h } from '@formily/vue'
 import { composeExport } from '../__builtins__'
+
 import type {
   UploadFile,
   Upload as AntdUploadProps,

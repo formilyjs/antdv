@@ -1,12 +1,12 @@
 import { defineComponent } from 'vue-demi'
-import type { ArrayField } from '@formily/core'
+import { SlickList, SlickItem } from 'vue-slicksort'
 import { useField, useFieldSchema, RecursionField, h } from '@formily/vue'
 import { observer } from '@formily/reactive-vue'
-import type { ISchema } from '@formily/json-schema'
-import { stylePrefix } from '../__builtins__/configs'
+import { composeExport, usePrefixCls } from '../__builtins__'
 import { ArrayBase } from '../array-base'
-import { SlickList, SlickItem } from 'vue-slicksort'
-import { composeExport } from '../__builtins__/shared'
+
+import type { ArrayField } from '@formily/core'
+import type { ISchema } from '@formily/json-schema'
 
 const isAdditionComponent = (schema: ISchema) => {
   return schema['x-component']?.indexOf('Addition') > -1
@@ -19,11 +19,14 @@ export interface IArrayItemsItemProps {
 const ArrayItemsInner = observer(
   defineComponent({
     name: 'ArrayItems',
-    setup() {
+    setup(_, { attrs }) {
       const fieldRef = useField<ArrayField>()
       const schemaRef = useFieldSchema()
 
-      const prefixCls = `${stylePrefix}-array-items`
+      const prefixCls = usePrefixCls(
+        'formily-array-items',
+        attrs.prefixCls as string
+      )
       const { getKey, keyMap } = ArrayBase.useKey(schemaRef.value)
 
       return () => {
@@ -150,7 +153,10 @@ const ArrayItemsItem = defineComponent<IArrayItemsItemProps>({
   name: 'ArrayItemsItem',
   props: ['type'],
   setup(props, { attrs, slots }) {
-    const prefixCls = `${stylePrefix}-array-items`
+    const prefixCls = usePrefixCls(
+      'formily-array-items',
+      attrs.prefixCls as string
+    )
 
     return () =>
       h(

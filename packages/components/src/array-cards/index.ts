@@ -4,9 +4,8 @@ import type { ArrayField } from '@formily/core'
 import { useField, useFieldSchema, RecursionField, h } from '@formily/vue'
 import { observer } from '@formily/reactive-vue'
 import type { ISchema } from '@formily/json-schema'
-import { stylePrefix } from '../__builtins__/configs'
 import { ArrayBase } from '../array-base'
-import { composeExport } from '../__builtins__/shared'
+import { composeExport, usePrefixCls } from '../__builtins__'
 import { defineComponent } from 'vue-demi'
 
 const isAdditionComponent = (schema: ISchema) => {
@@ -45,7 +44,10 @@ const ArrayCardsInner = observer(
     setup(_props, { attrs }) {
       const fieldRef = useField<ArrayField>()
       const schemaRef = useFieldSchema()
-      const prefixCls = `${stylePrefix}-array-cards`
+      const prefixCls = usePrefixCls(
+        'formily-array-cards',
+        attrs.prefixCls as string
+      )
       const { getKey, keyMap } = ArrayBase.useKey(schemaRef.value)
       return () => {
         const props = { ...attrs }
@@ -79,7 +81,7 @@ const ArrayCardsInner = observer(
                     },
                     {}
                   ),
-                  props.title || field.title,
+                  props.title || field.componentProps?.title || field.title,
                 ],
               }
             )

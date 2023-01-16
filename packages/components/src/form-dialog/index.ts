@@ -1,17 +1,17 @@
+import { defineComponent } from 'vue-demi'
 import { Button, Modal } from 'ant-design-vue'
-import type { Modal as ModalProps } from 'ant-design-vue/types/modal'
+import { Portal, PortalTarget } from 'portal-vue'
+import { createForm } from '@formily/core'
+import { toJS } from '@formily/reactive'
 import { FormProvider, h, Fragment } from '@formily/vue'
 import { observer } from '@formily/reactive-vue'
-import type { IMiddleware } from '@formily/shared'
 import { isNum, isStr, isBool, isFn, applyMiddleware } from '@formily/shared'
-import { toJS } from '@formily/reactive'
-import type { Form, IFormProps } from '@formily/core'
-import { createForm } from '@formily/core'
+import { usePrefixCls } from '../__builtins__'
+
 import type { Component, VNode } from 'vue'
-import Vue from 'vue'
-import { stylePrefix } from '../__builtins__/configs'
-import { defineComponent } from 'vue-demi'
-import { Portal, PortalTarget } from 'portal-vue'
+import type { Form, IFormProps } from '@formily/core'
+import type { IMiddleware } from '@formily/shared'
+import type { Modal as ModalProps } from 'ant-design-vue/types/modal'
 
 import {
   isValidElement,
@@ -84,7 +84,7 @@ export function FormDialog(
     id = 'form-dialog'
   }
 
-  const prefixCls = `${stylePrefix}-form-dialog`
+  const prefixCls = usePrefixCls('formily-form-dialog')
   const env = {
     root: document.createElement('div'),
     form: null,
@@ -131,9 +131,8 @@ export function FormDialog(
     reject?: () => any
   ) => {
     if (!env.instance) {
-      // eslint-disable-next-line vue/one-component-per-file
       const ComponentConstructor = observer(
-        Vue.extend({
+        defineComponent({
           props: ['dialogProps'],
           data() {
             return {
@@ -329,7 +328,6 @@ export function FormDialog(
   return formDialog
 }
 
-// eslint-disable-next-line vue/one-component-per-file
 const DialogFooter = defineComponent({
   name: 'DialogFooter',
   setup(props, { slots }) {

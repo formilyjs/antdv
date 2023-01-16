@@ -1,14 +1,15 @@
+import { defineComponent } from 'vue-demi'
+import { Radio as AntdRadio } from 'ant-design-vue'
 import { connect, mapProps, mapReadPretty, h } from '@formily/vue'
 import {
   composeExport,
   transformComponent,
   resolveComponent,
-} from '../__builtins__/shared'
+} from '../__builtins__'
 import { PreviewText } from '../preview-text'
-import { Radio as AntdRadio } from 'ant-design-vue'
-import type { RadioGroup as AntdRadioGroupProps } from 'ant-design-vue/types/radio/radio-group'
+
 import type { PropType } from 'vue-demi'
-import { defineComponent } from 'vue-demi'
+import type { RadioGroup as AntdRadioGroupProps } from 'ant-design-vue/types/radio/radio-group'
 
 const { Button, Group } = AntdRadio
 

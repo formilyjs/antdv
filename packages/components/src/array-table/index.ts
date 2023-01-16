@@ -1,6 +1,5 @@
-import type { Ref } from 'vue-demi'
 import { defineComponent, ref, computed } from 'vue-demi'
-import type { GeneralField, FieldDisplayTypes, ArrayField } from '@formily/core'
+import { Table, Pagination, Select, Badge } from 'ant-design-vue'
 import {
   useField,
   useFieldSchema,
@@ -10,13 +9,14 @@ import {
 } from '@formily/vue'
 import { observer } from '@formily/reactive-vue'
 import { isArr, isBool } from '@formily/shared'
+import { composeExport, usePrefixCls } from '../__builtins__'
 import { ArrayBase } from '../array-base'
-import { stylePrefix } from '../__builtins__/configs'
-import { composeExport } from '../__builtins__/shared'
-import type { Schema } from '@formily/json-schema'
-import type { VNode } from 'vue'
-import { Table, Pagination, Select, Badge } from 'ant-design-vue'
 import { Space } from '../space'
+
+import type { VNode } from 'vue'
+import type { Ref } from 'vue-demi'
+import type { GeneralField, FieldDisplayTypes, ArrayField } from '@formily/core'
+import type { Schema } from '@formily/json-schema'
 import type { Table as TableProps } from 'ant-design-vue/types/table/table'
 import type { Column as ColumnProps } from 'ant-design-vue/types/table/column'
 import type { Pagination as PaginationProps } from 'ant-design-vue/types/pagination'
@@ -172,9 +172,12 @@ const schedulerRequest = {
 const StatusSelect = observer(
   defineComponent<IStatusSelectProps>({
     props: ['value', 'options', 'pageSize', 'onChange'],
-    setup(props) {
+    setup(props, { attrs }) {
       const fieldRef = useField<ArrayField>()
-      const prefixCls = `${stylePrefix}-array-table`
+      const prefixCls = usePrefixCls(
+        'formily-array-table',
+        attrs.prefixCls as string
+      )
 
       return () => {
         const field = fieldRef.value
@@ -258,7 +261,10 @@ const StatusSelect = observer(
 const ArrayTablePagination = defineComponent<IArrayTablePaginationProps>({
   inheritAttrs: false,
   setup(_props, { attrs, slots }) {
-    const prefixCls = `${stylePrefix}-array-table`
+    const prefixCls = usePrefixCls(
+      'formily-array-table',
+      attrs.prefixCls as string
+    )
     const current = ref(1)
     return () => {
       const props = attrs as unknown as IArrayTablePaginationProps
@@ -355,7 +361,10 @@ const ArrayTableInner = observer(
     setup(_props, { attrs, slots, listeners }) {
       const fieldRef = useField<ArrayField>()
       const schemaRef = useFieldSchema()
-      const prefixCls = `${stylePrefix}-array-table`
+      const prefixCls = usePrefixCls(
+        'formily-array-table',
+        attrs.prefixCls as string
+      )
       const { getKey, keyMap } = ArrayBase.useKey(schemaRef.value)
 
       const defaultRowKey = (record: any) => {

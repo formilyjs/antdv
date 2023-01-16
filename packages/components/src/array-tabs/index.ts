@@ -1,20 +1,23 @@
 import { defineComponent, ref } from 'vue-demi'
-import { observer } from '@formily/reactive-vue'
 import { Tabs, Badge } from 'ant-design-vue'
+import { observer } from '@formily/reactive-vue'
 import { h, useField, useFieldSchema, RecursionField } from '@formily/vue'
-import { stylePrefix } from '../__builtins__/configs'
-import type { ArrayField } from '@formily/core'
+import { usePrefixCls } from '../__builtins__'
 
+import type { ArrayField } from '@formily/core'
 import type { Tabs as TabsProps } from 'ant-design-vue/types/tabs/tabs'
 
 export const ArrayTabs = observer(
   defineComponent<TabsProps>({
     name: 'ArrayTabs',
-    setup(props, { listeners }) {
+    setup(props, { attrs, listeners }) {
       const fieldRef = useField<ArrayField>()
       const schemaRef = useFieldSchema()
 
-      const prefixCls = `${stylePrefix}-array-tabs`
+      const prefixCls = usePrefixCls(
+        'formily-array-tabs',
+        attrs.prefixCls as string
+      )
       const activeKey = ref('tab-0')
 
       return () => {

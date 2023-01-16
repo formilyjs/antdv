@@ -1,15 +1,15 @@
-import { h, useField } from '@formily/vue'
 import { defineComponent, ref, onBeforeUnmount, computed } from 'vue-demi'
-import { observer } from '@formily/reactive-vue'
 import { Popover as AntdPopover, Icon } from 'ant-design-vue'
-import { composeExport } from '../__builtins__'
-import type { FormItemProps } from '../form-item'
-import { FormBaseItem } from '../form-item'
-import type { Popover as PopoverProps } from 'ant-design-vue/types/popover'
-import type { Field } from '@formily/core'
 import { isVoidField } from '@formily/core'
-import { stylePrefix } from '../__builtins__/configs'
 import { reaction } from '@formily/reactive'
+import { h, useField } from '@formily/vue'
+import { observer } from '@formily/reactive-vue'
+import { composeExport, usePrefixCls } from '../__builtins__'
+import { FormBaseItem } from '../form-item'
+
+import type { FormItemProps } from '../form-item'
+import type { Field } from '@formily/core'
+import type { Popover as PopoverProps } from 'ant-design-vue/types/popover'
 
 type IPopoverProps = PopoverProps
 export type EditableProps = FormItemProps
@@ -44,7 +44,10 @@ const EditableInner = observer(
     setup(props, { attrs, slots, refs }) {
       const fieldRef = useField<Field>()
       const pattern = useInitialPattern(fieldRef)
-      const prefixCls = `${stylePrefix}-editable`
+      const prefixCls = usePrefixCls(
+        'formily-editable',
+        attrs.prefixCls as string
+      )
       const setEditable = (payload: boolean) => {
         // console.log('pattern', pattern)
         if (pattern.value !== 'editable') return
@@ -201,7 +204,10 @@ const EditablePopover = observer(
     name: 'EditablePopover',
     setup(props, { attrs, slots }) {
       const fieldRef = useField<Field>()
-      const prefixCls = `${stylePrefix}-editable`
+      const prefixCls = usePrefixCls(
+        'formily-editable',
+        attrs.prefixCls as string
+      )
       const visible = ref(false)
 
       return () => {

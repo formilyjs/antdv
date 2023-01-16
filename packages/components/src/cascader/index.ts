@@ -1,5 +1,5 @@
-import { connect, mapProps, mapReadPretty, h } from '@formily/vue'
 import { Cascader as AntdCascader, Icon } from 'ant-design-vue'
+import { connect, mapProps, mapReadPretty, h } from '@formily/vue'
 import { PreviewText } from '../preview-text'
 
 export const Cascader = connect(

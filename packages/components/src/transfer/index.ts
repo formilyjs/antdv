@@ -1,6 +1,6 @@
-import { connect, mapProps } from '@formily/vue'
 import { Transfer as AntdTransfer } from 'ant-design-vue'
 import { isVoidField } from '@formily/core'
+import { connect, mapProps } from '@formily/vue'
 
 export const Transfer = connect(
   AntdTransfer,

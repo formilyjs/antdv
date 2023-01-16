@@ -8,7 +8,7 @@ import {
   Ref,
 } from 'vue-demi'
 import { h } from '@formily/vue'
-import { stylePrefix } from '../__builtins__/configs'
+import { usePrefixCls } from '../__builtins__'
 import { useResponsiveFormLayout } from './useResponsiveFormLayout'
 
 export type FormLayoutProps = {
@@ -103,7 +103,8 @@ export const FormLayout = defineComponent({
     gridColumnGap: {},
     gridRowGap: {},
   },
-  setup(customProps: FormLayoutProps, { slots, refs }) {
+  setup(customProps: FormLayoutProps, { attrs, slots, refs }) {
+    const prefixCls = usePrefixCls('formily-form', attrs.prefixCls as string)
     const { props } = useResponsiveFormLayout(customProps, refs)
 
     const deepLayout = useFormDeepLayout()
@@ -133,15 +134,14 @@ export const FormLayout = defineComponent({
     provide(FormLayoutDeepContext, newDeepLayout)
     provide(FormLayoutShallowContext, shallowProps)
 
-    const formPrefixCls = `${stylePrefix}-form`
     return () => {
       const classNames = {
-        [`${formPrefixCls}-${props.value.layout}`]: true,
-        [`${formPrefixCls}-rtl`]: props.value.direction === 'rtl',
-        [`${formPrefixCls}-${props.value.size}`]:
-          props.value.size !== undefined,
+        [`${prefixCls}-${props.value.layout}`]: true,
+        [`${prefixCls}-rtl`]: props.value.direction === 'rtl',
+        [`${prefixCls}-${props.value.size}`]: props.value.size !== undefined,
         [`${props.value.className}`]: props.value.className !== undefined,
       }
+
       return h(
         'div',
         {

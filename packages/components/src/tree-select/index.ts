@@ -1,5 +1,5 @@
-import { connect, mapProps, h } from '@formily/vue'
 import { TreeSelect as AntdTreeSelect, Icon } from 'ant-design-vue'
+import { connect, mapProps, h } from '@formily/vue'
 
 export const TreeSelect = connect(
   AntdTreeSelect,

@@ -1,4 +1,3 @@
-import type { Ref } from 'vue-demi'
 import {
   ref,
   defineComponent,
@@ -7,14 +6,15 @@ import {
   watch,
   provide,
 } from 'vue-demi'
+import { Tooltip, Popover, Icon } from 'ant-design-vue'
+import ResizeObserver from 'resize-observer-polyfill'
 import { isVoidField } from '@formily/core'
 import { connect, mapProps, h } from '@formily/vue'
+import { composeExport, resolveComponent, usePrefixCls } from '../__builtins__'
 import { useFormLayout, FormLayoutShallowContext } from '../form-layout'
-import { composeExport, resolveComponent } from '../__builtins__/shared'
-import { stylePrefix } from '../__builtins__/configs'
+
 import type { Component } from 'vue'
-import { Tooltip } from 'ant-design-vue'
-import ResizeObserver from 'resize-observer-polyfill'
+import type { Ref } from 'vue-demi'
 
 export type FormItemProps = {
   className?: string
@@ -102,9 +102,9 @@ const useOverflow = (containerRef: Ref<HTMLElement>) => {
 }
 
 const ICON_MAP = {
-  error: () => h('i', { class: 'el-icon-circle-close' }, {}),
-  success: () => h('i', { class: 'el-icon-circle-check' }, {}),
-  warning: () => h('i', { class: 'el-icon-warning-outline' }, {}),
+  error: () => h(Icon, { props: { type: 'close-circle' } }, {}),
+  success: () => h(Icon, { props: { type: 'check-circle' } }, {}),
+  warning: () => h(Icon, { props: { type: 'warning' } }, {}),
 }
 
 export const FormBaseItem = defineComponent<FormItemProps>({
@@ -141,11 +141,14 @@ export const FormBaseItem = defineComponent<FormItemProps>({
     bordered: { default: true },
     inset: { default: false },
   },
-  setup(props, { slots, refs }) {
+  setup(props, { attrs, slots, refs }) {
     const active = ref(false)
     const deepLayoutRef = useFormLayout()
 
-    const prefixCls = `${stylePrefix}-form-item`
+    const prefixCls = usePrefixCls(
+      'formily-form-item',
+      attrs.prefixCls as string
+    )
 
     const containerRef = ref(null)
     const overflow = useOverflow(containerRef)
@@ -224,7 +227,7 @@ export const FormBaseItem = defineComponent<FormItemProps>({
       const formatChildren =
         feedbackLayout === 'popover'
           ? h(
-              'el-popover',
+              Popover,
               {
                 props: {
                   disabled: !feedbackText,
@@ -400,7 +403,8 @@ export const FormBaseItem = defineComponent<FormItemProps>({
         {
           class: {
             [`${prefixCls}-control`]: true,
-            [`${prefixCls}-item-col-${wrapperCol}`]: enableCol && !!wrapperCol,
+            [`${prefixCls}-item-col-${wrapperCol}`]:
+              enableCol && !!wrapperCol && label,
           },
         },
         {

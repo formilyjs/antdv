@@ -1,8 +1,9 @@
-import { connect, mapProps, mapReadPretty } from '@formily/vue'
 import { DatePicker as AntdDatePicker } from 'ant-design-vue'
-import type { DatePicker as AntdDatePickerProps } from 'ant-design-vue/types/date-picker/date-picker'
+import { connect, mapProps, mapReadPretty } from '@formily/vue'
 import { formatMomentValue, composeExport } from '../__builtins__'
 import { PreviewText } from '../preview-text'
+
+import type { DatePicker as AntdDatePickerProps } from 'ant-design-vue/types/date-picker/date-picker'
 
 const mapDateFormat = function () {
   const getDefaultFormat = (props: AntdDatePickerProps) => {

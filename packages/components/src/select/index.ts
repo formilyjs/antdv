@@ -1,5 +1,5 @@
-import { connect, mapProps, mapReadPretty } from '@formily/vue'
 import { Select as AntdSelect } from 'ant-design-vue'
+import { connect, mapProps, mapReadPretty } from '@formily/vue'
 import { PreviewText } from '../preview-text'
 
 export const Select = connect(
