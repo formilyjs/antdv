@@ -132,11 +132,21 @@ export const DatePicker: ISchema & { RangePicker?: ISchema } = {
       type: 'string',
       'x-decorator': 'FormItem',
       'x-component': 'DatePicker',
+      'x-component-props':{
+        align: {
+          points: ['br', 'br'],
+        },
+      }
     },
     'default-time': {
       type: 'string',
       'x-decorator': 'FormItem',
       'x-component': 'TimePicker',
+      'x-component-props':{
+        align: {
+          points: ['br', 'br'],
+        },
+      }
     },
     'value-format': {
       default: 'timestamp',

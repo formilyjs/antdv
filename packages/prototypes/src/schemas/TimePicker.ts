@@ -110,6 +110,11 @@ export const CommonTimePickerAPI = {
     type: 'string',
     'x-decorator': 'FormItem',
     'x-component': 'DatePicker',
+    'x-component-props': {
+      align: {
+        points: ['br', 'br'],
+      },
+    },
   },
   'value-format': {
     type: 'string',
