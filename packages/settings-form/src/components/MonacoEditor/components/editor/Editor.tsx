@@ -17,10 +17,9 @@ import type { Ref } from 'vue-demi'
 import type * as monacoEditor from 'monaco-editor/esm/vs/editor/editor.api'
 
 import type { EditorProps } from './types'
-
 export default defineComponent({
   props: editorProps,
-  setup(props, { slots }) {
+  setup(props, { emit, slots }) {
     const viewStates = new Map<
       string | undefined,
       Nullable<monacoEditor.editor.ICodeEditorViewState>
@@ -29,8 +28,8 @@ export default defineComponent({
     const setContainerRef = (el: Ref<Nullable<HTMLElement>>) =>
       (containerRef.value = el.value)
     const { monacoRef, unload } = useMonaco()
-    const { editorRef } = useEditor(props, monacoRef, containerRef)
-    const { disposeValidator } = useValidator(props, monacoRef, editorRef)
+    const { editorRef } = useEditor(props, emit, monacoRef, containerRef)
+    const { disposeValidator } = useValidator(props, emit, monacoRef, editorRef)
     const isEditorReady = computed(() => !!monacoRef.value && !!editorRef.value)
 
     onUnmounted(() => {
@@ -105,6 +104,7 @@ export default defineComponent({
         }
       }
     )
+
     return () => (
       <MonacoContainer
         setContainerRef={setContainerRef}
@@ -120,6 +120,7 @@ export default defineComponent({
 
 function useEditor(
   props: EditorProps,
+  emit: any,
   monacoRef: Ref<Nullable<MonacoEditor>>,
   containerRef: Ref<Nullable<HTMLElement>>
 ) {
@@ -146,6 +147,7 @@ function useEditor(
 
     // editor before mount
     props.onBeforeMount?.(monacoRef.value)
+    emit('beforeMount', monacoRef.value)
 
     const autoCreatedModelPath = props.path || props.defaultPath
     const defaultModel = getOrCreateModel(
@@ -173,11 +175,13 @@ function useEditor(
       if (value !== props.value) {
         props['onUpdate:value']?.(value)
         props.onChange?.(value, event)
+        emit('change', value, event)
       }
     })
 
     // editor mount
     props.onMount?.(editorRef.value, monacoRef.value)
+    emit('mount', editorRef.value, monacoRef.value)
   }
 
   return { editorRef }
@@ -185,6 +189,7 @@ function useEditor(
 
 function useValidator(
   props: EditorProps,
+  emit: any,
   monacoRef: Ref<Nullable<MonacoEditor>>,
   editorRef: Ref<Nullable<monacoEditor.editor.IStandaloneCodeEditor>>
 ) {
@@ -205,6 +210,7 @@ function useValidator(
                 resource: editorUri,
               })
               props.onValidate?.(markers)
+              emit('validate', markers)
             }
           }
         }

@@ -210,6 +210,8 @@
   }
 
   *[data-content-editable]:not(*[contenteditable='true']) {
+    pointer-events: initial;
+
     &:empty::before {
       content: 'Please Input';
       display: block;

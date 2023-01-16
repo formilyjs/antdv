@@ -36,7 +36,7 @@ export const ArrayTableColumn = {
     title: '表格列',
     settings: {
       'x-component-props': {
-        label: '标题',
+        title: '标题',
         prop: '字段名称',
         align: {
           title: '内容对齐',
@@ -61,7 +61,7 @@ export const ArrayTableColumn = {
     title: 'Column',
     settings: {
       'x-component-props': {
-        label: '标题',
+        title: '标题',
         prop: '字段名称',
         align: {
           title: '内容对齐',

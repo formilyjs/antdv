@@ -1,19 +1,25 @@
-@import '../../styles.less';
+@import (reference) '../../styles.less';
 
 .dn-image-input {
   width: 100%;
-  .@{element-prefix}-popover-inner-content {
+  .@{ant-prefix}-popover-inner-content {
     padding: 0 !important;
     user-select: none;
   }
 
-  .@{element-prefix}-input__prefix {
+  .@{ant-prefix}-input__prefix {
     display: flex;
     color: @text-color;
     align-items: center;
   }
-  .el-input--prefix {
-    .@{element-prefix}-input__inner {
-    }
+  .@{ant-prefix}-upload-list{
+  position: absolute;
+    width: 160px;
+    background: #fff;
+    border-radius: 4px;
+    box-shadow: 0 8px 12px #ebedf0;
+  }
+  .@{ant-prefix}-upload-list-item{
+    margin-top: 0;
   }
 }

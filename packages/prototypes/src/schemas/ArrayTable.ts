@@ -55,7 +55,7 @@ export const ArrayTable: ISchema & { Addition?: ISchema; Column?: ISchema } = {
 const Column: ISchema = {
   type: 'object',
   properties: {
-    label: {
+    title: {
       type: 'string',
       'x-decorator': 'FormItem',
       'x-component': 'Input',
@@ -143,21 +143,22 @@ const Column: ISchema = {
 const Addition: ISchema = {
   type: 'object',
   properties: {
-    title: {
-      type: 'string',
-      'x-decorator': 'FormItem',
-      'x-component': 'Input',
-      'x-component-props': {
-        size: 'small',
-        clearable: true,
-      },
-    },
+    // title: {
+    //   type: 'string',
+    //   'x-decorator': 'FormItem',
+    //   'x-component': 'Input',
+    //   'x-component-props': {
+    //     size: 'small',
+    //     clearable: true,
+    //   },
+    // },
     method: {
       type: 'string',
       enum: ['push', 'unshift'],
       'x-decorator': 'FormItem',
       'x-component': 'Radio.Group',
       'x-component-props': {
+        size: 'small',
         defaultValue: 'push',
         optionType: 'button',
       },
@@ -165,7 +166,7 @@ const Addition: ISchema = {
     defaultValue: {
       type: 'string',
       'x-decorator': 'FormItem',
-      'x-component': 'Input',
+      'x-component': 'ValueInput',
       'x-component-props': {
         size: 'small',
         clearable: true,

@@ -18,16 +18,16 @@
     background-color: rgba(0, 0, 0, 0.3);
   }
 
-  .el-collapse {
-    border: 1px solid var(--el-border-color);
+  .@{ant-prefix}-collapse {
+    border: 1px solid @border-color-base;
 
     &-header {
       padding: 8px 10px !important;
-      background-color: var(--el-bg-color) !important;
-      border-bottom: 1px solid var(--el-border-color) !important;
+      // background-color: var(--ant-bg-color) !important;
+      border-bottom: 1px solid @border-color-base !important;
       font-weight: 500 !important;
 
-      .el-collapse-arrow {
+      .@{ant-prefix}-collapse-arrow {
         margin-right: 4px !important;
       }
     }
@@ -47,13 +47,13 @@
   }
 
   .reaction-runner {
-    .el-collapse-content-box {
+    .@{ant-prefix}-collapse-content-box {
       padding: 12px 0 !important;
     }
   }
 
   .reaction-state {
-    .el-collapse-content-box {
+    .@{ant-prefix}-collapse-content-box {
       padding: 12px 0 !important;
     }
   }
@@ -75,7 +75,7 @@
       font-size: 18px;
       line-height: 30px;
       margin-bottom: 4px;
-      color: var(--el-border-color);
+      color: @border-color-base;
       font-weight: 300;
       flex-grow: 0;
       opacity: 0.96;
@@ -85,7 +85,7 @@
     &-coder-end {
       font-size: 18px;
       height: 31px;
-      color: var(--el-border-color);
+      color: @border-color-base;
       margin-top: 4px;
       margin-bottom: 4px;
       line-height: 30px;

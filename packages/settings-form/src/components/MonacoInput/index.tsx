@@ -32,7 +32,11 @@ export interface MonacoInputProps extends EditorProps {
   lineDecorationsWidth?: number
   lineNumbersMinChars?: number
   minimap: Record<string, any>
-  // onChange?: (value: string) => void
+  onMount?: (
+    editor: monaco.editor.IStandaloneCodeEditor,
+    monaco: Monaco
+  ) => void
+  onChange?: (value: string) => void
 }
 // React.FC<MonacoInputProps> & {
 //     loader?: typeof loader
@@ -116,11 +120,9 @@ const MonacoInputInner = defineComponent({
       return (
         href && (
           <Tooltip
-            scopedSlots={{
-              title: () => (
-                <TextWidget token="SettingComponents.MonacoInput.helpDocument" />
-              ),
-            }}
+            title={
+              <TextWidget token="SettingComponents.MonacoInput.helpDocument" />
+            }
           >
             <div class={prefix + '-helper'}>
               <a target="_blank" href={href} rel="noreferrer">
@@ -139,6 +141,7 @@ const MonacoInputInner = defineComponent({
       editorRef.value = editor
       monacoRef.value = monaco
       props.onMount?.(editor, monaco)
+      emit('mount', editor, monaco)
       const model = editor.getModel()
       const currentValue = editor.getValue()
       model['getDesignerLanguage'] = () => computedLanguage.value
@@ -157,14 +160,12 @@ const MonacoInputInner = defineComponent({
       if (props.extraLib) {
         updateExtraLib()
       }
-      editor.onDidChangeModelContent(() => {
-        onChangeHandler(editor.getValue())
-      })
     }
 
     const submit = () => {
       clearTimeout(submitRef.value!)
       submitRef.value = setTimeout(() => {
+        props.onChange?.(valueRef.value)
         emit('change', valueRef.value)
       }, 1000)
     }
@@ -367,8 +368,9 @@ const MonacoInputInner = defineComponent({
               }}
               value={input}
               width="100%"
-              height="100%"
+              height="100%"              
               onMount={onMountHandler}
+              onChange={onChangeHandler}
             />
           </div>
           {renderHelpCode()}

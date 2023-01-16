@@ -1,5 +1,5 @@
 // @import '~antd/lib/style/themes/default.less';
-@import '../../styles.less';
+@import (reference) '../../styles.less';
 
 .dn-poly-input {
   display: flex;
@@ -11,13 +11,13 @@
     margin-right: 2px;
     display: flex;
 
-    .@{element-prefix}-select {
+    .@{ant-prefix}-select {
       width: 100%;
     }
 
-    .@{element-prefix}-input-number {
+    .@{ant-prefix}-input-number {
       width: 100%;
-      .el-input__inner {
+      .@{ant-prefix}input__inner {
         padding: 0 11px;
         text-align: left;
       }

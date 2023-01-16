@@ -12,15 +12,7 @@
   "unpkg": "dist/formily.element-settings-form.umd.production.js",
   "jsdelivr": "dist/formily.element-settings-form.umd.production.js",
   "jsnext:main": "esm",
-  "sideEffects": [
-    "dist/*",
-    "esm/*.js",
-    "lib/*.js",
-    "src/*.ts",
-    "*.less",
-    "*.scss",
-    "**/*/style.js"
-  ],
+  "sideEffects": true,
   "scripts": {
     "build": "ts-node ../../scripts/build.ts"
   },

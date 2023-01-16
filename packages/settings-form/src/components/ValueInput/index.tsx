@@ -47,7 +47,9 @@ export const ValueInput = createPolyInput([
     type: 'EXPRESSION',
     icon: 'Expression',
     component: defineComponent({
-      setup(props, { attrs }) {
+      props: ['value'],
+      emits: ['change'],
+      setup(props, { emit }) {
         return () => (
           <Popover
             trigger="click"
@@ -64,7 +66,10 @@ export const ValueInput = createPolyInput([
                   }}
                 >
                   <MonacoInput
-                    {...{ ...attrs, ...props }}
+                    value={props.value}
+                    onChange={(value) => {
+                      emit('change', value)
+                    }}
                     language="javascript.expression"
                   />
                 </div>

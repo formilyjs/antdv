@@ -50,13 +50,21 @@ function useKeyUp() {
 
 // className?: string
 // style?: CSSProperties
-// uploadAction?: string
+// uploadAction?: string | (file) => Promise
+// uploadMethod?: "post"
 // components?: Record<string, VueComponent<any>>
 // effects?: (form: Form) => void
 // scope?: any
 
 export const SettingsForm = defineComponent({
-  props: ['uploadAction', 'components', 'effects', 'scope', 'headers'],
+  props: [
+    'uploadAction',
+    'headers',
+    'uploadProps',
+    'components',
+    'effects',
+    'scope',
+  ],
   setup(props) {
     const workbenchRef = useWorkbench()
     const prefixRef = usePrefix('settings-form')

@@ -3,8 +3,11 @@ export const Card = {
     title: '卡片',
     settings: {
       'x-component-props': {
-        shadow: { title: '阴影显示时机' },
         title: '标题',
+        shadow: {
+          title: '阴影显示时机',
+          dataSource: ['一直显示', '鼠标悬停时显示', '从不显示', '继承'],
+        },
       },
     },
   },
@@ -12,7 +15,11 @@ export const Card = {
     title: 'Card',
     settings: {
       'x-component-props': {
-        shadow: { title: '阴影显示时机' },
+        title: 'Title',
+        shadow: {
+          title: 'Shadow',
+          dataSource: ['Always', 'Hover', 'Never', 'Inherit'],
+        },
       },
     },
   },

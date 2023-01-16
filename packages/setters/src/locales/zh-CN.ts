@@ -64,9 +64,6 @@ export default {
       },
     },
     SettingComponents: {
-      ValueInput: {
-        expression: '表达式',
-      },
       DataSourceSetter: {
         nodeProperty: '节点属性',
         pleaseSelectNode: '请先选择左侧树节点',

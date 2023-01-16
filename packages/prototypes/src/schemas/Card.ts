@@ -7,11 +7,14 @@ export const Card: ISchema & { Addition?: ISchema } = {
       type: 'string',
       'x-decorator': 'FormItem',
       'x-component': 'Input',
-      'x-component-props': { size: 'small', clearable: true },
+      'x-component-props': {
+        size: 'small',
+        clearable: true,
+      },
     },
     shadow: {
       type: 'string',
-      enum: ['always', 'hover', 'never'],
+      enum: ['always', 'hover', 'never', null],
       'x-decorator': 'FormItem',
       'x-component': 'Select',
       'x-component-props': {

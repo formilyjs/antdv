@@ -24,16 +24,20 @@ export const ImageInput = defineComponent({
           <Input
             props={{
               ...props,
+              allowClear: true,
             }}
             onInput={(e) => {
-              emit('change', e)
+              emit('change', e.target.value)
             }}
             scopedSlots={{
               prefix: () => (
                 <Upload
-                  action={context.uploadAction}
-                  headers={{}}
-                  multiple={false}
+                  attrs={{
+                    ...context.uploadProps,
+                    action: context.uploadAction || context.uploadProps?.action,
+                    headers: context.headers || context.uploadProps?.headers,
+                    multiple: false,
+                  }}
                   onChange={(params) => {
                     const response = params.file?.response
                     const url =

@@ -1,5 +1,8 @@
+import { defineComponent } from 'vue-demi'
+import cls from 'classnames'
 import { Card, Row } from 'ant-design-vue'
 import { TreeNode, createResource } from '@designable/core'
+import { uid } from '@designable/shared'
 import {
   useTreeNode,
   TreeNodeWidget,
@@ -8,10 +11,7 @@ import {
 } from '@formily/antdv-designable'
 import { ArrayBase } from '@formily/antdv'
 import { observer } from '@formily/reactive-vue'
-import cls from 'classnames'
-import { composeExport } from '@formily/antdv/esm/__builtins__'
-import { defineComponent } from 'vue-demi'
-import { uid } from '@designable/shared'
+import { composeExport, usePrefixCls } from '@formily/antdv/esm/__builtins__'
 import {
   hasNodeByComponentPath,
   queryNodesByComponentPath,
@@ -38,6 +38,7 @@ export const ArrayCards = composeExport(
       setup(props, { slots }) {
         const nodeRef = useTreeNode()
         const nodeIdRef = useNodeIdProps()
+        const formilyArrayCardsPrefix = usePrefixCls('formily-array-cards')
 
         const designerRef = useDropTemplate('ArrayCards', (source) => {
           const indexNode = new TreeNode({
@@ -55,11 +56,11 @@ export const ArrayCards = composeExport(
               'x-component': 'ArrayCards.Addition',
             },
           })
+          console.log(additionNode)
           const removeNode = new TreeNode({
             componentName: nodeRef.value.componentName,
             props: {
               type: 'void',
-              title: 'Addition',
               'x-component': 'ArrayCards.Remove',
             },
           })
@@ -67,7 +68,6 @@ export const ArrayCards = composeExport(
             componentName: nodeRef.value.componentName,
             props: {
               type: 'void',
-              title: 'Addition',
               'x-component': 'ArrayCards.MoveDown',
             },
           })
@@ -75,7 +75,6 @@ export const ArrayCards = composeExport(
             componentName: nodeRef.value.componentName,
             props: {
               type: 'void',
-              title: 'Addition',
               'x-component': 'ArrayCards.MoveUp',
             },
           })
@@ -123,20 +122,21 @@ export const ArrayCards = composeExport(
               (name) => name.indexOf('ArrayCards.') === -1,
             ])
 
+            const { title, ...cardProps } = props
             return (
-              <ArrayBase {...{ disabled: true }}>
+              <ArrayBase disabled={true}>
                 <ArrayBase.Item index={0}>
                   <Card
-                    props={props}
-                    class={cls('ant-formily-array-cards-item')}
+                    props={cardProps}
+                    class={cls(`${formilyArrayCardsPrefix}-item`)}
                     scopedSlots={{
                       title: () => (
                         <span>
-                          {indexes.map((node, key) => (
-                            <TreeNodeWidget node={node} />
+                          {indexes.map((node) => (
+                            <TreeNodeWidget key={node.id} node={node} />
                           ))}
                           <span data-content-editable="x-component-props.title">
-                            {props.title}
+                            {title}
                           </span>
                         </span>
                       ),
@@ -144,7 +144,7 @@ export const ArrayCards = composeExport(
                         <Row justify="space-between" type="flex">
                           <span>
                             {operations.map((node) => (
-                              <TreeNodeWidget node={node} />
+                              <TreeNodeWidget key={node.id} node={node} />
                             ))}
                             {slots.extra?.()}
                           </span>
@@ -163,17 +163,16 @@ export const ArrayCards = composeExport(
                     >
                       {children.length ? (
                         children.map((node) => (
-                          <TreeNodeWidget {...{ key: node.id }} node={node} />
+                          <TreeNodeWidget key={node.id} node={node} />
                         ))
                       ) : (
                         <DroppableWidget hasChildren={false} />
                       )}
                     </div>
                   </Card>
-                  {/* TODO::some how cannot make it working */}
-                  <Row justify="center" type="flex">
-                    {additions.map(() => {
-                      return <ArrayBase.Addition title="添加条目" />
+                  <Row justify="space-between" type="flex">
+                    {additions.map((node) => {
+                      return <TreeNodeWidget key={node.id} node={node} />
                     })}
                   </Row>
                 </ArrayBase.Item>
@@ -295,6 +294,7 @@ export const ArrayCards = composeExport(
           componentName: 'Field',
           props: {
             type: 'array',
+            'x-decorator': 'FormItem',
             'x-component': 'ArrayCards',
             'x-component-props': {
               title: `Title`,

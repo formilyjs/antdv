@@ -1,20 +1,19 @@
+import { defineComponent, getCurrentInstance, onMounted } from 'vue-demi'
 import { Table, Row } from 'ant-design-vue'
+import { observer } from '@formily/reactive-vue'
 import { TreeNode, createBehavior, createResource } from '@designable/core'
+import { uid } from '@designable/shared'
 import {
+  useDesigner,
   useTreeNode,
   TreeNodeWidget,
   DroppableWidget,
   useNodeIdProps,
 } from '@formily/antdv-designable'
 import { ArrayBase } from '@formily/antdv'
-import { observer } from '@formily/reactive-vue'
-import { composeExport } from '@formily/antdv/esm/__builtins__'
-import { defineComponent, getCurrentInstance, onMounted } from 'vue-demi'
-import { uid } from '@designable/shared'
+import { composeExport, usePrefixCls } from '@formily/antdv/esm/__builtins__'
 import { AllLocales } from '../../locales'
 import { AllSchemas } from '../../schemas'
-import { createVoidFieldSchema } from '../Field'
-import { createArrayBehavior } from '../ArrayBase'
 import { useDropTemplate } from '../../hooks'
 import {
   queryNodesByComponentPath,
@@ -23,43 +22,11 @@ import {
   createEnsureTypeItemsNode,
 } from '../../shared'
 import { LoadTemplate } from '../../common/LoadTemplate'
+import { createVoidFieldSchema } from '../Field'
+import { createArrayBehavior } from '../ArrayBase'
 import './styles.less'
 
 const ensureObjectItemsNode = createEnsureTypeItemsNode('object')
-
-const HeaderCell = defineComponent({
-  props: { className: { type: String } },
-  setup(props, { slots }) {
-    const { proxy: vm } = getCurrentInstance()
-    onMounted(() => {
-      const element = vm.$el.parentNode.parentNode as HTMLElement
-      element.setAttribute(
-        'data-designer-node-id',
-        props.className.match(/data-id\:([^\s]+)/)?.[1]
-      )
-    })
-    return () => {
-      return slots.default?.()
-    }
-  },
-})
-
-const BodyCell = defineComponent({
-  props: { className: { type: String } },
-  setup(props, { slots }) {
-    const { proxy: vm } = getCurrentInstance()
-    onMounted(() => {
-      const element = vm.$el.parentNode.parentNode as HTMLElement
-      element.setAttribute(
-        'data-designer-node-id',
-        props.className.match(/data-id\:([^\s]+)/)?.[1]
-      )
-    })
-    return () => {
-      return slots.default?.()
-    }
-  },
-})
 
 // TableProps<any>
 export const ArrayTable = composeExport(
@@ -67,8 +34,11 @@ export const ArrayTable = composeExport(
     defineComponent({
       props: { className: {} },
       setup(props, { attrs }) {
+        const designerRef = useDesigner()
         const nodeRef = useTreeNode()
         const nodeIdRef = useNodeIdProps()
+        const formilyArrayTablePrefix = usePrefixCls('formily-array-table')
+
         useDropTemplate('ArrayTable', (source) => {
           const sortHandleNode = new TreeNode({
             componentName: 'Field',
@@ -167,7 +137,7 @@ export const ArrayTable = composeExport(
             componentName: 'Field',
             props: {
               type: 'void',
-              title: 'Addition',
+              title: `Addition`,
               'x-component': 'ArrayTable.Addition',
             },
           })
@@ -201,7 +171,7 @@ export const ArrayTable = composeExport(
           const renderTable = () => {
             if (node.children.length === 0) return <DroppableWidget />
             return (
-              <ArrayBase {...{ disabled: true }}>
+              <ArrayBase disabled={true}>
                 {/* TODO:: rerender table cuz table resizes when insert new value */}
                 <Table
                   size="small"
@@ -209,45 +179,43 @@ export const ArrayTable = composeExport(
                   key={uid()}
                   attrs={attrs}
                   rowKey={defaultRowKey}
-                  class="antdv-formily-array-table"
+                  class={formilyArrayTablePrefix}
                   style={{ marginBottom: '10px' }}
-                  data={[{ id: '1' }]}
+                  dataSource={[{ id: '1' }]}
+                  pagination={false}
                 >
                   {columns.map((node) => {
                     const children = node.children.map((child) => {
-                      return <TreeNodeWidget node={child} />
+                      return <TreeNodeWidget key={child.id} node={child} />
                     })
-                    const props = node.props['x-component-props']
+                    const { title, ...columnProps } =
+                      node.props['x-component-props']
                     return (
                       <Table.Column
-                        attrs={props}
+                        attrs={columnProps}
                         key={node.id}
                         dataIndex={node.id}
                         class={`data-id:${node.id}`}
-                        scopedSlots={{
-                          default: ({ $index }) => {
-                            return (
-                              <BodyCell
-                              // attrs={{ className: `data-id:${node.id}` }}
-                              >
-                                <ArrayBase.Item index={$index}>
-                                  {children.length > 0 ? children : 'Droppable'}
-                                </ArrayBase.Item>
-                              </BodyCell>
-                            )
+                        customHeaderCell={() => ({
+                          attrs: {
+                            [designerRef.value.props.nodeIdAttrName]: node.id,
                           },
-                          header: () => {
-                            return (
-                              <HeaderCell
-                              // attrs={{ className: `data-id:${node.id}` }}
-                              >
-                                <span data-content-editable="x-component-props.label">
-                                  {props.label}
-                                </span>
-                              </HeaderCell>
-                            )
+                        })}
+                        customCell={() => ({
+                          attrs: {
+                            [designerRef.value.props.nodeIdAttrName]: node.id,
                           },
-                        }}
+                        })}
+                        customRender={(text, record, index) => (
+                          <ArrayBase.Item index={index}>
+                            {children.length > 0 ? children : 'Droppable'}
+                          </ArrayBase.Item>
+                        )}
+                        title={() => (
+                          <span data-content-editable="x-component-props.title">
+                            {title}
+                          </span>
+                        )}
                       ></Table.Column>
                     )
                   })}
@@ -257,10 +225,9 @@ export const ArrayTable = composeExport(
                     </Table.Column>
                   )}
                 </Table>
-                {/* TODO::some how cannot make it working */}
-                <Row justify="center" type="flex">
-                  {additions.map(() => {
-                    return <ArrayBase.Addition title="添加条目" />
+                <Row justify="space-between" type="flex">
+                  {additions.map((node) => {
+                    return <TreeNodeWidget key={node.id} node={node} />
                   })}
                 </Row>
               </ArrayBase>
@@ -290,7 +257,7 @@ export const ArrayTable = composeExport(
                           type: 'void',
                           'x-component': 'ArrayTable.Column',
                           'x-component-props': {
-                            title: `排序`,
+                            title: `Title`,
                           },
                         },
                         children: [
@@ -482,6 +449,7 @@ export const ArrayTable = composeExport(
           componentName: 'Field',
           props: {
             type: 'array',
+            'x-decorator': 'FormItem',
             'x-component': 'ArrayTable',
           },
         },
