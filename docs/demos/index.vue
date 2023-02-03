@@ -35,8 +35,8 @@
       <FormConsumer>
         <template #default="{ form }">
           <FormItem>
-            = {{ `${form.values.price * form.values.count} 元` }}</FormItem
-          >
+            = {{ `${form.values.price * form.values.count} 元` }}
+          </FormItem>
         </template>
       </FormConsumer>
     </Space>
