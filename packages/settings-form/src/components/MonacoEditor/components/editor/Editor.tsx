@@ -34,7 +34,7 @@ export default defineComponent({
 
     onUnmounted(() => {
       disposeValidator.value?.()
-      editorRef.value!.getModel()?.dispose()
+      editorRef.value?.getModel()?.dispose()
       // @ts-ignore TODO: error
       editorRef.value?.dispose() ?? unload()
     })

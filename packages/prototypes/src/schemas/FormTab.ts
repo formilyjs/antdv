@@ -3,50 +3,51 @@ import type { ISchema } from '@formily/vue'
 export const FormTab: ISchema & { TabPane?: ISchema } = {
   type: 'object',
   properties: {
+    animated: {
+      type: 'boolean',
+      'x-decorator': 'FormItem',
+      'x-component': 'Switch',
+    },
+    hideAdd: {
+      type: 'boolean',
+      'x-decorator': 'FormItem',
+      'x-component': 'Switch',
+    },
     type: {
       type: 'string',
-      enum: ['card', 'border-card'],
+      default: 'line',
+      enum: ['line', 'card', 'editable-card'],
       'x-decorator': 'FormItem',
       'x-component': 'Select',
       'x-component-props': {
-        clearable: true,
-        size: 'small',
+        allowClear: true,
       },
     },
-    closable: {
-      type: 'boolean',
-      'x-decorator': 'FormItem',
-      'x-component': 'Switch',
-    },
-    addable: {
-      type: 'boolean',
-      'x-decorator': 'FormItem',
-      'x-component': 'Switch',
-    },
-    editable: {
-      type: 'boolean',
-      'x-decorator': 'FormItem',
-      'x-component': 'Switch',
-    },
-    stretch: {
-      type: 'boolean',
-      'x-decorator': 'FormItem',
-      'x-component': 'Switch',
-    },
-    'tab-position': {
+    size: {
       type: 'string',
+      default: 'default',
+      enum: ['large', 'samll', 'default'],
+      'x-decorator': 'FormItem',
+      'x-component': 'Select',
+      'x-component-props': {
+        allowClear: true,
+      },
+    },
+    tabPosition: {
+      type: 'string',
+      default: 'top',
       enum: ['top', 'right', 'bottom', 'left'],
       'x-decorator': 'FormItem',
       'x-component': 'Select',
       'x-component-props': {
-        clearable: true,
-        size: 'small',
+        allowClear: true,
       },
     },
-    'before-leave': {
-      type: 'string',
+    tabBarGutter: {
+      type: 'number',
       'x-decorator': 'FormItem',
-      'x-component': 'PreviewText.Input',
+      'x-component': 'InputNumber',
+      'x-component-props': {},
     },
   },
 }
@@ -59,8 +60,7 @@ FormTab.TabPane = {
       'x-decorator': 'FormItem',
       'x-component': 'Input',
       'x-component-props': {
-        size: 'small',
-        clearable: true,
+        allowClear: true,
       },
     },
     disabled: {
@@ -74,8 +74,7 @@ FormTab.TabPane = {
       'x-decorator': 'FormItem',
       'x-component': 'Input',
       'x-component-props': {
-        size: 'small',
-        clearable: true,
+        allowClear: true,
       },
     },
     closable: {

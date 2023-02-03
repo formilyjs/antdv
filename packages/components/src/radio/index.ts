@@ -36,8 +36,8 @@ const RadioGroupOption = defineComponent<RadioGroupProps>({
   setup(customProps, { attrs, slots, listeners }) {
     return () => {
       const options = customProps.options || []
-      const OptionType =
-        customProps.optionType === 'button' ? Button : AntdRadio
+      const Radio =
+        customProps.optionType === 'button' ? AntdRadio.Button : AntdRadio
       const children =
         options.length !== 0
           ? {
@@ -45,7 +45,7 @@ const RadioGroupOption = defineComponent<RadioGroupProps>({
                 options.map((option) => {
                   if (typeof option === 'string') {
                     return h(
-                      OptionType,
+                      Radio,
                       { props: { value: option } },
                       {
                         default: () => [
@@ -55,7 +55,7 @@ const RadioGroupOption = defineComponent<RadioGroupProps>({
                     )
                   } else {
                     return h(
-                      OptionType,
+                      Radio,
                       {
                         props: {
                           ...option,

@@ -16,7 +16,9 @@ export const Field = {
         title: 'UI形态',
         dataSource: ['可编辑', '禁用', '只读', '阅读', '继承'],
       },
-      'x-validator': '校验规则',
+      'x-validator': {
+        title:'校验规则',
+      },
       'x-decorator': '容器组件',
       'x-reactions': '响应器规则',
       'field-group': '字段属性',
@@ -27,20 +29,7 @@ export const Field = {
       'x-component-props': {
         size: {
           title: '尺寸',
-          dataSource: [
-            {
-              label: '大',
-              value: 'large',
-            },
-            {
-              label: '小',
-              value: 'small',
-            },
-            {
-              label: '默认',
-              value: 'default',
-            },
-          ],
+          dataSource: ['大', '小', '默认', '继承'],
         },
         allowClear: '允许清除内容',
         autoFocus: '自动获取焦点',
@@ -91,24 +80,7 @@ export const Field = {
         bordered: '是否有边框',
         size: {
           title: '尺寸',
-          dataSource: [
-            {
-              label: '大',
-              value: 'large',
-            },
-            {
-              label: '小',
-              value: 'small',
-            },
-            {
-              label: '默认',
-              value: 'default',
-            },
-            {
-              label: '继承',
-              value: 'inherit',
-            },
-          ],
+          dataSource: ['大', '小', '默认', '继承'],
         },
         layout: { title: '布局', dataSource: ['垂直', '水平', '内联', '继承'] },
         feedbackLayout: {
@@ -170,20 +142,7 @@ export const Field = {
       'x-component-props': {
         size: {
           title: 'Size',
-          dataSource: [
-            {
-              label: 'Large',
-              value: 'large',
-            },
-            {
-              label: 'Small',
-              value: 'small',
-            },
-            {
-              label: 'Default',
-              value: 'default',
-            },
-          ],
+          dataSource: ['Large', 'Small', 'Default', 'Inherit'],
         },
         allowClear: 'Allow Clear',
         autoFocus: 'Auto Focus',
@@ -232,20 +191,7 @@ export const Field = {
         bordered: 'Bordered',
         size: {
           title: 'Size',
-          dataSource: [
-            {
-              label: 'Large',
-              value: 'large',
-            },
-            {
-              label: 'Small',
-              value: 'small',
-            },
-            {
-              label: 'Default',
-              value: 'default',
-            },
-          ],
+          dataSource: ['Large', 'Small', 'Default', 'Inherit'],
         },
         layout: {
           title: 'Layout',

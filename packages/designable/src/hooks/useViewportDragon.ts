@@ -1,7 +1,8 @@
 import { computed } from 'vue-demi'
 import { useOperation } from './useOperation'
+import { computed as reactiveComputed } from '../shared'
 
 export const useDragon = (workspaceId?: string) => {
   const operation = useOperation(workspaceId)
-  return computed(() => operation.value?.viewportDragon)
+  return reactiveComputed(() => operation.value?.viewportDragon)
 }

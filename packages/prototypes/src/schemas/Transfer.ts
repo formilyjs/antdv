@@ -3,31 +3,6 @@ import type { ISchema } from '@formily/vue'
 export const Transfer: ISchema = {
   type: 'object',
   properties: {
-    filterable: {
-      type: 'boolean',
-      'x-decorator': 'FormItem',
-      'x-component': 'Switch',
-    },
-    'filter-placeholder': {
-      type: 'string',
-      'x-component': 'Input',
-      'x-decorator': 'FormItem',
-      'x-component-props': {
-        clearable: true,
-        size: 'small',
-      },
-    },
-    'filter-method': {
-      type: 'string',
-      'x-decorator': 'FormItem',
-      'x-component': 'PreviewText.Input',
-    },
-    'target-order': {
-      type: 'string',
-      enum: ['original', 'push', 'unshift'],
-      'x-decorator': 'FormItem',
-      'x-component': 'Select',
-    },
     titles: {
       type: 'void',
       'x-component': 'div',
@@ -37,132 +12,65 @@ export const Transfer: ISchema = {
           type: 'string',
           'x-component': 'Input',
           'x-component-props': {
-            size: 'small',
-            clearable: true,
+            allowClear: true,
           },
         },
         'titles[1]': {
           type: 'string',
           'x-component': 'Input',
           'x-component-props': {
-            size: 'small',
-            clearable: true,
+            allowClear: true,
           },
         },
       },
     },
-    'button-texts': {
+    operations: {
       type: 'void',
       'x-component': 'div',
       'x-decorator': 'FormItem',
       properties: {
-        'button-texts[0]': {
+        'operations[0]': {
           type: 'string',
           'x-component': 'Input',
           'x-component-props': {
-            size: 'small',
-            clearable: true,
+            allowClear: true,
           },
         },
-        'button-texts[1]': {
+        'operations[1]': {
           type: 'string',
           'x-component': 'Input',
           'x-component-props': {
-            size: 'small',
-            clearable: true,
+            allowClear: true,
           },
         },
       },
     },
-    'render-content': {
-      type: 'string',
+    lazy: {
+      type: 'boolean|object',
       'x-decorator': 'FormItem',
-      'x-component': 'PreviewText.Input',
-    },
-    format: {
-      type: 'string',
-      'x-decorator': 'FormItem',
-      'x-component': 'PreviewText.Input',
-    },
-    props: {
-      type: 'string',
-      'x-decorator': 'FormItem',
-      'x-component': 'PreviewText.Input',
-    },
-    'left-default-checked': {
-      type: 'array',
-      'x-component': 'ArrayItems',
-      'x-decorator': 'FormItem',
-      title: '字符串数组',
-      items: {
-        type: 'void',
-        'x-component': 'Space',
-        properties: {
-          sort: {
-            type: 'void',
-            'x-decorator': 'FormItem',
-            'x-component': 'ArrayItems.SortHandle',
-          },
-          input: {
-            type: 'string',
-            'x-decorator': 'FormItem',
-            'x-component': 'Input',
-            'x-component-props': {
-              size: 'small',
-              clearable: true,
-            },
-          },
-          remove: {
-            type: 'void',
-            'x-decorator': 'FormItem',
-            'x-component': 'ArrayItems.Remove',
-          },
-        },
-      },
-      properties: {
-        add: {
-          type: 'void',
-          title: '添加条目',
-          'x-component': 'ArrayItems.Addition',
-        },
+      'x-component': 'ValueInput',
+      'x-component-props': {
+        include: ['BOOLEAN', 'EXPRESSION'],
       },
     },
-    'right-default-checked': {
-      type: 'array',
-      'x-component': 'ArrayItems',
+    render: {
       'x-decorator': 'FormItem',
-      title: '字符串数组',
-      items: {
-        type: 'void',
-        'x-component': 'Space',
-        properties: {
-          sort: {
-            type: 'void',
-            'x-decorator': 'FormItem',
-            'x-component': 'ArrayItems.SortHandle',
-          },
-          input: {
-            type: 'string',
-            'x-decorator': 'FormItem',
-            'x-component': 'Input',
-            'x-component-props': {
-              size: 'small',
-              clearable: true,
-            },
-          },
-          remove: {
-            type: 'void',
-            'x-decorator': 'FormItem',
-            'x-component': 'ArrayItems.Remove',
-          },
-        },
+      'x-component': 'ValueInput',
+      'x-component-props': {
+        include: ['EXPRESSION'],
       },
-      properties: {
-        add: {
-          type: 'void',
-          title: '添加条目',
-          'x-component': 'ArrayItems.Addition',
-        },
+    },
+    showSearch: {
+      type: 'boolean',
+      'x-decorator': 'FormItem',
+      'x-component': 'Switch',
+    },
+    showSelectAll: {
+      type: 'boolean',
+      'x-decorator': 'FormItem',
+      'x-component': 'Switch',
+      'x-component-props': {
+        defaultChecked: true,
       },
     },
   },

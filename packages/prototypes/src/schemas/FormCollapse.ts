@@ -4,10 +4,12 @@ export const FormCollapse: ISchema & { CollapsePanel?: ISchema } = {
   type: 'object',
   properties: {
     accordion: {
-      default: true,
       type: 'boolean',
       'x-decorator': 'FormItem',
       'x-component': 'Switch',
+      'x-component-props': {
+        defaultChecked: true,
+      },
     },
   },
 }
@@ -19,7 +21,9 @@ FormCollapse.CollapsePanel = {
       type: 'boolean',
       'x-decorator': 'FormItem',
       'x-component': 'Input',
-      'x-component-props': { size: 'small', clearable: true },
+      'x-component-props': {
+        allowClear: true,
+      },
     },
     disabled: {
       default: false,

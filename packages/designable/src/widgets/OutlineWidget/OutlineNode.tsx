@@ -15,7 +15,7 @@ import {
 import { IconWidget } from '../IconWidget'
 import { NodeTitleWidget } from '../NodeTitleWidget'
 import './styles.less'
-import { useStyle } from '../../shared'
+import { useStyle } from '../../shared/util'
 import { useContext } from '../../context'
 import { NodeSymbol } from './context'
 import type { TreeNode } from '@designable/core'

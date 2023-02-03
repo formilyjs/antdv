@@ -35,7 +35,7 @@ export const ArrayCards = composeExport(
   observer(
     defineComponent({
       props: { title: {} },
-      setup(props, { slots }) {
+      setup(props, { attrs, slots }) {
         const nodeRef = useTreeNode()
         const nodeIdRef = useNodeIdProps()
         const formilyArrayCardsPrefix = usePrefixCls('formily-array-cards')
@@ -56,7 +56,6 @@ export const ArrayCards = composeExport(
               'x-component': 'ArrayCards.Addition',
             },
           })
-          console.log(additionNode)
           const removeNode = new TreeNode({
             componentName: nodeRef.value.componentName,
             props: {
@@ -122,13 +121,12 @@ export const ArrayCards = composeExport(
               (name) => name.indexOf('ArrayCards.') === -1,
             ])
 
-            const { title, ...cardProps } = props
             return (
               <ArrayBase disabled={true}>
                 <ArrayBase.Item index={0}>
                   <Card
-                    props={cardProps}
                     class={cls(`${formilyArrayCardsPrefix}-item`)}
+                    attrs={attrs}
                     scopedSlots={{
                       title: () => (
                         <span>
@@ -136,7 +134,7 @@ export const ArrayCards = composeExport(
                             <TreeNodeWidget key={node.id} node={node} />
                           ))}
                           <span data-content-editable="x-component-props.title">
-                            {title}
+                            {props.title}
                           </span>
                         </span>
                       ),
@@ -207,7 +205,6 @@ export const ArrayCards = composeExport(
                       ensureObjectItemsNode(node).append(indexNode)
                     },
                   },
-
                   {
                     title: node.getMessage('addOperation'),
                     icon: 'AddOperation',

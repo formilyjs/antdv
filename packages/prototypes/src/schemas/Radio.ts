@@ -34,5 +34,19 @@ Radio.Group = {
         optionType: 'button',
       },
     },
+    size: {
+      default: 'default',
+      type: 'string',
+      enum: ['large', 'small', 'default'],
+      'x-decorator': 'FormItem',
+      'x-component': 'Select',
+      'x-component-props': {
+        allowClear: true,
+      },
+      'x-reactions': (field) => {
+        field.visible =
+          field.form?.values?.['x-component-props']?.optionType === 'button'
+      },
+    },
   },
 }

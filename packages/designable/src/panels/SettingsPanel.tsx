@@ -63,9 +63,8 @@ export const SettingsPanel = observer(
                 </div>
                 {!pinning.value && (
                   <IconWidget
-                    // key={prefixRef.value + '-header-pin'}
+                    key={prefixRef.value + '-header-pin'}
                     infer="PushPinOutlined"
-                    // @ts-ignore
                     class={prefixRef.value + '-header-pin'}
                     onClick={() => {
                       pinning.value = !pinning.value
@@ -74,9 +73,8 @@ export const SettingsPanel = observer(
                 )}
                 {pinning.value && (
                   <IconWidget
-                    // key={prefixRef.value + '-pin-filled'}
+                    key={prefixRef.value + '-pin-filled'}
                     infer="PushPinFilled"
-                    // @ts-ignore
                     class={prefixRef.value + '-pin-filled'}
                     onClick={() => {
                       pinning.value = !pinning.value
@@ -84,9 +82,8 @@ export const SettingsPanel = observer(
                   />
                 )}
                 <IconWidget
-                  // key={prefixRef.value + '-header-close'}
+                  key={prefixRef.value + '-header-close'}
                   infer="Close"
-                  // @ts-ignore
                   class={prefixRef.value + '-header-close'}
                   onClick={() => {
                     visible.value = false

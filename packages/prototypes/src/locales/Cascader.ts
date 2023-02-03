@@ -3,37 +3,31 @@ export const Cascader = {
     title: '联级选择',
     settings: {
       'x-component-props': {
-        props: '属性',
+        allowClear: '是否支持清除',
+        autoFocus: '自动获取焦点',
+        placeholder: '占位提示',
         size: {
           title: '尺寸',
-          dataSource: [
-            {
-              label: '大',
-              value: 'large',
-            },
-            {
-              label: '小',
-              value: 'small',
-            },
-            {
-              label: '默认',
-              value: 'default',
-            },
-          ],
+          dataSource: ['大', '小', '默认'],
         },
-        'show-all-levels': {
-          title: '路径',
-          tooltip: '输入框中是否显示选中值的完整路径',
+        popupPlacement: {
+          title: '浮层位置',
+          dataSource: ['左下', '右下', '左上', '右上'],
         },
-        'collapse-tags': {
-          title: '折叠标签',
-          tooltip: '多选模式下是否折叠Tag',
+        showSearch: '显示搜索框',
+        changeOnSelect: {
+          title: '选择时改变',
+          tooltip: '当此项为 true 时，点选每级菜单选项值都会发生变化',
         },
-        separator: '选项分隔符',
-        debounce: '去抖延迟',
-        'before-filter': '筛选之前钩子',
-        'popper-class': '自定义浮层类名',
-        'filter-method': '过滤钩子',
+        displayRender: {
+          title: '显示渲染函数',
+          tooltip: '选择后展示的渲染函数, 默认是 label => label.join(" / ")',
+        },
+        fieldNames: {
+          title: '自定义字段',
+          tooltip:
+            '自定义 options 中 label name children 的字段, 默认：{ label: "label", value: "value", children: "children" }',
+        },
       },
     },
   },
@@ -41,6 +35,18 @@ export const Cascader = {
     title: 'Cascader',
     settings: {
       'x-component-props': {
+        allowClear: 'Allow clear',
+        autoFocus: 'Auto focus',
+        placeholder: 'Placeholder',
+        size: {
+          title: 'Size',
+          dataSource: ['Large', 'Small', 'Default'],
+        },
+        popupPlacement: {
+          title: 'Popup placement',
+          dataSource: ['Bottom left', 'Bottom right', 'Top left', 'Top right'],
+        },
+        showSearch: 'Show search',
         changeOnSelect: {
           title: 'Change On Select',
           tooltip: 'Click on each level of menu option value will change',
@@ -48,7 +54,7 @@ export const Cascader = {
         displayRender: {
           title: 'Display Render',
           tooltip:
-            'The rendering function displayed after selection, the default is label => label.join("/")	',
+            'The rendering function displayed after selection, the default is label => label.join(" / ")',
         },
         fieldNames: {
           title: 'Field Names',

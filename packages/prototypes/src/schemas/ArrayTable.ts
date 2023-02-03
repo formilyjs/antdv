@@ -3,50 +3,27 @@ import type { ISchema } from '@formily/vue'
 export const ArrayTable: ISchema & { Addition?: ISchema; Column?: ISchema } = {
   type: 'object',
   properties: {
-    stripe: {
-      default: false,
+    bordered: {
       type: 'boolean',
       'x-decorator': 'FormItem',
       'x-component': 'Switch',
     },
-    border: {
-      default: false,
+    showHeader: {
       type: 'boolean',
       'x-decorator': 'FormItem',
       'x-component': 'Switch',
-    },
-    'show-header': {
-      default: true,
-      type: 'boolean',
-      'x-decorator': 'FormItem',
-      'x-component': 'Switch',
-    },
-    fit: {
-      type: 'boolean',
-      'x-decorator': 'FormItem',
-      'x-component': 'Switch',
+      'x-component-props': {
+        defaultChecked: true,
+      },
     },
     size: {
-      default: 'small',
+      default: 'default',
       type: 'string',
-      enum: [
-        {
-          label: 'Large',
-          value: 'large',
-        },
-        {
-          label: 'Small',
-          value: 'small',
-        },
-        {
-          label: 'Default',
-          value: 'default',
-        },
-      ],
+      enum: ['middle', 'small', 'default'],
       'x-decorator': 'FormItem',
       'x-component': 'Select',
       'x-component-props': {
-        size: 'small',
+        allowClear: true,
       },
     },
   },
@@ -60,33 +37,31 @@ const Column: ISchema = {
       'x-decorator': 'FormItem',
       'x-component': 'Input',
       'x-component-props': {
-        size: 'small',
-        clearable: true,
+        allowClear: true,
       },
     },
-    prop: {
+    key: {
       type: 'string',
       'x-decorator': 'FormItem',
       'x-component': 'Input',
       'x-component-props': {
-        size: 'small',
-        clearable: true,
+        allowClear: true,
       },
     },
     width: {
       type: 'string',
       'x-decorator': 'FormItem',
       'x-component': 'InputNumber',
-      'x-component-props': {
-        size: 'small',
-      },
+      'x-component-props': {},
     },
-    'min-width': {
+    align: {
+      default: 'left',
       type: 'string',
+      enum: ['left', 'center', 'right'],
       'x-decorator': 'FormItem',
-      'x-component': 'InputNumber',
+      'x-component': 'Select',
       'x-component-props': {
-        size: 'small',
+        allowClear: true,
       },
     },
     fixed: {
@@ -95,8 +70,7 @@ const Column: ISchema = {
       'x-decorator': 'FormItem',
       'x-component': 'Select',
       'x-component-props': {
-        size: 'small',
-        clearable: true,
+        allowClear: true,
       },
       'x-reactions': (field) => {
         if (field.value === '') {
@@ -106,35 +80,18 @@ const Column: ISchema = {
         }
       },
     },
-    sortable: {
+    sorter: {
       type: 'boolean',
       'x-decorator': 'FormItem',
       'x-component': 'Switch',
     },
-    resizable: {
-      default: true,
-      type: 'boolean',
-      'x-decorator': 'FormItem',
-      'x-component': 'Switch',
-    },
-    align: {
-      default: 'center',
+    sortOrder: {
       type: 'string',
-      enum: ['left', 'center', 'right'],
+      enum: ['ascend', 'descend'],
       'x-decorator': 'FormItem',
       'x-component': 'Select',
       'x-component-props': {
-        size: 'small',
-      },
-    },
-    'header-align': {
-      default: 'center',
-      type: 'string',
-      enum: ['left', 'center', 'right'],
-      'x-decorator': 'FormItem',
-      'x-component': 'Select',
-      'x-component-props': {
-        size: 'small',
+        allowClear: true,
       },
     },
   },
@@ -148,8 +105,8 @@ const Addition: ISchema = {
     //   'x-decorator': 'FormItem',
     //   'x-component': 'Input',
     //   'x-component-props': {
-    //     size: 'small',
-    //     clearable: true,
+    //
+    //     allowClear:true,
     //   },
     // },
     method: {
@@ -158,7 +115,6 @@ const Addition: ISchema = {
       'x-decorator': 'FormItem',
       'x-component': 'Radio.Group',
       'x-component-props': {
-        size: 'small',
         defaultValue: 'push',
         optionType: 'button',
       },
@@ -168,8 +124,7 @@ const Addition: ISchema = {
       'x-decorator': 'FormItem',
       'x-component': 'ValueInput',
       'x-component-props': {
-        size: 'small',
-        clearable: true,
+        allowClear: true,
       },
     },
   },

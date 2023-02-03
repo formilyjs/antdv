@@ -1,7 +1,13 @@
-import { Card as ElCard } from 'ant-design-vue'
+import { defineComponent, unref } from 'vue-demi'
+import { Card as AntCard } from 'ant-design-vue'
 import { composeExport } from '@formily/antdv/esm/__builtins__'
 import { createBehavior, createResource } from '@designable/core'
-import { defineComponent } from 'vue-demi'
+import { uid } from '@designable/shared'
+import {
+  useTreeNode,
+  TreeNodeWidget,
+  DroppableWidget,
+} from '@formily/antdv-designable'
 import { createVoidFieldSchema } from '../Field'
 import { AllSchemas } from '../../schemas'
 import { AllLocales } from '../../locales'
@@ -9,21 +15,31 @@ import { AllLocales } from '../../locales'
 export const Card = composeExport(
   defineComponent({
     props: { title: {} },
-    setup(props, { slots }) {
+    setup(props, { attrs }) {
+      const nodeRef = useTreeNode()
+
       return () => {
+        const node = unref(nodeRef)
+
         return (
-          <ElCard
-            {...props}
+          <AntCard
+            attrs={attrs}
             scopedSlots={{
-              header: () => (
+              title: () => (
                 <span data-content-editable="x-component-props.title">
                   {props.title}
                 </span>
               ),
             }}
           >
-            {slots.default?.()}
-          </ElCard>
+            {node.children.length ? (
+              node.children.map((child) => (
+                <TreeNodeWidget key={uid()} node={child} />
+              ))
+            ) : (
+              <DroppableWidget key={uid()} node={node} />
+            )}
+          </AntCard>
         )
       }
     },

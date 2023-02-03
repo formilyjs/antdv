@@ -4,9 +4,14 @@ export const Card = {
     settings: {
       'x-component-props': {
         title: '标题',
-        shadow: {
-          title: '阴影显示时机',
-          dataSource: ['一直显示', '鼠标悬停时显示', '从不显示', '继承'],
+        bordered: '边框',
+        hoverable: {
+          title: '阴影',
+          tooltip: '鼠标移过时可浮起',
+        },
+        size: {
+          title: '尺寸',
+          dataSource: ['小', '默认'],
         },
       },
     },
@@ -16,9 +21,14 @@ export const Card = {
     settings: {
       'x-component-props': {
         title: 'Title',
-        shadow: {
+        bordered: 'Border',
+        hoverable: {
           title: 'Shadow',
-          dataSource: ['Always', 'Hover', 'Never', 'Inherit'],
+          tooltip: 'Lift up when hovering card',
+        },
+        size: {
+          title: 'Size',
+          dataSource: ['Samll', 'Default'],
         },
       },
     },

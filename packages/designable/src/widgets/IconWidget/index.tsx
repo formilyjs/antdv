@@ -1,27 +1,27 @@
 import cls from 'classnames'
 import { Tooltip } from 'ant-design-vue'
 import {
-  computed,
   defineComponent,
   onBeforeUnmount,
   onMounted,
-  provide,
   ref,
   unref,
 } from 'vue-demi'
 import { isStr, isObj, isFn, isPlainObj } from '@designable/shared'
 import { observer } from '@formily/reactive-vue'
-import { composeExport } from '@formily/antdv/esm/__builtins__'
-import { FragmentComponent as Fragment } from '@formily/vue'
+import {
+  composeExport,
+  createContext,
+  useContext,
+} from '@formily/antdv/esm/__builtins__'
 import { cloneElement, isVNode, useStyle } from '../../shared/util'
-import { useContext } from '../../context'
 import { usePrefix, useRegistry, useTheme } from '../../hooks'
 import './styles.less'
 
 import type { InjectionKey, Ref } from 'vue-demi'
 import type { Tooltip as TooltipProps } from 'ant-design-vue'
 
-const IconSymbol: InjectionKey<Ref<IconProviderProps>> = Symbol() // createContext<IconProviderProps>(null)
+const IconContext = createContext<IconProviderProps>(null)
 
 const isNumSize = (val: any) => /^[\d.]+$/.test(val)
 export interface IconProviderProps {
@@ -49,7 +49,7 @@ const __IconWidgetInner = defineComponent({
   },
   setup(props: IIconWidgetProps, { attrs: _attrs, listeners, emit }) {
     const themeRef = useTheme()
-    const IconContextRef: Ref<IconProviderProps> = useContext(IconSymbol)
+    const IconContextRef = useContext(IconContext)
     const registry = useRegistry()
     const prefixRef = usePrefix('icon')
 
@@ -122,7 +122,7 @@ const __IconWidgetInner = defineComponent({
 
       const renderTooltips = (children: any) => {
         const IconContext = unref(IconContextRef)
-        if (!isStr(props.infer) && IconContext.tooltip) return children
+        if (!isStr(props.infer) && IconContext?.tooltip) return children
         const tooltip =
           props.tooltip || registry.getDesignerMessage(`icons.${props.infer}`)
         if (tooltip) {
@@ -186,11 +186,11 @@ const ShadowSVG = defineComponent({
 const Provider = defineComponent({
   props: { tooltip: Boolean },
   setup(props: IconProviderProps, { slots }) {
-    provide(
-      IconSymbol,
-      computed(() => props)
+    return () => (
+      <IconContext.Provider value={props}>
+        {slots.default?.()}
+      </IconContext.Provider>
     )
-    return () => <Fragment>{slots.default?.()}</Fragment>
   },
 })
 
@@ -198,9 +198,3 @@ export const IconWidget = composeExport(IconWidgetInner, {
   ShadowSVG,
   Provider,
 })
-
-// IconWidget.Provider = (props) => {
-//   return (
-//     <IconContext.Provider value={props}>{props.children}</IconContext.Provider>
-//   )
-// }

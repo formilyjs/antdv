@@ -1,147 +1,98 @@
 import type { ISchema } from '@formily/vue'
 
 export const CommonTimePickerAPI = {
-  editable: {
+  allowClear: {
     type: 'boolean',
     'x-decorator': 'FormItem',
     'x-component': 'Switch',
-  },
-  clearable: {
-    type: 'boolean',
-    'x-decorator': 'FormItem',
-    'x-component': 'Switch',
-  },
-  size: {
-    default: 'default',
-    type: 'string',
-    enum: [
-      {
-        label: 'Large',
-        value: 'large',
-      },
-      {
-        label: 'Small',
-        value: 'small',
-      },
-      {
-        label: 'Default',
-        value: 'default',
-      },
-    ],
-    'x-decorator': 'FormItem',
-    'x-component': 'Select',
     'x-component-props': {
-      size: 'small',
-      clearable: true,
+      defaultChecked: true,
     },
+  },
+  clearText: {
+    type: 'string',
+    'x-decorator': 'FormItem',
+    'x-component': 'Input',
+  },
+  autoFocus: {
+    type: 'boolean',
+    'x-decorator': 'FormItem',
+    'x-component': 'Switch',
   },
   placeholder: {
     type: 'string',
     'x-decorator': 'FormItem',
     'x-component': 'Input',
     'x-component-props': {
-      size: 'small',
-      clearable: true,
+      allowClear: true,
     },
   },
-  'start-placeholder': {
+  defaultValue: {
     type: 'string',
     'x-decorator': 'FormItem',
-    'x-component': 'Input',
-    'x-component-props': {
-      size: 'small',
-      clearable: true,
-    },
-  },
-  'end-placeholder': {
-    type: 'string',
-    'x-decorator': 'FormItem',
-    'x-component': 'Input',
-    'x-component-props': {
-      size: 'small',
-      clearable: true,
-    },
-  },
-  'is-range': {
-    type: 'boolean',
-    'x-decorator': 'FormItem',
-    'x-component': 'Switch',
-  },
-  'arrow-control': {
-    type: 'boolean',
-    'x-decorator': 'FormItem',
-    'x-component': 'Switch',
-  },
-  align: {
-    default: 'left',
-    type: 'string',
-    enum: ['left', 'center', 'right'],
-    'x-decorator': 'FormItem',
-    'x-component': 'Select',
-    'x-component-props': {
-      size: 'small',
-      clearable: true,
-    },
-  },
-  'popper-class': {
-    type: 'string',
-    'x-decorator': 'FormItem',
-    'x-component': 'Input',
-    'x-component-props': {
-      size: 'small',
-      clearable: true,
-    },
-  },
-  'picker-options': {
-    type: 'string',
-    'x-decorator': 'FormItem',
-    'x-component': 'PreviewText.Input',
-  },
-  'range-separator': {
-    type: 'string',
-    'x-decorator': 'FormItem',
-    'x-component': 'Input',
-    'x-component-props': {
-      size: 'small',
-      clearable: true,
-    },
-  },
-  'default-value': {
-    type: 'string',
-    'x-decorator': 'FormItem',
-    'x-component': 'DatePicker',
+    'x-component': 'TimePicker',
     'x-component-props': {
       align: {
         points: ['br', 'br'],
       },
     },
   },
-  'value-format': {
+  defaultOpenValue: {
     type: 'string',
     'x-decorator': 'FormItem',
-    'x-component': 'Input',
+    'x-component': 'TimePicker',
     'x-component-props': {
-      size: 'small',
-      clearable: true,
+      align: {
+        points: ['br', 'br'],
+      },
     },
   },
-  'prefix-icon': {
+  size: {
+    default: 'default',
     type: 'string',
+    enum: ['large', 'small', 'default'],
     'x-decorator': 'FormItem',
-    'x-component': 'Input',
+    'x-component': 'Select',
     'x-component-props': {
-      size: 'small',
-      clearable: true,
+      allowClear: true,
     },
   },
-  'clear-icon': {
+  format: {
     type: 'string',
     'x-decorator': 'FormItem',
     'x-component': 'Input',
     'x-component-props': {
-      size: 'small',
-      clearable: true,
+      allowClear: true,
     },
+  },
+  valueFormat: {
+    type: 'string',
+    'x-decorator': 'FormItem',
+    'x-component': 'Input',
+    'x-component-props': {
+      allowClear: true,
+    },
+  },
+  align: {
+    type: 'string',
+    'x-decorator': 'FormItem',
+    'x-component': 'ValueInput',
+    'x-component-props': {
+      include: ['EXPRESSION'],
+    },
+  },
+  popupStyle: {
+    type: 'string',
+    'x-decorator': 'FormItem',
+    'x-component': 'ValueInput',
+    'x-component-props': {
+      include: ['EXPRESSION'],
+    },
+  },
+  inputReadOnly: {
+    type: 'boolean',
+    'x-decorator': 'FormItem',
+    'x-component': 'Switch',
   },
 }
 

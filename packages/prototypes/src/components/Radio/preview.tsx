@@ -11,9 +11,9 @@ export const Radio = composeExport(FormilyRadio, {
     extends: ['Field'],
     selector: (node) => node.props['x-component'] === 'Radio.Group',
     designerProps: {
-      propsSchema: createFieldSchema(AllSchemas.Checkbox.Group),
+      propsSchema: createFieldSchema(AllSchemas.Radio.Group),
     },
-    designerLocales: AllLocales.CheckboxGroup,
+    designerLocales: AllLocales.RadioGroup,
   }),
   Resource: createResource({
     icon: 'RadioGroupSource',
@@ -23,12 +23,12 @@ export const Radio = composeExport(FormilyRadio, {
         props: {
           type: 'string | number',
           title: 'Radio Group',
-          'x-decorator': 'FormItem',
-          'x-component': 'Radio.Group',
           enum: [
             { label: '选项1', value: 1 },
             { label: '选项2', value: 2 },
           ],
+          'x-decorator': 'FormItem',
+          'x-component': 'Radio.Group',
         },
       },
     ],

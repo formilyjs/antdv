@@ -1,6 +1,7 @@
 
-export * from './ArrayTable'
 export * from './ArrayCards'
+export * from './ArrayItems'
+export * from './ArrayTable'
 export * from './Card'
 export * from './Cascader'
 export * from './Checkbox'

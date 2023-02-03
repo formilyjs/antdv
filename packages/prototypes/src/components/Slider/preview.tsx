@@ -1,10 +1,11 @@
-import { Slider as ElSlider } from 'ant-design-vue'
+import { Slider as AntSlider } from 'ant-design-vue'
 import { composeExport } from '@formily/antdv/esm/__builtins__'
 import { createBehavior, createResource } from '@designable/core'
 import { createFieldSchema } from '../Field'
 import { AllSchemas } from '../../schemas'
 import { AllLocales } from '../../locales'
-export const Slider = composeExport(ElSlider, {
+
+export const Slider = composeExport(AntSlider, {
   Behavior: createBehavior({
     name: 'Slider',
     extends: ['Field'],

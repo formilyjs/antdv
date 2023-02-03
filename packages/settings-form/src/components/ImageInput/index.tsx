@@ -26,39 +26,39 @@ export const ImageInput = defineComponent({
               ...props,
               allowClear: true,
             }}
-            onInput={(e) => {
-              emit('change', e.target.value)
-            }}
             scopedSlots={{
               prefix: () => (
                 <Upload
-                  attrs={{
-                    ...context.uploadProps,
-                    action: context.uploadAction || context.uploadProps?.action,
-                    headers: context.headers || context.uploadProps?.headers,
-                    multiple: false,
-                  }}
-                  onChange={(params) => {
-                    const response = params.file?.response
-                    const url =
-                      response?.url ||
-                      response?.downloadURL ||
-                      response?.imageURL ||
-                      response?.thumbUrl ||
-                      response?.data
-                    if (!url) return
-                    emit('change', url)
-                  }}
+                attrs={{
+                  ...context.uploadProps,
+                  action: context.uploadAction || context.uploadProps?.action,
+                  headers: context.headers || context.uploadProps?.headers,
+                  multiple: false,
+                }}
+                onChange={(params) => {
+                  const response = params.file?.response
+                  const url =
+                  response?.url ||
+                  response?.downloadURL ||
+                  response?.imageURL ||
+                  response?.thumbUrl ||
+                  response?.data
+                  if (!url) return
+                  emit('change', url)
+                }}
                 >
                   <IconWidget
                     infer="CloudUpload"
                     {...{ style: { cursor: 'pointer' } }}
                     size={16}
-                  />
+                    />
                 </Upload>
               ),
             }}
-          ></Input>
+            onInput={(e) => {
+              emit('change',e.target.value)
+            }}
+            ></Input>
         </div>
       )
     }

@@ -5,6 +5,10 @@ export const RadioGroup = {
       'x-component-props': {
         buttonStyle: { title: '按钮风格', dataSource: ['空心', '实心'] },
         optionType: { title: '选项类型', dataSource: ['默认', '按钮'] },
+        size: {
+          title: '尺寸',
+          dataSource: ['大', '小', '默认'],
+        },
       },
     },
   },
@@ -14,6 +18,10 @@ export const RadioGroup = {
       'x-component-props': {
         buttonStyle: { title: 'Button style', dataSource: ['Hollow', 'Solid'] },
         optionType: { title: 'Option type', dataSource: ['Default', 'Button'] },
+        size: {
+          title: 'Size',
+          dataSource: ['Large', 'Small', 'Default'],
+        },
       },
     },
   },

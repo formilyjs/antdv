@@ -10,7 +10,6 @@ export const Input = {
         allowClear: '可清空',
         prefix: '前缀图标',
         suffix: '后缀图标',
-        disabled: '禁用',
         type: {
           title: 'input 类型',
           tooltip:
@@ -32,7 +31,6 @@ export const Input = {
         allowClear: 'Allow clear',
         prefix: 'Prefix icon',
         suffix: 'Suffix icon',
-        disabled: 'Disabled',
         type: {
           title: 'Type of input',
           tooltips: 'use Input.TextArea instead of type="textarea"',

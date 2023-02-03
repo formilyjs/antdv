@@ -1,11 +1,11 @@
-import { Rate as ElRate } from 'ant-design-vue'
+import { Rate as AntRate } from 'ant-design-vue'
 import { composeExport } from '@formily/antdv/esm/__builtins__'
 import { createBehavior, createResource } from '@designable/core'
 import { createFieldSchema } from '../Field'
 import { AllSchemas } from '../../schemas'
 import { AllLocales } from '../../locales'
 
-export const Rate = composeExport(ElRate, {
+export const Rate = composeExport(AntRate, {
   Behavior: createBehavior({
     name: 'Rate',
     extends: ['Field'],

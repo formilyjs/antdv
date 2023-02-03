@@ -3,60 +3,44 @@ export const Select = {
     title: '选择框',
     settings: {
       'x-component-props': {
-        multiple: { title: '多选' },
-        'value-key': {
-          title: '键名',
-          tooltip: '作为 value 唯一标识的键名，绑定值为对象类型时必填',
+        mode: {
+          title: '模式',
+          dataSource: ['多选', '标签', '下拉列表', '默认'],
         },
+        allowClear: '可以清空选项',
+        autoFocus: '默认获取焦点',
+        placeholder: '占位提示',
         size: {
           title: '尺寸',
-          dataSource: [
-            {
-              label: '大',
-              value: 'large',
-            },
-            {
-              label: '小',
-              value: 'small',
-            },
-            {
-              label: '默认',
-              value: 'default',
-            },
-          ],
+          dataSource: ['大', '小', '默认'],
         },
-        clearable: { title: '可以清空选项' },
-        'collapse-tags': {
-          title: '文字展示',
-          tooltip: '多选时是否将选中值按文字的形式展示',
+        maxTagCount: {
+          title: '最多标签数量',
+          tooltip: '最多显示多少个 tag，响应式模式会对性能产生损耗',
         },
-        'multiple-limit': {
-          title: '最多项目数',
-          tooltip: '多选时用户最多可以选择的项目数，为 0 则不限制',
+        maxTagPlaceholder: {
+          title: '最多标签占位',
+          tooltip: '隐藏 tag 时显示的内容',
         },
-        placeholder: { title: '占位符' },
-        filterable: { title: '创建新条目' },
-        'allow-create': {
-          title: '可搜索',
-          tooltip: '是否允许用户创建新条目，需配合 filterable 使用',
-        },
-        'no-match-text': { title: '无匹配时显示的文字' },
-        'no-data-text': { title: '选项为空时显示的文字' },
-        'popper-class': { title: '保留当前的搜索关键词' },
-        'reserve-keyword': {
-          title: '可搜索',
-          tooltip: '多选且可搜索时，是否在选中一个选项后保留当前的搜索关键词',
-        },
-        'popper-append-to-body': {
-          title: '插入至 body',
+        maxTagTextLength: '最大显示的tag文本长度',
+        notFoundContent: '为空时显示内容',
+        labelInValue: {
+          title: '标签值',
           tooltip:
-            '是否将弹出框插入至 body 元素。在弹出框的定位出现问题时，可将该属性设置为 false',
+            '是否把每个选项的 label 包装到 value 中，会把 Select 的 value 类型从 string 变为 {key: string, label: vNodes} 的格式',
         },
-        'automatic-dropdown': {
-          title: '自动弹出选项菜单',
+        optionFilterProp: {
+          title: '搜索时过滤字段',
           tooltip:
-            '对于不可搜索的 Select，是否在输入框获得焦点后自动弹出选项菜单',
+            '搜索时过滤对应的 option 属性，如设置为 children 表示对内嵌内容进行搜索，默认是：value',
         },
+        optionLabelProp: {
+          title: '回填到选择框字段',
+          tooltip:
+            '回填到选择框的 Option 的属性值，默认是 Option 的子元素。比如在子元素需要高亮效果时，此值可以设为 value。',
+        },
+        showSearch: '单选模式可搜索',
+        showArrow: '显示下拉小箭头',
       },
     },
   },
@@ -64,60 +48,41 @@ export const Select = {
     title: 'Select',
     settings: {
       'x-component-props': {
-        multiple: { title: '多选' },
-        'value-key': {
-          title: '键名',
-          tooltip: '作为 value 唯一标识的键名，绑定值为对象类型时必填',
+        mode: {
+          title: 'Mode',
+          dataSource: ['Multiple', 'Tags', 'Combobox', 'Default'],
         },
+        allowClear: 'Allow clear',
+        autoFocus: 'Auto focus',
+        placeholder: 'Placeholder',
         size: {
-          title: '尺寸',
-          dataSource: [
-            {
-              label: '大',
-              value: 'large',
-            },
-            {
-              label: '小',
-              value: 'small',
-            },
-            {
-              label: '默认',
-              value: 'default',
-            },
-          ],
+          title: 'Size',
+          dataSource: ['Large', 'Small', 'Default'],
         },
-        clearable: { title: '可以清空选项' },
-        'collapse-tags': {
-          title: '文字展示',
-          tooltip: '多选时是否将选中值按文字的形式展示',
+        maxTagCount: 'Max Tag Count',
+        maxTagPlaceholder: {
+          title: 'Max Tag Placeholder',
+          tooltip: 'Content displayed when tag is hidden',
         },
-        'multiple-limit': {
-          title: '项目数',
-          tooltip: '多选时用户最多可以选择的项目数，为 0 则不限制',
-        },
-        placeholder: { title: '占位符' },
-        filterable: { title: '创建新条目' },
-        'allow-create': {
-          title: '可搜索',
-          tooltip: '是否允许用户创建新条目，需配合 filterable 使用',
-        },
-        'no-match-text': { title: '无匹配时显示的文字' },
-        'no-data-text': { title: '选项为空时显示的文字' },
-        'popper-class': { title: '保留当前的搜索关键词' },
-        'reserve-keyword': {
-          title: '可搜索',
-          tooltip: '多选且可搜索时，是否在选中一个选项后保留当前的搜索关键词',
-        },
-        'popper-append-to-body': {
-          title: '插入至 body',
+        maxTagTextLength: 'Max Tag Text Length',
+        notFoundContent: 'Not found content',
+        labelInValue: {
+          title: 'Label in value',
           tooltip:
-            '是否将弹出框插入至 body 元素。在弹出框的定位出现问题时，可将该属性设置为 false',
+            'whether to embed label in value, turn the format of value from string to {key: string, label: vNodes}',
         },
-        'automatic-dropdown': {
-          title: '自动弹出选项菜单',
+        optionFilterProp: {
+          title: 'Prop for filter',
           tooltip:
-            '对于不可搜索的 Select，是否在输入框获得焦点后自动弹出选项菜单',
+            'Which prop value of option will be used for filter if filterOption is true, default is: value',
         },
+        optionLabelProp: {
+          title: 'prop for select display',
+          tooltip:
+            'Which prop value of option will render as content of select',
+        },
+        showSearch: 'Show search',
+        showArrow: 'Show arrow',
       },
     },
   },

@@ -1,5 +1,5 @@
 import { computed } from 'vue-demi'
-import { useCurrentNode } from './useCurrentNode'
+import { useCurrentNode } from './useSelectedNode'
 import { useSelected } from './useSelected'
 
 export const useCurrentNodeSelected = () => {

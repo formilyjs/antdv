@@ -12,8 +12,11 @@ export const FormGrid = {
         columnGap: '列间距',
         rowGap: '行间距',
         colWrap: '自动换行',
-        strictAutoFit:
-          'GridItem 宽度是否严格受限于 maxWidth，不受限的话会自动占满容器',
+        strictAutoFit: {
+          title: '严格限制',
+          tooltip:
+            'GridItem 宽度是否严格受限于 maxWidth，不受限的话会自动占满容器',
+        },
       },
     },
   },
@@ -30,8 +33,11 @@ export const FormGrid = {
         columnGap: 'Column Gap',
         rowGap: 'Row Gap',
         colWrap: 'Col Wrap',
-        strictAutoFit:
-          'GridItem 宽度是否严格受限于 maxWidth，不受限的话会自动占满容器',
+        strictAutoFit: {
+          title: 'Strict autoFit',
+          tooltip:
+            'Is GridItem width strictly limited by maxWidth? Otherwise, the container will fill up automatically',
+        },
       },
     },
   },

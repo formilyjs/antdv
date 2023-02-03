@@ -2,12 +2,10 @@ import cls from 'classnames'
 import {
   computed,
   defineComponent,
-  nextTick,
   onBeforeUnmount,
   provide,
-  reactive,
   ref,
-  watch,
+  shallowRef,
 } from 'vue-demi'
 import { createForm } from '@formily/core'
 import { Form } from '@formily/antdv'
@@ -20,9 +18,10 @@ import {
   usePrefix,
   useSelected,
   useWorkbench,
+  useEffect,
 } from '@formily/antdv-designable'
 import { Empty } from 'ant-design-vue'
-import { uid, cancelIdle, requestIdle } from '@designable/shared'
+import { cancelIdle, requestIdle } from '@designable/shared'
 import { SchemaField } from './SchemaField'
 import { SettingsFormSymbol } from './shared/context'
 import { useLocales, useSnapshot } from './effects'
@@ -57,6 +56,8 @@ function useKeyUp() {
 // scope?: any
 
 export const SettingsForm = defineComponent({
+  name: 'DnSettingsForm',
+  inheritAttrs: false,
   props: [
     'uploadAction',
     'headers',
@@ -65,7 +66,7 @@ export const SettingsForm = defineComponent({
     'effects',
     'scope',
   ],
-  setup(props) {
+  setup(props, { attrs }) {
     const workbenchRef = useWorkbench()
     const prefixRef = usePrefix('settings-form')
 
@@ -79,21 +80,21 @@ export const SettingsForm = defineComponent({
     const selectedRef = useSelected(currentWorkspaceId)
     const keyupRef = useKeyUp()
     const idleTaskRef = ref(null)
-    const sources = reactive({
-      key: nodeRef.value.id,
-      schema: nodeRef.value?.designerProps?.propsSchema,
-      isEmpty: !(
-        nodeRef.value &&
-        nodeRef.value.designerProps?.propsSchema &&
-        selectedRef.value.length === 1
-      ),
-    })
 
     // [node, node?.props, schema, operation, isEmpty]
-    const formRef = ref()
+    const formRef = shallowRef()
+    const schemaRef = computed(() => nodeRef.value?.designerProps?.propsSchema)
+    const isEmptyRef = computed(
+      () =>
+        !(
+          nodeRef.value &&
+          nodeRef.value.designerProps?.propsSchema &&
+          selectedRef.value.length === 1
+        )
+    )
 
-    const requestIdleTask = () => {
-      cancelIdle(idleTaskRef.value)
+    useEffect(() => {
+      idleTaskRef.value && cancelIdle(idleTaskRef.value)
       idleTaskRef.value = requestIdle(() => {
         formRef.value = createForm({
           initialValues: nodeRef.value?.designerProps?.defaultProps,
@@ -104,28 +105,15 @@ export const SettingsForm = defineComponent({
             props.effects?.(form)
           },
         })
-        sources.key = nodeRef.value.id
-        sources.schema = nodeRef.value?.designerProps?.propsSchema
-        sources.isEmpty = !(
-          nodeRef.value &&
-          nodeRef.value.designerProps?.propsSchema &&
-          selectedRef.value.length === 1
-        )
       })
-    }
-    requestIdleTask()
+    }, [
+      nodeRef,
+      () => nodeRef.value?.props,
+      schemaRef,
+      operationRef,
+      isEmptyRef,
+    ])
 
-    observe(nodeRef.value, () => {
-      nextTick(() => {
-        requestIdleTask()
-      })
-    })
-
-    watch(selectedRef, () => {
-      nextTick(() => {
-        requestIdleTask()
-      })
-    })
 
     provide(
       SettingsFormSymbol,
@@ -133,24 +121,27 @@ export const SettingsForm = defineComponent({
     )
 
     return () => {
+      const node = nodeRef.value
       const prefix = prefixRef.value
+      const schema = schemaRef.value
+      const isEmpty = isEmptyRef.value
       const render = () => {
-        if (!sources.isEmpty && formRef.value) {
+        if (!isEmpty && formRef.value) {
           return (
-            <div class={cls(prefix)} key={sources.key}>
+            <div class={cls(prefix)} key={node.id}>
               <Form
-                key={uid()}
                 form={formRef.value}
-                labelWidth="110px"
+                colon={false}
+                labelWidth={110}
                 labelAlign="left"
                 wrapperAlign="right"
                 feedbackLayout="none"
                 tooltipLayout="text"
               >
                 <SchemaField
-                  schema={sources.schema}
+                  schema={schema}
                   components={props.components}
-                  scope={props.scope}
+                  scope={{ $node: node, ...props.scope }}
                 />
               </Form>
             </div>
@@ -165,8 +156,8 @@ export const SettingsForm = defineComponent({
 
       return (
         <IconWidget.Provider tooltip>
-          <div class={prefix + '-wrapper'}>
-            {!sources.isEmpty && (
+          <div class={prefix + '-wrapper'} {...attrs}>
+            {!isEmpty && (
               <NodePathWidget workspaceId={currentWorkspaceId} />
             )}
             <div class={prefix + '-content'}>{render()}</div>

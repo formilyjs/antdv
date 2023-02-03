@@ -3,33 +3,26 @@ export const Switch = {
     title: '开关',
     settings: {
       'x-component-props': {
-        // width: { title: '宽' },
-        // 'active-icon-class': { title: '打开时所显示图标' },
-        // 'inactive-icon-class': { title: '关闭时所显示图标' },
-        // 'active-text': { title: '打开时的文字描述' },
-        // 'inactive-text': { title: '关闭时的文字描述' },
-        // 'active-value': { title: '打开时的值' },
-        // 'inactive-value': { title: '关闭时的值' },
-        // 'active-color': { title: '打开时的背景色' },
-        // 'inactive-color': { title: '关闭时的背景色' },
         autoFocus: '自动获取焦点',
+        defaultChecked: '默认状态',
         size: {
           title: '尺寸',
-          dataSource: [
-            {
-              label: '小',
-              value: 'small',
-            },
-            {
-              label: '默认',
-              value: 'default',
-            },
-          ],
+          dataSource: ['小', '默认'],
         },
       },
     },
   },
   'en-US': {
     title: 'Switch',
+    settings: {
+      'x-component-props': {
+        autoFocus: 'Auto focus',
+        defaultChecked: 'Default checked',
+        size: {
+          title: 'Size',
+          dataSource: ['Small', 'Default'],
+        },
+      },
+    },
   },
 }

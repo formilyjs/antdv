@@ -11,18 +11,22 @@ export const Rate: ISchema = {
         defaultChecked: true,
       },
     },
-    count: {
-      type: 'number',
-      'x-decorator': 'FormItem',
-      'x-component': 'InputNumber',
-      'x-component-props': {
-        defaultValue: 5,
-      },
-    },
     allowHalf: {
       type: 'boolean',
       'x-decorator': 'FormItem',
       'x-component': 'Switch',
+    },
+    autoFocus: {
+      type: 'boolean',
+      'x-decorator': 'FormItem',
+      'x-component': 'Switch',
+    },
+    count: {
+      type: 'number',
+      default: 5,
+      'x-decorator': 'FormItem',
+      'x-component': 'InputNumber',
+      'x-component-props': {},
     },
     tooltips: {
       'x-decorator': 'FormItem',
@@ -30,11 +34,6 @@ export const Rate: ISchema = {
       'x-component-props': {
         include: ['EXPRESSION'],
       },
-    },
-    autoFocus: {
-      type: 'boolean',
-      'x-decorator': 'FormItem',
-      'x-component': 'Switch',
     },
   },
 }

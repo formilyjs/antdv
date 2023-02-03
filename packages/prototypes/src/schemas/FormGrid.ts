@@ -4,8 +4,8 @@ export const FormGrid: ISchema & { GridColumn?: ISchema } = {
   type: 'object',
   properties: {
     minWidth: {
-      default: 100,
       type: 'number',
+      default: 100,
       'x-decorator': 'FormItem',
       'x-component': 'InputNumber',
       'x-component-props': {},
@@ -16,8 +16,8 @@ export const FormGrid: ISchema & { GridColumn?: ISchema } = {
       'x-component': 'InputNumber',
     },
     minColumns: {
-      default: 0,
       type: 'number',
+      default: 0,
       'x-decorator': 'FormItem',
       'x-component': 'InputNumber',
       'x-component-props': {},
@@ -36,25 +36,26 @@ export const FormGrid: ISchema & { GridColumn?: ISchema } = {
       },
     },
     columnGap: {
-      default: 10,
       type: 'number',
+      default: 10,
       'x-decorator': 'FormItem',
       'x-component': 'InputNumber',
       'x-component-props': {},
     },
     rowGap: {
-      default: 5,
       type: 'number',
+      default: 5,
       'x-decorator': 'FormItem',
       'x-component': 'InputNumber',
       'x-component-props': {},
     },
     colWrap: {
-      default: true,
       type: 'boolean',
       'x-decorator': 'FormItem',
       'x-component': 'Switch',
-      'x-component-props': {},
+      'x-component-props': {
+        defaultChecked: true,
+      },
     },
     strictAutoFit: {
       type: 'boolean',

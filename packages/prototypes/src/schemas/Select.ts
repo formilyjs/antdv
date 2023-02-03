@@ -3,114 +3,115 @@ import type { ISchema } from '@formily/vue'
 export const Select: ISchema = {
   type: 'object',
   properties: {
-    multiple: {
-      type: 'boolean',
-      'x-decorator': 'FormItem',
-      'x-component': 'Switch',
-    },
-    'value-key': {
-      type: 'string',
-      'x-decorator': 'FormItem',
-      'x-component': 'Input',
-      'x-component-props': {
-        size: 'small',
-      },
-    },
-    size: {
+    mode: {
       default: 'default',
       type: 'string',
-      enum: [
-        {
-          label: 'Large',
-          value: 'large',
-        },
-        {
-          label: 'Small',
-          value: 'small',
-        },
-        {
-          label: 'Default',
-          value: 'default',
-        },
-      ],
+      enum: ['multiple', 'tags', 'combobox', 'default'],
       'x-decorator': 'FormItem',
       'x-component': 'Select',
-    },
-    clearable: {
-      type: 'boolean',
-      'x-decorator': 'FormItem',
-      'x-component': 'Switch',
-    },
-    'collapse-tags': {
-      type: 'boolean',
-      'x-decorator': 'FormItem',
-      'x-component': 'Switch',
-    },
-    'multiple-limit': {
-      default: 0,
-      type: 'number',
-      'x-decorator': 'FormItem',
-      'x-component': 'InputNumber',
       'x-component-props': {
-        size: 'small',
+        allowClear: true,
       },
+    },
+    allowClear: {
+      type: 'boolean',
+      'x-decorator': 'FormItem',
+      'x-component': 'Switch',
+    },
+    autoFocus: {
+      type: 'boolean',
+      'x-decorator': 'FormItem',
+      'x-component': 'Switch',
     },
     placeholder: {
       type: 'string',
       'x-decorator': 'FormItem',
       'x-component': 'Input',
+      'x-component-props': {},
+    },
+    size: {
+      default: 'default',
+      type: 'string',
+      enum: ['large', 'small', 'default'],
+      'x-decorator': 'FormItem',
+      'x-component': 'Select',
       'x-component-props': {
-        size: 'small',
+        allowClear: true,
       },
     },
-    filterable: {
-      type: 'boolean',
+    maxTagCount: {
+      type: 'number',
       'x-decorator': 'FormItem',
-      'x-component': 'Switch',
+      'x-component': 'InputNumber',
+      'x-component-props': {},
+      'x-reactions': (field) => {
+        field.visible =
+          field.form?.values?.['x-component-props']?.mode === 'tags'
+      },
     },
-    'allow-create': {
-      type: 'boolean',
-      'x-decorator': 'FormItem',
-      'x-component': 'Switch',
-    },
-    'no-match-text': {
+    maxTagPlaceholder: {
       type: 'string',
       'x-decorator': 'FormItem',
       'x-component': 'Input',
       'x-component-props': {
-        size: 'small',
+        allowClear: true,
+      },
+      'x-reactions': (field) => {
+        field.visible =
+          field.form?.values?.['x-component-props']?.mode === 'tags'
       },
     },
-    'no-data-text': {
+    maxTagTextLength: {
+      type: 'number',
+      'x-decorator': 'FormItem',
+      'x-component': 'InputNumber',
+      'x-component-props': {},
+      'x-reactions': (field) => {
+        field.visible =
+          field.form?.values?.['x-component-props']?.mode === 'tags'
+      },
+    },
+    notFoundContent: {
       type: 'string',
       'x-decorator': 'FormItem',
       'x-component': 'Input',
       'x-component-props': {
-        size: 'small',
+        allowClear: true,
       },
     },
-    'popper-class': {
+    labelInValue: {
+      type: 'boolean',
+      'x-decorator': 'FormItem',
+      'x-component': 'Switch',
+    },
+    optionFilterProp: {
       type: 'string',
       'x-decorator': 'FormItem',
       'x-component': 'Input',
       'x-component-props': {
-        size: 'small',
+        allowClear: true,
       },
     },
-    'reserve-keyword': {
+    optionLabelProp: {
+      type: 'string',
+      'x-decorator': 'FormItem',
+      'x-component': 'Input',
+      'x-component-props': {
+        allowClear: true,
+      },
+    },
+    showSearch: {
       type: 'boolean',
       'x-decorator': 'FormItem',
       'x-component': 'Switch',
     },
-    'popper-append-to-body': {
+    showArrow: {
       type: 'boolean',
       'x-decorator': 'FormItem',
       'x-component': 'Switch',
-    },
-    'automatic-dropdown': {
-      type: 'boolean',
-      'x-decorator': 'FormItem',
-      'x-component': 'Switch',
+      'x-component-props': {
+        defaultChecked: true,
+      },
     },
   },
 }

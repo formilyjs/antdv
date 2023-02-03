@@ -1,5 +1,6 @@
-import { NodeActionsWidget } from '@formily/antdv-designable'
 import { defineComponent } from 'vue-demi'
+import { NodeActionsWidget } from '@formily/antdv-designable'
+
 import type { VNode } from 'vue'
 
 export interface ITemplateAction {
@@ -16,16 +17,17 @@ export interface ILoadTemplateProps {
 }
 
 export const LoadTemplate = defineComponent({
+  emits: ['click'],
   props: { actions: Array },
-  setup(props: ILoadTemplateProps) {
+  setup(props: ILoadTemplateProps, { emit }) {
     return () => {
       return (
         <NodeActionsWidget>
           {props.actions?.map((action, key) => {
             return (
               <NodeActionsWidget.Action
-                props={action}
                 key={key}
+                props={action}
                 onClick={action.onClick}
               />
             )

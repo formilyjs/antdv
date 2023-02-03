@@ -1,6 +1,6 @@
 import { DatePicker as AntdDatePicker } from 'ant-design-vue'
-import { connect, mapProps, mapReadPretty } from '@formily/vue'
-import { formatMomentValue, composeExport } from '../__builtins__'
+import { connect, mapProps, mapReadPretty, h } from '@formily/vue'
+import { composeExport, transformComponent } from '../__builtins__'
 import { PreviewText } from '../preview-text'
 
 import type { DatePicker as AntdDatePickerProps } from 'ant-design-vue/types/date-picker/date-picker'
@@ -15,29 +15,30 @@ const mapDateFormat = function () {
       return 'YYYY'
     } else if (props['mode'] === 'week') {
       return 'gggg-wo'
+    } else if (props['mode'] === 'time') {
+      return 'HH:mm:ss'
     }
     return props['showTime'] ? 'YYYY-MM-DD HH:mm:ss' : 'YYYY-MM-DD'
   }
   return (props: any) => {
-    const format = props['format'] || getDefaultFormat(props)
-    const onChange = props.onChange
+    const format = props.format || getDefaultFormat(props)
+    const valueFormat = props.valueFormat || getDefaultFormat(props)
+
     return {
       ...props,
-      format: format,
-      valueFormat: props.valueFormat || getDefaultFormat(props),
-      on: {
-        change: (value: moment.Moment | moment.Moment[]) => {
-          if (onChange) {
-            onChange(formatMomentValue(value, format))
-          }
-        },
-      },
+      format,
+      valueFormat,
     }
   }
 }
 
-export const _DatePicker = connect(
+const TransformElDatePicker = transformComponent<AntdDatePickerProps>(
   AntdDatePicker,
+  { change: 'panelChange' }
+)
+
+export const _DatePicker = connect(
+  TransformElDatePicker,
   mapProps(mapDateFormat()),
   mapReadPretty(PreviewText.DatePicker)
 )

@@ -4,29 +4,7 @@ import type { ISchema } from '@formily/vue'
 export const Input: ISchema & { TextArea?: ISchema } = {
   type: 'object',
   properties: {
-    maxLength: {
-      type: 'number',
-      'x-decorator': 'FormItem',
-      'x-component': 'InputNumber',
-      'x-component-props': {
-        size: 'small',
-      },
-    },
-    placeholder: {
-      type: 'string',
-      'x-decorator': 'FormItem',
-      'x-component': 'Input',
-      'x-component-props': {
-        clearable: true,
-        size: 'small',
-      },
-    },
     allowClear: {
-      type: 'boolean',
-      'x-decorator': 'FormItem',
-      'x-component': 'Switch',
-    },
-    disabled: {
       type: 'boolean',
       'x-decorator': 'FormItem',
       'x-component': 'Switch',
@@ -35,31 +13,43 @@ export const Input: ISchema & { TextArea?: ISchema } = {
       type: 'string',
       'x-decorator': 'FormItem',
       'x-component': 'Input',
+      'x-component-props': {},
+    },
+    placeholder: {
+      type: 'string',
+      'x-decorator': 'FormItem',
+      'x-component': 'Input',
       'x-component-props': {
-        size: 'small',
+        allowClear: true,
       },
+    },
+    maxLength: {
+      type: 'number',
+      'x-decorator': 'FormItem',
+      'x-component': 'InputNumber',
+      'x-component-props': {},
     },
     prefix: {
       type: 'string',
       'x-decorator': 'FormItem',
       'x-component': 'Input',
-      'x-component-props': {
-        size: 'small',
-      },
+      'x-component-props': {},
     },
     suffix: {
       type: 'string',
       'x-decorator': 'FormItem',
       'x-component': 'Input',
-      'x-component-props': {
-        size: 'small',
-      },
+      'x-component-props': {},
     },
     size: {
       type: 'string',
-      enum: ['large', 'small', null],
+      default: 'default',
+      enum: ['large', 'small', 'default'],
       'x-decorator': 'FormItem',
       'x-component': 'Select',
+      'x-component-props': {
+        allowClear: true,
+      },
     },
   },
 }
@@ -67,9 +57,12 @@ export const Input: ISchema & { TextArea?: ISchema } = {
 Input.TextArea = merge(Input, {
   properties: {
     autoSize: {
-      type: 'boolean',
+      type: 'boolean|object',
       'x-decorator': 'FormItem',
-      'x-component': 'Switch',
+      'x-component': 'ValueInput',
+      'x-component-props': {
+        include: ['BOOLEAN', 'EXPRESSION'],
+      },
     },
   },
 })

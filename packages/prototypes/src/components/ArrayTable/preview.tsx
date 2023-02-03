@@ -32,7 +32,7 @@ const ensureObjectItemsNode = createEnsureTypeItemsNode('object')
 export const ArrayTable = composeExport(
   observer(
     defineComponent({
-      props: { className: {} },
+      props: [],
       setup(props, { attrs }) {
         const designerRef = useDesigner()
         const nodeRef = useTreeNode()

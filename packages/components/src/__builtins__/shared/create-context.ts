@@ -1,5 +1,3 @@
-import type { Component } from 'vue'
-import type { InjectionKey, Ref } from 'vue-demi'
 import {
   defineComponent,
   provide,
@@ -9,9 +7,12 @@ import {
   toRef,
 } from 'vue-demi'
 
+import type { InjectionKey, Ref } from 'vue-demi'
+import type { DefineComponent } from '@formily/vue'
+
 export type CreateContext<T> = {
-  Provider: Component
-  Consumer: Component
+  Provider: DefineComponent<{ value: any }>
+  Consumer: DefineComponent<{}>
   injectKey: InjectionKey<Ref<T>>
 }
 
@@ -48,7 +49,7 @@ export const createContext = <T>(defaultValue?: T): CreateContext<T> => {
   }
 }
 
-export const useContext = <T>(context: CreateContext<T>) => {
+export const useContext = <T>(context: CreateContext<T>): Ref<T> => {
   const key = context.injectKey
 
   return inject(key, ref(null))

@@ -22,6 +22,40 @@ export const Cascader = composeExport(FormilyCascader, {
         componentName: 'Field',
         props: {
           title: 'Cascader',
+          enum: [
+            {
+              value: 'zhejiang',
+              label: 'Zhejiang',
+              children: [
+                {
+                  value: 'hangzhou',
+                  label: 'Hangzhou',
+                  children: [
+                    {
+                      value: 'xihu',
+                      label: 'West Lake',
+                    },
+                  ],
+                },
+              ],
+            },
+            {
+              value: 'jiangsu',
+              label: 'Jiangsu',
+              children: [
+                {
+                  value: 'nanjing',
+                  label: 'Nanjing',
+                  children: [
+                    {
+                      value: 'zhonghuamen',
+                      label: 'Zhong Hua Men',
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
           'x-decorator': 'FormItem',
           'x-component': 'Cascader',
         },

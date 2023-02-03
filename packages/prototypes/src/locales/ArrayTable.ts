@@ -7,10 +7,15 @@ export const ArrayTable = {
     addOperation: '添加操作',
     settings: {
       'x-component-props': {
-        stripe: { title: '斑马纹' },
-        border: { title: '纵向边框' },
-        'show-header': { title: '显示表头' },
-        fit: { title: '宽度自撑开' },
+        bordered: {
+          title: '展示边框',
+          tooltip: '展示外边框和列边框',
+        },
+        showHeader: { title: '显示表头' },
+        size: {
+          title: '尺寸',
+          dataSource: ['中', '小', '默认'],
+        },
       },
     },
   },
@@ -22,10 +27,12 @@ export const ArrayTable = {
     addOperation: 'Add Operations',
     settings: {
       'x-component-props': {
-        stripe: { title: '斑马纹' },
-        border: { title: '纵向边框' },
-        'show-header': { title: '显示表头' },
-        fit: { title: '宽度自撑开' },
+        bordered: { title: 'Bordered' },
+        showHeader: { title: 'Show header' },
+        size: {
+          title: 'Size',
+          dataSource: ['Middle', 'Small', 'Default'],
+        },
       },
     },
   },
@@ -37,23 +44,21 @@ export const ArrayTableColumn = {
     settings: {
       'x-component-props': {
         title: '标题',
-        prop: '字段名称',
+        key: '字段名称',
         align: {
           title: '内容对齐',
           dataSource: ['左', '中', '右'],
         },
-        'min-width': '最小宽度',
         width: '宽度',
         fixed: {
           title: '固定',
           dataSource: ['左', '右'],
         },
-        'header-align': {
-          title: '表头对齐',
-          dataSource: ['左', '中', '右'],
+        sorter: '排序',
+        sortOrder: {
+          title: '排序方式',
+          dataSource: ['正序', '倒序'],
         },
-        sortable: '排序',
-        resizable: '改变宽度',
       },
     },
   },
@@ -61,24 +66,22 @@ export const ArrayTableColumn = {
     title: 'Column',
     settings: {
       'x-component-props': {
-        title: '标题',
-        prop: '字段名称',
+        title: 'Title',
+        key: 'Key',
         align: {
-          title: '内容对齐',
-          dataSource: ['左', '中', '右'],
+          title: 'Align',
+          dataSource: ['Left', 'Center', 'Right'],
         },
-        'min-width': '最小宽度',
-        width: '宽度',
+        width: 'Width',
         fixed: {
-          title: '固定',
-          dataSource: ['左', '右'],
+          title: 'Fixed',
+          dataSource: ['Left', 'Right'],
         },
-        'header-align': {
-          title: '表头对齐',
-          dataSource: ['左', '中', '右'],
+        sorter: 'Sort',
+        sortOrder: {
+          title: 'Sort order',
+          dataSource: ['Asc', 'Desc'],
         },
-        sortable: '排序',
-        resizable: '改变宽度',
       },
     },
   },

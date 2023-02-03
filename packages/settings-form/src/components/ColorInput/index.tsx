@@ -1,63 +1,78 @@
+import { defineComponent, ref, onMounted } from 'vue-demi'
 import { Input, Popover } from 'ant-design-vue'
+import { Sketch as ColorPicker } from 'vue-color'
 import { usePrefix } from '@formily/antdv-designable'
-import { ref } from 'vue-demi'
 import './styles.less'
-import { defineComponent } from 'vue-demi'
-// import ColorPicker from '../ColorPicker'
-import { Chrome as ChromePicker } from 'vue-color'
 
 export interface IColorInputProps {
   value?: string
-  onChange?: (color: string) => void
+  popupProps?: Record<string, any>
+  colorPickerProps?: Record<string, any>
 }
 
 export const ColorInput = defineComponent({
-  props: ['value', 'onChange'],
   emits: ['change'],
+  props: {
+    value: String,
+    popupProps: Object,
+    colorPickerProps: Object,
+  },
   setup() {
     const prefixRef = usePrefix('color-input')
     const container = ref(null)
+
     return {
       prefixRef,
       container,
     }
   },
   render() {
-    const { prefixRef, container } = this
     return (
-      <div ref="container" class={prefixRef}>
+      <div ref="container" class={this.prefixRef}>
         <Input
-          value={this.value}
-          vOn:input={(e) => {
-            this.$emit('change', e.target.value)
-          }}
+          value={this.$props.value}
           placeholder="Color"
+          attrs={this.$attrs}
           scopedSlots={{
             prefix: () => (
               <Popover
-                trigger="click"
-                autoAdjustOverflow
-                overlayInnerStyle={{ padding: 0 }}
-                getPopupContainer={() => container}
+                props={{
+                  ...this.$props.popupProps,
+                  trigger: 'click',
+                  autoAdjustOverflow: true,
+                  overlayInnerStyle: { padding: 0 },
+                  getPopupContainer: () => this.container,
+                }}
                 scopedSlots={{
                   content: () => (
-                    <ChromePicker
-                      value={{ hex: this.$props.value }}
-                      onInput={({ hex }) => {
-                        this.$emit('change', hex)
+                    <ColorPicker
+                      props={{
+                        ...this.$props.colorPickerProps,
+                        value: this.$props.value || {},
+                      }}
+                      onInput={({ hex, rgba }) => {
+                        this.$emit(
+                          'change',
+                          this.$props.colorPickerProps?.disableAlpha
+                            ? hex
+                            : `rgba(${rgba.r},${rgba.g},${rgba.b},${rgba.a})`
+                        )
                       }}
                     />
                   ),
                 }}
               >
                 <div
-                  class={prefixRef + '-color-tips'}
+                  class={this.prefixRef + '-color-tips'}
                   style={{
                     backgroundColor: this.$props.value,
                   }}
                 ></div>
               </Popover>
             ),
+          }}
+          onChange={(value) => {
+            this.$emit('change', value)
           }}
         ></Input>
       </div>

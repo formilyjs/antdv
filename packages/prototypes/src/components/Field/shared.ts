@@ -90,8 +90,7 @@ export const createFieldSchema = (
             'x-decorator': 'FormItem',
             'x-component': 'Input',
             'x-component-props': {
-              size: 'small',
-              clearable: true,
+              allowClear: true,
             },
           },
           title: {
@@ -99,8 +98,7 @@ export const createFieldSchema = (
             'x-decorator': 'FormItem',
             'x-component': 'Input',
             'x-component-props': {
-              size: 'small',
-              clearable: true,
+              allowClear: true,
             },
           },
           description: {
@@ -117,9 +115,7 @@ export const createFieldSchema = (
             enum: ['visible', 'hidden', 'none', ''],
             'x-decorator': 'FormItem',
             'x-component': 'Select',
-            'x-component-props': {
-              size: 'small',
-            },
+            'x-component-props': {},
           },
           'x-pattern': {
             default: 'editable',
@@ -127,9 +123,7 @@ export const createFieldSchema = (
             enum: ['editable', 'disabled', 'readOnly', 'readPretty', ''],
             'x-decorator': 'FormItem',
             'x-component': 'Select',
-            'x-component-props': {
-              size: 'small',
-            },
+            'x-component-props': {},
           },
           default: {
             'x-decorator': 'FormItem',
@@ -175,8 +169,7 @@ export const createVoidFieldSchema = (
             'x-decorator': 'FormItem',
             'x-component': 'Input',
             'x-component-props': {
-              size: 'small',
-              clearable: true,
+              allowClear: true,
             },
           },
           title: {
@@ -184,8 +177,7 @@ export const createVoidFieldSchema = (
             'x-decorator': 'FormItem',
             'x-component': 'Input',
             'x-component-props': {
-              size: 'small',
-              clearable: true,
+              allowClear: true,
             },
             'x-reactions': {
               fulfill: {
@@ -214,7 +206,7 @@ export const createVoidFieldSchema = (
             'x-decorator': 'FormItem',
             'x-component': 'Select',
             'x-component-props': {
-              clearable: true,
+              allowClear: true,
             },
           },
           'x-pattern': {
@@ -224,7 +216,7 @@ export const createVoidFieldSchema = (
             'x-decorator': 'FormItem',
             'x-component': 'Select',
             'x-component-props': {
-              clearable: true,
+              allowClear: true,
             },
           },
           'x-reactions': {

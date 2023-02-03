@@ -1,11 +1,11 @@
-import { Switch as ElSwitch } from 'ant-design-vue'
+import { Switch as AntSwitch } from 'ant-design-vue'
 import { composeExport } from '@formily/antdv/esm/__builtins__'
 import { createBehavior, createResource } from '@designable/core'
 import { createFieldSchema } from '../Field'
 import { AllSchemas } from '../../schemas'
 import { AllLocales } from '../../locales'
 
-export const Switch = composeExport(ElSwitch, {
+export const Switch = composeExport(AntSwitch, {
   Behavior: createBehavior({
     name: 'Switch',
     extends: ['Field'],

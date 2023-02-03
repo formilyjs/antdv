@@ -4,14 +4,24 @@ export const FormTab = {
     addTabPane: '添加选项卡',
     settings: {
       'x-component-props': {
-        type: { title: '类型', dataSources: ['card', 'border-card'] },
-        closable: '可关闭',
-        addable: '可增加',
-        editable: '可增加和关闭',
-        stretch: '宽度是否自撑开',
-        'tab-position': '	选项卡所在位置',
-        'before-leave':
-          '切换标签之前的钩子，若返回 false 或者返回 Promise 且被 reject，则阻止切换。',
+        animated: {
+          title: '使用动画切换',
+          tooltip: '在 tabPosition=top|bottom 时有效',
+        },
+        hideAdd: {
+          title: '隐藏加号',
+          tooltip: '在 type="editable-card" 时有效',
+        },
+        type: {
+          title: '类型',
+          dataSource: ['Line', 'Card', 'Editable Card'],
+        },
+        size: {
+          title: '大小',
+          dataSource: ['大', '小', '默认'],
+        },
+        tabPosition: '选项卡所在位置',
+        tabBarGutter: '选项卡之间的间隙',
       },
     },
   },
@@ -20,16 +30,24 @@ export const FormTab = {
     addTabPane: 'Add Panel',
     settings: {
       'x-component-props': {
-        animated: 'Enable Animated',
-        centered: 'Label Centered',
-        tab: 'Tab Title',
+        animated: {
+          title: 'Animation',
+          tooltip: 'Only works while tabPosition="top"\|"bottom"',
+        },
+        hideAdd: {
+          title: 'Hide plus icon',
+          tooltip: 'Only works while type="editable-card"',
+        },
         type: {
           title: 'Type',
-          dataSource: [
-            { label: 'Line', value: 'line' },
-            { label: 'Card', value: 'card' },
-          ],
+          dataSource: ['Line', 'Card', 'Editable Card'],
         },
+        size: {
+          title: 'Size',
+          dataSource: ['Large', 'Samll', 'Default'],
+        },
+        tabPosition: 'Position',
+        tabBarGutter: 'Gap between tabs',
       },
     },
   },

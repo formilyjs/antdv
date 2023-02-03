@@ -1,5 +1,6 @@
 export * from './ArrayBase'
 export * from './ArrayCards'
+export * from './ArrayItems'
 export * from './ArrayTable'
 export * from './Cascader'
 export * from './Card'

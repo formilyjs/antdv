@@ -1,17 +1,10 @@
 /* eslint-disable */
 // TODO:: 还有问题
+import { ref } from 'vue-demi'
 import { TreeNode } from '@designable/core'
 import { requestIdle, cancelIdle } from '@designable/shared'
 import { ResizeObserver } from '@juggle/resize-observer'
-import {
-  computed,
-  onBeforeUnmount,
-  onMounted,
-  reactive,
-  ref,
-  UnwrapRef,
-} from 'vue-demi'
-import { useEffect } from './useEffect'
+import { useEffect } from '../shared/useEffect'
 import { useViewport } from './useViewport'
 
 const isEqualRect = (rect1: Partial<DOMRect>, rect2: DOMRect) => {

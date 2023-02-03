@@ -8,6 +8,7 @@ export const Transfer = connect(
     if (isVoidField(field)) return props
     return {
       ...props,
+      render: props.render || ((item) => item.title),
       dataSource:
         field.dataSource?.map((item) => {
           return {

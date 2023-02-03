@@ -23,12 +23,12 @@ export const Checkbox = composeExport(FormilyCheckbox, {
         props: {
           type: 'array' || 'Array<string | number>',
           title: 'Checkbox Group',
-          'x-decorator': 'FormItem',
-          'x-component': 'Checkbox.Group',
           enum: [
             { label: '选项1', value: 1 },
             { label: '选项2', value: 2 },
           ],
+          'x-decorator': 'FormItem',
+          'x-component': 'Checkbox.Group',
         },
       },
     ],

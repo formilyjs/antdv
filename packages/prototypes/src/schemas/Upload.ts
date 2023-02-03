@@ -8,14 +8,14 @@ export const Upload: ISchema & { Dragger?: ISchema } = {
       'x-decorator': 'FormItem',
       'x-component': 'Input',
       'x-component-props': {
-        clearable: true,
+        allowClear: true,
       },
     },
     action: {
       'x-decorator': 'FormItem',
       'x-component': 'Input',
       'x-component-props': {
-        clearable: true,
+        allowClear: true,
       },
     },
     headers: {
@@ -43,7 +43,7 @@ export const Upload: ISchema & { Dragger?: ISchema } = {
       'x-decorator': 'FormItem',
       'x-component': 'Input',
       'x-component-props': {
-        clearable: true,
+        allowClear: true,
       },
     },
     'with-credentials': {
@@ -51,7 +51,7 @@ export const Upload: ISchema & { Dragger?: ISchema } = {
       'x-decorator': 'FormItem',
       'x-component': 'Switch',
       'x-component-props': {
-        clearable: true,
+        allowClear: true,
       },
     },
     'show-file-list': {
@@ -69,7 +69,7 @@ export const Upload: ISchema & { Dragger?: ISchema } = {
       'x-decorator': 'FormItem',
       'x-component': 'Input',
       'x-component-props': {
-        clearable: true,
+        allowClear: true,
       },
     },
     'list-type': {
@@ -79,7 +79,6 @@ export const Upload: ISchema & { Dragger?: ISchema } = {
       'x-component-props': {
         defaultValue: 'text',
         optionType: 'button',
-        size: 'small',
       },
     },
     'auto-upload': {
@@ -91,9 +90,7 @@ export const Upload: ISchema & { Dragger?: ISchema } = {
       type: 'number',
       'x-decorator': 'FormItem',
       'x-component': 'InputNumber',
-      'x-component-props': {
-        size: 'small',
-      },
+      'x-component-props': {},
     },
     // fileList: {}
     // method: {

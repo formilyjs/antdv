@@ -22,6 +22,38 @@ export const TreeSelect = composeExport(FormilyTreeSelect, {
         componentName: 'Field',
         props: {
           title: 'TreeSelect',
+          enum: [
+            {
+              value: 1,
+              label: '项目1',
+              children: [
+                {
+                  value: 11,
+                  label: '项目1-1',
+                  disableCheckbox: true,
+                  selectable: true,
+                },
+                {
+                  value: 12,
+                  label: '项目1-2',
+                },
+              ],
+            },
+            {
+              value: 2,
+              label: '项目2',
+              children: [
+                {
+                  value: 21,
+                  label: '项目2-1',
+                },
+                {
+                  value: 12,
+                  label: '项目2-2',
+                },
+              ],
+            },
+          ],
           'x-decorator': 'FormItem',
           'x-component': 'TreeSelect',
         },

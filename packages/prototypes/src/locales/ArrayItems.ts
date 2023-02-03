@@ -1,12 +1,12 @@
-export const CheckboxGroup = {
+export const ArrayItems = {
   'zh-CN': {
-    title: '复选框组',
+    title: '自增列表',
     settings: {
       'x-component-props': {},
     },
   },
   'en-US': {
-    title: 'Checkbox',
+    title: 'Array Items',
     settings: {
       'x-component-props': {},
     },

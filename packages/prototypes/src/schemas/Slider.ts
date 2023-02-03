@@ -9,6 +9,27 @@ export const Slider: ISchema = {
       'x-decorator': 'FormItem',
       'x-component': 'Switch',
     },
+    min: {
+      type: 'number',
+      default: 0,
+      'x-decorator': 'FormItem',
+      'x-component': 'InputNumber',
+      'x-component-props': {},
+    },
+    max: {
+      type: 'number',
+      default: 100,
+      'x-decorator': 'FormItem',
+      'x-component': 'InputNumber',
+      'x-component-props': {},
+    },
+    step: {
+      type: 'number',
+      default: 1,
+      'x-decorator': 'FormItem',
+      'x-component': 'InputNumber',
+      'x-component-props': {},
+    },
     dots: {
       title: GlobalRegistry.getDesignerMessage('settings.sliderDots'),
       type: 'boolean',
@@ -49,30 +70,6 @@ export const Slider: ISchema = {
       'x-component': 'ValueInput',
       'x-component-props': {
         include: ['EXPRESSION'],
-      },
-    },
-    max: {
-      type: 'number',
-      'x-decorator': 'FormItem',
-      'x-component': 'InputNumber',
-      'x-component-props': {
-        defaultValue: 100,
-      },
-    },
-    min: {
-      type: 'number',
-      'x-decorator': 'FormItem',
-      'x-component': 'InputNumber',
-      'x-component-props': {
-        defaultValue: 0,
-      },
-    },
-    step: {
-      type: 'number',
-      'x-decorator': 'FormItem',
-      'x-component': 'InputNumber',
-      'x-component-props': {
-        defaultValue: 1,
       },
     },
   },

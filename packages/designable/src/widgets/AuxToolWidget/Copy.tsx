@@ -2,7 +2,7 @@
 import { Button } from 'ant-design-vue'
 import { defineComponent } from 'vue-demi'
 import { composeExport } from '@formily/antdv/esm/__builtins__'
-import { useStyle } from '../../shared'
+import { useStyle } from '../../shared/util'
 import { IconWidget } from '../IconWidget'
 import { useOperation, usePrefix } from '../../hooks'
 import type { TreeNode } from '@designable/core'

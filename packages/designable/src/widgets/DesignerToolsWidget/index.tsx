@@ -11,7 +11,7 @@ import {
   usePrefix,
   useWorkbench,
 } from '../../hooks'
-import { useStyle } from '../../shared/util'
+import { useStyle } from '../../shared'
 import { IconWidget } from '../IconWidget'
 import './styles.less'
 

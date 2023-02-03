@@ -23,10 +23,10 @@ const createUnitType = (type: string) => {
             <InputNumber
               value={props.value}
               attrs={attrs}
+              props={{ 'controls-position': 'right', ...props }}
               onChange={(cb) => {
                 emit('change', cb)
               }}
-              props={{ 'controls-position': 'right', ...props }}
             ></InputNumber>
           )
         }
@@ -62,6 +62,7 @@ const NormalSizeOptions = [
   createUnitType('%'),
   createUnitType('vh'),
   createUnitType('em'),
+  createUnitType('rem'),
 ]
 
 export const SizeInput = createPolyInput(NormalSizeOptions)
@@ -73,4 +74,5 @@ export const BackgroundSizeInput = createPolyInput([
   createUnitType('%'),
   createUnitType('vh'),
   createUnitType('em'),
+  createUnitType('rem'),
 ])

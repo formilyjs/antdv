@@ -1,15 +1,15 @@
-import { connect, mapProps, h, mapReadPretty } from '@formily/vue'
 import { defineComponent } from 'vue-demi'
+import { Select as AntSelect } from 'ant-design-vue'
+import { connect, mapProps, h, mapReadPretty } from '@formily/vue'
 import { PreviewText } from '@formily/antdv'
-import { Select as ElSelect } from 'ant-design-vue'
 import { resolveComponent } from '@formily/antdv/esm/__builtins__'
-import type { Select as ElSelectProps } from 'ant-design-vue'
+import type { Select as AntSelectProps } from 'ant-design-vue'
 
-const ElOption = ElSelect.Option
-type ElOptionProps = typeof ElOption
+const AntOption = AntSelect.Option
+type AntOptionProps = typeof AntOption
 
-export type SelectProps = ElSelectProps & {
-  options?: Array<ElOptionProps & { component: Vue.Component }>
+export type SelectProps = AntSelectProps & {
+  options?: Array<AntOptionProps & { component: Vue.Component }>
 }
 const SelectOption = defineComponent<SelectProps>({
   name: 'FSelect',
@@ -24,7 +24,7 @@ const SelectOption = defineComponent<SelectProps>({
                 options.map((option) => {
                   if (typeof option === 'string') {
                     return h(
-                      ElOption,
+                      AntOption,
                       { props: { value: option, label: option } },
                       {
                         default: () => [
@@ -34,7 +34,7 @@ const SelectOption = defineComponent<SelectProps>({
                     )
                   } else {
                     return h(
-                      ElOption,
+                      AntOption,
                       {
                         props: {
                           ...option,
@@ -56,7 +56,7 @@ const SelectOption = defineComponent<SelectProps>({
             }
           : slots
       return h(
-        ElSelect,
+        AntSelect,
         {
           attrs: {
             ...attrs,
