@@ -42,9 +42,9 @@
     "vue-color": "^2.8.1"
   },
   "devDependencies": {
-    "@designable/core": "^1.0.0-beta.25",
-    "@designable/formily-transformer": "^1.0.0-beta.25",
-    "@designable/shared": "^1.0.0-beta.25",
+    "@designable/core": "^1.0.0-beta.45",
+    "@designable/formily-transformer": "^1.0.0-beta.45",
+    "@designable/shared": "^1.0.0-beta.45",
     "@formily/antdv": "^1.0.0-alpha.8",
     "@formily/antdv-designable": "1.0.0-alpha.0",
     "@formily/antdv-setters": "1.0.0-alpha.0",

@@ -84,7 +84,8 @@
     "vue": "~2.6.14",
     "magic-string": "~0.25.x",
     "postcss": "^8.x",
-    "typescript": "4.4.4"
+    "typescript": "4.4.4",
+    "core-js": "^3.x"
   },
   "repository": {
     "type": "git",
@@ -96,7 +97,7 @@
       "commit-msg": "commitlint --edit"
     }
   },
-  "dependencies":{},
+  "dependencies": {},
   "peerDependencies": {
     "@vue/composition-api": "^1.0.0-beta.1",
     "vue": "^2.6.0 || >=3.0.0-rc.0"

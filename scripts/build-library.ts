@@ -22,15 +22,15 @@ const typeCheck = async (params: string[] = []) => {
     params.push('--project', 'tsconfig.build.json', '--sourceRoot', 'lib')
   }
 
-  execa('tsc', params).stdout.pipe(process.stdout)
+  await execa('tsc', params)
 }
 
-const buildDefault = ({
+const buildDefault = async ({
   outDir = 'lib',
   env = 'cjs',
 }: { outDir?: string; env?: string } = {}) => {
   typeCheck(['--outDir', outDir, '--sourceRoot', outDir])
-  execa('babel', [
+  await execa('babel', [
     'src',
     '--out-dir',
     outDir,
@@ -39,11 +39,11 @@ const buildDefault = ({
     '--extensions',
     '.ts,.tsx',
     '--copy-files',
-  ]).stdout.pipe(process.stdout)
+  ])
 }
 
 const buildEsm = async () => {
-  buildDefault({ outDir: 'esm', env: 'es' })
+  await buildDefault({ outDir: 'esm', env: 'es' })
 }
 
 export const buildLibrary = async () => {

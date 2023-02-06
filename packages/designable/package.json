@@ -38,14 +38,14 @@
   },
   "dependencies": {},
   "devDependencies": {
-    "@designable/core": "^1.0.0-beta.25",
-    "@designable/shared": "^1.0.0-beta.25",
+    "@designable/core": "^1.0.0-beta.45",
+    "@designable/shared": "^1.0.0-beta.45",
     "@formily/antdv": "^1.0.0-alpha.8",
     "@formily/vue": "^2.0.0",
     "@juggle/resize-observer": "^3.3.1",
     "@vue/composition-api": "^1.4.0-beta.0",
     "ant-design-vue": "^1.7.8",
     "classnames": "^2.3.1",
-    "dateformat": "^4.5.1"
+    "dateformat": "^3.0.0"
   }
 }
