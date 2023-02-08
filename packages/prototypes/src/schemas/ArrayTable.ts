@@ -117,6 +117,7 @@ const Addition: ISchema = {
       'x-component-props': {
         defaultValue: 'push',
         optionType: 'button',
+        size: 'small',
       },
     },
     defaultValue: {

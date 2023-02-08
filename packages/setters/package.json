@@ -8,9 +8,9 @@
     "npm": ">=3.0.0"
   },
   "module": "esm",
-  "umd:main": "dist/formily.element-setters.umd.production.js",
-  "unpkg": "dist/formily.element-setters.umd.production.js",
-  "jsdelivr": "dist/formily.element-setters.umd.production.js",
+  "umd:main": "dist/formily.antdv-setters.umd.production.js",
+  "unpkg": "dist/formily.antdv-setters.umd.production.js",
+  "jsdelivr": "dist/formily.antdv-setters.umd.production.js",
   "jsnext:main": "esm",
   "sideEffects": true,
   "scripts": {
@@ -28,8 +28,8 @@
     "access": "public"
   },
   "peerDependencies": {
-    "@vue/composition-api": "^1.0.0-beta.1",
-    "vue": "^2.6.0 || >=3.0.0-rc.0"
+    "@vue/composition-api": "^1.4.0",
+    "vue": "^2.6.0 || >=3.0.0"
   },
   "peerDependenciesMeta": {
     "@vue/composition-api": {
@@ -37,5 +37,17 @@
     }
   },
   "dependencies": {},
-  "devDependencies": {}
+  "devDependencies": {
+    "@designable/core": "^1.0.0-beta.45",
+    "@designable/shared": "1.0.0-beta.45",
+    "@formily/antdv": "^1.0.0-alpha.8",
+    "@formily/antdv-designable": "^1.0.0-alpha.0",
+    "@formily/antdv-settings-form": "^1.0.0-alpha.0",
+    "@formily/core": "^2.0.0",
+    "@formily/shared": "^2.0.0",
+    "@formily/json-schema": "^2.0.0",
+    "@formily/reactive": "^2.0.0",
+    "@formily/reactive-vue": "^2.0.0",
+    "@formily/vue": "^2.0.0"
+  }
 }

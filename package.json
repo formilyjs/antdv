@@ -25,6 +25,7 @@
     "release": "lerna publish from-package --yes",
     "lint": "eslint ."
   },
+  "dependencies": {},
   "devDependencies": {
     "@babel/cli": "^7.19.3",
     "@babel/core": "^7.19.6",
@@ -53,7 +54,7 @@
     "@vuepress/plugin-medium-zoom": "^1.8.2",
     "ant-design-vue": "^1.7.8",
     "codesandbox": "^2.2.3",
-    "core-js": "^2.4.0",
+    "core-js": "^3.23.3",
     "eslint": "^7.32.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-import": "^2.26.0",
@@ -71,21 +72,22 @@
     "prettier": "^2.2.1",
     "pretty-quick": "^3.1.0",
     "raw-loader": "^4.0.0",
+    "rollup-plugin-postcss": "^4.0.0",
     "ts-import-plugin": "1.6.1",
     "ts-jest": "^27.1.2",
     "ts-node": "^10.7.0",
     "typescript": "^4.1.5",
-    "vue": "^2.6.0",
+    "vue": "^2.6.10",
     "vue-demi": "*",
     "vuepress": "^1.8.2",
     "vuepress-plugin-typescript": "^0.3.1"
   },
   "resolutions": {
-    "vue": "~2.6.14",
+    "vue": "~2.6.x",
+    "vue-template-compiler": "~2.6.x",
     "magic-string": "~0.25.x",
     "postcss": "^8.x",
-    "typescript": "4.4.4",
-    "core-js": "^3.x"
+    "typescript": "~4.7.x"
   },
   "repository": {
     "type": "git",
@@ -95,16 +97,6 @@
     "ghooks": {
       "pre-commit": "lint-staged",
       "commit-msg": "commitlint --edit"
-    }
-  },
-  "dependencies": {},
-  "peerDependencies": {
-    "@vue/composition-api": "^1.0.0-beta.1",
-    "vue": "^2.6.0 || >=3.0.0-rc.0"
-  },
-  "peerDependenciesMeta": {
-    "@vue/composition-api": {
-      "optional": true
     }
   }
 }

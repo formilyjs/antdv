@@ -79,6 +79,7 @@ export const Upload: ISchema & { Dragger?: ISchema } = {
       'x-component-props': {
         defaultValue: 'text',
         optionType: 'button',
+        size: 'small',
       },
     },
     'auto-upload': {
@@ -100,6 +101,7 @@ export const Upload: ISchema & { Dragger?: ISchema } = {
     //   'x-component-props': {
     //     defaultValue: 'POST',
     //     optionType: 'button',
+    //     size: 'small',
     //   },
     // },
     // directory: {

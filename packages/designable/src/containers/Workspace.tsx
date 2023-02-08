@@ -9,7 +9,8 @@ export interface IWorkspaceProps {
   description?: string
 }
 
-export const Workspace = defineComponent<IWorkspaceProps>({
+export const Workspace = defineComponent({
+  name: 'DnWorkspace',
   props: {
     id: String,
     title: String,

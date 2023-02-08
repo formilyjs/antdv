@@ -1,9 +1,10 @@
+import { defineComponent } from 'vue-demi'
 import { Button } from 'ant-design-vue'
 import { observer } from '@formily/reactive-vue'
-import { defineComponent } from 'vue-demi'
-import cls from 'classnames'
 import { IconWidget } from '../IconWidget'
 import { usePrefix, useWorkbench } from '../../hooks'
+
+import type { PropType } from 'vue-demi'
 import type { WorkbenchTypes } from '@designable/core'
 
 export interface IViewToolsWidget {
@@ -11,15 +12,19 @@ export interface IViewToolsWidget {
 }
 
 const VireToolsWidgetComponent = defineComponent({
+  name: 'DnVireToolsWidget',
   props: {
-    use: { type: Array, default: () => ['DESIGNABLE', 'JSONTREE', 'PREVIEW'] },
+    use: {
+      type: Array as PropType<WorkbenchTypes[]>,
+      default: () => ['DESIGNABLE', 'JSONTREE', 'PREVIEW'],
+    },
   },
   setup(props) {
     const workbenchRef = useWorkbench()
     const prefixRef = usePrefix('view-tools')
 
     return () => (
-      <Button.Group class={cls(prefixRef.value)}>
+      <Button.Group class={prefixRef.value}>
         {props.use.includes('DESIGNABLE') && (
           <Button
             disabled={workbenchRef.value?.type === 'DESIGNABLE'}

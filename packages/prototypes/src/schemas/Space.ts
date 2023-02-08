@@ -21,6 +21,7 @@ export const Space: ISchema = {
       'x-component-props': {
         defaultValue: 'horizontal',
         optionType: 'button',
+        size: 'small',
       },
     },
     size: {

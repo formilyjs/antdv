@@ -12,6 +12,7 @@ export interface INodePathWidgetProps {
 }
 
 export const NodePathWidget = defineComponent({
+  name: 'DnNodePathWidget',
   props: ['workspaceId', 'maxItems'],
   setup(props) {
     const selectedRef = useCurrentNode(props.workspaceId)
@@ -33,11 +34,7 @@ export const NodePathWidget = defineComponent({
             return (
               <Breadcrumb.Item key={key}>
                 {key === 0 && (
-                  <IconWidget
-                    infer="Position"
-                    // @ts-ignore
-                    style={{ marginRight: '3px' }}
-                  />
+                  <IconWidget style={{ marginRight: '3px' }} infer="Position" />
                 )}
                 <a
                   href=""

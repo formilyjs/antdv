@@ -22,7 +22,7 @@ export const FormGrid = composeExport(
 
       return () => {
         if (nodeRef.value.children.length === 0)
-          return <DroppableWidget {...attrs} />
+          return <DroppableWidget attrs={attrs} />
         const totalColumns = nodeRef.value.children.reduce(
           (buf, child) =>
             buf + (child.props?.['x-component-props']?.gridSpan ?? 1),

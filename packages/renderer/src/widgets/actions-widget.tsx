@@ -1,11 +1,11 @@
 import { defineComponent, ref } from 'vue-demi'
+import { Space, Radio, Button, Icon } from 'ant-design-vue'
 import { GlobalRegistry } from '@designable/core'
-import { useDesigner, useTree } from '@formily/antdv-designable'
-import { Radio, Button } from 'ant-design-vue'
+import { useDesigner, useEffect, TextWidget } from '@formily/antdv-designable'
 import { loadInitialSchema, saveSchema } from '../service'
 
 function useI18n() {
-  const language = ref(
+  const language = ref<string>(
     String.prototype.toLocaleLowerCase.call(
       GlobalRegistry.getDesignerLanguage()
     )
@@ -20,31 +20,44 @@ function useI18n() {
 export default defineComponent({
   setup() {
     const designerRef = useDesigner()
-    // TODO::tree node has reaction problems
-    useTree()
-    loadInitialSchema(designerRef.value)
+    useEffect(() => {
+      loadInitialSchema(designerRef.value)
+    }, [])
 
-    function handleSaveSchema() {
-      saveSchema(designerRef.value)
-    }
     const { language, handleChangeLanguage } = useI18n()
+    const supportLocales = ['zh-cn', 'en-us', 'ko-kr']
+    useEffect(() => {
+      if (!supportLocales.includes(language.value)) {
+        GlobalRegistry.setDesignerLanguage('zh-cn')
+      }
+    }, [])
+
     return () => (
-      <div
-        style={{
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-        }}
-      >
-        <Radio.Group value={language.value} onChange={handleChangeLanguage}>
-          <Radio.Button label="en-us">English</Radio.Button>
-          <Radio.Button label="zh-cn">简体中文</Radio.Button>
+      <Space style={{ marginRight: '10px' }}>
+        <Radio.Group
+          value={language.value}
+          // TODO: emit('input') 也会触发这里的 onChange
+          onChange={(e) => e.target && handleChangeLanguage(e.target.value)}
+        >
+          <Radio.Button value="en-us">English</Radio.Button>
+          <Radio.Button value="zh-cn">简体中文</Radio.Button>
         </Radio.Group>
-        <Button style={{ marginLeft: '10px' }} onClick={handleSaveSchema}>
-          保存
+        <Button
+          type="primary"
+          ghost
+          href="https://github.com/formilyjs/antdv"
+          target="_blank"
+        >
+          <Icon type="github" />
+          Github
         </Button>
-        <Button onClick={handleSaveSchema}>发布</Button>
-      </div>
+        <Button onClick={() => saveSchema(designerRef.value)}>
+          <TextWidget>Save</TextWidget>
+        </Button>
+        <Button type="primary" onClick={() => saveSchema(designerRef.value)}>
+          <TextWidget>Publish</TextWidget>
+        </Button>
+      </Space>
     )
   },
 })

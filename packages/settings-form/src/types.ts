@@ -4,7 +4,7 @@ import type { Upload as UploadProps } from 'ant-design-vue/types/upload'
 
 export interface ISettingFormProps {
   uploadAction?: string | ((file: File) => Promise<string>)
-  headers: Record<string, any>
+  headers?: Record<string, any>
   uploadProps?: Pick<
     UploadProps,
     | 'accept'

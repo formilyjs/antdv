@@ -1,6 +1,6 @@
 import { usePrefix, IconWidget } from '@formily/antdv-designable'
 import { observer } from '@formily/reactive-vue'
-import { useField, Field, FragmentComponent } from '@formily/vue'
+import { useField, Field } from '@formily/vue'
 import { Radio, InputNumber } from '@formily/antdv'
 import cls from 'classnames'
 import { defineComponent, unref } from 'vue-demi'

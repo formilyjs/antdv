@@ -1,10 +1,9 @@
-import { observer } from '@formily/reactive-vue'
-import { CursorStatus, ClosestPosition } from '@designable/core'
-import cls from 'classnames'
 import { defineComponent } from 'vue-demi'
+import { CursorStatus, ClosestPosition } from '@designable/core'
+import { isNum } from '@designable/shared'
+import { observer } from '@formily/reactive-vue'
 import { FragmentComponent as Fragment } from '@formily/vue'
 import { composeExport } from '@formily/antdv/esm/__builtins__'
-import { isNum } from '@designable/shared'
 import {
   useViewport,
   useDragon,
@@ -13,13 +12,16 @@ import {
   usePrefix,
 } from '../../hooks'
 
-// interface ICoverRectProps {
-//   node: TreeNode
-//   dragging?: boolean
-//   dropping?: boolean
-// }
+import type { TreeNode } from '@designable/core'
+
+export interface ICoverRectProps {
+  node: TreeNode
+  dragging?: boolean
+  dropping?: boolean
+}
 
 const CoverRect = defineComponent({
+  name: 'DnCoverRect',
   props: ['dragging', 'dropping', 'node'],
   setup(props) {
     const prefixRef = usePrefix('aux-cover-rect')
@@ -45,10 +47,13 @@ const CoverRect = defineComponent({
       }
       return (
         <div
-          class={cls(prefixRef.value, {
-            dragging: props.dragging,
-            dropping: props.dropping,
-          })}
+          class={[
+            prefixRef.value,
+            {
+              dragging: props.dragging,
+              dropping: props.dropping,
+            },
+          ]}
           style={createCoverStyle()}
         ></div>
       )
@@ -58,6 +63,7 @@ const CoverRect = defineComponent({
 
 const CoverComponent = observer(
   defineComponent({
+    name: 'DnCover',
     setup() {
       const viewportDragonRef = useDragon()
       const viewportRef = useViewport()

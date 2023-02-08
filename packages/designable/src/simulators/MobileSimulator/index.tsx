@@ -1,4 +1,3 @@
-import cls from 'classnames'
 import { defineComponent } from 'vue-demi'
 import { usePrefix } from '../../hooks'
 import { MobileBody } from './body'
@@ -11,12 +10,13 @@ import './styles.less'
 // }
 
 export const MobileSimulator = defineComponent({
+  name: 'DnMobileSimulator',
   props: [],
   setup(props, { attrs, slots }) {
     const prefixRef = usePrefix('mobile-simulator')
     return () => {
       return (
-        <div attrs={attrs} class={cls(prefixRef.value)}>
+        <div attrs={attrs} class={prefixRef.value}>
           <div class={prefixRef.value + '-content'}>
             <MobileBody>{slots.default?.()}</MobileBody>
           </div>

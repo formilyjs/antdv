@@ -6,6 +6,7 @@ import { FragmentComponent as Fragment } from '@formily/vue'
 import type { IDesignerMiniLocales } from '@designable/core'
 
 const TextWidgetComponent = defineComponent({
+  name: 'DnTextWidget',
   props: {
     componentName: String,
     sourceName: String,

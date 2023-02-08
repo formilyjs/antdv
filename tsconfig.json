@@ -16,7 +16,10 @@
     "downlevelIteration": true,
     "baseUrl": ".",
     "paths": {
-      "@formily/*": ["packages/*/src"]
+      "@formily/antdv": ["packages/components/src"],
+      "@formily/antdv/esm/*": ["packages/components/src/*"],
+      "@formily/antdv/lib/*": ["packages/components/src/*"],
+      "@formily/antdv-*": ["packages/*/src"]
     }
   }
 }

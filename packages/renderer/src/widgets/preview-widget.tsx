@@ -23,10 +23,10 @@ export default defineComponent({
     const treeSchema = computed(() => transformToSchema(props.tree))
 
     return () => {
-      const { form: formProps, schema } = treeSchema.value
+      const { form: { style, ...formProps } = {}, schema } = treeSchema.value
       return (
         <div style={{ height: '100%', width: '100%', overflowY: 'auto' }}>
-          <Form props={{ ...formProps, form: form }}>
+          <Form form={form} style={style} attrs={formProps}>
             <SchemaFields.SchemaField schema={schema} />
           </Form>
         </div>

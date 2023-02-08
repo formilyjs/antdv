@@ -1,8 +1,9 @@
 import { defineComponent, unref } from 'vue-demi'
-import { useField, createSchemaField, FragmentComponent } from '@formily/vue'
-import { observer } from '@formily/reactive-vue'
+import { Select as ASelect } from 'ant-design-vue'
 import { GlobalRegistry } from '@designable/core'
-import { createForm } from '@formily/vue'
+import { onFormInputChange } from '@formily/core'
+import { useField, createForm, createSchemaField } from '@formily/vue'
+import { observer } from '@formily/reactive-vue'
 import {
   ArrayItems,
   FormItem,
@@ -13,12 +14,15 @@ import {
   Form,
   InputNumber,
 } from '@formily/antdv'
-import { FoldItem } from '@formily/antdv-settings-form'
-import { DrawerSetter, ValueInput } from '@formily/antdv-settings-form'
-import { Select as ASelect } from 'ant-design-vue'
-import { onFormInputChange } from '@formily/core'
+import {
+  FoldItem,
+  DrawerSetter,
+  ValueInput,
+} from '@formily/antdv-settings-form'
+
 import type { ArrayField } from '@formily/core'
 import type { ISchema } from '@formily/json-schema'
+
 export interface IValidatorSetterProps {
   value?: any
   onChange?: (value: any) => void

@@ -16,7 +16,7 @@ export interface IWorkspaceItemProps {
 
 const WorkspacePanelComponent = defineComponent({
   name: 'DnWorkspacePanel',
-  setup(props, { slots }) {
+  setup(_props, { slots }) {
     const prefix = usePrefix('workspace-panel')
     return () => <div class={prefix.value}>{slots.default?.()}</div>
   },
@@ -25,7 +25,7 @@ const WorkspacePanelComponent = defineComponent({
 const WorkspacePanelItem = defineComponent({
   name: 'DnWorkspacePanelItem',
   props: ['flexable'],
-  setup(props: IWorkspaceItemProps, { slots }) {
+  setup(props, { slots }) {
     const prefix = usePrefix('workspace-panel-item')
     return () => {
       const style = useStyle()
@@ -48,18 +48,3 @@ const WorkspacePanelItem = defineComponent({
 export const WorkspacePanel = composeExport(WorkspacePanelComponent, {
   Item: WorkspacePanelItem,
 })
-// WorkspacePanel.Item = (props) => {
-//   const prefix = usePrefix('workspace-panel-item')
-//   return (
-//     <div
-//       className={prefix}
-//       style={{
-//         ...props.style,
-//         flexGrow: props.flexable ? 1 : 0,
-//         flexShrink: props.flexable ? 1 : 0,
-//       }}
-//     >
-//       {props.children}
-//     </div>
-//   )
-// }

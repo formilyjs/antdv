@@ -1,7 +1,3 @@
-import { isValid } from '@designable/shared'
-import cls from 'classnames'
-import { composeExport } from '@formily/antdv/esm/__builtins__'
-import { FragmentComponent } from '@formily/vue'
 import {
   defineComponent,
   getCurrentInstance,
@@ -9,8 +5,12 @@ import {
   unref,
   watch,
 } from 'vue-demi'
+import { isValid } from '@designable/shared'
+import { FragmentComponent } from '@formily/vue'
+import { composeExport } from '@formily/antdv/esm/__builtins__'
 import { usePrefix } from '../hooks'
 import { IconWidget, TextWidget } from '../widgets'
+
 import type { VNode } from 'vue-demi'
 
 export interface ICompositePanelProps {
@@ -22,6 +22,7 @@ export interface ICompositePanelProps {
   activeKey?: number | string
   onChange?: (activeKey: number | string) => void
 }
+
 export interface ICompositePanelItemProps {
   shape?: 'tab' | 'button' | 'link'
   title?: VNode
@@ -58,7 +59,8 @@ const getDefaultKey = (children: VNode[]) => {
   return items?.[0]?.key
 }
 
-export const CompositePanelComponent = defineComponent<ICompositePanelProps>({
+export const CompositePanelComponent = defineComponent({
+  name: 'DnCompositePanel',
   props: {
     activeKey: [Number, String],
     defaultActiveKey: Number,
@@ -102,9 +104,12 @@ export const CompositePanelComponent = defineComponent<ICompositePanelProps>({
 
       return (
         <div
-          class={cls(prefix + '-tabs-content', {
-            pinning: unref(pinning),
-          })}
+          class={[
+            prefix + '-tabs-content',
+            {
+              pinning: pinning.value,
+            },
+          ]}
         >
           <div class={prefix + '-tabs-header'}>
             <div class={prefix + '-tabs-header-title'}>
@@ -116,7 +121,6 @@ export const CompositePanelComponent = defineComponent<ICompositePanelProps>({
               </div>
               {!pinning.value && (
                 <IconWidget
-                  key={prefix + '-tabs-header-pin'}
                   class={prefix + '-tabs-header-pin'}
                   infer="PushPinOutlined"
                   onClick={() => {
@@ -126,7 +130,6 @@ export const CompositePanelComponent = defineComponent<ICompositePanelProps>({
               )}
               {pinning.value && (
                 <IconWidget
-                  key={prefix + '-tabs-header-pin-filled'}
                   class={prefix + '-tabs-header-pin-filled'}
                   infer="PushPinFilled"
                   onClick={() => {
@@ -152,9 +155,12 @@ export const CompositePanelComponent = defineComponent<ICompositePanelProps>({
       const prefix = unref(prefixRef)
       return (
         <div
-          class={cls(prefix, {
-            [`direction-${props.direction}`]: !!props.direction,
-          })}
+          class={[
+            prefix,
+            {
+              [`direction-${props.direction}`]: !!props.direction,
+            },
+          ]}
         >
           <div class={prefix + '-tabs'}>
             {items.map((item, index) => {
@@ -182,9 +188,12 @@ export const CompositePanelComponent = defineComponent<ICompositePanelProps>({
               return (
                 <Comp
                   attrs={{ key: index, href: item.href }}
-                  class={cls(prefix + '-tabs-pane', {
-                    active: unref(activeKey) === item.key,
-                  })}
+                  class={[
+                    prefix + '-tabs-pane',
+                    {
+                      active: unref(activeKey) === item.key,
+                    },
+                  ]}
                   onClick={(e: MouseEvent) => {
                     if (shape === 'tab') {
                       if (unref(activeKey) === item.key) {
@@ -227,6 +236,7 @@ export const CompositePanelComponent = defineComponent<ICompositePanelProps>({
     extra?: VNode
  */
 const Item = defineComponent({
+  name: 'DnCompositePanelItem',
   // key is reserved
   props: ['shape', 'title', 'icon', 'href', 'extra', 'onClick'],
   setup() {

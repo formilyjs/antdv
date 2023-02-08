@@ -1,10 +1,8 @@
 {
   "extends": "./tsconfig.json",
   "compilerOptions": {
+    "baseUrl": "./src",
     "outDir": "./lib",
-    "paths": {
-      "@formily/*": ["packages/*"]
-    },
     // Ensure that .d.ts files are created by tsc, but not .js files
     "declaration": true,
     "emitDeclarationOnly": true,

@@ -143,11 +143,11 @@ const toDesignableFieldProps = (
 const FieldComponent = observer(
   defineComponent({
     name: 'DnField',
-    setup(props: ISchema, { slots, attrs }) {
+    setup(_props, { attrs, slots }) {
       const designerRef = useDesigner()
       const componentsRef = useComponents()
       const nodeRef = useTreeNode()
-      props = attrs as ISchema
+      const props = attrs as ISchema
       return () => {
         if (!nodeRef.value) return null
         const fieldProps = toDesignableFieldProps(

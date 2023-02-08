@@ -1,16 +1,16 @@
-import { usePrefix } from '@formily/antdv-designable'
+import { defineComponent, unref } from 'vue-demi'
 import { camelCase } from '@formily/shared'
 import { observable } from '@formily/reactive'
 import { useField, Field } from '@formily/vue'
 import { observer } from '@formily/reactive-vue'
-import cls from 'classnames'
-import { defineComponent, unref } from 'vue-demi'
+import { usePrefix } from '@formily/antdv-designable'
 import { FoldItem } from '../FoldItem'
 import { ColorInput } from '../ColorInput'
 import { SizeInput } from '../SizeInput'
 import { PositionInput } from '../PositionInput'
-import './styles.less'
 import { Select } from '../FontStyleSetter/select'
+import './styles.less'
+
 import type { Field as FieldType } from '@formily/core'
 
 const Positions = ['center', 'top', 'right', 'bottom', 'left']
@@ -98,7 +98,7 @@ export const BorderStyleSetter: Vue.Component<
             label={field.title}
             scopedSlots={{
               extra: () => (
-                <div class={cls(prefix)}>
+                <div class={prefix}>
                   <div class={prefix + '-position'}>
                     <PositionInput
                       value={currentPosition.value}

@@ -9,7 +9,8 @@ export const usePrefixCls = (
 ) => {
   const configProvider = inject<ConfigProviderProps>(
     'configProvider',
-    () => ConfigConsumerProps
+    () => ConfigConsumerProps,
+    true
   )
   return configProvider.getPrefixCls(suffixCls, customizePrefixCls)
 }

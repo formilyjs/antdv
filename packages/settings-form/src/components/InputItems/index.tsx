@@ -1,7 +1,6 @@
-import cls from 'classnames'
+import { defineComponent, computed, provide } from 'vue-demi'
 import { usePrefix, IconWidget, useContext } from '@formily/antdv-designable'
 import { composeExport } from '@formily/antdv/esm/__builtins__'
-import { defineComponent, computed, provide } from 'vue-demi'
 import './styles.less'
 
 import type { InjectionKey, Ref } from 'vue-demi'
@@ -11,21 +10,21 @@ export interface IInputItemsContext {
   vertical?: boolean
 }
 
-// export interface IInputItemsProps {
-//   className?: string
-//   style?: React.CSSProperties
-//   width?: string | number
-//   vertical?: boolean
-// }
+export interface IInputItemsProps {
+  // className?: string
+  // style?: React.CSSProperties
+  width?: string | number
+  vertical?: boolean
+}
 
-// export interface IInputItemProps {
-//   className?: string
-//   style?: React.CSSProperties
-//   icon?: React.ReactNode
-//   width?: string | number
-//   vertical?: boolean
-//   title?: React.ReactNode
-// }
+export interface IInputItemProps {
+  // className?: string
+  // style?: React.CSSProperties
+  width?: string | number
+  vertical?: boolean
+  title?: any
+  icon?: any
+}
 
 const InputItemsSymbol: InjectionKey<Ref<IInputItemsContext>> =
   Symbol('IInputItemsContext')
@@ -42,7 +41,7 @@ const InputItemsBase = defineComponent({
       computed(() => props)
     )
     return () => {
-      return <div class={cls(prefixRef.value)}>{slots.default?.()}</div>
+      return <div class={prefixRef.value}>{slots.default?.()}</div>
     }
   },
 })
@@ -62,14 +61,17 @@ const InputItemsItem = defineComponent({
       const ctx = ctxRef.value
       return (
         <div
-          class={cls(prefixRef.value, {
-            vertical: props.vertical || ctx.vertical,
-          })}
+          class={[
+            prefixRef.value,
+            {
+              vertical: props.vertical || ctx.vertical,
+            },
+          ]}
           style={{ width: props.width || ctx.width }}
         >
           {props.icon && (
             <div class={prefix + '-icon'}>
-              <IconWidget infer={props.icon} size={16} />
+              <IconWidget infer={props.icon as any} size={16} />
             </div>
           )}
           {props.title && <div class={prefix + '-title'}>{props.title}</div>}

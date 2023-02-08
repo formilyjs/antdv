@@ -58,8 +58,9 @@ export interface IInsertionProps {
 //   return <div className={prefix} style={createInsertionStyle()}></div>
 // })
 const InsertionComponent = defineComponent({
+  name: 'DnInsertion',
   props: ['workspaceId'],
-  setup(props: IInsertionProps) {
+  setup(props) {
     const outlineDragonRef = useOutlineDragon(props.workspaceId)
     const prefixRef = usePrefix('outline-tree-insertion')
     return () => {

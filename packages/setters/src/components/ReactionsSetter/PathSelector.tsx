@@ -112,11 +112,11 @@ export const PathSelector = defineComponent({
     return () => {
       return (
         <TreeSelect
-          {...attrs}
-          onChange={(arg) => emit('change', arg)}
+          attrs={attrs}
           value={props.value}
           default-expand-all
           treeData={dataSource}
+          onChange={(arg) => emit('change', arg)}
         />
       )
     }

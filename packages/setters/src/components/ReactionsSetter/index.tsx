@@ -46,7 +46,7 @@ const TypeView = defineComponent({
         <Tag effect="plain" type="info">
           <Tooltip
             scopedSlots={{
-              title: (
+              title: () => (
                 <div style={{ fontSize: 12 }}>
                   <code>
                     <pre

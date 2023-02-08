@@ -6,20 +6,19 @@ import { toJS } from '@formily/reactive'
 import { FormProvider, h, Fragment } from '@formily/vue'
 import { observer } from '@formily/reactive-vue'
 import { isNum, isStr, isBool, isFn, applyMiddleware } from '@formily/shared'
-import { usePrefixCls } from '../__builtins__'
-
-import type { Component, VNode } from 'vue'
-import type { Form, IFormProps } from '@formily/core'
-import type { IMiddleware } from '@formily/shared'
-import type { Modal as ModalProps } from 'ant-design-vue/types/modal'
-
 import {
   isValidElement,
   resolveComponent,
   createPortalProvider,
   getProtalContext,
   loading,
-} from '../__builtins__/shared'
+  usePrefixCls,
+} from '../__builtins__'
+
+import type { Component, VNode } from 'vue'
+import type { Form, IFormProps } from '@formily/core'
+import type { IMiddleware } from '@formily/shared'
+import type { Modal as ModalProps } from 'ant-design-vue/types/modal'
 
 const PORTAL_TARGET_NAME = 'FormDialogFooter'
 

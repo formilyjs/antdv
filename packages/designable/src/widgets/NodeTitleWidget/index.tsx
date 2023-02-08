@@ -1,6 +1,12 @@
+import { defineComponent } from 'vue-demi'
 import { observer } from '@formily/reactive-vue'
 import { FragmentComponent as Fragment } from '@formily/vue'
-import { defineComponent } from 'vue-demi'
+
+import type { TreeNode } from '@designable/core'
+
+export interface INodeTitleWidgetProps {
+  node: TreeNode
+}
 
 const NodeTitleWidgetComponent = defineComponent({
   name: 'DnNodeTitleWidget',

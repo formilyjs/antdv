@@ -26,7 +26,7 @@ export const Form = defineComponent({
     'onAutoSubmit',
     'onAutoSubmitFailed',
   ],
-  setup(props: FormProps, { attrs, slots, listeners }) {
+  setup(props, { attrs, slots, listeners }) {
     const top = useForm()
 
     return () => {

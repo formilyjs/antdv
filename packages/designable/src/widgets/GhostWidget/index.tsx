@@ -1,13 +1,14 @@
-import { useCursor, usePrefix, useDesigner } from '../../hooks'
+import { defineComponent, ref, unref, onBeforeUnmount } from 'vue-demi'
 import { CursorStatus } from '@designable/core'
 import { autorun, observe } from '@formily/reactive'
 import { observer } from '@formily/reactive-vue'
+import { composeExport } from '@formily/antdv/esm/__builtins__'
+import { useCursor, usePrefix, useDesigner } from '../../hooks'
 import { NodeTitleWidget } from '../NodeTitleWidget'
 import './styles.less'
-import { composeExport } from '@formily/antdv/esm/__builtins__'
-import { defineComponent, ref, unref, onBeforeUnmount } from 'vue-demi'
 
 const GhostWidgetComponent = defineComponent({
+  name: 'DnGhostWidget',
   setup() {
     const designerRef = useDesigner()
     const cursorRef = useCursor()

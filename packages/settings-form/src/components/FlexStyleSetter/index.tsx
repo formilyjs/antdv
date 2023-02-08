@@ -1,4 +1,3 @@
-import cls from 'classnames'
 import { defineComponent, unref } from 'vue-demi'
 import { Field, useField } from '@formily/vue'
 import { observer } from '@formily/reactive-vue'
@@ -18,7 +17,7 @@ export const FlexStyleSetter = observer(
         const field = unref(fieldRef)
         const prefix = unref(prefixRef)
         return (
-          <div class={cls(prefix)}>
+          <div class={prefix}>
             <InputItems vertical>
               <Field
                 name="flexDirection"

@@ -1,12 +1,12 @@
+import { defineComponent, unref } from 'vue-demi'
 import { FormItem } from '@formily/antdv'
 import { useField, FragmentComponent } from '@formily/vue'
 import { observer } from '@formily/reactive-vue'
 import { observable } from '@formily/reactive'
-import { IconWidget, usePrefix } from '@formily/antdv-designable'
-import cls from 'classnames'
-import './styles.less'
-import { defineComponent, unref } from 'vue-demi'
 import { composeExport } from '@formily/antdv/esm/__builtins__'
+import { IconWidget, usePrefix } from '@formily/antdv-designable'
+import './styles.less'
+
 import type { PropType } from 'vue-demi'
 
 const ExpandedMap = new Map<string, boolean>()
@@ -20,7 +20,7 @@ const FoldItemComponent = observer(
     name: 'DnFoldItem',
     props: ['label'],
     slots: ['base', 'extra'],
-    setup(props: FoldItemProps, { attrs, slots }) {
+    setup(props, { attrs, slots }) {
       const fieldRef = useField()
       const expand = observable.ref(
         ExpandedMap.get(fieldRef.value.address.toString())
@@ -31,7 +31,7 @@ const FoldItemComponent = observer(
         const field = unref(fieldRef)
 
         return (
-          <div class={cls(prefixRef.value)}>
+          <div class={prefixRef.value}>
             <div
               class={prefixRef.value + '-base'}
               onClick={() => {
@@ -40,17 +40,22 @@ const FoldItemComponent = observer(
               }}
             >
               <FormItem.BaseItem
-                {...attrs}
-                label={
-                  <span
-                    class={cls(prefixRef.value + '-title', {
-                      expand: expand.value,
-                    })}
-                  >
-                    {slots.extra && <IconWidget infer="Expand" size={10} />}
-                    {props.label}
-                  </span>
-                }
+                attrs={{
+                  ...attrs,
+                  label: (
+                    <span
+                      class={[
+                        prefixRef.value + '-title',
+                        {
+                          expand: expand.value,
+                        },
+                      ]}
+                    >
+                      {slots.extra && <IconWidget infer="Expand" size={10} />}
+                      {props.label}
+                    </span>
+                  ),
+                }}
               >
                 <div
                   style={{ width: '100%' }}

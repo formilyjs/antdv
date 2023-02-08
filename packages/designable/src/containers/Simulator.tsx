@@ -11,6 +11,7 @@ import {
 export type ISimulatorProps = HTMLDivElement & any
 
 const SimulatorComponent = defineComponent({
+  name: 'DnSimulator',
   setup(props, { attrs, slots }) {
     const screenRef = useScreen()
     return () => {

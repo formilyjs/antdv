@@ -1,4 +1,4 @@
-import { defineComponent, getCurrentInstance, onMounted } from 'vue-demi'
+import { defineComponent } from 'vue-demi'
 import { Table, Row } from 'ant-design-vue'
 import { observer } from '@formily/reactive-vue'
 import { TreeNode, createBehavior, createResource } from '@designable/core'

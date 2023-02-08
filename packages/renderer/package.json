@@ -8,9 +8,9 @@
     "npm": ">=3.0.0"
   },
   "module": "esm",
-  "umd:main": "dist/formily.element-renderer.umd.production.js",
-  "unpkg": "dist/formily.element-renderer.umd.production.js",
-  "jsdelivr": "dist/formily.element-renderer.umd.production.js",
+  "umd:main": "dist/formily.antdv-renderer.umd.production.js",
+  "unpkg": "dist/formily.antdv-renderer.umd.production.js",
+  "jsdelivr": "dist/formily.antdv-renderer.umd.production.js",
   "jsnext:main": "esm",
   "sideEffects": [
     "dist/*",
@@ -23,8 +23,7 @@
   ],
   "scripts": {
     "serve": "webpack-dev-server --config src/config/webpack.dev.ts",
-    "build": "ts-node ../../scripts/build.ts",
-    "build:doc": "webpack --config src/config/webpack.prod.ts"
+    "build": "webpack --config src/config/webpack.prod.ts"
   },
   "repository": {
     "type": "git",
@@ -42,21 +41,26 @@
     "vue-demi": "*"
   },
   "dependencies": {
-    "core-js": "^3.19.2",
-    "regenerator-runtime": "^0.13.9"
+    "core-js": "^3.23.3",
+    "lodash-es": "^4.17.21",
+    "regenerator-runtime": "^0.13.9",
+    "vue-codemirror": "^4.0.6"
   },
   "devDependencies": {
     "@designable/core": "^1.0.0-beta.45",
     "@designable/formily-transformer": "^1.0.0-beta.45",
     "@designable/shared": "1.0.0-beta.45",
     "@formily/antdv": "^1.0.0-alpha.8",
+    "@formily/antdv-designable": "^1.0.0-alpha.0",
+    "@formily/antdv-prototypes": "^1.0.0-alpha.0",
     "@formily/antdv-setters": "^1.0.0-alpha.0",
+    "@formily/antdv-settings-form": "^1.0.0-alpha.0",
     "@formily/reactive": "^2.0.0",
     "@formily/reactive-vue": "^2.0.0",
     "@formily/shared": "^2.0.0",
     "@formily/vue": "^2.0.0",
     "babel-loader": "^8.2.3",
-    "vue-codemirror": "^4.0.6",
+    "html-webpack-plugin": "^3.2.0",
     "webpack-cli": "3.3.10"
   }
 }

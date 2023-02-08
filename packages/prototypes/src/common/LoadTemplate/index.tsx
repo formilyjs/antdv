@@ -19,11 +19,11 @@ export interface ILoadTemplateProps {
 export const LoadTemplate = defineComponent({
   emits: ['click'],
   props: { actions: Array },
-  setup(props: ILoadTemplateProps, { emit }) {
+  setup(props) {
     return () => {
       return (
         <NodeActionsWidget>
-          {props.actions?.map((action, key) => {
+          {props.actions?.map((action: ITemplateAction, key) => {
             return (
               <NodeActionsWidget.Action
                 key={key}

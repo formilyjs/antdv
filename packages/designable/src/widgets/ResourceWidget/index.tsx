@@ -1,13 +1,13 @@
+import { defineComponent, ref, unref } from 'vue-demi'
 import { isResourceHost, isResourceList } from '@designable/core'
 import { isFn } from '@designable/shared'
 import { observer } from '@formily/reactive-vue'
-import cls from 'classnames'
-import { defineComponent, ref, unref } from 'vue-demi'
 import { usePrefix } from '../../hooks'
 import { IconWidget } from '../IconWidget'
 import { TextWidget } from '../TextWidget'
-import type { IResourceLike, IResource } from '@designable/core'
 import './styles.less'
+
+import type { IResourceLike, IResource } from '@designable/core'
 
 export interface IResourceWidgetProps {
   title: string
@@ -17,12 +17,13 @@ export interface IResourceWidgetProps {
 
 export const ResourceWidget = observer(
   defineComponent({
+    name: 'DnResourceWidget',
     props: {
       defaultExpand: { type: Boolean, default: true },
       sources: { type: Array, default: () => [] },
       title: String,
     },
-    setup(props: IResourceWidgetProps, { slots }) {
+    setup(props, { slots }) {
       const prefixRef = usePrefix('resource')
       const expand = ref(props.defaultExpand)
 
@@ -70,9 +71,12 @@ export const ResourceWidget = observer(
         const prefix = unref(prefixRef)
         return (
           <div
-            class={cls(prefix, {
-              expand: expand.value,
-            })}
+            class={[
+              prefix,
+              {
+                expand: expand.value,
+              },
+            ]}
           >
             <div
               class={prefix + '-header'}

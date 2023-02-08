@@ -1,14 +1,13 @@
-// import { Space, Typography, Divider, TypographyProps } from 'antd'
+import { defineComponent } from 'vue-demi'
+import { Button } from 'ant-design-vue'
 import { observer } from '@formily/reactive-vue'
 import { Space } from '@formily/antdv'
-import { Button } from 'ant-design-vue'
-import cls from 'classnames'
 import { composeExport } from '@formily/antdv/esm/__builtins__'
-import { defineComponent } from 'vue-demi'
 import { usePrefix, useTreeNode, useSelected } from '../../hooks'
 import { IconWidget } from '../IconWidget'
 import { TextWidget } from '../TextWidget'
 import './styles.less'
+
 import type { VNode } from 'vue-demi'
 
 export interface INodeActionsWidgetProps {
@@ -21,7 +20,8 @@ export interface INodeActionsWidgetActionProps {
 }
 
 const NodeActionsWidgetComponent = observer(
-  defineComponent<INodeActionsWidgetProps>({
+  defineComponent({
+    name: 'DnNodeActionsWidget',
     props: ['activeShown'],
     setup(props, { slots }) {
       const nodeRef = useTreeNode()
@@ -34,7 +34,7 @@ const NodeActionsWidgetComponent = observer(
         )
           return null
         return (
-          <div class={cls(prefixRef.value)}>
+          <div class={prefixRef.value}>
             <div class={prefixRef.value + '-content'}>
               <Space
               // split="|"
@@ -50,6 +50,7 @@ const NodeActionsWidgetComponent = observer(
 )
 
 const ActionComponent = defineComponent({
+  name: 'DnAction',
   props: ['icon', 'title'],
   emits: ['click'],
   setup(props, { attrs, emit }) {
@@ -59,7 +60,7 @@ const ActionComponent = defineComponent({
         <Button
           attrs={attrs}
           type="text"
-          class={cls(prefixRef.value)}
+          class={prefixRef.value}
           data-click-stop-propagation="true"
           onClick={() => {
             emit('click')
@@ -74,6 +75,7 @@ const ActionComponent = defineComponent({
     }
   },
 })
+
 export const NodeActionsWidget = composeExport(NodeActionsWidgetComponent, {
   Action: ActionComponent,
 })

@@ -59,10 +59,12 @@ export const TextArea = createLocales(Input, {
   'en-US': {
     title: 'TextArea',
     settings: {
-      autoSize: {
-        title: 'Auto size',
-        tooltip:
-          'Height autosize feature, can be set to true|false or an object { minRows: 2, maxRows: 6 }',
+      'x-component-props': {
+        autoSize: {
+          title: 'Auto size',
+          tooltip:
+            'Height autosize feature, can be set to true|false or an object { minRows: 2, maxRows: 6 }',
+        },
       },
     },
   },

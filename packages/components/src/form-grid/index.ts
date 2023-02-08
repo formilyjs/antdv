@@ -51,8 +51,7 @@ export const useGridColumn = (gridSpan = 1) => {
 }
 
 const FormGridInner = observer(
-  // eslint-disable-next-line vue/one-component-per-file
-  defineComponent({
+  defineComponent<IFormGridProps>({
     name: 'FormGrid',
     props: {
       columnGap: {
@@ -94,7 +93,7 @@ const FormGridInner = observer(
         type: Object as PropType<Grid<HTMLElement>>,
       },
     },
-    setup(props: IFormGridProps) {
+    setup(props) {
       const layout = useFormLayout()
 
       const gridInstance = computed(() => {
@@ -154,8 +153,7 @@ const FormGridInner = observer(
 ) as any
 
 const FormGridColumn = observer(
-  // eslint-disable-next-line vue/one-component-per-file
-  defineComponent({
+  defineComponent<GridColumnProps>({
     name: 'FormGridColumn',
     props: {
       gridSpan: {
@@ -163,7 +161,7 @@ const FormGridColumn = observer(
         default: 1,
       },
     },
-    setup(props: GridColumnProps, { slots }) {
+    setup(props, { slots }) {
       return () => {
         return h(
           'div',

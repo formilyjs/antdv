@@ -1,10 +1,9 @@
 import { defineComponent, ref, onMounted } from 'vue-demi'
+import { Button } from 'ant-design-vue'
 import { observer } from '@formily/reactive-vue'
 import { useField, FragmentComponent } from '@formily/vue'
 import { FormLayout } from '@formily/antdv'
 import { IconWidget, usePrefix } from '@formily/antdv-designable'
-import { Button } from 'ant-design-vue'
-import cls from 'classnames'
 import './styles.less'
 
 export const DrawerSetter = observer(
@@ -15,7 +14,7 @@ export const DrawerSetter = observer(
       const visible = ref(false)
       const remove = ref(false)
       const root = ref<Element>()
-      const prefix = usePrefix('drawer-setter')
+      const prefixRef = usePrefix('drawer-setter')
       const formWrapperCls = usePrefix('settings-form-wrapper')
       onMounted(() => {
         const wrapper = document.querySelector('.' + formWrapperCls.value)
@@ -27,21 +26,21 @@ export const DrawerSetter = observer(
         if (root.value && visible.value) {
           return (
             <div
-              class={cls(
-                prefix.value,
+              class={[
+                prefixRef.value,
                 'animate__animated animate__slideInRight',
                 {
                   animate__slideOutRight: remove.value,
-                }
-              )}
+                },
+              ]}
             >
-              <div class={prefix.value + '-header'} onClick={handleClose}>
+              <div class={prefixRef.value + '-header'} onClick={handleClose}>
                 <IconWidget infer="Return" size={18} />
-                <span class={prefix.value + '-header-text'}>
+                <span class={prefixRef.value + '-header-text'}>
                   {props.text || field.value.title}
                 </span>
               </div>
-              <div class={prefix.value + '-body'}>
+              <div class={prefixRef.value + '-body'}>
                 <FormLayout
                   colon={false}
                   labelWidth={120}

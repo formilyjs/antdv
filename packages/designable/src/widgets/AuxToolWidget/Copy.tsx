@@ -5,6 +5,8 @@ import { composeExport } from '@formily/antdv/esm/__builtins__'
 import { useStyle } from '../../shared/util'
 import { IconWidget } from '../IconWidget'
 import { useOperation, usePrefix } from '../../hooks'
+
+import type { PropType } from 'vue-demi'
 import type { TreeNode } from '@designable/core'
 
 export interface ICopyProps {
@@ -12,8 +14,9 @@ export interface ICopyProps {
 }
 
 const CopyComponent = defineComponent({
-  props: ['node'],
-  setup(props: ICopyProps) {
+  name: 'DnCopy',
+  props: { node: { type: Object as PropType<TreeNode> } },
+  setup(props) {
     const operationRef = useOperation()
     const prefixRef = usePrefix('aux-copy')
     const style = useStyle()

@@ -1,4 +1,3 @@
-import cls from 'classnames'
 import { defineComponent, provide, ref, toRef } from 'vue-demi'
 import { GlobalRegistry } from '@designable/core'
 import { FragmentComponent as Fragment } from '@formily/vue'
@@ -8,7 +7,7 @@ import { useTree, usePrefix, useDesigner, useComponents } from '../../hooks'
 import { TreeNodeSymbol, DesignerComponentsSymbol } from '../../context'
 import './styles.less'
 
-// Types
+import type { PropType } from 'vue-demi'
 import type { TreeNode } from '@designable/core'
 import type { IDesignerComponents } from '../../types'
 
@@ -23,9 +22,9 @@ export interface ITreeNodeWidgetProps {
 export const TreeNodeWidgetComponent = defineComponent({
   name: 'DnTreeNodeWidget',
   props: {
-    node: Object,
+    node: Object as PropType<TreeNode>,
   },
-  setup(props: ITreeNodeWidgetProps) {
+  setup(props) {
     const designerRef = useDesigner(props.node?.designerProps?.effects)
     const componentsRef = useComponents()
 
@@ -84,20 +83,22 @@ export const ComponentTreeWidgetComponent = observer(
   defineComponent({
     name: 'DnComponentTreeWidget',
     props: { components: [Object] },
-    setup(props: IComponentTreeWidgetProps) {
+    setup(props) {
       const treeRef = useTree()
       const prefixRef = usePrefix('component-tree')
       const designerRef = useDesigner()
       const dataId = {}
 
-      GlobalRegistry.registerDesignerBehaviors(props.components)
+      GlobalRegistry.registerDesignerBehaviors(
+        props.components as IDesignerComponents
+      )
       provide(DesignerComponentsSymbol, ref(toRef(props, 'components')))
       if (designerRef.value && treeRef.value) {
         dataId[designerRef.value?.props?.nodeIdAttrName] = treeRef.value.id
       }
       return () => {
         return (
-          <div class={cls(prefixRef.value)} attrs={{ ...dataId }}>
+          <div class={prefixRef.value} attrs={{ ...dataId }}>
             <TreeNodeWidget node={treeRef.value} />
           </div>
         )

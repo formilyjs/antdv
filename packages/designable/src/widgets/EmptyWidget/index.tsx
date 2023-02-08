@@ -1,8 +1,8 @@
+import { defineComponent } from 'vue-demi'
 import { observer } from '@formily/reactive-vue'
 import { useTree, usePrefix } from '../../hooks'
 import { IconWidget } from '../IconWidget'
 import './styles.less'
-import { defineComponent } from 'vue-demi'
 
 export interface IEmptyWidgetProps {
   dragTipsDirection?: 'left' | 'right'
@@ -13,7 +13,7 @@ const EmptyWidgetComponent = defineComponent({
   props: {
     dragTipsDirection: { type: String, default: 'left' },
   },
-  setup(props: IEmptyWidgetProps, { slots }) {
+  setup(props, { slots }) {
     const treeRef = useTree()
     const prefixRef = usePrefix('empty')
 

@@ -1,12 +1,12 @@
-import { observer } from '@formily/reactive-vue'
+import { defineComponent } from 'vue-demi'
 import { CursorStatus, CursorType } from '@designable/core'
 import { calcRectByStartEndPoint, isNum } from '@designable/shared'
-import cls from 'classnames'
-import { defineComponent } from 'vue-demi'
+import { observer } from '@formily/reactive-vue'
 import { useCursor, useOperation, usePrefix, useViewport } from '../../hooks'
 
 export const FreeSelection = observer(
   defineComponent({
+    name: 'DnFreeSelection',
     props: [],
     setup() {
       const operationRef = useOperation()
@@ -57,10 +57,7 @@ export const FreeSelection = observer(
         )
           return null
         return (
-          <div
-            class={cls(prefixRef.value)}
-            style={createSelectionStyle()}
-          ></div>
+          <div class={prefixRef.value} style={createSelectionStyle()}></div>
         )
       }
     },

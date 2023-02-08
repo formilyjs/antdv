@@ -9,7 +9,7 @@ import {
 } from '@formily/antdv-designable'
 import { ArrayBase } from '@formily/antdv'
 import { observer } from '@formily/reactive-vue'
-import { composeExport } from '@formily/vant/esm/__builtins__'
+import { composeExport } from '@formily/antdv/esm/__builtins__'
 import { uid } from '@designable/shared'
 import {
   queryNodesByComponentPath,
@@ -26,7 +26,7 @@ export const ArrayItems = composeExport(
   observer(
     defineComponent({
       props: [],
-      setup(props, { attrs }) {
+      setup() {
         const nodeRef = useTreeNode()
         const nodeIdRef = useNodeIdProps()
 

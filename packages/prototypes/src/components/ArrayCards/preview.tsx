@@ -1,5 +1,4 @@
 import { defineComponent } from 'vue-demi'
-import cls from 'classnames'
 import { Card, Row } from 'ant-design-vue'
 import { TreeNode, createResource } from '@designable/core'
 import { uid } from '@designable/shared'
@@ -125,7 +124,7 @@ export const ArrayCards = composeExport(
               <ArrayBase disabled={true}>
                 <ArrayBase.Item index={0}>
                   <Card
-                    class={cls(`${formilyArrayCardsPrefix}-item`)}
+                    class={`${formilyArrayCardsPrefix}-item`}
                     attrs={attrs}
                     scopedSlots={{
                       title: () => (

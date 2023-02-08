@@ -1,4 +1,3 @@
-import cls from 'classnames'
 import { defineComponent } from 'vue-demi'
 import { Input, Upload } from 'ant-design-vue'
 import { usePrefix, IconWidget, useContext } from '@formily/antdv-designable'
@@ -20,7 +19,7 @@ export const ImageInput = defineComponent({
       const prefix = prefixRef.value
       const context = contextRef.value
       return (
-        <div class={cls(prefix)}>
+        <div class={prefix}>
           <Input
             props={{
               ...props,
@@ -29,36 +28,36 @@ export const ImageInput = defineComponent({
             scopedSlots={{
               prefix: () => (
                 <Upload
-                attrs={{
-                  ...context.uploadProps,
-                  action: context.uploadAction || context.uploadProps?.action,
-                  headers: context.headers || context.uploadProps?.headers,
-                  multiple: false,
-                }}
-                onChange={(params) => {
-                  const response = params.file?.response
-                  const url =
-                  response?.url ||
-                  response?.downloadURL ||
-                  response?.imageURL ||
-                  response?.thumbUrl ||
-                  response?.data
-                  if (!url) return
-                  emit('change', url)
-                }}
+                  attrs={{
+                    ...context.uploadProps,
+                    action: context.uploadAction || context.uploadProps?.action,
+                    headers: context.headers || context.uploadProps?.headers,
+                    multiple: false,
+                  }}
+                  onChange={(params) => {
+                    const response = params.file?.response
+                    const url =
+                      response?.url ||
+                      response?.downloadURL ||
+                      response?.imageURL ||
+                      response?.thumbUrl ||
+                      response?.data
+                    if (!url) return
+                    emit('change', url)
+                  }}
                 >
                   <IconWidget
                     infer="CloudUpload"
                     {...{ style: { cursor: 'pointer' } }}
                     size={16}
-                    />
+                  />
                 </Upload>
               ),
             }}
             onInput={(e) => {
-              emit('change',e.target.value)
+              emit('change', e.target.value)
             }}
-            ></Input>
+          ></Input>
         </div>
       )
     }

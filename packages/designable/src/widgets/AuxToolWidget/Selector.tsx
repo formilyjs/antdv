@@ -1,6 +1,3 @@
-// import React, { useEffect, useState, useRef } from 'react'
-import { Button } from 'ant-design-vue'
-import { observer } from '@formily/reactive-vue'
 import {
   computed,
   defineComponent,
@@ -9,11 +6,14 @@ import {
   ref,
   unref,
 } from 'vue-demi'
+import { Button } from 'ant-design-vue'
+import { observer } from '@formily/reactive-vue'
 import { composeExport } from '@formily/antdv/esm/__builtins__'
 import { NodeTitleWidget } from '../NodeTitleWidget'
 import { IconWidget } from '../IconWidget'
+
 import { useHover, useSelection, usePrefix } from '../../hooks'
-import type { Ref } from 'vue-demi'
+import type { PropType, Ref } from 'vue-demi'
 import type { TreeNode } from '@designable/core'
 
 const useMouseHover = <T extends Ref<HTMLElement>>(
@@ -54,8 +54,9 @@ export interface ISelectorProps {
 
 const SelectorComponent = observer(
   defineComponent({
-    props: ['node'],
-    setup(props: ISelectorProps, { refs }) {
+    name: 'DnSelector',
+    props: { node: { type: Object as PropType<TreeNode> } },
+    setup(props, { refs }) {
       const expand = ref(false)
       const setExpand = (value) => {
         expand.value = value

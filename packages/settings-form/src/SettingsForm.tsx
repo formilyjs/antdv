@@ -1,4 +1,3 @@
-import cls from 'classnames'
 import {
   computed,
   defineComponent,
@@ -7,9 +6,9 @@ import {
   ref,
   shallowRef,
 } from 'vue-demi'
+import { Empty } from 'ant-design-vue'
 import { createForm } from '@formily/core'
 import { Form } from '@formily/antdv'
-import { observe } from '@formily/reactive'
 import {
   IconWidget,
   NodePathWidget,
@@ -20,7 +19,6 @@ import {
   useWorkbench,
   useEffect,
 } from '@formily/antdv-designable'
-import { Empty } from 'ant-design-vue'
 import { cancelIdle, requestIdle } from '@designable/shared'
 import { SchemaField } from './SchemaField'
 import { SettingsFormSymbol } from './shared/context'
@@ -114,7 +112,6 @@ export const SettingsForm = defineComponent({
       isEmptyRef,
     ])
 
-
     provide(
       SettingsFormSymbol,
       computed(() => props)
@@ -128,15 +125,17 @@ export const SettingsForm = defineComponent({
       const render = () => {
         if (!isEmpty && formRef.value) {
           return (
-            <div class={cls(prefix)} key={node.id}>
+            <div class={prefix} key={node.id}>
               <Form
-                form={formRef.value}
-                colon={false}
-                labelWidth={110}
-                labelAlign="left"
-                wrapperAlign="right"
-                feedbackLayout="none"
-                tooltipLayout="text"
+                attrs={{
+                  form: formRef.value,
+                  colon: false,
+                  labelWidth: 110,
+                  labelAlign: 'left',
+                  wrapperAlign: 'right',
+                  feedbackLayout: 'none',
+                  tooltipLayout: 'text',
+                }}
               >
                 <SchemaField
                   schema={schema}
@@ -156,10 +155,8 @@ export const SettingsForm = defineComponent({
 
       return (
         <IconWidget.Provider tooltip>
-          <div class={prefix + '-wrapper'} {...attrs}>
-            {!isEmpty && (
-              <NodePathWidget workspaceId={currentWorkspaceId} />
-            )}
+          <div attrs={attrs} class={prefix + '-wrapper'}>
+            {!isEmpty && <NodePathWidget workspaceId={currentWorkspaceId} />}
             <div class={prefix + '-content'}>{render()}</div>
           </div>
         </IconWidget.Provider>

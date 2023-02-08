@@ -3,11 +3,12 @@ import { useStyle } from '../shared/util'
 import { WorkspacePanel } from './WorkspacePanel'
 
 export const ToolbarPanel = defineComponent({
+  name: 'DnToolbarPanel',
   setup(props, { slots }) {
     const style = useStyle()
     return () => (
       <WorkspacePanel.Item
-        // @ts-ignore
+        {...{ props }}
         style={{
           display: 'flex',
           justifyContent: 'space-between',
@@ -15,7 +16,6 @@ export const ToolbarPanel = defineComponent({
           padding: '0 4px',
           ...style,
         }}
-        {...{ props }}
       >
         {slots.default?.()}
       </WorkspacePanel.Item>

@@ -22,6 +22,7 @@ Radio.Group = {
       'x-component-props': {
         defaultValue: 'default',
         optionType: 'button',
+        size: 'small',
       },
     },
     buttonStyle: {
@@ -32,6 +33,7 @@ Radio.Group = {
       'x-component-props': {
         defaultValue: 'outline',
         optionType: 'button',
+        size: 'small',
       },
     },
     size: {

@@ -12,7 +12,7 @@ import { traverseTree } from './shared'
 import './styles.less'
 import type { PropType } from 'vue-demi'
 import type { Form as FormCore, ArrayField } from '@formily/core'
-import type { ITreeDataSource } from './types'
+import type { INodeItem, ITreeDataSource } from './types'
 
 const {
   SchemaField,
@@ -61,10 +61,9 @@ export const DataSettingPanel = observer(
           () => props.treeDataSource.selectedKey,
           () => props.treeDataSource.dataSource,
         ],
-        (value) => {
-          const [selectedKey, dataSource] = value
+        ([selectedKey, dataSource]) => {
           let values: any = {}
-          traverseTree(dataSource, (dataItem) => {
+          traverseTree(dataSource as INodeItem[], (dataItem) => {
             if (dataItem.key === selectedKey) {
               values = dataItem
             }
@@ -119,7 +118,7 @@ export const DataSettingPanel = observer(
               }
             />
             <div class={`${prefix + '-layout-item-content'}`}>
-              <Form form={form} labelWidth={60} wrapperWidth={160}>
+              <Form form={form} attrs={{ flabelWidth: 60, wrapperWidth: 160 }}>
                 <SchemaField>
                   <SchemaArrayField name="map" x-component="ArrayItems">
                     <SchemaObjectField

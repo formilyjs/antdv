@@ -1,4 +1,4 @@
-import { Select as FormilyTreeSelect } from '@formily/antdv'
+import { TreeSelect as FormilyTreeSelect } from '@formily/antdv'
 import { createBehavior, createResource } from '@designable/core'
 import { composeExport } from '@formily/antdv/esm/__builtins__'
 import { createFieldSchema } from '../Field'

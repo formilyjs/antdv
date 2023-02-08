@@ -1,8 +1,7 @@
+import { defineComponent, ref, unref, watch } from 'vue-demi'
 import { Button } from 'ant-design-vue'
 import { usePrefix, IconWidget } from '@formily/antdv-designable'
-import cls from 'classnames'
 import './styles.less'
-import { defineComponent, ref, unref, watch } from 'vue-demi'
 
 export interface IInput {
   value: any
@@ -88,7 +87,7 @@ export function createPolyInput(polyTypes: PolyTypes = []) {
         const typeComponent = type?.component
         return (
           // style={style} className
-          <div class={cls(prefixRef.value)}>
+          <div class={prefixRef.value}>
             {typeComponent && (
               <div class={prefixRef.value + '-content'}>
                 <typeComponent

@@ -139,7 +139,7 @@ const getDefaultValue = (defaultValue: any, schema: Schema) => {
   return null
 }
 
-const ArrayBaseInner = defineComponent<IArrayBaseProps>({
+const ArrayBaseInner = defineComponent({
   name: 'ArrayBase',
   props: ['disabled', 'keyMap'],
   setup(props, { listeners, slots }) {
@@ -161,7 +161,7 @@ const ArrayBaseInner = defineComponent<IArrayBaseProps>({
 const ArrayBaseItem = defineComponent({
   name: 'ArrayBaseItem',
   props: ['index', 'record'],
-  setup(props: IArrayBaseItemProps, { slots }) {
+  setup(props, { slots }) {
     provide(ItemSymbol, props)
     return () => {
       return h(Fragment, {}, slots)
@@ -228,10 +228,10 @@ const ArrayBaseIndex = defineComponent({
   },
 })
 
-const ArrayBaseAddition = defineComponent({
+const ArrayBaseAddition = defineComponent<IArrayBaseAdditionProps>({
   name: 'ArrayBaseAddition',
   props: ['title', 'method', 'defaultValue'],
-  setup(props: IArrayBaseAdditionProps, { attrs, listeners }) {
+  setup(props, { attrs, listeners }) {
     const self = useField()
     const array = useArray()
     const prefixCls = usePrefixCls(

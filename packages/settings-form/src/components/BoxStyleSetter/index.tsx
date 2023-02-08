@@ -1,8 +1,6 @@
-import { useField, FragmentComponent } from '@formily/vue'
-import { usePrefix } from '@formily/antdv-designable'
-import { uid } from '@formily/shared'
-import cls from 'classnames'
 import { defineComponent, unref } from 'vue-demi'
+import { useField } from '@formily/vue'
+import { usePrefix } from '@formily/antdv-designable'
 import { FoldItem } from '../FoldItem'
 import { SizeInput } from '../SizeInput'
 import { InputItems } from '../InputItems'
@@ -87,7 +85,7 @@ export const BoxStyleSetter = defineComponent({
       }
       return (
         <FoldItem
-          {...{ class: cls(prefix) }}
+          class={prefix}
           label={field.title}
           scopedSlots={{
             base: () => (

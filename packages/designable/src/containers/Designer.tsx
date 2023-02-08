@@ -1,4 +1,3 @@
-import { GlobalRegistry } from '@designable/core'
 import {
   defineComponent,
   onBeforeUnmount,
@@ -7,24 +6,39 @@ import {
   toRef,
   watchEffect,
 } from 'vue-demi'
-import { h as CreateElement } from '@formily/vue'
+import { GlobalRegistry } from '@designable/core'
 import { DesignerEngineSymbol } from '../context'
 import { GhostWidget } from '../widgets'
 import { useDesigner } from '../hooks/useDesigner'
 import * as icons from '../icons'
 import { Layout } from './Layout'
+
+import type { PropType } from 'vue-demi'
 import type { IDesignerProps } from '../types'
 import type { Engine } from '@designable/core'
 
 GlobalRegistry.registerDesignerIcons(icons)
 
 export const Designer = defineComponent({
+  name: 'DnDesigner',
   props: {
-    engine: {},
-    theme: { type: String, default: 'light' },
-    prefixCls: { type: String, default: 'dn-' },
+    engine: {
+      type: Object as PropType<IDesignerProps['engine']>,
+    },
+    theme: {
+      type: String as PropType<IDesignerProps['theme']>,
+      default: 'light',
+    },
+    prefixCls: {
+      type: String as PropType<IDesignerProps['prefixCls']>,
+      default: 'dn-',
+    },
+    variables: {
+      type: Object as PropType<IDesignerProps['variables']>,
+      default: () => ({}),
+    },
   },
-  setup(props: IDesignerProps, { slots }) {
+  setup(props, { slots }) {
     const engine = useDesigner()
     const refInstance = ref<Engine>(null)
 
@@ -54,24 +68,16 @@ export const Designer = defineComponent({
       )
 
     return () => {
-      // eslint-disable-next-line
-      const { default: _, ...rest } = slots
-      return CreateElement(
-        Layout,
-        { props: { theme: props.theme, prefixCls: props.prefixCls } },
-        {
-          ...rest,
-          default: () => [
-            slots.default?.(),
-            CreateElement(GhostWidget, {}, {}),
-          ],
-        }
+      return (
+        <Layout
+          theme={props.theme}
+          prefixCls={props.prefixCls}
+          variables={props.variables}
+        >
+          {slots.default?.()}
+          <GhostWidget />
+        </Layout>
       )
     }
-    //   < theme={props.theme} prefixCls={props.prefixCls}>
-    //     {slots.default?.()}
-    //     <GhostWidget />
-    //   </Layout>
-    // )
   },
 })

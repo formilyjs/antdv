@@ -9,6 +9,7 @@ import {
   usePrefix,
   useOperation,
 } from '../../hooks'
+import { ResizeHandleType } from '../../simulators/ResponsiveSimulator/handle'
 import { Insertion } from './Insertion'
 import { Selection } from './Selection'
 import { FreeSelection } from './FreeSelection'
@@ -64,11 +65,11 @@ const AuxToolWidgetComponent = defineComponent({
               //}
             }
           } else {
-            if (cursorRef.value.type === CursorType.ResizeWidth) {
+            if (cursorRef.value.type === ResizeHandleType.ResizeWidth) {
               setCursorState(viewportRef.value.contentWindow, 'ew-resize')
-            } else if (cursorRef.value.type === CursorType.ResizeHeight) {
+            } else if (cursorRef.value.type === ResizeHandleType.ResizeHeight) {
               setCursorState(viewportRef.value.contentWindow, 'ns-resize')
-            } else if (cursorRef.value.type === CursorType.Resize) {
+            } else if (cursorRef.value.type === ResizeHandleType.Resize) {
               setCursorState(viewportRef.value.contentWindow, 'nwse-resize')
             } else {
               setCursorState(viewportRef.value.contentWindow, 'default')

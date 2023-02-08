@@ -11,10 +11,10 @@ type AntOptionProps = typeof AntOption
 export type SelectProps = AntSelectProps & {
   options?: Array<AntOptionProps & { component: Vue.Component }>
 }
-const SelectOption = defineComponent<SelectProps>({
+const SelectOption = defineComponent({
   name: 'FSelect',
   props: ['options'],
-  setup(customProps: SelectProps, { attrs, slots, listeners }) {
+  setup(customProps, { attrs, slots, listeners }) {
     return () => {
       const options = customProps.options || []
       const children =

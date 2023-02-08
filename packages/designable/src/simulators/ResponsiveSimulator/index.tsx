@@ -1,4 +1,4 @@
-import { observer } from '@formily/reactive-vue'
+import { computed, defineComponent, nextTick, onBeforeUnmount } from 'vue-demi'
 import {
   DragStartEvent,
   DragMoveEvent,
@@ -10,13 +10,7 @@ import {
   createUniformSpeedAnimation,
   isStr,
 } from '@designable/shared'
-import cls from 'classnames'
-import {
-  computed,
-  defineComponent,
-  nextTick,
-  onBeforeUnmount,
-} from 'vue-demi'
+import { observer } from '@formily/reactive-vue'
 import { observe } from '@formily/reactive'
 import { useScreen, useDesigner, usePrefix } from '../../hooks'
 import { IconWidget } from '../../widgets'
@@ -145,6 +139,7 @@ function useScreenModifier(screen, content: Ref<HTMLDivElement>) {
 }
 
 const ResponsiveSimulatorComponent = defineComponent({
+  name: 'DnResponsiveSimulator',
   props: [],
   setup(props, { attrs, slots, refs }) {
     const content = computed<HTMLDivElement>(
@@ -166,7 +161,7 @@ const ResponsiveSimulatorComponent = defineComponent({
       return (
         <div
           attrs={attrs}
-          class={cls(prefixRef.value)}
+          class={prefixRef.value}
           style={{
             height: '100%',
             width: '100%',
@@ -204,24 +199,15 @@ const ResponsiveSimulatorComponent = defineComponent({
               {slots.default?.()}
               <ResizeHandle type={ResizeHandleType.Resize}>
                 <IconWidget
-                  infer="DragMove"
-                  // @ts-ignore
                   style={{ pointerEvents: 'none' }}
+                  infer="DragMove"
                 />
               </ResizeHandle>
               <ResizeHandle type={ResizeHandleType.ResizeHeight}>
-                <IconWidget
-                  infer="Menu"
-                  // @ts-ignore
-                  style={{ pointerEvents: 'none' }}
-                />
+                <IconWidget style={{ pointerEvents: 'none' }} infer="Menu" />
               </ResizeHandle>
               <ResizeHandle type={ResizeHandleType.ResizeWidth}>
-                <IconWidget
-                  infer="Menu"
-                  // @ts-ignore
-                  style={{ pointerEvents: 'none' }}
-                />
+                <IconWidget style={{ pointerEvents: 'none' }} infer="Menu" />
               </ResizeHandle>
             </div>
           </div>

@@ -1,4 +1,3 @@
-import cls from 'classnames'
 import { defineComponent } from 'vue-demi'
 import { usePrefix } from '../../hooks'
 
@@ -14,16 +13,19 @@ export interface IResizeHandleProps {
 
 export const ResizeHandle = defineComponent({
   props: ['type'],
-  setup(props: IResizeHandleProps, { slots, attrs }) {
+  setup(props, { slots, attrs }) {
     const prefixRef = usePrefix('resize-handle')
     return () => {
       return (
         <div
           attrs={attrs}
           data-designer-resize-handle={props.type}
-          class={cls(prefixRef.value, {
-            [`${prefixRef.value}-${props.type}`]: !!props.type,
-          })}
+          class={[
+            prefixRef.value,
+            {
+              [`${prefixRef.value}-${props.type}`]: !!props.type,
+            },
+          ]}
         >
           {slots.default?.()}
         </div>

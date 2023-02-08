@@ -1,12 +1,12 @@
 import { defineComponent, unref } from 'vue-demi'
+import { Radio } from 'ant-design-vue'
 import { useField, Field } from '@formily/vue'
-import cls from 'classnames'
 import { observer } from '@formily/reactive-vue'
 import { FormItem } from '@formily/antdv'
-import { Radio } from 'ant-design-vue'
 import { usePrefix, IconWidget, useStyle } from '@formily/antdv-designable'
 import { FlexStyleSetter } from '../FlexStyleSetter'
 import './styles.less'
+
 import type { VueComponent } from '@formily/vue'
 import type { Field as FieldType } from '@formily/core'
 
@@ -32,7 +32,11 @@ export const DisplayStyleSetter = observer(
         return (
           <div>
             <FormItem.BaseItem
-              {...{ label: field.title, class: cls(prefix), style }}
+              class={prefix}
+              style={style}
+              attrs={{
+                label: field.title,
+              }}
             >
               <Radio.Group
                 class={prefix + '-radio'}

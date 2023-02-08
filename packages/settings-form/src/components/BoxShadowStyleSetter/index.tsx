@@ -1,12 +1,12 @@
+import { unref, defineComponent } from 'vue-demi'
 import { usePrefix } from '@formily/antdv-designable'
 import { useField } from '@formily/vue'
 import { observer } from '@formily/reactive-vue'
-import cls from 'classnames'
-import { unref, defineComponent } from 'vue-demi'
 import { FoldItem } from '../FoldItem'
 import { ColorInput } from '../ColorInput'
 import { SizeInput } from '../SizeInput'
 import { InputItems } from '../InputItems'
+
 export interface IBoxShadowStyleSetterProps {
   value?: string
 }
@@ -14,7 +14,7 @@ export interface IBoxShadowStyleSetterProps {
 export const BoxShadowStyleSetter = observer(
   defineComponent({
     props: { value: String },
-    setup(props: IBoxShadowStyleSetterProps, { emit }) {
+    setup(props, { emit }) {
       const fieldRef = useField()
       const prefixRef = usePrefix('shadow-style-setter')
 
@@ -49,7 +49,7 @@ export const BoxShadowStyleSetter = observer(
         ]
         return (
           <FoldItem
-            class={cls(prefix)}
+            class={prefix}
             label={field.title}
             scopedSlots={{
               base: () => (

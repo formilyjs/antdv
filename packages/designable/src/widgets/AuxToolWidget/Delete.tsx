@@ -1,16 +1,19 @@
+import { defineComponent } from 'vue-demi'
 import { Button } from 'ant-design-vue'
 import { composeExport } from '@formily/antdv/esm/__builtins__'
-import { defineComponent } from 'vue-demi'
 import { useOperation, usePrefix } from '../../hooks'
 import { IconWidget } from '../IconWidget'
 
-// export interface IDeleteProps {
-//   node: TreeNode
-//   style?: React.CSSProperties
-// }
+import type { PropType } from 'vue-demi'
+import type { TreeNode } from '@designable/core'
+
+export interface IDeleteProps {
+  node: TreeNode
+}
 
 const DeleteComponent = defineComponent({
-  props: ['node'],
+  name: 'DnDelete',
+  props: { node: { type: Object as PropType<TreeNode> } },
   setup(props) {
     const operationRef = useOperation()
     const prefixRef = usePrefix('aux-copy')

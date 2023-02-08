@@ -3,15 +3,17 @@ import { defineComponent } from 'vue-demi'
 import { useTree, useWorkbench } from '../hooks'
 import { Viewport } from '../containers'
 
-// export interface IViewPanelProps {
-//   type: WorkbenchTypes
-//   children: (
-//     tree: TreeNode,
-//     onChange: (tree: ITreeNode) => void
-//   ) => React.ReactElement
-//   scrollable?: boolean
-//   dragTipsDirection?: 'left' | 'right'
-// }
+import type { WorkbenchTypes } from '@designable/core'
+
+export interface IViewPanelProps {
+  type: WorkbenchTypes
+  // children: (
+  //   tree: TreeNode,
+  //   onChange: (tree: ITreeNode) => void
+  // ) => React.ReactElement
+  scrollable?: boolean
+  dragTipsDirection?: 'left' | 'right'
+}
 
 const ViewPanelComponent = defineComponent({
   name: 'DnViewPanel',

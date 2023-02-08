@@ -1,9 +1,10 @@
+import { defineComponent } from 'vue-demi'
 import { FragmentComponent as Fragment } from '@formily/vue'
 import { observer } from '@formily/reactive-vue'
-import { defineComponent } from 'vue-demi'
 import { composeExport } from '@formily/antdv/esm/__builtins__'
 import { isNum } from '@designable/shared'
 import {
+  useDesigner,
   useSelection,
   useValidNodeOffsetRect,
   useTree,
@@ -11,18 +12,25 @@ import {
   useDragon,
   usePrefix,
 } from '../../hooks'
+import { ResizeHandler } from './ResizeHandler'
+import { TranslateHandler } from './TranslateHandler'
 import { Helpers } from './Helpers'
+
 import type { TreeNode } from '@designable/core'
+
 export interface ISelectionBoxProps {
   node: TreeNode
   showHelpers: boolean
 }
 
 export const SelectionBox = defineComponent({
+  name: 'DnSelectionBox',
   inheritAttrs: false,
   props: ['node', 'showHelpers'],
-  setup(props) {
+  setup(props, { attrs }) {
+    const designerRef = useDesigner()
     const prefixRef = usePrefix('aux-selection-box')
+    const innerPrefixRef = usePrefix('aux-selection-box-inner')
     const nodeRectRef = useValidNodeOffsetRect(props.node)
 
     return () => {
@@ -49,16 +57,20 @@ export const SelectionBox = defineComponent({
       if (!nodeRect) return null
 
       if (!nodeRect.width || !nodeRect.height) return null
-
+      const selectionId = {
+        [designerRef.value.props.nodeSelectionIdAttrName!]: props.node.id,
+      }
       return (
-        <div class={prefixRef.value} style={createSelectionStyle()}>
+        <div
+          attrs={selectionId}
+          class={prefixRef.value}
+          style={createSelectionStyle()}
+        >
+          <div class={innerPrefixRef.value}></div>
+          <ResizeHandler node={props.node} />
+          <TranslateHandler node={props.node} />
           {props.showHelpers && (
-            <Helpers
-              // key={JSON.stringify(nodeRect.toJSON())}
-              // attrs={attrs}
-              node={props.node}
-              nodeRect={nodeRect}
-            />
+            <Helpers attrs={attrs} node={props.node} nodeRect={nodeRect} />
           )}
         </div>
       )
@@ -68,6 +80,7 @@ export const SelectionBox = defineComponent({
 
 const SelectionComponent = observer(
   defineComponent({
+    name: 'DnSelection',
     setup() {
       const selectionRef = useSelection()
       const treeRef = useTree()
@@ -87,7 +100,7 @@ const SelectionComponent = observer(
               if (node.hidden) return
               return (
                 <SelectionBox
-                  key={id}
+                  // key={id}
                   node={node}
                   showHelpers={selectionRef.value.selected.length === 1}
                 />

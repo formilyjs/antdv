@@ -1,23 +1,23 @@
-import { composeExport } from '@formily/antdv/esm/__builtins__'
 import { defineComponent, onBeforeUnmount, watch, shallowRef } from 'vue-demi'
+import { Tooltip } from 'ant-design-vue'
+import { parseExpression, parse } from '@babel/parser'
+import { isNum, uid } from '@designable/shared'
+import { composeExport } from '@formily/antdv/esm/__builtins__'
 import {
   TextWidget,
   IconWidget,
   usePrefix,
   useTheme,
 } from '@formily/antdv-designable'
-import { Tooltip } from 'ant-design-vue'
-import { parseExpression, parse } from '@babel/parser'
-import { isNum, uid } from '@designable/shared'
-import cls from 'classnames'
 import Editor, { loader } from '../MonacoEditor'
 import { format } from './format'
 import { initMonaco } from './config'
+import './styles.less'
+import './config'
+
 import type { EditorProps } from '../MonacoEditor'
 import type * as monaco from 'monaco-editor/esm/vs/editor/editor.api'
 import type { PropType } from 'vue-demi'
-import './styles.less'
-import './config'
 
 export type Monaco = typeof monaco
 export interface MonacoInputProps extends EditorProps {
@@ -38,10 +38,9 @@ export interface MonacoInputProps extends EditorProps {
   ) => void
   onChange?: (value: string) => void
 }
-// React.FC<MonacoInputProps> & {
-//     loader?: typeof loader
-// }
+
 const MonacoInputInner = defineComponent({
+  name: 'MonacoInput',
   props: {
     language: { type: String as PropType<string> },
     defaultLanguage: { type: String as PropType<string> },
@@ -57,7 +56,9 @@ const MonacoInputInner = defineComponent({
       type: String as PropType<MonacoInputProps['defaultValue']>,
     },
     extraLib: { type: String },
-    options: { type: Object as PropType<MonacoInputProps> },
+    options: {
+      type: Object as PropType<Omit<MonacoInputProps, keyof EditorProps>>,
+    },
   },
   emits: ['change'],
   inheritAttrs: false,
@@ -340,9 +341,12 @@ const MonacoInputInner = defineComponent({
         : computedLanguage.value
       return (
         <div
-          class={cls(prefix, {
-            loaded,
-          })}
+          class={[
+            prefix,
+            {
+              loaded,
+            },
+          ]}
           style={{
             width: isNum(props.width) ? props.width + 'px' : props.width,
             height: isNum(props.height) ? props.height + 'px' : props.height,
@@ -351,7 +355,7 @@ const MonacoInputInner = defineComponent({
           {renderHelper()}
           <div class={prefix + '-view'}>
             <Editor
-              {...attrs}
+              attrs={attrs}
               theme={theme === 'dark' ? 'monokai' : 'chrome-devtools'}
               defaultLanguage={realLanguage.value}
               language={realLanguage.value}
@@ -368,7 +372,7 @@ const MonacoInputInner = defineComponent({
               }}
               value={input}
               width="100%"
-              height="100%"              
+              height="100%"
               onMount={onMountHandler}
               onChange={onChangeHandler}
             />

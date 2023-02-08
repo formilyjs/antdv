@@ -1,14 +1,14 @@
-import { reaction } from '@formily/reactive'
-import cls from 'classnames'
-import { composeExport } from '@formily/antdv/esm/__builtins__'
 import { computed, defineComponent, nextTick, ref, unref } from 'vue-demi'
 import { Button } from 'ant-design-vue'
-import { useDesigner, usePrefix, useViewport } from '../../hooks'
+import { reaction } from '@formily/reactive'
+import { composeExport } from '@formily/antdv/esm/__builtins__'
+import { usePrefix, useViewport } from '../../hooks'
 import { useEffect } from '../../shared/useEffect'
 import { Selector } from './Selector'
 import { Copy } from './Copy'
 import { Delete } from './Delete'
-import { DragFocus } from './DragFocus'
+import { DragHandler } from './DragHandler'
+
 import type { TreeNode } from '@designable/core'
 
 const HELPER_DEBOUNCE_TIMEOUT = 100
@@ -17,6 +17,7 @@ export interface IHelpersProps {
   node: TreeNode
   nodeRect: DOMRect
 }
+
 export interface IViewportState {
   viewportWidth?: number
   viewportHeight?: number
@@ -28,15 +29,14 @@ export interface IViewportState {
 
 const HelpersComponent = defineComponent({
   props: ['node', 'nodeRect'],
-  setup(props: IHelpersProps, { refs }) {
+  setup(props, { refs }) {
     const prefixRef = usePrefix('aux-helpers')
-    const designerRef = useDesigner()
     const viewportRef = useViewport()
     const unmountRef = ref(false)
     const refContainer = computed<HTMLDivElement>(
       () => refs.ref as HTMLDivElement
     )
-    const position = ref('top-right')
+    const positionRef = ref('top-right')
 
     useEffect(
       () => {
@@ -79,7 +79,7 @@ const HelpersComponent = defineComponent({
           const helpersRect = ref.value?.getBoundingClientRect()
           if (!helpersRect || !nodeRect) return
           if (unmountRef.value) return
-          position.value =
+          positionRef.value =
             getYInViewport(nodeRect, helpersRect) +
             '-' +
             getXInViewport(nodeRect, helpersRect)
@@ -111,22 +111,22 @@ const HelpersComponent = defineComponent({
       const node = props.node
       const nodeRect = props.nodeRect
       if (!nodeRect || !node) return null
-      const helpersId = {
-        [designerRef.value.props?.nodeHelpersIdAttrName]: node.id,
-      }
+
       return (
         <div
-          attrs={helpersId}
-          class={cls(prefixRef.value, {
-            [unref(position)]: true,
-          })}
+          class={[
+            prefixRef.value,
+            {
+              [positionRef.value]: true,
+            },
+          ]}
           ref="ref"
         >
-          <div class={cls(prefixRef.value + '-content')}>
+          <div class={prefixRef.value + '-content'}>
             <Selector node={node} />
             <Button.Group style={{ display: 'flex' }}>
               {node?.allowClone() === false ? null : <Copy node={node} />}
-              {node?.allowDrag() === false ? null : <DragFocus node={node} />}
+              {node?.allowDrag() === false ? null : <DragHandler node={node} />}
               {node?.allowDelete() === false ? null : <Delete node={node} />}
             </Button.Group>
           </div>

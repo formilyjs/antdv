@@ -1,10 +1,8 @@
-// import React, { useRef, useContext, useEffect } from 'react'
+import { defineComponent, onBeforeUnmount, onMounted, ref } from 'vue-demi'
 import { ClosestPosition, CursorStatus, DragMoveEvent } from '@designable/core'
 import { isFn } from '@designable/shared'
 import { autorun } from '@formily/reactive'
 import { observer } from '@formily/reactive-vue'
-import cls from 'classnames'
-import { defineComponent, onBeforeUnmount, onMounted, ref } from 'vue-demi'
 import {
   usePrefix,
   useCursor,
@@ -14,10 +12,11 @@ import {
 } from '../../hooks'
 import { IconWidget } from '../IconWidget'
 import { NodeTitleWidget } from '../NodeTitleWidget'
-import './styles.less'
 import { useStyle } from '../../shared/util'
 import { useContext } from '../../context'
 import { NodeSymbol } from './context'
+import './styles.less'
+
 import type { TreeNode } from '@designable/core'
 
 export interface IOutlineTreeNodeProps {
@@ -27,6 +26,7 @@ export interface IOutlineTreeNodeProps {
 
 export const OutlineTreeNode = observer(
   defineComponent({
+    name: 'DnOutlineTreeNode',
     props: ['workspaceId', 'node'],
     setup(props, { refs }) {
       const style = useStyle()
@@ -138,7 +138,7 @@ export const OutlineTreeNode = observer(
           <div
             style={style}
             ref="ref"
-            class={cls(prefix.value, 'expanded')}
+            class={[prefix.value, 'expanded']}
             data-designer-outline-node-id={node.id}
           >
             <div class={prefix.value + '-header'}>
