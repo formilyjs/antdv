@@ -84,6 +84,7 @@
   },
   "resolutions": {
     "vue": "~2.6.x",
+    "vue-server-renderer": "~2.6.x",
     "vue-template-compiler": "~2.6.x",
     "magic-string": "~0.25.x",
     "postcss": "^8.x",
