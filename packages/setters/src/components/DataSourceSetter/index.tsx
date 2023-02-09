@@ -51,8 +51,8 @@ export const DataSourceSetter = observer(
     inheritAttrs: false,
     emits: ['change'],
     setup(props, { emit }) {
-      const theme = useTheme()
       const prefixRef = usePrefix('data-source-setter')
+      const themeRef = useTheme()
       const modalVisibleRef = ref(false)
       const treeDataSourceRef = reactive({
         dataSource: [],
@@ -109,9 +109,8 @@ export const DataSourceSetter = observer(
               <div
                 class={[
                   prefix,
-                  `${prefix + '-' + theme}`,
-                  `${prefix}-layout'
-                `,
+                  `${prefix + '-' + themeRef.value}`,
+                  `${prefix}-layout`,
                 ]}
               >
                 <div class={[`${prefix}-layout-item`, 'left']}>

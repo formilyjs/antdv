@@ -50,7 +50,7 @@ const MonacoInputInner = defineComponent({
     helpCode: { type: String as PropType<MonacoInputProps['helpCode']> },
     helpCodeViewWidth: { type: [String, Number] },
     onMount: { type: Function as PropType<MonacoInputProps['onMount']> },
-    onChange: { type: Function },
+    onChange: { type: Function as PropType<MonacoInputProps['onChange']> },
     value: { type: String as PropType<MonacoInputProps['value']> },
     defaultValue: {
       type: String as PropType<MonacoInputProps['defaultValue']>,
@@ -62,7 +62,7 @@ const MonacoInputInner = defineComponent({
   },
   emits: ['change'],
   inheritAttrs: false,
-  setup(props: MonacoInputProps, { attrs, emit }) {
+  setup(props, { attrs, emit }) {
     const loadedRef = shallowRef(false)
     const setLoaded = (value: boolean) => (loadedRef.value = value)
     const themeRef = useTheme()

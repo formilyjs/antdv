@@ -67,10 +67,10 @@ export const ValueInput = createPolyInput([
                 >
                   <MonacoInput
                     value={props.value}
+                    language="javascript.expression"
                     onChange={(value) => {
                       emit('change', value)
                     }}
-                    language="javascript.expression"
                   />
                 </div>
               ),
