@@ -36,7 +36,6 @@
       "optional": true
     }
   },
-  "dependencies": {},
   "devDependencies": {
     "@designable/core": "^1.0.0-beta.45",
     "@designable/shared": "1.0.0-beta.45",
@@ -44,10 +43,10 @@
     "@formily/antdv-designable": "^1.0.0-alpha.0",
     "@formily/antdv-settings-form": "^1.0.0-alpha.0",
     "@formily/core": "^2.0.0",
-    "@formily/shared": "^2.0.0",
     "@formily/json-schema": "^2.0.0",
     "@formily/reactive": "^2.0.0",
     "@formily/reactive-vue": "^2.0.0",
+    "@formily/shared": "^2.0.0",
     "@formily/vue": "^2.0.0"
   }
 }

@@ -36,7 +36,6 @@
       "optional": true
     }
   },
-  "dependencies": {},
   "devDependencies": {
     "@designable/core": "^1.0.0-beta.45",
     "@designable/shared": "^1.0.0-beta.45",
