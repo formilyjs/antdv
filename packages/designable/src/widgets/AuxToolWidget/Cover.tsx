@@ -93,7 +93,7 @@ const CoverComponent = observer(
               if (!viewportRef.value.findElementById(node.id)) return
               return (
                 <CoverRect
-                  // key={node.id}
+                  key={node.id}
                   dragging={true}
                   node={node}
                 />

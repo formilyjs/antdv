@@ -177,11 +177,13 @@ export const OutlineTreeNode = observer(
                   {renderActions(node)}
                   {node !== node.root && (
                     <IconWidget
-                      // key={node.hidden ? 'EyeClose' : 'Eye'}
-                      // @ts-ignore
-                      class={cls(prefix.value + '-hidden-icon', {
-                        hidden: node.hidden,
-                      })}
+                      key={node.hidden ? 'EyeClose' : 'Eye'}
+                      class={[
+                        prefix.value + '-hidden-icon',
+                        {
+                          hidden: node.hidden,
+                        },
+                      ]}
                       infer={node.hidden ? 'EyeClose' : 'Eye'}
                       size={14}
                       onClick={() => {
@@ -196,7 +198,7 @@ export const OutlineTreeNode = observer(
               {node.children?.map((child) => {
                 return (
                   <OutlineTreeNode
-                    // key={child.id}
+                    key={child.id}
                     node={child}
                     workspaceId={props.workspaceId}
                   />

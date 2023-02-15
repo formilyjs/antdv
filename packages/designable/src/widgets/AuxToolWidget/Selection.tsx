@@ -55,8 +55,8 @@ export const SelectionBox = defineComponent({
         return baseStyle
       }
       if (!nodeRect) return null
-
       if (!nodeRect.width || !nodeRect.height) return null
+
       const selectionId = {
         [designerRef.value.props.nodeSelectionIdAttrName!]: props.node.id,
       }
@@ -100,7 +100,7 @@ const SelectionComponent = observer(
               if (node.hidden) return
               return (
                 <SelectionBox
-                  // key={id}
+                  key={id}
                   node={node}
                   showHelpers={selectionRef.value.selected.length === 1}
                 />

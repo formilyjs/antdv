@@ -23,7 +23,7 @@
   ],
   "scripts": {
     "serve": "webpack-dev-server --config src/config/webpack.dev.ts",
-    "build": "webpack --config src/config/webpack.prod.ts"
+    "build:docs": "webpack --config src/config/webpack.prod.ts"
   },
   "repository": {
     "type": "git",
