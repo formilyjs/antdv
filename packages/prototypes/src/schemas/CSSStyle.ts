@@ -18,12 +18,21 @@ export const CSSStyle: ISchema = {
     },
     'style.background': {
       'x-component': 'BackgroundStyleSetter',
+      'x-component-props': {
+        allowClear: true,
+      },
     },
     'style.boxShadow': {
       'x-component': 'BoxShadowStyleSetter',
+      'x-component-props': {
+        allowClear: true,
+      },
     },
     'style.font': {
       'x-component': 'FontStyleSetter',
+      'x-component-props': {
+        allowClear: true,
+      },
     },
     'style.margin': {
       'x-component': 'BoxStyleSetter',

@@ -14,7 +14,7 @@ export interface IBoxShadowStyleSetterProps {
 export const BoxShadowStyleSetter = observer(
   defineComponent({
     props: { value: String },
-    setup(props, { emit }) {
+    setup(props, { attrs, emit }) {
       const fieldRef = useField()
       const prefixRef = usePrefix('shadow-style-setter')
 
@@ -54,6 +54,7 @@ export const BoxShadowStyleSetter = observer(
             scopedSlots={{
               base: () => (
                 <ColorInput
+                  attrs={attrs}
                   value={connectors[4].value}
                   onChange={connectors[4].onChange}
                 />

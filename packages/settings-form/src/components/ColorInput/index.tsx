@@ -67,8 +67,8 @@ export const ColorInput = defineComponent({
               </Popover>
             ),
           }}
-          onChange={(value) => {
-            emit('change', value)
+          onChange={(e) => {
+            emit('change', e.target.value)
           }}
         ></Input>
       </div>

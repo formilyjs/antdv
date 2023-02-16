@@ -50,7 +50,7 @@ const FontFamilyOptions = createFontFamilyOptions([
 
 export const FontStyleSetter = observer(
   defineComponent({
-    setup() {
+    setup(props, { attrs }) {
       const fieldRef = useField()
       const prefixRef = usePrefix('font-style-setter')
       return () => {
@@ -67,7 +67,11 @@ export const FontStyleSetter = observer(
                   basePath={field.address.parent()}
                   component={[
                     Select,
-                    { style: { width: '100%' }, placeholder: 'Helvetica Neue' },
+                    {
+                      ...attrs,
+                      style: { width: '100%' },
+                      placeholder: 'Helvetica Neue',
+                    },
                   ]}
                   dataSource={FontFamilyOptions}
                 />

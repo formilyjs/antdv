@@ -11,7 +11,7 @@ import { InputItems } from '../InputItems'
 
 export const BackgroundStyleSetter = observer(
   defineComponent({
-    setup() {
+    setup(props, { attrs }) {
       const fieldRef = useField()
       const prefixRef = usePrefix('background-style-setter')
 
@@ -26,7 +26,7 @@ export const BackgroundStyleSetter = observer(
                 <Field
                   name="backgroundColor"
                   basePath={field.address.parent()}
-                  component={[ColorInput]}
+                  component={[ColorInput, attrs]}
                 />
               ),
               extra: () => (
