@@ -1,5 +1,5 @@
-import { defineComponent } from 'vue-demi'
-import { Input, Upload } from 'ant-design-vue'
+import { defineComponent, ref } from 'vue-demi'
+import { Input, Upload, Icon } from 'ant-design-vue'
 import { usePrefix, IconWidget, useContext } from '@formily/antdv-designable'
 import { SettingsFormSymbol } from '../../shared/context'
 import './styles.less'
@@ -15,6 +15,8 @@ export const ImageInput = defineComponent({
     const prefixRef = usePrefix('image-input')
     const contextRef = useContext(SettingsFormSymbol)
 
+    const uploadingRef = ref(false)
+
     return () => {
       const prefix = prefixRef.value
       const context = contextRef.value
@@ -28,29 +30,35 @@ export const ImageInput = defineComponent({
             scopedSlots={{
               prefix: () => (
                 <Upload
-                  attrs={{
-                    ...context.uploadProps,
-                    action: context.uploadAction || context.uploadProps?.action,
-                    headers: context.headers || context.uploadProps?.headers,
-                    multiple: false,
-                  }}
-                  onChange={(params) => {
-                    const response = params.file?.response
-                    const url =
-                      response?.url ||
-                      response?.downloadURL ||
-                      response?.imageURL ||
-                      response?.thumbUrl ||
-                      response?.data
-                    if (!url) return
-                    emit('change', url)
+                  action={context.uploadAction}
+                  customRequest={context.uploadCustomRequest}
+                  method={context.uploadMethod}
+                  headers={context.headers}
+                  multiple={false}
+                  showUploadList={false}
+                  onChange={({ file: { status, response } }) => {
+                    uploadingRef.value = status === 'uploading'
+                    if (status === 'done') {
+                      const url =
+                        response?.url ||
+                        response?.downloadURL ||
+                        response?.imageURL ||
+                        response?.thumbUrl ||
+                        response?.data
+                      if (!url) return
+                      emit('change', url)
+                    }
                   }}
                 >
-                  <IconWidget
-                    infer="CloudUpload"
-                    {...{ style: { cursor: 'pointer' } }}
-                    size={16}
-                  />
+                  {uploadingRef.value ? (
+                    <Icon type="loading" size={16} />
+                  ) : (
+                    <IconWidget
+                      infer="CloudUpload"
+                      {...{ style: { cursor: 'pointer' } }}
+                      size={16}
+                    />
+                  )}
                 </Upload>
               ),
             }}

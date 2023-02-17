@@ -49,6 +49,8 @@ function useKeyUp() {
 // style?: CSSProperties
 // uploadAction?: string | (file) => Promise
 // uploadMethod?: "post"
+// uploadCustomRequest?: Function
+// headers?: Record<string,any >
 // components?: Record<string, VueComponent<any>>
 // effects?: (form: Form) => void
 // scope?: any
@@ -58,8 +60,9 @@ export const SettingsForm = defineComponent({
   inheritAttrs: false,
   props: [
     'uploadAction',
+    'uploadMethod',
+    'uploadCustomRequest',
     'headers',
-    'uploadProps',
     'components',
     'effects',
     'scope',
