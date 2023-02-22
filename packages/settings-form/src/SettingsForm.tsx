@@ -94,26 +94,32 @@ export const SettingsForm = defineComponent({
         )
     )
 
-    useEffect(() => {
-      idleTaskRef.value && cancelIdle(idleTaskRef.value)
-      idleTaskRef.value = requestIdle(() => {
-        formRef.value = createForm({
-          initialValues: nodeRef.value?.designerProps?.defaultProps,
-          values: nodeRef.value?.props,
-          effects(form) {
-            useLocales(nodeRef.value)
-            useSnapshot(operationRef.value, keyupRef)
-            props.effects?.(form)
+    useEffect(
+      () => {
+        idleTaskRef.value && cancelIdle(idleTaskRef.value)
+        idleTaskRef.value = requestIdle(
+          () => {
+            formRef.value = createForm({
+              initialValues: nodeRef.value?.designerProps?.defaultProps,
+              values: nodeRef.value?.props,
+              effects(form) {
+                useLocales(nodeRef.value)
+                useSnapshot(operationRef.value, keyupRef)
+                props.effects?.(form)
+              },
+            })
           },
-        })
-      })
-    }, [
-      nodeRef,
-      () => nodeRef.value?.props,
-      schemaRef,
-      operationRef,
-      isEmptyRef,
-    ])
+          { timeout: 500 }
+        )
+      },
+      () => [
+        nodeRef.value,
+        nodeRef.value?.props,
+        schemaRef.value,
+        operationRef.value,
+        isEmptyRef.value,
+      ]
+    )
 
     provide(
       SettingsFormSymbol,
