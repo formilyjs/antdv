@@ -5,7 +5,6 @@ export const Space: ISchema = {
   properties: {
     align: {
       type: 'string',
-      default: 'center',
       enum: ['start', 'end', 'center', 'baseline'],
       'x-decorator': 'FormItem',
       'x-component': 'Select',
