@@ -143,11 +143,9 @@ export const TreePanel = observer(
                   title: function (titleProps) {
                     return (
                       <Title
-                        {...{
-                          attrs: {
-                            ...titleProps,
-                            treeDataSource: props.treeDataSource,
-                          },
+                        attrs={{
+                          ...titleProps,
+                          treeDataSource: props.treeDataSource,
                         }}
                       ></Title>
                     )

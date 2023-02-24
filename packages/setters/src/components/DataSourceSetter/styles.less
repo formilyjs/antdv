@@ -15,6 +15,7 @@
   ::-webkit-scrollbar-thumb:hover {
     background-color: rgba(0, 0, 0, 0.3);
   }
+
   &-node-title {
     display: flex;
     justify-content: space-between;
@@ -36,12 +37,12 @@
     border: 1px solid @border-color-base;
     border-radius: 3px;
 
-    .@{ant-prefix}-tree-treenode {
+    .@{ant-prefix}-tree li {
       padding-right: 10px;
       white-space: nowrap;
 
-      &:hover {
-        .dn-data-source-setter-node-title-icon {
+      .@{ant-prefix}-tree-title:hover {
+        .@{prefix-cls}-data-source-setter-node-title-icon {
           opacity: 1;
         }
       }
@@ -74,7 +75,7 @@
         padding: 2%;
         height: 300px;
         max-height: 300px;
-        overflow: scroll;
+        overflow: auto;
       }
     }
   }

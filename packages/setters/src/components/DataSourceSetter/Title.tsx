@@ -12,6 +12,7 @@ export interface ITitleProps extends INodeItem {
 }
 
 const titleInner = defineComponent<ITitleProps>({
+  inheritAttrs: false,
   props: {
     duplicateKey: { type: String as PropType<ITitleProps['duplicateKey']> },
     map: { type: Array as PropType<ITitleProps['map']> },

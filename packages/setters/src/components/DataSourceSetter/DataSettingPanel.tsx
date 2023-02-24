@@ -128,6 +128,11 @@ export const DataSettingPanel = observer(
                       <SchemaStringField
                         title={labelStr}
                         x-decorator="FormItem"
+                        x-decorator-props={{
+                          style: {
+                            marginBottom: 0,
+                          },
+                        }}
                         x-disabled={!allowExtendOption}
                         name="label"
                         x-component="Input"
@@ -135,6 +140,11 @@ export const DataSettingPanel = observer(
                       <SchemaStringField
                         title={valueStr}
                         x-decorator="FormItem"
+                        x-decorator-props={{
+                          style: {
+                            marginBottom: 0,
+                          },
+                        }}
                         name="value"
                         x-component="ValueInput"
                       />
