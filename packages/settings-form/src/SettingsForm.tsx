@@ -97,20 +97,17 @@ export const SettingsForm = defineComponent({
     useEffect(
       () => {
         idleTaskRef.value && cancelIdle(idleTaskRef.value)
-        idleTaskRef.value = requestIdle(
-          () => {
-            formRef.value = createForm({
-              initialValues: nodeRef.value?.designerProps?.defaultProps,
-              values: nodeRef.value?.props,
-              effects(form) {
-                useLocales(nodeRef.value)
-                useSnapshot(operationRef.value, keyupRef)
-                props.effects?.(form)
-              },
-            })
-          },
-          { timeout: 500 }
-        )
+        idleTaskRef.value = requestIdle(() => {
+          formRef.value = createForm({
+            initialValues: nodeRef.value?.designerProps?.defaultProps,
+            values: nodeRef.value?.props,
+            effects(form) {
+              useLocales(nodeRef.value)
+              useSnapshot(operationRef.value, keyupRef)
+              props.effects?.(form)
+            },
+          })
+        })
       },
       () => [
         nodeRef.value,
