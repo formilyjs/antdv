@@ -47,9 +47,7 @@
 import { createForm } from '@formily/core'
 import { InputNumber, FormItem, Space } from '@formily/antdv'
 import { FormProvider, FormConsumer, Field } from '@formily/vue'
-
 const form = createForm()
-
 export default {
   components: { FormProvider, FormConsumer, Field, FormItem, Space },
   data() {

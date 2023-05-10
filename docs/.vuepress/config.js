@@ -68,6 +68,7 @@ module.exports = {
     return {
       resolve: {
         alias: {
+          vue$: 'vue/dist/vue.esm.js',
           '@formily/antdv': path.resolve(
             __dirname,
             '../../packages/components/src'

@@ -5,6 +5,7 @@ import { defineComponent } from 'vue-demi'
 
 import { Button as AntButton } from 'ant-design-vue'
 import type { Button as ButtonProps } from 'ant-design-vue/types/button/button'
+import { evalListener } from '../__builtins__'
 
 export interface ISubmitProps extends ButtonProps {
   onClick?: (e: MouseEvent) => any
@@ -43,7 +44,7 @@ export const Submit = observer(
               ...listeners,
               click: (e: any) => {
                 if (onClick) {
-                  if (onClick(e) === false) return
+                  if (evalListener(onClick, e) === false) return
                 }
                 if (onSubmit) {
                   form

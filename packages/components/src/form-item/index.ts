@@ -1,12 +1,5 @@
 import type { Ref } from 'vue-demi'
-import {
-  ref,
-  defineComponent,
-  onMounted,
-  onBeforeUnmount,
-  watch,
-  provide,
-} from 'vue-demi'
+import { ref, defineComponent, onBeforeUnmount, watch, provide } from 'vue-demi'
 import { isVoidField } from '@formily/core'
 import { connect, mapProps, h } from '@formily/vue'
 import { useFormLayout, FormLayoutShallowContext } from '../form-layout'
@@ -141,7 +134,7 @@ export const FormBaseItem = defineComponent<FormItemProps>({
     bordered: { default: true },
     inset: { default: false },
   },
-  setup(props, { slots, refs }) {
+  setup(props, { slots }) {
     const active = ref(false)
     const deepLayoutRef = useFormLayout()
 
@@ -149,10 +142,6 @@ export const FormBaseItem = defineComponent<FormItemProps>({
 
     const containerRef = ref(null)
     const overflow = useOverflow(containerRef)
-
-    onMounted(() => {
-      containerRef.value = refs.labelContainer
-    })
 
     provide(FormLayoutShallowContext, ref(null))
 

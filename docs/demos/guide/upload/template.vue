@@ -30,7 +30,7 @@
 <script>
 import { createForm } from '@formily/core'
 import { ArrayField } from '@formily/vue'
-import { defineComponent } from '@vue/composition-api'
+import { defineComponent } from 'vue-demi'
 import { Form, FormItem, Upload, Submit, FormButtonGroup } from '@formily/antdv'
 import { Button, Icon } from 'ant-design-vue'
 

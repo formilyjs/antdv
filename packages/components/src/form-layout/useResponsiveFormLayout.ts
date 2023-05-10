@@ -25,12 +25,7 @@ interface ICalculateProps {
 }
 
 interface IUseResponsiveFormLayout {
-  (
-    props: IProps,
-    refs: {
-      [key: string]: Vue | Element | Vue[] | Element[]
-    }
-  ): {
+  (props: IProps, rootRef: Ref<Element | null>): {
     props: Ref<IProps>
   }
 }
@@ -80,9 +75,8 @@ const calculateProps: ICalculateProps = (target, props) => {
 
 export const useResponsiveFormLayout: IUseResponsiveFormLayout = (
   props,
-  refs
+  rootRef
 ) => {
-  const root = ref<Element>(null)
   const { breakpoints } = props
   if (!isArr(breakpoints)) {
     return { props: ref(props) }
@@ -90,17 +84,16 @@ export const useResponsiveFormLayout: IUseResponsiveFormLayout = (
   const layoutProps = ref<IProps>({})
 
   const updateUI = () => {
-    layoutProps.value = calculateProps(root.value, props)
+    layoutProps.value = calculateProps(rootRef.value, props)
   }
 
   onMounted(() => {
-    root.value = refs.root as Element
     const observer = () => {
       updateUI()
     }
     const resizeObserver = new ResizeObserver(observer)
-    if (root.value) {
-      resizeObserver.observe(root.value)
+    if (rootRef.value) {
+      resizeObserver.observe(rootRef.value)
     }
 
     updateUI()

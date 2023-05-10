@@ -4,7 +4,7 @@ import { clone, isValid, uid } from '@formily/shared'
 import { Fragment, h, useField, useFieldSchema } from '@formily/vue'
 import { Button, Icon } from 'ant-design-vue'
 import type { Button as ButtonProps } from 'ant-design-vue/types/button/button'
-import type { InjectionKey, Ref } from 'vue-demi'
+import type { InjectionKey, PropType, Ref } from 'vue-demi'
 import {
   defineComponent,
   inject,
@@ -15,7 +15,11 @@ import {
 } from 'vue-demi'
 import { HandleDirective } from 'vue-slicksort'
 import { stylePrefix } from '../__builtins__/configs'
-import { composeExport } from '../__builtins__/shared'
+import {
+  composeExport,
+  evalListener,
+  mergeAntdProps,
+} from '../__builtins__/shared'
 
 export type KeyMapProps =
   | WeakMap<Record<string, unknown>, string>
@@ -58,10 +62,8 @@ export interface IArrayBaseContext {
   props: IArrayBaseProps
   field: Ref<ArrayField>
   schema: Ref<Schema>
-  listeners: {
-    // eslint-disable-next-line @typescript-eslint/ban-types
-    [key in string]?: Function
-  }
+  // eslint-disable-next-line @typescript-eslint/ban-types
+  listeners: Record<string, Function | Function[]>
   keyMap?: KeyMapProps
 }
 
@@ -224,8 +226,18 @@ const ArrayBaseIndex = defineComponent({
 
 const ArrayBaseAddition = defineComponent({
   name: 'ArrayBaseAddition',
-  props: ['title', 'method', 'defaultValue'],
-  setup(props: IArrayBaseAdditionProps, { listeners }) {
+  props: mergeAntdProps(Button, {
+    title: {
+      type: String,
+    },
+    method: {
+      type: String as PropType<'push' | 'unshift'>,
+    },
+    defaultValue: {
+      type: String,
+    },
+  }),
+  setup(props, { listeners }) {
     const self = useField()
     const array = useArray()
     const prefixCls = `${stylePrefix}-array-base`
@@ -256,13 +268,16 @@ const ArrayBaseAddition = defineComponent({
               )
               if (props.method === 'unshift') {
                 array?.field?.value.unshift(defaultValue)
-                array.listeners?.add?.(0)
+                evalListener(array?.listeners?.add, 0)
               } else {
                 array?.field?.value.push(defaultValue)
-                array.listeners?.add?.(array?.field?.value?.value?.length - 1)
+                evalListener(
+                  array.listeners?.add,
+                  array?.field?.value?.value?.length - 1
+                )
               }
               if (listeners.click) {
-                listeners.click(e)
+                evalListener(listeners.click, e)
               }
             },
           },
@@ -304,10 +319,10 @@ const ArrayBaseRemove = defineComponent<{ title?: string; index?: number }>({
               }
 
               base?.field.value.remove(indexRef.value as number)
-              base?.listeners?.remove?.(indexRef.value as number)
+              evalListener(base?.listeners?.remove, indexRef.value)
 
               if (listeners.click) {
-                listeners.click(e)
+                evalListener(listeners.click, e)
               }
             },
           },
@@ -348,10 +363,10 @@ const ArrayBaseMoveDown = defineComponent<{ title?: string; index?: number }>({
               }
 
               base?.field.value.moveDown(indexRef.value as number)
-              base?.listeners?.moveDown?.(indexRef.value as number)
+              evalListener(base?.listeners?.moveDown, indexRef.value)
 
               if (listeners.click) {
-                listeners.click(e)
+                evalListener(listeners.click, e)
               }
             },
           },
@@ -392,10 +407,11 @@ const ArrayBaseMoveUp = defineComponent<{ title?: string; index?: number }>({
               }
 
               base?.field.value.moveUp(indexRef.value as number)
-              base?.listeners?.moveUp?.(indexRef.value as number)
+
+              evalListener(base?.listeners?.moveUp, indexRef.value)
 
               if (listeners.click) {
-                listeners.click(e)
+                evalListener(listeners.click, e)
               }
             },
           },

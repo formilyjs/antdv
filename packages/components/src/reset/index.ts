@@ -5,6 +5,7 @@ import { defineComponent } from 'vue-demi'
 
 import type { Button as IAntButton } from 'ant-design-vue'
 import { Button as AntButton } from 'ant-design-vue'
+import { evalListener } from '../__builtins__'
 
 export type ResetProps = IFieldResetOptions & IAntButton
 
@@ -34,7 +35,7 @@ export const Reset = observer(
               ...listeners,
               click: (e: any) => {
                 if (listeners?.click) {
-                  if (listeners.click(e) === false) return
+                  if (evalListener(listeners.click, e) === false) return
                 }
                 form
                   ?.reset('*', {

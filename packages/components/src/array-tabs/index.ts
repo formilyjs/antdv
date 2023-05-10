@@ -19,8 +19,9 @@ export const ArrayTabs = observer(
 
       return () => {
         const field = fieldRef.value
+        if (!field) return null
         const schema = schemaRef.value
-        const value = Array.isArray(field.value) ? field.value : []
+        const value = Array.isArray(field?.value) ? field.value : []
         const dataSource = value?.length ? value : [{}]
 
         const onEdit = (targetKey: any, type: 'add' | 'remove') => {
@@ -42,7 +43,7 @@ export const ArrayTabs = observer(
         }
 
         const badgedTab = (index: number) => {
-          const tab = `${field.title || 'Untitled'} ${index + 1}`
+          const tab = `${field?.title || 'Untitled'} ${index + 1}`
           const path = field.address.concat(index)
           const errors = field.form.queryFeedbacks({
             type: 'error',

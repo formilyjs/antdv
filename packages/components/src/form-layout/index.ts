@@ -97,8 +97,9 @@ export const FormLayout = defineComponent<FormLayoutProps>({
     gridColumnGap: {},
     gridRowGap: {},
   },
-  setup(customProps, { slots, refs }) {
-    const { props } = useResponsiveFormLayout(customProps, refs)
+  setup(customProps, { slots }) {
+    const rootRef = ref(null)
+    const { props } = useResponsiveFormLayout(customProps, rootRef)
 
     const deepLayout = useFormDeepLayout()
     const newDeepLayout = ref({
@@ -139,7 +140,7 @@ export const FormLayout = defineComponent<FormLayoutProps>({
       return h(
         'div',
         {
-          ref: 'root',
+          ref: rootRef,
           class: classNames,
         },
         slots

@@ -15,7 +15,7 @@ import { stylePrefix } from '../__builtins__/configs'
 import type { Tabs as TabsProps } from 'ant-design-vue/types/tabs/tabs'
 import type { TabPane as TabPaneProps } from 'ant-design-vue/types/tabs/tab-pane'
 
-import { composeExport } from '../__builtins__/shared'
+import { composeExport, evalListener } from '../__builtins__/shared'
 
 const { TabPane } = Tabs
 
@@ -142,7 +142,7 @@ const FormTabInner = observer(
             on: {
               ...listeners,
               change: (key) => {
-                listeners.change?.(key)
+                evalListener(listeners.change, key)
                 formTab.setActiveKey?.(key)
               },
             },

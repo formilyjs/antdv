@@ -3,12 +3,7 @@
 </template>
 
 <script>
-import {
-  FormDialog,
-  FormLayout,
-  FormItem,
-  Input,
-} from '@formily/antdv'
+import { FormDialog, FormLayout, FormItem, Input } from '@formily/antdv'
 import { Button } from 'ant-design-vue'
 import { createSchemaField } from '@formily/vue'
 const { SchemaField } = createSchemaField({

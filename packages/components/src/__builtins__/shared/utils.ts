@@ -42,3 +42,12 @@ export function isEmptyElement(c) {
 export function filterEmpty(children = []) {
   return children.filter((c) => !isEmptyElement(c))
 }
+
+// eslint-disable-next-line @typescript-eslint/ban-types
+export function evalListener(listener?: Function | Function[], ...args: any[]) {
+  if (typeof listener === 'function') {
+    return listener(...args)
+  } else if (Array.isArray(listener)) {
+    return listener.map((fn) => fn(...args))
+  }
+}

@@ -95,7 +95,7 @@ const FormGridInner = observer(
         type: Object as PropType<Grid<HTMLElement>>,
       },
     },
-    setup(props: IFormGridProps) {
+    setup(props) {
       const layout = useFormLayout()
 
       const gridInstance = computed(() => {
