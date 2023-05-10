@@ -1,20 +1,20 @@
-import { Button, Icon } from 'ant-design-vue'
-import { stylePrefix } from '../__builtins__/configs'
-import { Fragment, useField, useFieldSchema, h } from '@formily/vue'
-import { isValid, clone, uid } from '@formily/shared'
 import type { ArrayField } from '@formily/core'
-import type { Button as ButtonProps } from 'ant-design-vue/types/button/button'
 import type { Schema } from '@formily/json-schema'
-import type { Ref, InjectionKey } from '@vue/composition-api'
+import { clone, isValid, uid } from '@formily/shared'
+import { Fragment, h, useField, useFieldSchema } from '@formily/vue'
+import { Button, Icon } from 'ant-design-vue'
+import type { Button as ButtonProps } from 'ant-design-vue/types/button/button'
+import type { InjectionKey, Ref } from 'vue-demi'
 import {
   defineComponent,
-  provide,
   inject,
-  toRefs,
-  ref,
   onBeforeUnmount,
-} from '@vue/composition-api'
+  provide,
+  ref,
+  toRefs,
+} from 'vue-demi'
 import { HandleDirective } from 'vue-slicksort'
+import { stylePrefix } from '../__builtins__/configs'
 import { composeExport } from '../__builtins__/shared'
 
 export type KeyMapProps =

@@ -1,7 +1,7 @@
 import type { IFieldResetOptions } from '@formily/core'
 import { h, useParentForm } from '@formily/vue'
 import { observer } from '@formily/reactive-vue'
-import { defineComponent } from '@vue/composition-api'
+import { defineComponent } from 'vue-demi'
 
 import type { Button as IAntButton } from 'ant-design-vue'
 import { Button as AntButton } from 'ant-design-vue'

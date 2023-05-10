@@ -1,20 +1,15 @@
-import { h, useField } from '@formily/vue'
-import {
-  defineComponent,
-  ref,
-  onBeforeUnmount,
-  computed,
-} from '@vue/composition-api'
-import { observer } from '@formily/reactive-vue'
-import { Popover as AntdPopover, Icon } from 'ant-design-vue'
-import { composeExport } from '../__builtins__'
-import type { FormItemProps } from '../form-item'
-import { FormBaseItem } from '../form-item'
-import type { Popover as PopoverProps } from 'ant-design-vue/types/popover'
 import type { Field } from '@formily/core'
 import { isVoidField } from '@formily/core'
-import { stylePrefix } from '../__builtins__/configs'
 import { reaction } from '@formily/reactive'
+import { observer } from '@formily/reactive-vue'
+import { h, useField } from '@formily/vue'
+import { Popover as AntdPopover, Icon } from 'ant-design-vue'
+import type { Popover as PopoverProps } from 'ant-design-vue/types/popover'
+import { computed, defineComponent, onBeforeUnmount, ref } from 'vue-demi'
+import { composeExport } from '../__builtins__'
+import { stylePrefix } from '../__builtins__/configs'
+import type { FormItemProps } from '../form-item'
+import { FormBaseItem } from '../form-item'
 
 type IPopoverProps = PopoverProps
 export type EditableProps = FormItemProps
@@ -46,8 +41,9 @@ const EditableInner = observer(
   // eslint-disable-next-line vue/one-component-per-file
   defineComponent<EditableProps>({
     name: 'Editable',
-    setup(props, { attrs, slots, refs }) {
+    setup(props, { attrs, slots }) {
       const fieldRef = useField<Field>()
+      const innerRef = ref<HTMLElement>(null)
       const pattern = useInitialPattern(fieldRef)
       const prefixCls = `${stylePrefix}-editable`
       const setEditable = (payload: boolean) => {
@@ -88,9 +84,9 @@ const EditableInner = observer(
         }
 
         const onClick = (e: MouseEvent) => {
-          const innerRef = refs.innerRef as HTMLElement
+          const _innerRef = innerRef.value as HTMLElement
           const target = e.target as HTMLElement
-          const close = innerRef.querySelector(`.${prefixCls}-close-btn`)
+          const close = _innerRef.querySelector(`.${prefixCls}-close-btn`)
 
           if (target?.contains(close) || close?.contains(target)) {
             closeEditable()
@@ -98,7 +94,7 @@ const EditableInner = observer(
             setTimeout(() => {
               setEditable(true)
               setTimeout(() => {
-                innerRef.querySelector('input')?.focus()
+                _innerRef.querySelector('input')?.focus()
               })
             })
           }
@@ -163,7 +159,7 @@ const EditableInner = observer(
           'div',
           {
             class: prefixCls,
-            ref: 'innerRef',
+            ref: innerRef,
             on: {
               click: onClick,
             },
@@ -222,7 +218,7 @@ const EditablePopover = observer(
               visible: visible.value,
               trigger: 'click',
             },
-            arrrs: {
+            attrs: {
               ...attrs,
             },
             on: {

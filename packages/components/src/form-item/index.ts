@@ -1,4 +1,4 @@
-import type { Ref } from '@vue/composition-api'
+import type { Ref } from 'vue-demi'
 import {
   ref,
   defineComponent,
@@ -6,14 +6,14 @@ import {
   onBeforeUnmount,
   watch,
   provide,
-} from '@vue/composition-api'
+} from 'vue-demi'
 import { isVoidField } from '@formily/core'
 import { connect, mapProps, h } from '@formily/vue'
 import { useFormLayout, FormLayoutShallowContext } from '../form-layout'
 import { composeExport, resolveComponent } from '../__builtins__/shared'
 import { stylePrefix } from '../__builtins__/configs'
 import type { Component } from 'vue'
-import { Tooltip } from 'ant-design-vue'
+import { Tooltip, Popover } from 'ant-design-vue'
 import ResizeObserver from 'resize-observer-polyfill'
 
 export type FormItemProps = {
@@ -212,7 +212,7 @@ export const FormBaseItem = defineComponent<FormItemProps>({
       const formatChildren =
         feedbackLayout === 'popover'
           ? h(
-              'el-popover',
+              Popover,
               {
                 props: {
                   disabled: !feedbackText,
@@ -254,7 +254,7 @@ export const FormBaseItem = defineComponent<FormItemProps>({
           'div',
           {
             class: `${prefixCls}-label-content`,
-            ref: 'labelContainer',
+            ref: containerRef,
           },
           {
             default: () => [

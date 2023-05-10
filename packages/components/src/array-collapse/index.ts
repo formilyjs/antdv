@@ -1,5 +1,5 @@
-import type { Ref } from '@vue/composition-api'
-import { defineComponent, ref, watchEffect } from '@vue/composition-api'
+import type { Ref } from 'vue-demi'
+import { defineComponent, ref, watchEffect } from 'vue-demi'
 import { Badge, Card, Collapse, Empty } from 'ant-design-vue'
 import type { ArrayField } from '@formily/core'
 import {

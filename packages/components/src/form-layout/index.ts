@@ -1,12 +1,6 @@
-import type { InjectionKey, Ref } from '@vue/composition-api'
-import {
-  provide,
-  inject,
-  defineComponent,
-  ref,
-  watch,
-} from '@vue/composition-api'
 import { h } from '@formily/vue'
+import type { InjectionKey, Ref } from 'vue-demi'
+import { defineComponent, inject, provide, ref, watch } from 'vue-demi'
 import { stylePrefix } from '../__builtins__/configs'
 import { useResponsiveFormLayout } from './useResponsiveFormLayout'
 
