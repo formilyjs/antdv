@@ -65,9 +65,13 @@
     overflow: overlay;
 
     .@{ant-prefix}-formily-form-item {
-      border-bottom: 1px solid @border-color-split;
+      border-bottom: 1px solid var(--dn-panel-border-color);
       margin: 8px 0;
       padding-bottom: 8px;
+    }
+
+    .@{ant-prefix}-formily-form-item-label {
+      color: inherit;
     }
   }
 
@@ -126,7 +130,3 @@
     color: #888;
   }
 }
-
-@text-color: rgba(0, 0, 0, 0.85);
-@border-color-split: #f0f0f0;
-@border-color-base: #d9d9d9;

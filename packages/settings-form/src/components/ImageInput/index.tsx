@@ -30,6 +30,7 @@ export const ImageInput = defineComponent({
             scopedSlots={{
               prefix: () => (
                 <Upload
+                  accept="image/*"
                   action={context.uploadAction}
                   customRequest={context.uploadCustomRequest}
                   method={context.uploadMethod}
