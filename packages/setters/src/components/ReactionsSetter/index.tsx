@@ -166,6 +166,7 @@ export const ReactionsSetter = defineComponent({
   inheritAttrs: false,
   emits: ['change'],
   setup(props, { emit }) {
+    const dnAppRef = usePrefix('app')
     const modalVisibleRef = ref(false)
     const formRef = ref()
     const formCollapseRef = ref()
@@ -246,6 +247,7 @@ export const ReactionsSetter = defineComponent({
                 </Space>
               ),
             }}
+            getContainer={() => document.querySelector(`.${dnAppRef.value}`)}
             visible={modalVisible}
             width="70%"
             destroyOnClose

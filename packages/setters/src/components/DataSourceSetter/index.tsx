@@ -52,6 +52,7 @@ export const DataSourceSetter = observer(
     emits: ['change'],
     setup(props, { emit }) {
       const prefixRef = usePrefix('data-source-setter')
+      const dnAppRef = usePrefix('app')
       const themeRef = useTheme()
       const modalVisibleRef = ref(false)
       const treeDataSourceRef = reactive({
@@ -102,6 +103,7 @@ export const DataSourceSetter = observer(
                   </Space>
                 ),
               }}
+              getContainer={() => document.querySelector(`.${dnAppRef.value}`)}
               visible={modalVisible}
               width="65%"
               destroyOnClose

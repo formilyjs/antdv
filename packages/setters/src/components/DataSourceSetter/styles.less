@@ -34,7 +34,7 @@
   &-layout {
     display: flex;
     justify-content: space-around;
-    border: 1px solid @border-color-base;
+    border: 1px solid var(--dn-panel-border-color);
     border-radius: 3px;
 
     .@{ant-prefix}-tree li {
@@ -48,12 +48,28 @@
       }
     }
 
+    .@{ant-prefix}-formily-form-item-label {
+      color: inherit;
+    }
+
+    .@{ant-prefix}-formily-array-base-remove{
+      color: inherit;
+
+      &:hover{
+        color: var(--dn-brand)
+      }
+    }
+
+    .@{ant-prefix}-formily-array-items-divide{
+      border-bottom-color: var(--dn-panel-border-color);
+    }
+
     &-item {
       position: relative;
 
       &.left {
         width: 40%;
-        border-right: 1px solid @border-color-base;
+        border-right: 1px solid var(--dn-panel-border-color);
       }
 
       &.right {
@@ -67,7 +83,7 @@
         justify-content: space-between;
         height: 40px;
         padding: 8px 12px 9px;
-        border-bottom: 1px solid @border-color-base;
+        border-bottom: 1px solid var(--dn-panel-border-color);
         border-radius: 2px 2px 0 0;
       }
 
