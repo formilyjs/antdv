@@ -17,42 +17,35 @@
       />
     </SchemaField>
     <FormButtonGroup align-form-item>
-      <Submit :onSubmit="log">提交</Submit>
+      <Submit :on-submit="log">提交</Submit>
     </FormButtonGroup>
   </FormProvider>
 </template>
 
-<script>
+<script lang="ts">
 import { createForm } from '@formily/core'
 import { FormProvider, createSchemaField } from '@formily/vue'
-import {
-  FormLayout,
-  Submit,
-  FormButtonGroup,
-  FormItem,
-  Input,
-} from '@formily/antdv'
+import { FormLayout, Submit, FormButtonGroup, FormItem, Input } from '@formily/antdv'
 
 const fields = createSchemaField({ components: { FormItem, Input } })
 
 export default {
   components: {
     FormProvider,
-    FormLayout,
     Submit,
     FormButtonGroup,
-    ...fields,
+    ...fields
   },
   data() {
     const form = createForm()
     return {
-      form,
+      form
     }
   },
   methods: {
     log(v) {
       console.log(v)
-    },
-  },
+    }
+  }
 }
 </script>

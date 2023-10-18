@@ -1,1 +1,9 @@
-import './style.less'
+import { genStyleHook } from './../__builtins__'
+export default genStyleHook('form-grid', (token) => {
+  const { componentCls } = token
+  return {
+    [`${componentCls}`]: {
+      display: 'grid'
+    }
+  }
+})

@@ -3,11 +3,11 @@
     <SchemaField>
       <SchemaArrayField
         name="array"
-        :maxItems="3"
+        :max-items="3"
         x-component="ArrayCards"
         x-decorator="FormItem"
         :x-component-props="{
-          title: '对象数组',
+          title: '对象数组'
         }"
       >
         <SchemaObjectField>
@@ -53,33 +53,25 @@
   </FormProvider>
 </template>
 
-<script>
+<script lang="ts">
+import type { Field } from '@formily/core'
 import { createForm, onFieldChange, onFieldReact } from '@formily/core'
 import { FormProvider, createSchemaField } from '@formily/vue'
-import {
-  FormItem,
-  FormButtonGroup,
-  Submit,
-  Input,
-  ArrayCards,
-} from '@formily/antdv'
-import { Button } from 'ant-design-vue'
+import { FormItem, Submit, Input, ArrayCards } from '@formily/antdv'
 
 const SchemaField = createSchemaField({
   components: {
     FormItem,
     Input,
-    ArrayCards,
-  },
+    ArrayCards
+  }
 })
 
 export default {
   components: {
     FormProvider,
-    FormButtonGroup,
-    Button,
     Submit,
-    ...SchemaField,
+    ...SchemaField
   },
 
   data() {
@@ -88,25 +80,25 @@ export default {
         //主动联动模式
         onFieldChange('array.*.aa', ['value'], (field, form) => {
           form.setFieldState(field.query('.bb'), (state) => {
-            state.visible = field.value != '123'
+            state.visible = (field as Field).value != '123'
           })
         })
         //被动联动模式
         onFieldReact('array.*.dd', (field) => {
           field.visible = field.query('.cc').get('value') != '123'
         })
-      },
+      }
     })
 
     return {
-      form,
+      form
     }
   },
   methods: {
     log(values) {
       console.log(values)
-    },
-  },
+    }
+  }
 }
 </script>
 

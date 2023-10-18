@@ -1,5 +1,5 @@
 <template>
-  <FormLayout :labelCol="6" :wrapperCol="10">
+  <FormLayout :label-col="6" :wrapper-col="10">
     <FormProvider :form="form">
       <SchemaField>
         <SchemaStringField
@@ -13,15 +13,15 @@
           title="选择项预览"
           x-component="PreviewText.Select"
           :x-component-props="{
-            multiple: true,
+            multiple: true
           }"
           :default="['123', '222']"
           :enum="[
             { label: 'A111', value: '123' },
             {
               label: 'A222',
-              value: '222',
-            },
+              value: '222'
+            }
           ]"
         />
         <SchemaStringField
@@ -43,7 +43,7 @@
           :default="['hangzhou', 'yuhang']"
           :enum="[
             { label: '杭州', value: 'hangzhou' },
-            { label: '余杭', value: 'yuhang' },
+            { label: '余杭', value: 'yuhang' }
           ]"
         />
       </SchemaField>
@@ -51,7 +51,7 @@
   </FormLayout>
 </template>
 
-<script>
+<script lang="ts">
 import { createForm } from '@formily/core'
 import { FormProvider, createSchemaField } from '@formily/vue'
 import { FormLayout, FormItem, PreviewText } from '@formily/antdv'
@@ -59,26 +59,26 @@ import { FormLayout, FormItem, PreviewText } from '@formily/antdv'
 const fields = createSchemaField({
   components: {
     FormItem,
-    PreviewText,
-  },
+    PreviewText
+  }
 })
 
 export default {
   components: {
     FormProvider,
     FormLayout,
-    ...fields,
+    ...fields
   },
   data() {
     const form = createForm()
     return {
-      form,
+      form
     }
   },
   methods: {
     log(v) {
       console.log(v)
-    },
-  },
+    }
+  }
 }
 </script>

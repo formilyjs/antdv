@@ -5,17 +5,10 @@
   </FormProvider>
 </template>
 
-<script>
+<script lang="ts">
 import { createForm } from '@formily/core'
 import { FormProvider, createSchemaField } from '@formily/vue'
-import {
-  FormButtonGroup,
-  Submit,
-  FormItem,
-  Space,
-  Input,
-  ArrayTabs,
-} from '@formily/antdv'
+import { FormButtonGroup, Submit, FormItem, Space, Input, ArrayTabs } from '@formily/antdv'
 import { Button } from 'ant-design-vue'
 
 const SchemaField = createSchemaField({
@@ -23,17 +16,15 @@ const SchemaField = createSchemaField({
     FormItem,
     Space,
     Input,
-    ArrayTabs,
-  },
+    ArrayTabs
+  }
 })
 
 export default {
   components: {
     FormProvider,
-    FormButtonGroup,
-    Button,
     Submit,
-    ...SchemaField,
+    ...SchemaField
   },
 
   data() {
@@ -51,8 +42,8 @@ export default {
             type: 'string',
             'x-decorator': 'FormItem',
             required: true,
-            'x-component': 'Input',
-          },
+            'x-component': 'Input'
+          }
         },
         array: {
           type: 'array',
@@ -68,31 +59,31 @@ export default {
                 'x-decorator': 'FormItem',
                 title: 'AAA',
                 required: true,
-                'x-component': 'Input',
+                'x-component': 'Input'
               },
               bbb: {
                 type: 'string',
                 'x-decorator': 'FormItem',
                 title: 'BBB',
                 required: true,
-                'x-component': 'Input',
-              },
-            },
-          },
-        },
-      },
+                'x-component': 'Input'
+              }
+            }
+          }
+        }
+      }
     }
 
     return {
       form,
-      schema,
+      schema
     }
   },
   methods: {
     log(values) {
       console.log(values)
-    },
-  },
+    }
+  }
 }
 </script>
 

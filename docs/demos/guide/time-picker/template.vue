@@ -9,16 +9,16 @@
         TimePicker,
         {
           style: {
-            width: '240px',
-          },
-        },
+            width: '240px'
+          }
+        }
       ]"
     />
     <Submit @submit="log">提交</Submit>
   </FormProvider>
 </template>
 
-<script>
+<script lang="ts">
 import { createForm } from '@formily/core'
 import { FormProvider, Field } from '@formily/vue'
 import { FormItem, TimePicker, Submit } from '@formily/antdv'
@@ -31,13 +31,13 @@ export default {
     return {
       FormItem,
       TimePicker,
-      form,
+      form
     }
   },
   methods: {
     log(value) {
       console.log(value)
-    },
-  },
+    }
+  }
 }
 </script>

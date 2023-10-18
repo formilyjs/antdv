@@ -1,17 +1,7 @@
 <template>
   <FormProvider :form="form">
-    <Field
-      name="date"
-      title="日期"
-      :decorator="[Editable]"
-      :component="[DatePicker]"
-    />
-    <Field
-      name="input"
-      title="输入框"
-      :decorator="[Editable]"
-      :component="[Input]"
-    />
+    <Field name="date" title="日期" :decorator="[Editable]" :component="[DatePicker]" />
+    <Field name="input" title="输入框" :decorator="[Editable]" :component="[Input]" />
     <VoidField
       name="void"
       title="虚拟节点容器"
@@ -22,18 +12,8 @@
         }
       "
     >
-      <Field
-        name="date2"
-        title="日期"
-        :decorator="[FormItem]"
-        :component="[DatePicker]"
-      />
-      <Field
-        name="input2"
-        title="输入框"
-        :decorator="[FormItem]"
-        :component="[Input]"
-      />
+      <Field name="date2" title="日期" :decorator="[FormItem]" :component="[DatePicker]" />
+      <Field name="input2" title="输入框" :decorator="[FormItem]" :component="[Input]" />
     </VoidField>
     <ObjectField
       name="iobject"
@@ -45,18 +25,8 @@
         }
       "
     >
-      <Field
-        name="date"
-        title="日期"
-        :decorator="[FormItem]"
-        :component="[DatePicker]"
-      />
-      <Field
-        name="input"
-        title="输入框"
-        :decorator="[FormItem]"
-        :component="[Input]"
-      />
+      <Field name="date" title="日期" :decorator="[FormItem]" :component="[DatePicker]" />
+      <Field name="input" title="输入框" :decorator="[FormItem]" :component="[Input]" />
     </ObjectField>
 
     <FormButtonGroup>
@@ -65,17 +35,10 @@
   </FormProvider>
 </template>
 
-<script>
+<script lang="ts">
 import { createForm } from '@formily/core'
 import { FormProvider, Field, VoidField, ObjectField } from '@formily/vue'
-import {
-  FormButtonGroup,
-  FormItem,
-  Submit,
-  Input,
-  DatePicker,
-  Editable,
-} from '@formily/antdv'
+import { FormButtonGroup, FormItem, Submit, Input, DatePicker, Editable } from '@formily/antdv'
 
 export default {
   components: {
@@ -84,7 +47,7 @@ export default {
     Submit,
     Field,
     VoidField,
-    ObjectField,
+    ObjectField
   },
 
   data() {
@@ -95,14 +58,14 @@ export default {
       Input,
       DatePicker,
       Editable,
-      form,
+      form
     }
   },
   methods: {
     log(values) {
       console.log(values)
-    },
-  },
+    }
+  }
 }
 </script>
 

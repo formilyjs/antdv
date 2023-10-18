@@ -5,22 +5,22 @@
       title="单选"
       :decorator="[FormItem]"
       :component="[Transfer, { render: (item) => item.title }]"
-      :dataSource="[
+      :data-source="[
         {
           title: '选项1',
-          key: 1,
+          key: '1'
         },
         {
           title: '选项2',
-          key: 2,
-        },
+          key: '2'
+        }
       ]"
     />
     <Submit @submit="log">提交</Submit>
   </FormProvider>
 </template>
 
-<script>
+<script lang="ts">
 import { createForm } from '@formily/core'
 import { FormProvider, Field } from '@formily/vue'
 import { FormItem, Transfer, Submit } from '@formily/antdv'
@@ -33,13 +33,13 @@ export default {
     return {
       FormItem,
       Transfer,
-      form,
+      form
     }
   },
   methods: {
     log(value) {
       console.log(value)
-    },
-  },
+    }
+  }
 }
 </script>

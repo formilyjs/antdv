@@ -1,15 +1,11 @@
 <template>
   <FormProvider :form="form">
     <SchemaField>
-      <SchemaStringField
-        name="date"
-        title="日期"
-        x-decorator="Editable"
-        x-component="DatePicker"
-      />
+      <SchemaStringField name="date" title="日期" x-decorator="Editable" x-component="DatePicker" />
       <SchemaStringField
         name="input"
         title="输入框"
+        :required="true"
         x-decorator="Editable"
         x-component="Input"
       />
@@ -52,12 +48,7 @@
           x-decorator="FormItem"
           x-component="DatePicker"
         />
-        <SchemaStringField
-          name="input"
-          title="输入框"
-          x-decorator="FormItem"
-          x-component="Input"
-        />
+        <SchemaStringField name="input" title="输入框" x-decorator="FormItem" x-component="Input" />
       </SchemaObjectField>
     </SchemaField>
     <FormButtonGroup>
@@ -66,17 +57,10 @@
   </FormProvider>
 </template>
 
-<script>
+<script lang="ts">
 import { createForm } from '@formily/core'
 import { FormProvider, createSchemaField } from '@formily/vue'
-import {
-  FormButtonGroup,
-  FormItem,
-  Submit,
-  Input,
-  DatePicker,
-  Editable,
-} from '@formily/antdv'
+import { FormButtonGroup, FormItem, Submit, Input, DatePicker, Editable } from '@formily/antdv'
 import { Button } from 'ant-design-vue'
 
 const SchemaField = createSchemaField({
@@ -84,31 +68,30 @@ const SchemaField = createSchemaField({
     FormItem,
     Input,
     DatePicker,
-    Editable,
-  },
+    Editable
+  }
 })
 
 export default {
   components: {
     FormButtonGroup,
     FormProvider,
-    Button,
     Submit,
-    ...SchemaField,
+    ...SchemaField
   },
 
   data() {
     const form = createForm()
 
     return {
-      form,
+      form
     }
   },
   methods: {
     log(values) {
       console.log(values)
-    },
-  },
+    }
+  }
 }
 </script>
 

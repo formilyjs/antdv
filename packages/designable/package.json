@@ -1,0 +1,46 @@
+{
+  "name": "@formily/antdv-designable",
+  "version": "2.0.0",
+  "license": "MIT",
+  "main": "lib",
+  "types": "lib/index.d.ts",
+  "engines": {
+    "npm": ">=3.0.0"
+  },
+  "module": "esm",
+  "umd:main": "dist/formily.antdv-designable.umd.production.js",
+  "unpkg": "dist/formily.antdv-designable.umd.production.js",
+  "jsdelivr": "dist/formily.antdv-designable.umd.production.js",
+  "jsnext:main": "esm",
+  "sideEffects": true,
+  "scripts": {
+    "build": "ts-node ../../scripts/build.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/formilyjs/antdv.git"
+  },
+  "bugs": {
+    "url": "https://github.com/formilyjs/antdv/issues"
+  },
+  "homepage": "https://github.com/formilyjs/antdv#readme",
+  "publishConfig": {
+    "access": "public"
+  },
+  "maintainers": [
+    "yiyunwan"
+  ],
+  "peerDependencies": {
+    "vue": "^3.3.0"
+  },
+  "devDependencies": {
+    "@formily/reactive-vue": "^2.0.0",
+    "@formily/vue": "^2.0.0",
+    "@juggle/resize-observer": "^3.3.1",
+    "@pind/designable-core": "^2.0.0-beta.6",
+    "@pind/designable-shared": "^2.0.0-beta.6",
+    "@formily/antdv": "2.0.0",
+    "dateformat": "^3.0.0"
+  },
+  "gitHead": "62ef79d985a056c1038754fc928645c3b147cb6e"
+}

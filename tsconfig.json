@@ -14,9 +14,17 @@
     "declaration": true,
     "experimentalDecorators": true,
     "downlevelIteration": true,
+    "noImplicitThis": true,
     "baseUrl": ".",
     "paths": {
-      "@formily/*": ["packages/*/src"]
-    }
+      "@formily/antdv": ["packages/components/src"],
+      "@formily/antdv/esm/*": ["packages/components/src/*"],
+      "@formily/antdv/lib/*": ["packages/components/src/*"],
+      "@formily/antdv-*": ["packages/*/src"]
+    },
+    "types": ["vitest/globals", "vite/client"]
+  },
+  "vueCompilerOptions": {
+    "target": 2.7
   }
 }

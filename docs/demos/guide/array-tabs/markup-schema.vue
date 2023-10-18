@@ -5,20 +5,16 @@
         name="string_array"
         x-decorator="FormItem"
         title="字符串数组"
-        :maxItems="3"
+        :max-items="3"
         x-component="ArrayTabs"
       >
-        <SchemaStringField
-          x-decorator="FormItem"
-          required
-          x-component="Input"
-        />
+        <SchemaStringField x-decorator="FormItem" required x-component="Input" />
       </SchemaArrayField>
       <SchemaArrayField
         name="array"
         x-decorator="FormItem"
         title="对象数组"
-        :maxItems="3"
+        :max-items="3"
         x-component="ArrayTabs"
       >
         <SchemaObjectField>
@@ -45,17 +41,10 @@
   </FormProvider>
 </template>
 
-<script>
+<script lang="ts">
 import { createForm } from '@formily/core'
 import { FormProvider, createSchemaField } from '@formily/vue'
-import {
-  FormItem,
-  FormButtonGroup,
-  Submit,
-  Input,
-  Select,
-  ArrayTabs,
-} from '@formily/antdv'
+import { FormItem, FormButtonGroup, Submit, Input, Select, ArrayTabs } from '@formily/antdv'
 import { Button } from 'ant-design-vue'
 
 const SchemaField = createSchemaField({
@@ -63,31 +52,30 @@ const SchemaField = createSchemaField({
     FormItem,
     Input,
     Select,
-    ArrayTabs,
-  },
+    ArrayTabs
+  }
 })
 
 export default {
   components: {
     FormProvider,
     FormButtonGroup,
-    Button,
     Submit,
-    ...SchemaField,
+    ...SchemaField
   },
 
   data() {
     const form = createForm()
 
     return {
-      form,
+      form
     }
   },
   methods: {
     log(values) {
       console.log(values)
-    },
-  },
+    }
+  }
 }
 </script>
 

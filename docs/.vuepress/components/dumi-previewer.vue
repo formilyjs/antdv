@@ -1,18 +1,19 @@
 <template>
-  <client-only>
-    <section class="dumi-previewer">
-      <div class="dumi-previewer-demo">
-        <template v-if="demoPath && demo">
-          <component :is="demo" />
-        </template>
+  <!-- <client-only> -->
+  <section class="dumi-previewer">
+    <div class="dumi-previewer-demo">
+      <template v-if="demoPath && demo">
+        <component :is="demo" />
+      </template>
 
-        <template v-else>
-          <slot name="demo"></slot>
-        </template>
-      </div>
+      <template v-else>
+        <slot name="demo"></slot>
+      </template>
+    </div>
 
-      <div class="dumi-previewer-actions">
-        <div>
+    <div class="dumi-previewer-actions">
+      <div>
+        <a-tooltip title="在 CodeSandbox 中打开">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -23,14 +24,15 @@
             <path
               d="M115.498 261.088v-106.61L23.814 101.73v60.773l41.996 24.347v45.7l49.688 28.54zm23.814.627l50.605-29.151V185.78l42.269-24.495v-60.011l-92.874 53.621v106.82zm80.66-180.887l-48.817-28.289l-42.863 24.872l-43.188-24.897l-49.252 28.667l91.914 52.882l92.206-53.235zM0 222.212V74.495L127.987 0L256 74.182v147.797l-128.016 73.744L0 222.212z"
               fill="#000"
-            ></path>
+            />
           </svg>
-        </div>
-
-        <div>
+        </a-tooltip>
+      </div>
+      <div>
+        <a-tooltip title="复制代码">
           <svg
             v-if="copied"
-            class="dumi-previewer-actions__icon"
+            class="dumi-previewer-actions__icon mr6"
             style="fill: green"
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
@@ -38,14 +40,12 @@
             height="24"
           >
             <path fill="none" d="M0 0h24v24H0z" />
-            <path
-              d="M10 15.172l9.192-9.193 1.415 1.414L10 18l-6.364-6.364 1.414-1.414z"
-            />
+            <path d="M10 15.172l9.192-9.193 1.415 1.414L10 18l-6.364-6.364 1.414-1.414z" />
           </svg>
 
           <svg
             v-else
-            class="dumi-previewer-actions__icon"
+            class="dumi-previewer-actions__icon mr6"
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
             width="24"
@@ -57,7 +57,9 @@
               d="M7 6V3a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1h-3v3c0 .552-.45 1-1.007 1H4.007A1.001 1.001 0 0 1 3 21l.003-14c0-.552.45-1 1.007-1H7zM5.003 8L5 20h10V8H5.003zM9 6h8v10h2V4H9v2z"
             />
           </svg>
+        </a-tooltip>
 
+        <a-tooltip :title="innerCollapsed ? '展开代码' : '收起代码'">
           <svg
             class="dumi-previewer-actions__icon"
             xmlns="http://www.w3.org/2000/svg"
@@ -71,102 +73,77 @@
               d="M24 12l-5.657 5.657-1.414-1.414L21.172 12l-4.243-4.243 1.414-1.414L24 12zM2.828 12l4.243 4.243-1.414 1.414L0 12l5.657-5.657L7.07 7.757 2.828 12zm6.96 9H7.66l6.552-18h2.128L9.788 21z"
             />
           </svg>
-        </div>
+        </a-tooltip>
       </div>
+    </div>
 
-      <div v-show="!innerCollapsed" class="dumi-previewer-source">
-        <div v-html="highlightCode" class="language-vue extra-class" />
-      </div>
-    </section>
-  </client-only>
+    <div v-show="!innerCollapsed" class="dumi-previewer-source">
+      <div v-html="highlightCode" class="language-vue extra-class" />
+    </div>
+  </section>
+  <!-- </client-only> -->
 </template>
 
-<script>
+<script lang="ts" setup>
 import copy from 'copy-to-clipboard'
-import highlight from './highlight'
+import { computed, onMounted, ref, shallowRef } from 'vue'
 import { createCodeSandBox } from './createCodeSandBox'
+import highlight from './highlight'
+const modules = import.meta.glob('../../demos/**/*.vue')
+const rawModules = import.meta.glob('./../../demos/**/*.vue', {
+  as: 'raw'
+})
 
-export default {
-  name: 'dumi-previewer',
-
-  props: {
-    code: {
-      type: String,
-      default: '',
-    },
-
-    demoPath: {
-      type: String,
-      default: '',
-    },
-    collapsed: {
-      type: Boolean,
-      default: true,
-    },
+const props = defineProps({
+  code: {
+    type: String,
+    default: ''
   },
 
-  data() {
-    return {
-      innerCollapsed: this.collapsed,
-      copied: false,
-      timerId: null,
-      demoStr: '',
-      /**
-       * take over VuePress render
-       * 接管VuePress渲染
-       */
-      demo: null,
-    }
+  demoPath: {
+    type: String,
+    default: ''
   },
+  collapsed: {
+    type: Boolean,
+    default: true
+  }
+})
 
-  computed: {
-    decodedCode() {
-      return decodeURIComponent(this.code || this.demoStr)
-    },
+const innerCollapsed = ref(props.collapsed)
+const copied = ref(false)
+const demoStr = ref<string>('')
+const decodedCode = computed(() => props.code || demoStr.value)
+const highlightCode = computed(() => highlight(decodedCode.value, 'vue'))
+const demo = shallowRef(null)
 
-    highlightCode() {
-      return highlight(this.decodedCode, 'vue')
-    },
-  },
+onMounted(() => {
+  if (props.demoPath) {
+    modules[`../../demos/${props.demoPath}.vue`]?.().then((module) => {
+      demo.value = module.default
+    })
+    demoStr.value = rawModules[`./../../demos/${props.demoPath}.vue`]
+  }
+})
 
-  created() {
-    if (this.demoPath) {
-      import(
-        /* webpackPrefetch: true */ `../../demos/${this.demoPath}.vue`
-      ).then((module) => {
-        this.demo = module.default
-      })
-      import(
-        /* webpackPrefetch: true */ `!raw-loader!../../demos/${this.demoPath}.vue`
-      ).then((module) => {
-        this.demoStr = module.default
-      })
-    }
-  },
+const handleCollapse = () => {
+  innerCollapsed.value = !innerCollapsed.value
+}
 
-  beforeDestroy() {
-    clearTimeout(this.timerId)
-  },
+let timerId = null
 
-  methods: {
-    handleCollapse() {
-      this.innerCollapsed = !this.innerCollapsed
-    },
+const handleCopy = () => {
+  copied.value = true
+  copy(decodedCode.value)
 
-    handleCopy() {
-      this.copied = true
-      copy(this.decodedCode)
+  clearTimeout(timerId)
+  timerId = setTimeout(() => {
+    copied.value = false
+  }, 2000)
+}
 
-      clearTimeout(this.timer)
-      this.timerId = setTimeout(() => {
-        this.copied = false
-      }, 2000)
-    },
-
-    openCodeSandBox() {
-      createCodeSandBox(this.demoStr)
-    },
-  },
+const openCodeSandBox = () => {
+  createCodeSandBox(demoStr.value)
 }
 </script>
 
@@ -198,6 +175,10 @@ export default {
 
       &:hover {
         opacity: 0.6;
+      }
+
+      &.mr6 {
+        margin-right: 6px
       }
     }
   }

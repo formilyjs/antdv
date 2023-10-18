@@ -12,7 +12,7 @@
   </FormProvider>
 </template>
 
-<script>
+<script lang="ts">
 import { createForm } from '@formily/core'
 import { createSchemaField, FormProvider } from '@formily/vue'
 import { FormItem, Password, Submit } from '@formily/antdv'
@@ -21,21 +21,21 @@ const form = createForm()
 const fields = createSchemaField({
   components: {
     FormItem,
-    Password,
-  },
+    Password
+  }
 })
 
 export default {
   components: { FormProvider, ...fields, Submit },
   data() {
     return {
-      form,
+      form
     }
   },
   methods: {
     log(value) {
       console.log(value)
-    },
-  },
+    }
+  }
 }
 </script>

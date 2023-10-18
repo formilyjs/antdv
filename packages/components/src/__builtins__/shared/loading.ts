@@ -1,10 +1,7 @@
 import { message } from 'ant-design-vue'
-import type { MessageType } from 'ant-design-vue/types/message'
+import type { MessageType } from 'ant-design-vue/es/message'
 
-export const loading = async (
-  loadingText = 'Loading...',
-  processor: () => Promise<any>
-) => {
+export const loading = async (loadingText = 'Loading...', processor: () => Promise<any>) => {
   let loadingInstance: MessageType = null
   const loading = setTimeout(() => {
     loadingInstance = message.loading(loadingText)

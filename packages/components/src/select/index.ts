@@ -1,5 +1,5 @@
-import { connect, mapProps, mapReadPretty } from '@formily/vue'
 import { Select as AntdSelect } from 'ant-design-vue'
+import { connect, mapProps, mapReadPretty } from '@formily/vue'
 import { PreviewText } from '../preview-text'
 
 export const Select = connect(
@@ -7,13 +7,17 @@ export const Select = connect(
   mapProps(
     {
       dataSource: 'options',
-      loading: true,
+      loading: true
     },
-    (props, field) => {
+    ({ useNull, ...props }, field) => {
+      let value = props.value
+      if (!useNull && value === null) {
+        value = undefined
+      }
       return {
         ...props,
-        loading:
-          field?.['loading'] || field?.['validating'] ? true : props.loading,
+        loading: field?.['loading'] || field?.['validating'] ? true : props.loading,
+        value
       }
     }
   ),

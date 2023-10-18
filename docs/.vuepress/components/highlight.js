@@ -1,6 +1,6 @@
-const prism = require('prismjs')
-const escapeHtml = require('escape-html')
-const loadLanguages = require('prismjs/components/index')
+import prism from 'prismjs'
+import escapeHtml from 'escape-html'
+import loadLanguages from 'prismjs/components/index'
 
 function wrap(code, lang) {
   if (lang === 'text') {
@@ -21,13 +21,13 @@ function getLangCodeFromExtension(extension) {
     yml: 'yaml',
     styl: 'stylus',
     kt: 'kotlin',
-    rs: 'rust',
+    rs: 'rust'
   }
 
   return extensionMap[extension] || extension
 }
 
-module.exports = (str, lang) => {
+export default function (str, lang) {
   if (!lang) {
     return wrap(str, 'text')
   }
@@ -40,9 +40,7 @@ module.exports = (str, lang) => {
     try {
       loadLanguages([lang])
     } catch (e) {
-      console.warn(
-        `[vuepress] Syntax highlight for language "${lang}" is not supported.`
-      )
+      console.warn(`[vuepress] Syntax highlight for language "${lang}" is not supported.`)
     }
   }
   if (prism.languages[lang]) {

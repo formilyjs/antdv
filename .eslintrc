@@ -12,22 +12,38 @@
     "prettyFormat": true
   },
   "parserOptions": {
+    "parser": "@typescript-eslint/parser",
     "ecmaVersion": 10,
     "sourceType": "module",
     "ecmaFeatures": {
       "jsx": true
     }
   },
-  "parser": "@typescript-eslint/parser",
-  "plugins": ["@typescript-eslint", "markdown"],
+  "parser": "vue-eslint-parser",
+  "plugins": ["@typescript-eslint", "markdown", "import"],
   "rules": {
     "@typescript-eslint/explicit-module-boundary-types": "off",
     "@typescript-eslint/consistent-type-imports": "warn",
     "@typescript-eslint/no-var-requires": "off",
     "@typescript-eslint/no-explicit-any": "off",
+    "@typescript-eslint/no-non-null-assertion": "off",
     "@typescript-eslint/no-unused-vars": "error",
     "@typescript-eslint/ban-ts-comment": "off",
-    "no-console": "error"
+    "@typescript-eslint/ban-types": "off",
+    "vue/multi-word-component-names": "off",
+    "no-console": "error",
+    "import/order": [
+      "error",
+      {
+        "pathGroups": [
+          {
+            "pattern": "@/**",
+            "group": "external"
+          }
+        ],
+        "groups": ["external", "internal", "builtin", "parent", "sibling", "index", "object"]
+      }
+    ]
   },
   "overrides": [
     {

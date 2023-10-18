@@ -6,8 +6,7 @@
         x-decorator="FormItem"
         x-component="ArrayTable"
         :x-component-props="{
-          pagination: { pageSize: 10 },
-          scroll: { x: 800 },
+          pagination: { pageSize: 10 }
         }"
       >
         <SchemaObjectField>
@@ -15,10 +14,7 @@
             x-component="ArrayTable.Column"
             :x-component-props="{ width: 80, title: 'Index', align: 'center' }"
           >
-            <SchemaVoidField
-              x-decorator="FormItem"
-              x-component="ArrayTable.Index"
-            />
+            <SchemaVoidField x-decorator="FormItem" x-component="ArrayTable.Index" />
           </SchemaVoidField>
           <SchemaVoidField
             x-component="ArrayTable.Column"
@@ -58,8 +54,7 @@
             :x-component-props="{
               title: 'Operations',
               dataIndex: 'operations',
-              width: 200,
-              fixed: 'right',
+              width: 200
             }"
           >
             <SchemaVoidField x-component="FormItem">
@@ -77,7 +72,7 @@
       @click="
         () => {
           form.setInitialValues({
-            array: range(100000),
+            array: range(100000)
           })
         }
       "
@@ -92,7 +87,7 @@
   </FormProvider>
 </template>
 
-<script>
+<script lang="ts">
 import { createForm } from '@formily/core'
 import { FormProvider, createSchemaField } from '@formily/vue'
 import { Submit, FormItem, ArrayTable, Input, Editable } from '@formily/antdv'
@@ -103,16 +98,17 @@ const fields = createSchemaField({
     FormItem,
     ArrayTable,
     Input,
-    Editable,
-  },
+    Editable
+  }
 })
 
 export default {
+  // eslint-disable-next-line vue/no-reserved-component-names
   components: { FormProvider, Submit, Button, Alert, ...fields },
   data() {
     const form = createForm()
     return {
-      form,
+      form
     }
   },
   methods: {
@@ -121,9 +117,9 @@ export default {
     },
     range(count) {
       return Array.from(new Array(count)).map((_, key) => ({
-        aaa: key,
+        aaa: key
       }))
-    },
-  },
+    }
+  }
 }
 </script>

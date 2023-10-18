@@ -2,17 +2,13 @@
   <Button @click="handleOpen">点击打开表单</Button>
 </template>
 
-<script>
-import {
-  FormDialog,
-  FormLayout,
-  FormItem,
-  Input,
-} from '@formily/antdv'
+<script lang="tsx">
+import { FormDialog, FormLayout, FormItem, Input } from '@formily/antdv'
 import { Button } from 'ant-design-vue'
 import { Field } from '@formily/vue'
 
 export default {
+  // eslint-disable-next-line vue/no-reserved-component-names
   components: { Button },
   data() {
     return {}
@@ -21,34 +17,10 @@ export default {
     handleOpen() {
       FormDialog('弹框表单', () => (
         <FormLayout labelCol={6} wrapperCol={10}>
-          <Field
-            name="aaa"
-            required
-            title="输入框1"
-            decorator={[FormItem]}
-            component={[Input]}
-          />
-          <Field
-            name="bbb"
-            required
-            title="输入框2"
-            decorator={[FormItem]}
-            component={[Input]}
-          />
-          <Field
-            name="ccc"
-            required
-            title="输入框3"
-            decorator={[FormItem]}
-            component={[Input]}
-          />
-          <Field
-            name="ddd"
-            required
-            title="输入框4"
-            decorator={[FormItem]}
-            component={[Input]}
-          />
+          <Field name="aaa" required title="输入框1" decorator={[FormItem]} component={[Input]} />
+          <Field name="bbb" required title="输入框2" decorator={[FormItem]} component={[Input]} />
+          <Field name="ccc" required title="输入框3" decorator={[FormItem]} component={[Input]} />
+          <Field name="ddd" required title="输入框4" decorator={[FormItem]} component={[Input]} />
           <FormDialog.Footer>
             <span style={{ marginLeft: '4px' }}>扩展文案</span>
           </FormDialog.Footer>
@@ -58,8 +30,8 @@ export default {
           setTimeout(() => {
             next({
               initialValues: {
-                aaa: '123',
-              },
+                aaa: '123'
+              }
             })
           }, 1000)
         })
@@ -78,7 +50,7 @@ export default {
         .open()
         .then(console.log)
         .catch(console.error)
-    },
-  },
+    }
+  }
 }
 </script>

@@ -4,16 +4,10 @@
   </FormProvider>
 </template>
 
-<script>
+<script lang="ts">
 import { createForm } from '@formily/core'
 import { createSchemaField, FormProvider } from '@formily/vue'
-import {
-  FormItem,
-  FormLayout,
-  Input,
-  Select,
-  Submit,
-} from '@formily/antdv'
+import { FormItem, FormLayout, Input, Select, Submit } from '@formily/antdv'
 
 const schema = {
   type: 'object',
@@ -23,7 +17,7 @@ const schema = {
       'x-component': 'FormLayout',
       'x-component-props': {
         labelCol: 6,
-        wrapperCol: 10,
+        wrapperCol: 10
       },
       properties: {
         input: {
@@ -32,20 +26,20 @@ const schema = {
           required: true,
           'x-decorator': 'FormItem',
           'x-decorator-props': {
-            tooltip: '123',
+            tooltip: '123'
           },
-          'x-component': 'Input',
+          'x-component': 'Input'
         },
         select: {
           type: 'string',
           title: '选择框',
           required: true,
           'x-decorator': 'FormItem',
-          'x-component': 'Select',
-        },
-      },
-    },
-  },
+          'x-component': 'Select'
+        }
+      }
+    }
+  }
 }
 
 const form = createForm()
@@ -54,22 +48,22 @@ const fields = createSchemaField({
     FormLayout,
     FormItem,
     Input,
-    Select,
-  },
+    Select
+  }
 })
 
 export default {
-  components: { FormProvider, ...fields, Submit },
+  components: { FormProvider, ...fields },
   data() {
     return {
       form,
-      schema,
+      schema
     }
   },
   methods: {
     onSubmit(value) {
       console.log(value)
-    },
-  },
+    }
+  }
 }
 </script>

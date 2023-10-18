@@ -5,22 +5,22 @@
       title="单选"
       :decorator="[FormItem]"
       :component="[Radio.Group]"
-      :dataSource="[
+      :data-source="[
         {
           label: '选项1',
-          value: 1,
+          value: 1
         },
         {
           label: '选项2',
-          value: 2,
-        },
+          value: 2
+        }
       ]"
     />
     <Submit @submit="log">提交</Submit>
   </FormProvider>
 </template>
 
-<script>
+<script lang="ts">
 import { createForm } from '@formily/core'
 import { FormProvider, Field } from '@formily/vue'
 import { FormItem, Radio, Submit } from '@formily/antdv'
@@ -33,13 +33,13 @@ export default {
     return {
       FormItem,
       Radio,
-      form,
+      form
     }
   },
   methods: {
     log(value) {
       console.log(value)
-    },
-  },
+    }
+  }
 }
 </script>

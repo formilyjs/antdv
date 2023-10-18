@@ -1,11 +1,11 @@
 import { connect, mapProps, mapReadPretty } from '@formily/vue'
+import type { DatePickerProps } from 'ant-design-vue'
 import { DatePicker as AntdDatePicker } from 'ant-design-vue'
-import type { DatePicker as AntdDatePickerProps } from 'ant-design-vue/types/date-picker/date-picker'
-import { formatMomentValue, composeExport } from '../__builtins__'
+import { composeExport, transformComponent } from '../__builtins__'
 import { PreviewText } from '../preview-text'
 
 const mapDateFormat = function () {
-  const getDefaultFormat = (props: AntdDatePickerProps) => {
+  const getDefaultFormat = (props: DatePickerProps) => {
     if (props['mode'] === 'month') {
       return 'YYYY-MM'
     } else if (props['mode'] === 'quarter') {
@@ -14,29 +14,29 @@ const mapDateFormat = function () {
       return 'YYYY'
     } else if (props['mode'] === 'week') {
       return 'gggg-wo'
+    } else if (props['mode'] === 'time') {
+      return 'HH:mm:ss'
     }
     return props['showTime'] ? 'YYYY-MM-DD HH:mm:ss' : 'YYYY-MM-DD'
   }
   return (props: any) => {
-    const format = props['format'] || getDefaultFormat(props)
-    const onChange = props.onChange
+    const format = props.format || getDefaultFormat(props)
+    const valueFormat = props.valueFormat || getDefaultFormat(props)
+
     return {
       ...props,
-      format: format,
-      valueFormat: props.valueFormat || getDefaultFormat(props),
-      on: {
-        change: (value: moment.Moment | moment.Moment[]) => {
-          if (onChange) {
-            onChange(formatMomentValue(value, format))
-          }
-        },
-      },
+      format,
+      valueFormat
     }
   }
 }
 
+const TransformElDatePicker = transformComponent<DatePickerProps>(AntdDatePicker, {
+  change: 'panelChange'
+})
+
 export const _DatePicker = connect(
-  AntdDatePicker,
+  TransformElDatePicker,
   mapProps(mapDateFormat()),
   mapReadPretty(PreviewText.DatePicker)
 )
@@ -54,7 +54,7 @@ export const _MonthPicker = connect(AntdDatePicker.MonthPicker)
 export const DatePicker = composeExport(_DatePicker, {
   RangePicker: _RangePicker,
   WeekPicker: _WeekPicker,
-  MonthPicker: _MonthPicker,
+  MonthPicker: _MonthPicker
 })
 
 export default DatePicker

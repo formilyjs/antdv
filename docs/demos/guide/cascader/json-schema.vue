@@ -1,26 +1,23 @@
 <template>
   <Form :form="form">
-    <SchemaField
-      :schema="schema"
-      :scope="{ useAsyncDataSource, transformAddress }"
-    />
+    <SchemaField :schema="schema" :scope="{ useAsyncDataSource, transformAddress }" />
     <Submit @submit="onSubmit">提交</Submit>
   </Form>
 </template>
 
-<script>
+<script lang="ts">
 import { createForm } from '@formily/core'
 import { createSchemaField } from '@formily/vue'
 import { Form, FormItem, Cascader, Submit } from '@formily/antdv'
 import { action } from '@formily/reactive'
 import axios from 'axios'
 
-const transformAddress = (data = {}) => {
+const transformAddress = (data: Record<string, any> = {}) => {
   return Object.entries(data).reduce((buf, [key, value]) => {
     if (typeof value === 'string')
       return buf.concat({
         label: value,
-        value: key,
+        value: key
       })
     const { name, code, cities, districts } = value
     const _cities = transformAddress(cities)
@@ -28,11 +25,7 @@ const transformAddress = (data = {}) => {
     return buf.concat({
       label: name,
       value: code,
-      children: _cities.length
-        ? _cities
-        : _districts.length
-        ? _districts
-        : undefined,
+      children: _cities.length ? _cities : _districts.length ? _districts : undefined
     })
   }, [])
 }
@@ -62,39 +55,40 @@ const schema = {
       'x-component': 'Cascader',
       'x-component-props': {
         style: {
-          width: '240px',
-        },
+          width: '240px'
+        }
       },
       'x-reactions': [
-        '{{useAsyncDataSource("https://unpkg.com/china-location/dist/location.json",transformAddress)}}',
-      ],
-    },
-  },
+        '{{useAsyncDataSource("https://unpkg.com/china-location/dist/location.json",transformAddress)}}'
+      ]
+    }
+  }
 }
 
 const form = createForm()
 const { SchemaField } = createSchemaField({
   components: {
     FormItem,
-    Cascader,
-  },
+    Cascader
+  }
 })
 
 export default {
+  // eslint-disable-next-line vue/no-reserved-component-names
   components: { Form, SchemaField, Submit },
   data() {
     return {
       useAsyncDataSource,
       transformAddress,
       form,
-      schema,
+      schema
     }
   },
   methods: {
     onSubmit(value) {
       console.log(value)
-    },
-  },
+    }
+  }
 }
 </script>
 l

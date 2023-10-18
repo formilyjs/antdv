@@ -7,25 +7,18 @@
   </FormProvider>
 </template>
 
-<script>
+<script lang="ts">
 import { createForm } from '@formily/core'
 import { FormProvider, createSchemaField } from '@formily/vue'
-import {
-  FormButtonGroup,
-  FormItem,
-  Submit,
-  Input,
-  DatePicker,
-  Editable,
-} from '@formily/antdv'
+import { FormButtonGroup, FormItem, Submit, Input, DatePicker, Editable } from '@formily/antdv'
 
 const { SchemaField } = createSchemaField({
   components: {
     FormItem,
     Input,
     DatePicker,
-    Editable,
-  },
+    Editable
+  }
 })
 
 const schema = {
@@ -35,13 +28,13 @@ const schema = {
       type: 'string',
       title: '日期',
       'x-decorator': 'Editable',
-      'x-component': 'DatePicker',
+      'x-component': 'DatePicker'
     },
     input: {
       type: 'string',
       title: '输入框',
       'x-decorator': 'Editable',
-      'x-component': 'Input',
+      'x-component': 'Input'
     },
     void: {
       type: 'void',
@@ -54,38 +47,37 @@ const schema = {
           type: 'string',
           title: '日期',
           'x-decorator': 'FormItem',
-          'x-component': 'DatePicker',
+          'x-component': 'DatePicker'
         },
         input2: {
           type: 'string',
           title: '输入框',
           'x-decorator': 'FormItem',
-          'x-component': 'Input',
-        },
-      },
+          'x-component': 'Input'
+        }
+      }
     },
     iobject: {
       type: 'object',
       title: '对象节点容器',
       'x-component': 'Editable.Popover',
-      'x-reactions':
-        '{{(field) => field.title = field.value && field.value.date || field.title}}',
+      'x-reactions': '{{(field) => field.title = field.value && field.value.date || field.title}}',
       properties: {
         date: {
           type: 'string',
           title: '日期',
           'x-decorator': 'FormItem',
-          'x-component': 'DatePicker',
+          'x-component': 'DatePicker'
         },
         input: {
           type: 'string',
           title: '输入框',
           'x-decorator': 'FormItem',
-          'x-component': 'Input',
-        },
-      },
-    },
-  },
+          'x-component': 'Input'
+        }
+      }
+    }
+  }
 }
 
 export default {
@@ -93,7 +85,7 @@ export default {
     FormButtonGroup,
     FormProvider,
     Submit,
-    SchemaField,
+    SchemaField
   },
 
   data() {
@@ -101,14 +93,14 @@ export default {
 
     return {
       schema,
-      form,
+      form
     }
   },
   methods: {
     log(values) {
       console.log(values)
-    },
-  },
+    }
+  }
 }
 </script>
 

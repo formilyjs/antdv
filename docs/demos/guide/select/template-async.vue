@@ -8,13 +8,13 @@
         Select,
         {
           style: {
-            width: '240px',
-          },
-        },
+            width: '240px'
+          }
+        }
       ]"
-      :dataSource="[
+      :data-source="[
         { label: '发请求1', value: 1 },
-        { label: '发请求2', value: 2 },
+        { label: '发请求2', value: 2 }
       ]"
     />
     <Field
@@ -25,23 +25,24 @@
         Select,
         {
           style: {
-            width: '240px',
-          },
-        },
+            width: '240px'
+          }
+        }
       ]"
     />
     <Submit @submit="onSubmit">提交</Submit>
   </Form>
 </template>
 
-<script>
+<script lang="ts">
+import type { Field as InternalField } from '@formily/core'
 import { createForm, onFieldReact } from '@formily/core'
 import { Field } from '@formily/vue'
 import { action } from '@formily/reactive'
 import { Form, FormItem, Select, Submit, Reset } from '@formily/antdv'
 
 const useAsyncDataSource = (pattern, service) => {
-  onFieldReact(pattern, (field) => {
+  onFieldReact(pattern, (field: InternalField) => {
     field.loading = true
     service(field).then(
       action.bound((data) => {
@@ -64,44 +65,45 @@ const form = createForm({
             resolve([
               {
                 label: 'AAA',
-                value: 'aaa',
+                value: 'aaa'
               },
               {
                 label: 'BBB',
-                value: 'ccc',
-              },
+                value: 'ccc'
+              }
             ])
           } else if (linkage === 2) {
             resolve([
               {
                 label: 'CCC',
-                value: 'ccc',
+                value: 'ccc'
               },
               {
                 label: 'DDD',
-                value: 'ddd',
-              },
+                value: 'ddd'
+              }
             ])
           }
         }, 1500)
       })
     })
-  },
+  }
 })
 
 export default {
-  components: { Form, Field, Submit, Reset },
+  // eslint-disable-next-line vue/no-reserved-component-names
+  components: { Form, Field, Submit },
   data() {
     return {
       form,
       FormItem,
-      Select,
+      Select
     }
   },
   methods: {
     onSubmit(value) {
       console.log(value)
-    },
-  },
+    }
+  }
 }
 </script>

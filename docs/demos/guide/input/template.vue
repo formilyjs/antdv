@@ -1,22 +1,12 @@
 <template>
   <FormProvider :form="form">
-    <Field
-      name="input"
-      title="输入框"
-      :decorator="[FormItem]"
-      :component="[Input]"
-    />
-    <Field
-      name="textarea"
-      title="文本框"
-      :decorator="[FormItem]"
-      :component="[Input.TextArea]"
-    />
+    <Field name="input" title="输入框" :decorator="[FormItem]" :component="[Input]" />
+    <Field name="textarea" title="文本框" :decorator="[FormItem]" :component="[Input.TextArea]" />
     <Submit @submit="log">提交</Submit>
   </FormProvider>
 </template>
 
-<script>
+<script lang="ts">
 import { createForm } from '@formily/core'
 import { FormProvider, Field } from '@formily/vue'
 import { FormItem, Input, Submit } from '@formily/antdv'
@@ -29,13 +19,13 @@ export default {
     return {
       FormItem,
       Input,
-      form,
+      form
     }
   },
   methods: {
     log(value) {
       console.log(value)
-    },
-  },
+    }
+  }
 }
 </script>

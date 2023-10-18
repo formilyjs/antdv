@@ -5,7 +5,7 @@
   </Form>
 </template>
 
-<script>
+<script lang="ts">
 import { createForm } from '@formily/core'
 import { createSchemaField } from '@formily/vue'
 import { Form, FormItem, DatePicker, Submit } from '@formily/antdv'
@@ -17,19 +17,19 @@ const schema = {
       type: 'string',
       title: '普通日期',
       'x-decorator': 'FormItem',
-      'x-component': 'DatePicker',
+      'x-component': 'DatePicker'
     },
     week: {
       type: 'string',
       title: '周选择',
       'x-decorator': 'FormItem',
-      'x-component': 'DatePicker.WeekPicker',
+      'x-component': 'DatePicker.WeekPicker'
     },
     month: {
       type: 'string',
       title: '月选择',
       'x-decorator': 'FormItem',
-      'x-component': 'DatePicker.MonthPicker',
+      'x-component': 'DatePicker.MonthPicker'
     },
     year: {
       type: 'string',
@@ -37,8 +37,8 @@ const schema = {
       'x-decorator': 'FormItem',
       'x-component': 'DatePicker',
       'x-component-props': {
-        mode: 'year',
-      },
+        picker: 'year'
+      }
     },
     dateTime: {
       type: 'string',
@@ -46,42 +46,42 @@ const schema = {
       'x-decorator': 'FormItem',
       'x-component': 'DatePicker',
       'x-component-props': {
-        mode: 'time',
-      },
+        showTime: true
+      }
     },
     '[startDate,endDate]': {
       title: '日期范围',
       'x-decorator': 'FormItem',
       'x-component': 'DatePicker.RangePicker',
       'x-component-props': {
-        showTime: true,
+        showTime: true
       },
-      type: 'string',
-    },
-  },
+      type: 'string'
+    }
+  }
 }
 
 const form = createForm()
 const { SchemaField } = createSchemaField({
   components: {
     FormItem,
-    DatePicker,
-  },
+    DatePicker
+  }
 })
 
 export default {
+  // eslint-disable-next-line vue/no-reserved-component-names
   components: { Form, SchemaField, Submit },
   data() {
     return {
       form,
-      schema,
+      schema
     }
   },
   methods: {
     onSubmit(value) {
       console.log(value)
-    },
-  },
+    }
+  }
 }
 </script>
-l

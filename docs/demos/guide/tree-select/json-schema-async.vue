@@ -4,7 +4,7 @@
     <Submit @submit="log">提交</Submit>
   </FormProvider>
 </template>
-<script>
+<script lang="ts">
 import { createForm } from '@formily/core'
 import { createSchemaField, FormProvider } from '@formily/vue'
 import { FormItem, TreeSelect, Submit, Select } from '@formily/antdv'
@@ -24,19 +24,19 @@ const loadData = async (field) => {
               {
                 title: 'Child Node1',
                 value: '0-0-0',
-                key: '0-0-0',
+                key: '0-0-0'
               },
               {
                 title: 'Child Node2',
                 value: '0-0-1',
-                key: '0-0-1',
+                key: '0-0-1'
               },
               {
                 title: 'Child Node3',
                 value: '0-0-2',
-                key: '0-0-2',
-              },
-            ],
+                key: '0-0-2'
+              }
+            ]
           },
           {
             label: 'BBB',
@@ -45,20 +45,20 @@ const loadData = async (field) => {
               {
                 title: 'Child Node1',
                 value: '0-1-0',
-                key: '0-1-0',
+                key: '0-1-0'
               },
               {
                 title: 'Child Node2',
                 value: '0-1-1',
-                key: '0-1-1',
+                key: '0-1-1'
               },
               {
                 title: 'Child Node3',
                 value: '0-1-2',
-                key: '0-1-2',
-              },
-            ],
-          },
+                key: '0-1-2'
+              }
+            ]
+          }
         ])
       } else if (linkage === 2) {
         resolve([
@@ -69,19 +69,19 @@ const loadData = async (field) => {
               {
                 title: 'Child Node1',
                 value: '0-0-0',
-                key: '0-0-0',
+                key: '0-0-0'
               },
               {
                 title: 'Child Node2',
                 value: '0-0-1',
-                key: '0-0-1',
+                key: '0-0-1'
               },
               {
                 title: 'Child Node3',
                 value: '0-0-2',
-                key: '0-0-2',
-              },
-            ],
+                key: '0-0-2'
+              }
+            ]
           },
           {
             label: 'DDD',
@@ -90,20 +90,20 @@ const loadData = async (field) => {
               {
                 title: 'Child Node1',
                 value: '0-1-0',
-                key: '0-1-0',
+                key: '0-1-0'
               },
               {
                 title: 'Child Node2',
                 value: '0-1-1',
-                key: '0-1-1',
+                key: '0-1-1'
               },
               {
                 title: 'Child Node3',
                 value: '0-1-2',
-                key: '0-1-2',
-              },
-            ],
-          },
+                key: '0-1-2'
+              }
+            ]
+          }
         ])
       }
     }, 1500)
@@ -128,15 +128,15 @@ const schema = {
       title: '联动选择框',
       enum: [
         { label: '发请求1', value: 1 },
-        { label: '发请求2', value: 2 },
+        { label: '发请求2', value: 2 }
       ],
       'x-decorator': 'FormItem',
       'x-component': 'Select',
       'x-component-props': {
         style: {
-          width: '200px',
-        },
-      },
+          width: '200px'
+        }
+      }
     },
     select: {
       type: 'string',
@@ -145,12 +145,12 @@ const schema = {
       'x-component': 'TreeSelect',
       'x-component-props': {
         style: {
-          width: '200px',
-        },
+          width: '200px'
+        }
       },
-      'x-reactions': ['{{useAsyncDataSource(loadData)}}'],
-    },
-  },
+      'x-reactions': ['{{useAsyncDataSource(loadData)}}']
+    }
+  }
 }
 
 const form = createForm()
@@ -158,8 +158,8 @@ const fields = createSchemaField({
   components: {
     FormItem,
     TreeSelect,
-    Select,
-  },
+    Select
+  }
 })
 
 export default {
@@ -167,7 +167,7 @@ export default {
   data() {
     return {
       form,
-      schema,
+      schema
     }
   },
   methods: {
@@ -175,7 +175,7 @@ export default {
     loadData,
     log(value) {
       console.log(value)
-    },
-  },
+    }
+  }
 }
 </script>

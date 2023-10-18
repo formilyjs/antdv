@@ -1,12 +1,7 @@
 <template>
   <FormProvider :form="form">
     <SchemaField>
-      <SchemaStringField
-        name="input"
-        title="输入框"
-        x-decorator="FormItem"
-        x-component="Input"
-      />
+      <SchemaStringField name="input" title="输入框" x-decorator="FormItem" x-component="Input" />
       <SchemaStringField
         name="textarea"
         title="文本框"
@@ -18,7 +13,7 @@
   </FormProvider>
 </template>
 
-<script>
+<script lang="ts">
 import { createForm } from '@formily/core'
 import { createSchemaField, FormProvider } from '@formily/vue'
 import { FormItem, Input, Submit } from '@formily/antdv'
@@ -27,21 +22,21 @@ const form = createForm()
 const fields = createSchemaField({
   components: {
     FormItem,
-    Input,
-  },
+    Input
+  }
 })
 
 export default {
   components: { FormProvider, ...fields, Submit },
   data() {
     return {
-      form,
+      form
     }
   },
   methods: {
     log(value) {
       console.log(value)
-    },
-  },
+    }
+  }
 }
 </script>

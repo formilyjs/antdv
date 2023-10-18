@@ -1,12 +1,12 @@
 <template>
   <FormProvider :form="form">
-    <FormLayout :labelCol="6" :wrapperCol="16">
+    <FormLayout :label-col="6" :wrapper-col="16">
       <SchemaField>
         <SchemaVoidField
           x-component="FormLayout"
           :x-component-props="{
             labelCol: 6,
-            wrapperCol: 10,
+            wrapperCol: 10
           }"
         >
           <SchemaVoidField
@@ -14,7 +14,7 @@
             x-decorator="FormItem"
             :x-decorator-props="{
               asterisk: true,
-              feedbackLayout: 'none',
+              feedbackLayout: 'none'
             }"
             x-component="Space"
           >
@@ -36,7 +36,7 @@
             x-decorator="FormItem"
             :x-decorator-props="{
               asterisk: true,
-              feedbackLayout: 'none',
+              feedbackLayout: 'none'
             }"
             x-component="Space"
           >
@@ -45,7 +45,7 @@
               x-decorator="FormItem"
               x-component="Input"
               :x-decorator-props="{
-                addonAfter: '单位',
+                addonAfter: '单位'
               }"
               :required="true"
             />
@@ -54,7 +54,7 @@
               x-decorator="FormItem"
               x-component="Input"
               :x-decorator-props="{
-                addonAfter: '单位',
+                addonAfter: '单位'
               }"
               :required="true"
             />
@@ -63,7 +63,7 @@
               x-decorator="FormItem"
               x-component="Input"
               :x-decorator-props="{
-                addonAfter: '单位',
+                addonAfter: '单位'
               }"
               :required="true"
             />
@@ -73,37 +73,29 @@
             title="文本框"
             x-decorator="FormItem"
             :required="true"
-            x-component="Input"
+            x-component="Input.TextArea"
             :x-component-props="{
               style: {
-                width: 400,
-              },
-              type: 'textarea',
+                width: 400
+              }
             }"
           />
         </SchemaVoidField>
       </SchemaField>
-      <FormButtonGroup alignFormItem>
-        <Submit onSubmit="log">提交</Submit>
+      <FormButtonGroup align-form-item>
+        <Submit :on-submit="log">提交</Submit>
       </FormButtonGroup>
     </FormLayout>
   </FormProvider>
 </template>
 
-<script>
+<script lang="ts">
 import { createForm } from '@formily/core'
 import { createSchemaField, FormProvider } from '@formily/vue'
-import {
-  FormLayout,
-  FormItem,
-  Input,
-  Space,
-  FormButtonGroup,
-  Submit,
-} from '@formily/antdv'
+import { FormLayout, FormItem, Input, Space, FormButtonGroup, Submit } from '@formily/antdv'
 
 const fields = createSchemaField({
-  components: { FormItem, FormLayout, Input, Space },
+  components: { FormItem, FormLayout, Input, Space }
 })
 
 export default {
@@ -111,14 +103,14 @@ export default {
   data() {
     const form = createForm()
     return {
-      form,
+      form
     }
   },
 
   methods: {
     log(value) {
       console.log(value)
-    },
-  },
+    }
+  }
 }
 </script>

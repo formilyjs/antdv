@@ -5,7 +5,7 @@
   </FormProvider>
 </template>
 
-<script>
+<script lang="ts">
 import { createForm } from '@formily/core'
 import { FormProvider, createSchemaField } from '@formily/vue'
 import { Submit, FormItem, ArrayTable, Input, Editable } from '@formily/antdv'
@@ -15,8 +15,8 @@ const fields = createSchemaField({
     FormItem,
     ArrayTable,
     Input,
-    Editable,
-  },
+    Editable
+  }
 })
 
 export default {
@@ -31,8 +31,7 @@ export default {
           'x-decorator': 'FormItem',
           'x-component': 'ArrayTable',
           'x-component-props': {
-            pagination: { pageSize: 10 },
-            scroll: { x: 800 },
+            pagination: { pageSize: 10 }
           },
           items: {
             type: 'object',
@@ -43,14 +42,14 @@ export default {
                 'x-component-props': {
                   width: 80,
                   title: 'Index',
-                  align: 'center',
+                  align: 'center'
                 },
                 properties: {
                   index: {
                     type: 'void',
-                    'x-component': 'ArrayTable.Index',
-                  },
-                },
+                    'x-component': 'ArrayTable.Index'
+                  }
+                }
               },
               column2: {
                 type: 'void',
@@ -60,9 +59,9 @@ export default {
                   a1: {
                     type: 'string',
                     'x-decorator': 'Editable',
-                    'x-component': 'Input',
-                  },
-                },
+                    'x-component': 'Input'
+                  }
+                }
               },
               column3: {
                 type: 'void',
@@ -72,9 +71,9 @@ export default {
                   a2: {
                     type: 'string',
                     'x-decorator': 'FormItem',
-                    'x-component': 'Input',
-                  },
-                },
+                    'x-component': 'Input'
+                  }
+                }
               },
               column4: {
                 type: 'void',
@@ -84,9 +83,9 @@ export default {
                   a3: {
                     type: 'string',
                     'x-decorator': 'FormItem',
-                    'x-component': 'Input',
-                  },
-                },
+                    'x-component': 'Input'
+                  }
+                }
               },
               column5: {
                 type: 'void',
@@ -94,8 +93,7 @@ export default {
                 'x-component-props': {
                   title: 'Operations',
                   prop: 'operations',
-                  width: 200,
-                  fixed: 'right',
+                  width: 200
                 },
                 properties: {
                   item: {
@@ -104,41 +102,41 @@ export default {
                     properties: {
                       remove: {
                         type: 'void',
-                        'x-component': 'ArrayTable.Remove',
+                        'x-component': 'ArrayTable.Remove'
                       },
                       moveDown: {
                         type: 'void',
-                        'x-component': 'ArrayTable.MoveDown',
+                        'x-component': 'ArrayTable.MoveDown'
                       },
                       moveUp: {
                         type: 'void',
-                        'x-component': 'ArrayTable.MoveUp',
-                      },
-                    },
-                  },
-                },
-              },
-            },
+                        'x-component': 'ArrayTable.MoveUp'
+                      }
+                    }
+                  }
+                }
+              }
+            }
           },
           properties: {
             add: {
               type: 'void',
               'x-component': 'ArrayTable.Addition',
-              title: '添加条目',
-            },
-          },
-        },
-      },
+              title: '添加条目'
+            }
+          }
+        }
+      }
     }
     return {
       form,
-      schema,
+      schema
     }
   },
   methods: {
     log(...v) {
       console.log(...v)
-    },
-  },
+    }
+  }
 }
 </script>

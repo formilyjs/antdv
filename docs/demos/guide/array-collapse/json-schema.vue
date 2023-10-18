@@ -5,33 +5,25 @@
   </FormProvider>
 </template>
 
-<script>
+<script lang="ts">
 import { createForm } from '@formily/core'
 import { FormProvider, createSchemaField } from '@formily/vue'
-import {
-  FormItem,
-  FormButtonGroup,
-  Submit,
-  Input,
-  ArrayCollapse,
-} from '@formily/antdv'
+import { FormItem, FormButtonGroup, Submit, Input, ArrayCollapse } from '@formily/antdv'
 import { Button } from 'ant-design-vue'
 
 const SchemaField = createSchemaField({
   components: {
     FormItem,
     Input,
-    ArrayCollapse,
-  },
+    ArrayCollapse
+  }
 })
 
 export default {
   components: {
     FormProvider,
-    FormButtonGroup,
-    Button,
     Submit,
-    ...SchemaField,
+    ...SchemaField
   },
 
   data() {
@@ -48,41 +40,41 @@ export default {
             type: 'object',
             'x-component': 'ArrayCollapse.CollapsePanel',
             'x-component-props': {
-              header: '字符串数组',
+              header: '字符串数组'
             },
             properties: {
               index: {
                 type: 'void',
-                'x-component': 'ArrayCollapse.Index',
+                'x-component': 'ArrayCollapse.Index'
               },
               input: {
                 type: 'string',
                 'x-decorator': 'FormItem',
                 title: 'Input',
                 required: true,
-                'x-component': 'Input',
+                'x-component': 'Input'
               },
               remove: {
                 type: 'void',
-                'x-component': 'ArrayCollapse.Remove',
+                'x-component': 'ArrayCollapse.Remove'
               },
               moveUp: {
                 type: 'void',
-                'x-component': 'ArrayCollapse.MoveUp',
+                'x-component': 'ArrayCollapse.MoveUp'
               },
               moveDown: {
                 type: 'void',
-                'x-component': 'ArrayCollapse.MoveDown',
-              },
-            },
+                'x-component': 'ArrayCollapse.MoveDown'
+              }
+            }
           },
           properties: {
             addition: {
               type: 'void',
               title: '添加条目',
-              'x-component': 'ArrayCollapse.Addition',
-            },
-          },
+              'x-component': 'ArrayCollapse.Addition'
+            }
+          }
         },
         array: {
           type: 'array',
@@ -93,41 +85,41 @@ export default {
             type: 'object',
             'x-component': 'ArrayCollapse.CollapsePanel',
             'x-component-props': {
-              header: '对象数组',
+              header: '对象数组'
             },
             properties: {
               index: {
                 type: 'void',
-                'x-component': 'ArrayCollapse.Index',
+                'x-component': 'ArrayCollapse.Index'
               },
               input: {
                 type: 'string',
                 'x-decorator': 'FormItem',
                 title: 'Input',
                 required: true,
-                'x-component': 'Input',
+                'x-component': 'Input'
               },
               remove: {
                 type: 'void',
-                'x-component': 'ArrayCollapse.Remove',
+                'x-component': 'ArrayCollapse.Remove'
               },
               moveUp: {
                 type: 'void',
-                'x-component': 'ArrayCollapse.MoveUp',
+                'x-component': 'ArrayCollapse.MoveUp'
               },
               moveDown: {
                 type: 'void',
-                'x-component': 'ArrayCollapse.MoveDown',
-              },
-            },
+                'x-component': 'ArrayCollapse.MoveDown'
+              }
+            }
           },
           properties: {
             addition: {
               type: 'void',
               title: '添加条目',
-              'x-component': 'ArrayCollapse.Addition',
-            },
-          },
+              'x-component': 'ArrayCollapse.Addition'
+            }
+          }
         },
         array_unshift: {
           type: 'array',
@@ -138,33 +130,33 @@ export default {
             type: 'object',
             'x-component': 'ArrayCollapse.CollapsePanel',
             'x-component-props': {
-              header: '对象数组',
+              header: '对象数组'
             },
             properties: {
               index: {
                 type: 'void',
-                'x-component': 'ArrayCollapse.Index',
+                'x-component': 'ArrayCollapse.Index'
               },
               input: {
                 type: 'string',
                 'x-decorator': 'FormItem',
                 title: 'Input',
                 required: true,
-                'x-component': 'Input',
+                'x-component': 'Input'
               },
               remove: {
                 type: 'void',
-                'x-component': 'ArrayCollapse.Remove',
+                'x-component': 'ArrayCollapse.Remove'
               },
               moveUp: {
                 type: 'void',
-                'x-component': 'ArrayCollapse.MoveUp',
+                'x-component': 'ArrayCollapse.MoveUp'
               },
               moveDown: {
                 type: 'void',
-                'x-component': 'ArrayCollapse.MoveDown',
-              },
-            },
+                'x-component': 'ArrayCollapse.MoveDown'
+              }
+            }
           },
           properties: {
             addition: {
@@ -172,24 +164,24 @@ export default {
               title: '添加条目(unshift)',
               'x-component': 'ArrayCollapse.Addition',
               'x-component-props': {
-                method: 'unshift',
-              },
-            },
-          },
-        },
-      },
+                method: 'unshift'
+              }
+            }
+          }
+        }
+      }
     }
 
     return {
       form,
-      schema,
+      schema
     }
   },
   methods: {
     log(values) {
       console.log(values)
-    },
-  },
+    }
+  }
 }
 </script>
 

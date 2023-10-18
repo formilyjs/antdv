@@ -7,83 +7,64 @@
   </Form>
 </template>
 
-<script>
+<script lang="tsx">
 import { createForm } from '@formily/core'
 import { createSchemaField } from '@formily/vue'
-import { defineComponent } from '@vue/composition-api'
 import { Form, FormItem, Upload, Submit, FormButtonGroup } from '@formily/antdv'
-import { Button, Icon } from 'ant-design-vue'
+import { Button } from 'ant-design-vue'
+import { UploadOutlined, InboxOutlined } from '@ant-design/icons-vue'
 
-const UploadButton = {
-  functional: true,
-  render(h) {
-    return <Button>上传图片</Button>
-  },
+const UploadButton = () => {
+  return <Button>上传图片</Button>
+}
+const NormalUpload = (props, { attrs }) => {
+  return (
+    <Upload
+      {...props}
+      {...attrs}
+      action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
+      headers={{
+        authorization: 'authorization-text'
+      }}
+    >
+      <Button>
+        <UploadOutlined />
+        上传文件{' '}
+      </Button>
+    </Upload>
+  )
 }
 
-const NormalUpload = defineComponent({
-  name: 'NormalUpload',
-  render(h) {
-    const props = this.$attrs
-    return (
-      <Upload
-        {...props}
-        action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
-        headers={{
-          authorization: 'authorization-text',
-        }}
-      >
-        <Button>
-          <Icon type="upload" />
-          上传文件{' '}
-        </Button>
-      </Upload>
-    )
-  },
-})
+const CardUpload = (props, { attrs }) => {
+  return (
+    <Upload
+      {...props}
+      {...attrs}
+      action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
+      listType="picture-card"
+      headers={{
+        authorization: 'authorization-text'
+      }}
+    >
+      <UploadOutlined style={{ fontSize: 20 }} />
+    </Upload>
+  )
+}
 
-const CardUpload = defineComponent({
-  name: 'CardUpload',
-  render(h) {
-    const props = this.$attrs
-
-    return (
-      <Upload
-        {...props}
-        action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
-        listType="picture-card"
-        headers={{
-          authorization: 'authorization-text',
-        }}
-      >
-        <Icon type="upload" style={{ fontSize: 20 }} />
-      </Upload>
-    )
-  },
-})
-
-const DraggerUpload = defineComponent({
-  name: 'DraggerUpload',
-  render(h) {
-    const props = this.$attrs
-
-    return (
-      <Upload.Dragger
-        {...props}
-        action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
-      >
-        <p class="ant-upload-drag-icon">
-          <Icon type="inbox" />
-        </p>
-        <p class="ant-upload-text">Click or drag file to this area to upload</p>
-        <p class="ant-upload-hint">
-          Support for a single or bulk upload. Strictly prohibit from uploading
-          company data or other band files
-        </p>
-      </Upload.Dragger>
-    )
-  },
-})
+const DraggerUpload = (props, { attrs }) => {
+  return (
+    <Upload.Dragger {...props} {...attrs} action="https://www.mocky.io/v2/5cc8019d300000980a055e76">
+      <p class="ant-upload-drag-icon">
+        <InboxOutlined />
+      </p>
+      <p class="ant-upload-text">Click or drag file to this area to upload</p>
+      <p class="ant-upload-hint">
+        Support for a single or bulk upload. Strictly prohibit from uploading company data or other
+        band files
+      </p>
+    </Upload.Dragger>
+  )
+}
 
 const schema = {
   type: 'object',
@@ -93,23 +74,23 @@ const schema = {
       title: '上传',
       'x-decorator': 'FormItem',
       'x-component': 'NormalUpload',
-      required: true,
+      required: true
     },
     card: {
       type: 'array',
       title: '卡片上传',
       'x-decorator': 'FormItem',
       'x-component': 'CardUpload',
-      required: true,
+      required: true
     },
     drag: {
       type: 'array',
       title: '拖拽上传',
       'x-decorator': 'FormItem',
       'x-component': 'DraggerUpload',
-      required: true,
-    },
-  },
+      required: true
+    }
+  }
 }
 
 const form = createForm()
@@ -118,22 +99,23 @@ const { SchemaField } = createSchemaField({
     NormalUpload,
     CardUpload,
     DraggerUpload,
-    FormItem,
-  },
+    FormItem
+  }
 })
 
 export default {
+  // eslint-disable-next-line vue/no-reserved-component-names
   components: { Form, SchemaField, Submit, FormButtonGroup },
   data() {
     return {
       form,
-      schema,
+      schema
     }
   },
   methods: {
     onSubmit(value) {
       console.log(value)
-    },
-  },
+    }
+  }
 }
 </script>

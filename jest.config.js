@@ -11,8 +11,8 @@ module.exports = {
     'ts-jest': {
       babelConfig: false,
       tsconfig: './tsconfig.jest.json',
-      diagnostics: false,
-    },
+      diagnostics: false
+    }
   },
   coveragePathIgnorePatterns: [
     '/node_modules/',
@@ -24,6 +24,6 @@ module.exports = {
     '/packages/builder/src/__tests__/',
     '/packages/builder/src/components/',
     '/packages/builder/src/configs/',
-    'package-lock.json',
-  ],
+    'package-lock.json'
+  ]
 }

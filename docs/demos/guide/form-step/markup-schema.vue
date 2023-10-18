@@ -2,23 +2,19 @@
   <FormProvider :form="form">
     <SchemaField>
       <SchemaVoidField x-component="FormStep" :x-component-props="{ formStep }">
-        <SchemaVoidField
-          x-component="FormStep.StepPane"
-          :x-component-props="{ title: '第一步' }"
-        >
+        <SchemaVoidField x-component="FormStep.StepPane" :x-component-props="{ title: '第一步' }">
           <SchemaStringField
             name="aaa"
+            title="AAA"
             x-decorator="FormItem"
             required
             x-component="Input"
           />
         </SchemaVoidField>
-        <SchemaVoidField
-          x-component="FormStep.StepPane"
-          :x-component-props="{ title: '第二步' }"
-        >
+        <SchemaVoidField x-component="FormStep.StepPane" :x-component-props="{ title: '第二步' }">
           <SchemaStringField
             name="bbb"
+            title="AAA"
             x-decorator="FormItem"
             required
             x-component="Input"
@@ -31,6 +27,7 @@
         >
           <SchemaStringField
             name="ccc"
+            title="AAA"
             x-decorator="FormItem"
             required
             x-component="Input"
@@ -68,52 +65,26 @@
   </FormProvider>
 </template>
 
-<script>
+<script setup lang="ts">
+/* eslint-disable vue/no-reserved-component-names */
 import { createForm } from '@formily/core'
 import { FormProvider, FormConsumer, createSchemaField } from '@formily/vue'
-import {
-  FormItem,
-  FormStep,
-  FormButtonGroup,
-  Submit,
-  Input,
-} from '@formily/antdv'
+import { FormItem, FormStep, FormButtonGroup, Submit, Input } from '@formily/antdv'
 import { Button } from 'ant-design-vue'
-import Template from '../editable/template.vue'
 
-const SchemaField = createSchemaField({
+const { SchemaField, SchemaVoidField, SchemaStringField } = createSchemaField({
   components: {
     FormItem,
     FormStep,
-    Input,
-  },
+    Input
+  }
 })
+
+const form = createForm()
 const formStep = FormStep.createFormStep()
 
-export default {
-  components: {
-    FormConsumer,
-    FormProvider,
-    FormButtonGroup,
-    Button,
-    Submit,
-    Template,
-    ...SchemaField,
-  },
-
-  data() {
-    const form = createForm()
-
-    return {
-      form,
-      formStep,
-    }
-  },
-  methods: {
-    log() {
-      this.formStep.submit(console.log)
-    },
-  },
+const log = () => {
+  formStep.submit(console.log)
 }
 </script>
 
