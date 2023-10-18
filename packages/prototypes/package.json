@@ -1,6 +1,6 @@
 {
   "name": "@formily/antdv-prototypes",
-  "version": "2.0.1-beta.0",
+  "version": "2.0.1-beta.1",
   "license": "MIT",
   "main": "lib",
   "types": "lib/index.d.ts",
@@ -42,9 +42,9 @@
     "vue": "^3.3.0"
   },
   "devDependencies": {
-    "@formily/antdv": "2.0.1-beta.0",
-    "@formily/antdv-designable": "2.0.1-beta.0",
-    "@formily/antdv-setters": "2.0.1-beta.0",
+    "@formily/antdv": "2.0.1-beta.1",
+    "@formily/antdv-designable": "2.0.1-beta.1",
+    "@formily/antdv-setters": "2.0.1-beta.1",
     "@formily/core": "^2.0.0",
     "@formily/json-schema": "^2.0.0",
     "@formily/reactive": "^2.0.0",
