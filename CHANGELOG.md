@@ -1,5 +1,31 @@
 # Changelog
 
+## v2.0.1-beta.2(2023-10-18)
+
+### :blush: Other Changes
+
+1. [ci: del test ci](https://github.com/formilyjs/antdv/commit/5775c2e) :point_right: ( [yiyunwan](https://github.com/yiyunwan) )
+
+## v2.0.1-beta.1(2023-10-18)
+
+### :blush: Other Changes
+
+1. [ci: fix ci error](https://github.com/formilyjs/antdv/commit/e86ba05) :point_right: ( [yiyunwan](https://github.com/yiyunwan) )
+
+## v2.0.1-beta.0(2023-10-18)
+
+### :tada: Enhancements
+
+1. [feat: update antdv v4 (#27)](https://github.com/formilyjs/antdv/commit/d5811f2) :point_right: ( [yiyunwan](https://github.com/yiyunwan) )
+
+### :blush: Other Changes
+
+1. [ci: fix yarn error](https://github.com/formilyjs/antdv/commit/07bf79a) :point_right: ( [yiyunwan](https://github.com/yiyunwan) )
+
+1. [chore(docs): optimize previewer code style (#21)](https://github.com/formilyjs/antdv/commit/2328101) :point_right: ( [舜岳](https://github.com/舜岳) )
+
+1. [chore(workflows): conventional-pr-title-action master to main (#22)](https://github.com/formilyjs/antdv/commit/f30175e) :point_right: ( [舜岳](https://github.com/舜岳) )
+
 ## v1.0.0-alpha.8(2022-05-10)
 
 ### :bug: Bug Fixes
