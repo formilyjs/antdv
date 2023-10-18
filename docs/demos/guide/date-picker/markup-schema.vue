@@ -25,7 +25,7 @@
         x-decorator="FormItem"
         x-component="DatePicker"
         :x-component-props="{
-          mode: 'year',
+          picker: 'year'
         }"
       />
       <SchemaStringField
@@ -34,7 +34,7 @@
         x-decorator="FormItem"
         x-component="DatePicker"
         :x-component-props="{
-          mode: 'time',
+          showTime: true
         }"
       />
       <SchemaArrayField
@@ -43,7 +43,7 @@
         x-decorator="FormItem"
         x-component="DatePicker.RangePicker"
         :x-component-props="{
-          showTime: true,
+          showTime: true
         }"
       />
     </SchemaField>
@@ -51,7 +51,7 @@
   </Form>
 </template>
 
-<script>
+<script lang="ts">
 import { createForm } from '@formily/core'
 import { createSchemaField } from '@formily/vue'
 import { Form, FormItem, DatePicker, Submit } from '@formily/antdv'
@@ -60,22 +60,22 @@ const form = createForm()
 const fields = createSchemaField({
   components: {
     FormItem,
-    DatePicker,
-  },
+    DatePicker
+  }
 })
 
 export default {
+  // eslint-disable-next-line vue/no-reserved-component-names
   components: { Form, ...fields, Submit },
   data() {
     return {
-      form,
+      form
     }
   },
   methods: {
     onSubmit(value) {
       console.log(value)
-    },
-  },
+    }
+  }
 }
 </script>
-l

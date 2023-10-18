@@ -4,29 +4,28 @@
   </FormDialogPortal>
 </template>
 
-<script>
-import {
-  FormDialog,
-  FormLayout,
-  FormItem,
-  Input,
-} from '@formily/antdv'
+<script lang="tsx">
+/* eslint-disable vue/one-component-per-file */
+import { FormDialog, FormLayout, FormItem, Input } from '@formily/antdv'
 import { Button } from 'ant-design-vue'
 import { createSchemaField } from '@formily/vue'
+import { defineComponent } from 'vue'
 
 const { SchemaField, SchemaStringField } = createSchemaField({
   components: {
     FormItem,
-    Input,
-  },
+    Input
+  }
 })
 
 // 弹框表单组件
-const DialogForm = {
-  props: ['form'],
+const DialogForm = defineComponent({
   inject: ['foo'],
+  props: ['form'],
+
   render() {
-    const form = this.form
+    console.log(this)
+    const form = this.$props.form.form
     console.log(this.foo)
     return (
       <FormLayout labelCol={6} wrapperCol={10}>
@@ -65,28 +64,29 @@ const DialogForm = {
         </FormDialog.Footer>
       </FormLayout>
     )
-  },
-}
+  }
+})
 
 export default {
+  // eslint-disable-next-line vue/no-reserved-component-names
   components: { Button, FormDialogPortal: FormDialog.Portal },
+  provide: {
+    foo: '自定义上下文可以直接传到弹窗内部，只需要ID一致即可'
+  },
   data() {
     return {
-      portalId: '可以传，也可以不传的ID，默认是form-dialog',
+      portalId: '可以传，也可以不传的ID，默认是form-dialog'
     }
-  },
-  provide: {
-    foo: '自定义上下文可以直接传到弹窗内部，只需要ID一致即可',
   },
   methods: {
     handleOpen() {
-      FormDialog('弹框表单', this.portalId, DialogForm)
+      FormDialog('弹框表单', this.portalId, (form) => <DialogForm form={form} />)
         .forOpen((payload, next) => {
           setTimeout(() => {
             next({
               initialValues: {
-                aaa: '123',
-              },
+                aaa: '123'
+              }
             })
           }, 1000)
         })
@@ -105,7 +105,7 @@ export default {
         .open()
         .then(console.log)
         .catch(console.error)
-    },
-  },
+    }
+  }
 }
 </script>

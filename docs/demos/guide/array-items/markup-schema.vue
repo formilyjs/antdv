@@ -8,10 +8,7 @@
         x-component="ArrayItems"
       >
         <SchemaVoidField x-component="Space">
-          <SchemaVoidField
-            x-decorator="FormItem"
-            x-component="ArrayItems.SortHandle"
-          />
+          <SchemaVoidField x-decorator="FormItem" x-component="ArrayItems.SortHandle" />
           <SchemaStringField
             x-decorator="FormItem"
             required
@@ -19,14 +16,11 @@
             x-component="Input"
             :x-component-props="{
               style: {
-                width: '160px',
-              },
+                width: '160px'
+              }
             }"
           />
-          <SchemaVoidField
-            x-decorator="FormItem"
-            x-component="ArrayItems.Remove"
-          />
+          <SchemaVoidField x-decorator="FormItem" x-component="ArrayItems.Remove" />
         </SchemaVoidField>
         <SchemaVoidField x-component="ArrayItems.Addition" title="添加条目" />
       </SchemaArrayField>
@@ -38,10 +32,7 @@
       >
         <SchemaObjectField>
           <SchemaVoidField x-component="Space">
-            <SchemaVoidField
-              x-decorator="FormItem"
-              x-component="ArrayItems.SortHandle"
-            />
+            <SchemaVoidField x-decorator="FormItem" x-component="ArrayItems.SortHandle" />
             <SchemaStringField
               x-decorator="FormItem"
               required
@@ -51,8 +42,8 @@
               :x-component-props="{
                 type: 'daterange',
                 style: {
-                  width: '160px',
-                },
+                  width: '160px'
+                }
               }"
             />
             <SchemaStringField
@@ -69,19 +60,16 @@
               name="select"
               :enum="[
                 { label: '选项1', value: 1 },
-                { label: '选项2', value: 2 },
+                { label: '选项2', value: 2 }
               ]"
               x-component="Select"
               :x-component-props="{
                 style: {
-                  width: 160,
-                },
+                  width: 160
+                }
               }"
             />
-            <SchemaVoidField
-              x-decorator="FormItem"
-              x-component="ArrayItems.Remove"
-            />
+            <SchemaVoidField x-decorator="FormItem" x-component="ArrayItems.Remove" />
           </SchemaVoidField>
         </SchemaObjectField>
         <SchemaVoidField x-component="ArrayItems.Addition" title="添加条目" />
@@ -95,10 +83,7 @@
       >
         <SchemaObjectField x-decorator="ArrayItems.Item">
           <SchemaVoidField x-component="Space">
-            <SchemaVoidField
-              x-decorator="FormItem"
-              x-component="ArrayItems.SortHandle"
-            />
+            <SchemaVoidField x-decorator="FormItem" x-component="ArrayItems.SortHandle" />
             <SchemaStringField
               x-decorator="FormItem"
               required
@@ -108,8 +93,8 @@
               :x-component-props="{
                 type: 'daterange',
                 style: {
-                  width: '250px',
-                },
+                  width: '250px'
+                }
               }"
             />
             <SchemaStringField
@@ -119,10 +104,7 @@
               name="input"
               x-component="Input"
             />
-            <SchemaVoidField
-              x-decorator="FormItem"
-              x-component="ArrayItems.Remove"
-            />
+            <SchemaVoidField x-decorator="FormItem" x-component="ArrayItems.Remove" />
           </SchemaVoidField>
         </SchemaObjectField>
         <SchemaVoidField x-component="ArrayItems.Addition" title="添加条目" />
@@ -134,7 +116,7 @@
   </FormProvider>
 </template>
 
-<script>
+<script lang="ts">
 import { createForm } from '@formily/core'
 import { FormProvider, createSchemaField } from '@formily/vue'
 import {
@@ -145,7 +127,7 @@ import {
   Select,
   Space,
   DatePicker,
-  ArrayItems,
+  ArrayItems
 } from '@formily/antdv'
 import { Button } from 'ant-design-vue'
 
@@ -156,31 +138,30 @@ const SchemaField = createSchemaField({
     Input,
     Select,
     DatePicker,
-    ArrayItems,
-  },
+    ArrayItems
+  }
 })
 
 export default {
   components: {
     FormProvider,
     FormButtonGroup,
-    Button,
     Submit,
-    ...SchemaField,
+    ...SchemaField
   },
 
   data() {
     const form = createForm()
 
     return {
-      form,
+      form
     }
   },
   methods: {
     log(values) {
       console.log(values)
-    },
-  },
+    }
+  }
 }
 </script>
 

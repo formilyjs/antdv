@@ -1,6 +1,6 @@
 {
   "name": "@formily/antdv",
-  "version": "1.0.0-alpha.8",
+  "version": "2.0.0",
   "license": "MIT",
   "main": "lib",
   "types": "lib/index.d.ts",
@@ -22,8 +22,11 @@
     "**/*/style.js"
   ],
   "scripts": {
-    "build": "formily-tpl build"
+    "build": "ts-node ../../scripts/build.ts"
   },
+  "maintainers": [
+    "yiyunwan"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/formilyjs/antdv.git"
@@ -36,13 +39,7 @@
     "access": "public"
   },
   "peerDependencies": {
-    "@vue/composition-api": "^1.0.0-beta.1",
-    "vue": "^2.6.0 || >=3.0.0-rc.0"
-  },
-  "peerDependenciesMeta": {
-    "@vue/composition-api": {
-      "optional": true
-    }
+    "vue": "^3.3.0"
   },
   "dependencies": {
     "@formily/core": "^2.0.8",
@@ -52,11 +49,7 @@
     "@formily/reactive-vue": "^2.0.8",
     "@formily/shared": "^2.0.8",
     "@formily/vue": "^2.0.8",
-    "portal-vue": "^2.1.7",
-    "vue-slicksort": "^1.2.0"
+    "vue-slicksort": "^2.0.0"
   },
-  "devDependencies": {
-    "ant-design-vue": "^1.7.8",
-    "vue": "^2.6.14"
-  }
+  "gitHead": "62ef79d985a056c1038754fc928645c3b147cb6e"
 }

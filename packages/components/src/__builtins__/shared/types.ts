@@ -1,4 +1,4 @@
-import type { Component, VNode } from 'vue'
+import type { Component, ExtractPropTypes, VNode } from 'vue'
 
 export type SlotTypes =
   | Component
@@ -6,3 +6,5 @@ export type SlotTypes =
   | number
   | ((props: Record<string, any>) => VNode[] | VNode)
   | VNode
+
+export type PropTypes<T extends (...args: any) => any> = Partial<ExtractPropTypes<ReturnType<T>>>

@@ -1,11 +1,5 @@
 <template>
-  <Form
-    :form="form"
-    :label-col="6"
-    :wrapper-col="10"
-    @autoSubmit="log"
-    @autoSubmitFailed="log"
-  >
+  <Form :form="form" :label-col="6" :wrapper-col="10" @autoSubmit="log" @autoSubmitFailed="log">
     <SchemaField>
       <SchemaStringField
         name="input"
@@ -22,49 +16,43 @@
         :enum="[
           {
             label: '选项1',
-            value: 1,
+            value: 1
           },
           {
             label: '选项2',
-            value: 2,
-          },
+            value: 2
+          }
         ]"
         :required="true"
       />
     </SchemaField>
-    <FormButtonGroup alignFormItem>
+    <FormButtonGroup align-form-item>
       <Submit>提交</Submit>
     </FormButtonGroup>
   </Form>
 </template>
 
-<script>
+<script lang="ts">
 import { createForm } from '@formily/core'
 import { createSchemaField } from '@formily/vue'
-import {
-  Form,
-  Input,
-  Select,
-  FormItem,
-  FormButtonGroup,
-  Submit,
-} from '@formily/antdv'
+import { Form, Input, Select, FormItem, FormButtonGroup, Submit } from '@formily/antdv'
 
 const form = createForm()
 const fields = createSchemaField({ components: { Input, Select, FormItem } })
 
 export default {
+  // eslint-disable-next-line vue/no-reserved-component-names
   components: { FormButtonGroup, Submit, Form, ...fields },
   data() {
     return {
-      form,
+      form
     }
   },
 
   methods: {
     log(value) {
       console.log(value)
-    },
-  },
+    }
+  }
 }
 </script>

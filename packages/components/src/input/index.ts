@@ -1,32 +1,30 @@
-import { composeExport, transformComponent } from '../__builtins__/shared'
 import { connect, mapProps, mapReadPretty } from '@formily/vue'
+import { Input as AntInput, Textarea as AntTextarea } from 'ant-design-vue'
+import type { InputProps as AntInputProps } from 'ant-design-vue/es/input'
+import { composeExport, transformComponent } from '../__builtins__'
 import { PreviewText } from '../preview-text'
-import { Input as AntInput } from 'ant-design-vue'
-import type { Input as AntInputProps } from 'ant-design-vue/types/input/input'
 
-const TransformElInput = transformComponent<AntInputProps>(AntInput, {
-  change: 'input',
+const TransformAntInput = transformComponent<AntInputProps>(AntInput, {
+  change: 'input'
+})
+
+const TransformTextarea = transformComponent<AntInputProps>(AntTextarea, {
+  change: 'input'
 })
 
 const InnerInput = connect(
-  TransformElInput,
+  TransformAntInput,
+  mapProps({ readOnly: 'read-only' }),
+  mapReadPretty(PreviewText.Input)
+)
+const TextArea = connect(
+  TransformTextarea,
   mapProps({ readOnly: 'read-only' }),
   mapReadPretty(PreviewText.Input)
 )
 
-const TextArea = connect(
-  InnerInput,
-  mapProps((props) => {
-    return {
-      ...props,
-      type: 'textarea',
-    }
-  }),
-  mapReadPretty(PreviewText.Input)
-)
-
 export const Input = composeExport(InnerInput, {
-  TextArea,
+  TextArea
 })
 
 export default Input

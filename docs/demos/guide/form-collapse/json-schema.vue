@@ -2,7 +2,7 @@
   <FormProvider :form="form">
     <FormLayout :label-col="6" :wrapper-col="10">
       <SchemaField :schema="schema" :scope="{ formCollapse }" />
-      <FormButtonGroup alignFormItem>
+      <FormButtonGroup align-form-item>
         <Button
           @click="
             () => {
@@ -29,7 +29,8 @@
   </FormProvider>
 </template>
 
-<script>
+<script lang="ts">
+/* eslint-disable vue/no-reserved-component-names */
 import { createForm } from '@formily/core'
 import { FormProvider, createSchemaField } from '@formily/vue'
 import {
@@ -39,7 +40,7 @@ import {
   Form,
   FormLayout,
   Submit,
-  Input,
+  Input
 } from '@formily/antdv'
 import { Button } from 'ant-design-vue'
 
@@ -47,8 +48,8 @@ const { SchemaField } = createSchemaField({
   components: {
     FormItem,
     FormCollapse,
-    Input,
-  },
+    Input
+  }
 })
 
 const schema = {
@@ -60,14 +61,14 @@ const schema = {
       'x-decorator': 'FormItem',
       'x-component': 'FormCollapse',
       'x-component-props': {
-        formCollapse: '{{formCollapse}}',
+        formCollapse: '{{formCollapse}}'
       },
       properties: {
         tab1: {
           type: 'void',
           'x-component': 'FormCollapse.CollapsePanel',
           'x-component-props': {
-            header: 'A1',
+            header: 'A1'
           },
           properties: {
             aaa: {
@@ -75,15 +76,15 @@ const schema = {
               title: 'AAA',
               'x-decorator': 'FormItem',
               required: true,
-              'x-component': 'Input',
-            },
-          },
+              'x-component': 'Input'
+            }
+          }
         },
         tab2: {
           type: 'void',
           'x-component': 'FormCollapse.CollapsePanel',
           'x-component-props': {
-            header: 'A2',
+            header: 'A2'
           },
           properties: {
             bbb: {
@@ -91,15 +92,15 @@ const schema = {
               title: 'BBB',
               'x-decorator': 'FormItem',
               required: true,
-              'x-component': 'Input',
-            },
-          },
+              'x-component': 'Input'
+            }
+          }
         },
         tab3: {
           type: 'void',
           'x-component': 'FormCollapse.CollapsePanel',
           'x-component-props': {
-            header: 'A3',
+            header: 'A3'
           },
           properties: {
             ccc: {
@@ -107,24 +108,23 @@ const schema = {
               title: 'CCC',
               'x-decorator': 'FormItem',
               required: true,
-              'x-component': 'Input',
-            },
-          },
-        },
-      },
-    },
-  },
+              'x-component': 'Input'
+            }
+          }
+        }
+      }
+    }
+  }
 }
 
 export default {
   components: {
-    Form,
     FormButtonGroup,
     Button,
     Submit,
     SchemaField,
     FormProvider,
-    FormLayout,
+    FormLayout
   },
 
   data() {
@@ -134,14 +134,14 @@ export default {
     return {
       schema,
       form,
-      formCollapse,
+      formCollapse
     }
   },
   methods: {
     log(values) {
       console.log(values)
-    },
-  },
+    }
+  }
 }
 </script>
 

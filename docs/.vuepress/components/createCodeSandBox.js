@@ -1,17 +1,60 @@
 import { getParameters } from 'codesandbox/lib/api/define'
 
 const CodeSandBoxHTML = '<div id="app"></div>'
-const CodeSandBoxJS = `
-import Vue from 'vue'
+const CodeSandBoxJS = `import { createApp } from 'vue'
 import App from './App.vue'
-import "@formily/antdv/dist/antdv.css";
-import "ant-design-vue/dist/antd.css";
 
-Vue.config.productionTip = false
+createApp(App).mount('#app')
+`
 
-new Vue({
-  render: h => h(App),
-}).$mount('#app')`
+const TsconfigContent = `{
+  "compilerOptions": {
+    "target": "esnext",
+    "module": "esnext",
+    "strict": true,
+    "jsx": "preserve",
+    "moduleResolution": "node",
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "forceConsistentCasingInFileNames": true,
+    "useDefineForClassFields": true,
+    "sourceMap": true,
+    "noImplicitAny": false,
+    "baseUrl": ".",
+    "types": [
+      "webpack-env"
+    ],
+    "paths": {
+      "@/*": [
+        "src/*"
+      ]
+    },
+    "lib": [
+      "esnext",
+      "dom",
+      "dom.iterable",
+      "scripthost"
+    ]
+  },
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.tsx",
+    "src/**/*.vue",
+    "tests/**/*.ts",
+    "tests/**/*.tsx"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}
+`
+const ShimsVueContent = `declare module '*.vue' {
+  import type { DefineComponent } from 'vue'
+  const component: DefineComponent<{}, {}, any>
+  export default component
+}
+`
 
 const createForm = ({ method, action, data }) => {
   const form = document.createElement('form') // 构造 form
@@ -50,63 +93,72 @@ export function createCodeSandBox(codeStr) {
           view: 'browser',
           container: {
             port: 8080,
-            node: '14',
-          },
-        },
+            node: '14'
+          }
+        }
       },
       'package.json': {
         content: {
           scripts: {
             serve: 'vue-cli-service serve',
             build: 'vue-cli-service build',
-            lint: 'vue-cli-service lint',
+            lint: 'vue-cli-service lint'
           },
           dependencies: {
             '@formily/core': 'latest',
             '@formily/vue': 'latest',
             '@formily/antdv': 'latest',
-            axios: '^0.21.1',
-            'core-js': '^3.6.5',
-            'ant-design-vue': '^1.7.8',
-            'vue-demi': 'latest',
-            vue: '^2.6.11',
+            'core-js': '^3.8.3',
+            'ant-design-vue': '^3.2.6',
+            vue: '^3.2.37'
           },
           devDependencies: {
-            '@vue/cli-plugin-babel': '~4.5.0',
-            '@vue/cli-service': '~4.5.0',
-            '@vue/composition-api': 'latest',
-            'vue-template-compiler': '^2.6.11',
+            '@vue/cli-plugin-babel': '~5.0.0',
+            '@vue/cli-service': '~5.0.0',
+            '@vue/cli-plugin-typescript': '~5.0.0',
             less: 'latest',
-            'less-loader': '^5.0.0',
+            'less-loader': 'latest',
+            typescript: '~4.5.5'
           },
           babel: {
-            presets: ['@vue/cli-plugin-babel/preset'],
+            presets: ['@vue/cli-plugin-babel/preset']
           },
           vue: {
             devServer: {
+              headers: {
+                'Access-Control-Allow-Origin': '*'
+              },
               host: '0.0.0.0',
-              disableHostCheck: true, // 必须
+              allowedHosts: 'all'
             },
             css: {
               loaderOptions: {
                 less: {
-                  javascriptEnabled: true,
-                },
-              },
-            },
-          },
-        },
+                  lessOptions: {
+                    javascriptEnabled: true
+                  }
+                }
+              }
+            }
+          }
+        }
       },
       'src/App.vue': {
-        content: codeStr,
+        content: codeStr
       },
-      'src/main.js': {
-        content: CodeSandBoxJS,
+      'src/main.ts': {
+        content: CodeSandBoxJS
+      },
+      'src/shims-vue.d.ts': {
+        content: ShimsVueContent
       },
       'public/index.html': {
-        content: CodeSandBoxHTML,
+        content: CodeSandBoxHTML
       },
-    },
+      'tsconfig.json': {
+        content: TsconfigContent
+      }
+    }
   })
 
   createForm({
@@ -114,7 +166,7 @@ export function createCodeSandBox(codeStr) {
     action: 'https://codesandbox.io/api/v1/sandboxes/define',
     data: {
       parameters,
-      query: 'file=/src/App.vue',
-    },
+      query: 'file=/src/App.vue'
+    }
   })
 }

@@ -5,7 +5,7 @@
   </Form>
 </template>
 
-<script>
+<script lang="ts">
 import { createForm } from '@formily/core'
 import { createSchemaField } from '@formily/vue'
 import { Form, FormItem, Checkbox, Submit } from '@formily/antdv'
@@ -17,7 +17,7 @@ const schema = {
       type: 'number',
       title: '是否确认',
       'x-decorator': 'FormItem',
-      'x-component': 'Checkbox',
+      'x-component': 'Checkbox'
     },
     checkboxGroup: {
       type: 'array',
@@ -27,38 +27,38 @@ const schema = {
       enum: [
         {
           label: '选项1',
-          value: 1,
+          value: 1
         },
         {
           label: '选项2',
-          value: 2,
-        },
-      ],
-    },
-  },
+          value: 2
+        }
+      ]
+    }
+  }
 }
 
 const form = createForm()
 const { SchemaField } = createSchemaField({
   components: {
     FormItem,
-    Checkbox,
-  },
+    Checkbox
+  }
 })
 
 export default {
+  // eslint-disable-next-line vue/no-reserved-component-names
   components: { Form, SchemaField, Submit },
   data() {
     return {
       form,
-      schema,
+      schema
     }
   },
   methods: {
     onSubmit(value) {
       console.log(value)
-    },
-  },
+    }
+  }
 }
 </script>
-l

@@ -31,24 +31,18 @@
   </FormProvider>
 </template>
 
-<script>
+<script lang="ts">
 import { createForm } from '@formily/core'
 import { FormProvider, createSchemaField, FormConsumer } from '@formily/vue'
-import {
-  FormItem,
-  FormStep,
-  FormButtonGroup,
-  Submit,
-  Input,
-} from '@formily/antdv'
+import { FormItem, FormStep, FormButtonGroup, Submit, Input } from '@formily/antdv'
 import { Button } from 'ant-design-vue'
 
 const { SchemaField } = createSchemaField({
   components: {
     FormItem,
     FormStep,
-    Input,
-  },
+    Input
+  }
 })
 
 const schema = {
@@ -58,14 +52,14 @@ const schema = {
       type: 'void',
       'x-component': 'FormStep',
       'x-component-props': {
-        formStep: '{{formStep}}',
+        formStep: '{{formStep}}'
       },
       properties: {
         step1: {
           type: 'void',
           'x-component': 'FormStep.StepPane',
           'x-component-props': {
-            title: '第一步',
+            title: '第一步'
           },
           properties: {
             aaa: {
@@ -73,15 +67,15 @@ const schema = {
               title: 'AAA',
               required: true,
               'x-decorator': 'FormItem',
-              'x-component': 'Input',
-            },
-          },
+              'x-component': 'Input'
+            }
+          }
         },
         step2: {
           type: 'void',
           'x-component': 'FormStep.StepPane',
           'x-component-props': {
-            title: '第二步',
+            title: '第二步'
           },
           properties: {
             bbb: {
@@ -89,15 +83,15 @@ const schema = {
               title: 'AAA',
               required: true,
               'x-decorator': 'FormItem',
-              'x-component': 'Input',
-            },
-          },
+              'x-component': 'Input'
+            }
+          }
         },
         step3: {
           type: 'void',
           'x-component': 'FormStep.StepPane',
           'x-component-props': {
-            title: '第三步',
+            title: '第三步'
           },
           properties: {
             ccc: {
@@ -105,13 +99,13 @@ const schema = {
               title: 'AAA',
               required: true,
               'x-decorator': 'FormItem',
-              'x-component': 'Input',
-            },
-          },
-        },
-      },
-    },
-  },
+              'x-component': 'Input'
+            }
+          }
+        }
+      }
+    }
+  }
 }
 
 export default {
@@ -119,9 +113,10 @@ export default {
     FormProvider,
     FormConsumer,
     FormButtonGroup,
+    // eslint-disable-next-line vue/no-reserved-component-names
     Button,
     Submit,
-    SchemaField,
+    SchemaField
   },
 
   data() {
@@ -130,14 +125,14 @@ export default {
     return {
       schema,
       form,
-      formStep,
+      formStep
     }
   },
   methods: {
     log() {
       this.formStep.submit(console.log)
-    },
-  },
+    }
+  }
 }
 </script>
 

@@ -3,11 +3,11 @@
     <SchemaField>
       <SchemaArrayField
         name="string_array"
-        :maxItems="3"
+        :max-items="3"
         x-decorator="FormItem"
         x-component="ArrayCards"
         :x-component-props="{
-          title: '字符串数组',
+          title: '字符串数组'
         }"
       >
         <SchemaVoidField>
@@ -27,11 +27,11 @@
       </SchemaArrayField>
       <SchemaArrayField
         name="array"
-        :maxItems="3"
+        :max-items="3"
         x-decorator="FormItem"
         x-component="ArrayCards"
         :x-component-props="{
-          title: '对象数组',
+          title: '对象数组'
         }"
       >
         <SchemaObjectField>
@@ -54,47 +54,39 @@
   </FormProvider>
 </template>
 
-<script>
+<script lang="ts">
 import { createForm } from '@formily/core'
 import { FormProvider, createSchemaField } from '@formily/vue'
-import {
-  FormItem,
-  FormButtonGroup,
-  Submit,
-  Input,
-  ArrayCards,
-} from '@formily/antdv'
+import { FormItem, FormButtonGroup, Submit, Input, ArrayCards } from '@formily/antdv'
 import { Button } from 'ant-design-vue'
 
 const SchemaField = createSchemaField({
   components: {
     FormItem,
     Input,
-    ArrayCards,
-  },
+    ArrayCards
+  }
 })
 
 export default {
   components: {
     FormProvider,
-    FormButtonGroup,
-    Button,
     Submit,
-    ...SchemaField,
+    ...SchemaField
   },
 
   data() {
     const form = createForm()
 
     return {
-      form,
+      form
     }
   },
   methods: {
     log(values) {
       console.log(values)
-    },
-  },
+    }
+  }
 }
 </script>
 

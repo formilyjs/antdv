@@ -5,7 +5,7 @@
   </Form>
 </template>
 
-<script>
+<script lang="ts">
 import { createForm } from '@formily/core'
 import { createSchemaField } from '@formily/vue'
 import { Form, FormItem, Radio, Submit } from '@formily/antdv'
@@ -13,11 +13,12 @@ import { Form, FormItem, Radio, Submit } from '@formily/antdv'
 const { SchemaField } = createSchemaField({
   components: {
     FormItem,
-    Radio,
-  },
+    Radio
+  }
 })
 
 export default {
+  // eslint-disable-next-line vue/no-reserved-component-names
   components: { Form, SchemaField, Submit },
   data() {
     const schema = {
@@ -29,33 +30,33 @@ export default {
           enum: [
             {
               label: '选项1',
-              value: 1,
+              value: 1
             },
             {
               label: '选项2',
-              value: 2,
-            },
+              value: 2
+            }
           ],
           'x-decorator': 'FormItem',
           'x-component': 'Radio.Group',
           'x-component-props': {
-            optionType: 'button',
-          },
-        },
-      },
+            optionType: 'button'
+          }
+        }
+      }
     }
 
     const form = createForm()
 
     return {
       form,
-      schema,
+      schema
     }
   },
   methods: {
     onSubmit(value) {
       console.log(value)
-    },
-  },
+    }
+  }
 }
 </script>

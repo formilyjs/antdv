@@ -5,33 +5,24 @@
   </FormProvider>
 </template>
 
-<script>
+<script lang="ts">
 import { createForm } from '@formily/core'
 import { FormProvider, createSchemaField } from '@formily/vue'
-import {
-  FormItem,
-  FormButtonGroup,
-  Submit,
-  Input,
-  ArrayCollapse,
-} from '@formily/antdv'
-import { Button } from 'ant-design-vue'
+import { ArrayCollapse, FormItem, Input, Submit } from '@formily/antdv'
 
 const SchemaField = createSchemaField({
   components: {
     FormItem,
     Input,
-    ArrayCollapse,
-  },
+    ArrayCollapse
+  }
 })
 
 export default {
   components: {
     FormProvider,
-    FormButtonGroup,
-    Button,
     Submit,
-    ...SchemaField,
+    ...SchemaField
   },
 
   data() {
@@ -48,12 +39,12 @@ export default {
             type: 'object',
             'x-component': 'ArrayCollapse.CollapsePanel',
             'x-component-props': {
-              header: '对象数组',
+              header: '对象数组'
             },
             properties: {
               index: {
                 type: 'void',
-                'x-component': 'ArrayCollapse.Index',
+                'x-component': 'ArrayCollapse.Index'
               },
               aa: {
                 type: 'string',
@@ -61,7 +52,7 @@ export default {
                 title: 'AA',
                 required: true,
                 'x-component': 'Input',
-                description: '输入123',
+                description: '输入123'
               },
               bb: {
                 type: 'string',
@@ -76,53 +67,53 @@ export default {
                     fulfill: {
                       schema: {
                         title: 'BB',
-                        'x-disabled': true,
-                      },
+                        'x-disabled': true
+                      }
                     },
                     otherwise: {
                       schema: {
                         title: 'Changed',
-                        'x-disabled': false,
-                      },
-                    },
-                  },
-                ],
+                        'x-disabled': false
+                      }
+                    }
+                  }
+                ]
               },
               remove: {
                 type: 'void',
-                'x-component': 'ArrayCollapse.Remove',
+                'x-component': 'ArrayCollapse.Remove'
               },
               moveUp: {
                 type: 'void',
-                'x-component': 'ArrayCollapse.MoveUp',
+                'x-component': 'ArrayCollapse.MoveUp'
               },
               moveDown: {
                 type: 'void',
-                'x-component': 'ArrayCollapse.MoveDown',
-              },
-            },
+                'x-component': 'ArrayCollapse.MoveDown'
+              }
+            }
           },
           properties: {
             addition: {
               type: 'void',
               title: '添加条目',
-              'x-component': 'ArrayCollapse.Addition',
-            },
-          },
-        },
-      },
+              'x-component': 'ArrayCollapse.Addition'
+            }
+          }
+        }
+      }
     }
 
     return {
       form,
-      schema,
+      schema
     }
   },
   methods: {
     log(values) {
       console.log(values)
-    },
-  },
+    }
+  }
 }
 </script>
 

@@ -9,8 +9,8 @@
         x-component="TimePicker"
         :x-component-props="{
           style: {
-            width: '240px',
-          },
+            width: '240px'
+          }
         }"
       />
     </SchemaField>
@@ -18,7 +18,7 @@
   </FormProvider>
 </template>
 
-<script>
+<script lang="ts">
 import { createForm } from '@formily/core'
 import { createSchemaField, FormProvider } from '@formily/vue'
 import { FormItem, TimePicker, Submit } from '@formily/antdv'
@@ -27,21 +27,21 @@ const form = createForm()
 const fields = createSchemaField({
   components: {
     FormItem,
-    TimePicker,
-  },
+    TimePicker
+  }
 })
 
 export default {
   components: { FormProvider, ...fields, Submit },
   data() {
     return {
-      form,
+      form
     }
   },
   methods: {
     log(value) {
       console.log(value)
-    },
-  },
+    }
+  }
 }
 </script>

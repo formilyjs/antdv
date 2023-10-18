@@ -1,0 +1,73 @@
+{
+  "name": "playground",
+  "version": "2.0.0",
+  "private": true,
+  "license": "MIT",
+  "main": "lib",
+  "types": "lib/index.d.ts",
+  "engines": {
+    "npm": ">=3.0.0"
+  },
+  "module": "esm",
+  "jsnext:main": "esm",
+  "sideEffects": [
+    "dist/*",
+    "esm/*.js",
+    "lib/*.js",
+    "src/*.ts",
+    "*.less",
+    "*.scss",
+    "**/*/style.js"
+  ],
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "serve": "vite preview"
+  },
+  "maintainers": [
+    "yiyunwan"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/formilyjs/antdv.git"
+  },
+  "bugs": {
+    "url": "https://github.com/formilyjs/antdv/issues"
+  },
+  "homepage": "https://github.com/formilyjs/antdv#readme",
+  "publishConfig": {
+    "access": "public"
+  },
+  "peerDependencies": {
+    "vue": "^3.3.0"
+  },
+  "dependencies": {
+    "core-js": "^3.23.3",
+    "lodash-es": "^4.17.21",
+    "regenerator-runtime": "^0.13.9",
+    "vue-codemirror": "^4.0.6"
+  },
+  "devDependencies": {
+    "@formily/reactive": "^2.0.0",
+    "@formily/reactive-vue": "^2.0.0",
+    "@formily/shared": "^2.0.0",
+    "@formily/vue": "^2.0.0",
+    "@pind/designable-core": "^2.0.0-beta.6",
+    "@pind/designable-formily-transformer": "^2.0.0-beta.6",
+    "@pind/designable-shared": "^2.0.0-beta.6",
+    "@formily/antdv": "2.0.0",
+    "@formily/antdv-designable": "2.0.0",
+    "@formily/antdv-prototypes": "2.0.0",
+    "@formily/antdv-setters": "2.0.0",
+    "@formily/antdv-settings-form": "2.0.0",
+    "@types/fs-extra": "^9.0.13",
+    "@vitejs/plugin-vue": "^4.0.0",
+    "@vitejs/plugin-vue-jsx": "^3.0.0",
+    "babel-loader": "^8.2.3",
+    "fs-extra": "^11.1.0",
+    "less": "^4.1.2",
+    "vite": "^4.3.5",
+    "vue": "^3.3.0"
+  },
+  "gitHead": "3729413f0c158ed6658761aae123e37e20f5c0c0"
+}

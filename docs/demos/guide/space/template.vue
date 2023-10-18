@@ -1,6 +1,6 @@
 <template>
   <FormProvider :form="form">
-    <FormLayout :labelCol="6" :wrapperCol="16">
+    <FormLayout :label-col="6" :wrapper-col="16">
       <VoidField
         name="name"
         title="姓名"
@@ -8,23 +8,13 @@
           FormItem,
           {
             asterisk: true,
-            feedbackLayout: 'none',
-          },
+            feedbackLayout: 'none'
+          }
         ]"
         :component="[Space]"
       >
-        <Field
-          name="firstName"
-          :decorator="[FormItem]"
-          :component="[Input]"
-          required
-        />
-        <Field
-          name="lastName"
-          :decorator="[FormItem]"
-          :component="[Input]"
-          required
-        />
+        <Field name="firstName" :decorator="[FormItem]" :component="[Input]" required />
+        <Field name="lastName" :decorator="[FormItem]" :component="[Input]" required />
       </VoidField>
       <VoidField
         name="texts"
@@ -33,8 +23,8 @@
           FormItem,
           {
             asterisk: true,
-            feedbackLayout: 'none',
-          },
+            feedbackLayout: 'none'
+          }
         ]"
         :component="[Space]"
       >
@@ -43,8 +33,8 @@
           :decorator="[
             FormItem,
             {
-              addonAfter: '单位',
-            },
+              addonAfter: '单位'
+            }
           ]"
           :component="[Input]"
           required
@@ -54,8 +44,8 @@
           :decorator="[
             FormItem,
             {
-              addonAfter: '单位',
-            },
+              addonAfter: '单位'
+            }
           ]"
           :component="[Input]"
           required
@@ -65,8 +55,8 @@
           :decorator="[
             FormItem,
             {
-              addonAfter: '单位',
-            },
+              addonAfter: '单位'
+            }
           ]"
           :component="[Input]"
           required
@@ -77,34 +67,26 @@
         title="文本框"
         :decorator="[FormItem]"
         :component="[
-          TextArea,
+          Input.TextArea,
           {
             style: {
-              width: 400,
-            },
-          },
+              width: 400
+            }
+          }
         ]"
         required
       />
-      <FormButtonGroup alignFormItem>
-        <Submit :onSubmit="log">提交</Submit>
+      <FormButtonGroup align-form-item>
+        <Submit :on-submit="log">提交</Submit>
       </FormButtonGroup>
     </FormLayout>
   </FormProvider>
 </template>
 
-<script>
+<script lang="ts">
 import { createForm } from '@formily/core'
 import { FormProvider, Field, VoidField } from '@formily/vue'
-import {
-  FormLayout,
-  FormItem,
-  Input,
-  TextArea,
-  Submit,
-  Space,
-  FormButtonGroup,
-} from '@formily/antdv'
+import { FormLayout, FormItem, Input, Submit, Space, FormButtonGroup } from '@formily/antdv'
 
 const form = createForm()
 
@@ -115,21 +97,20 @@ export default {
     FormButtonGroup,
     VoidField,
     Field,
-    Submit,
+    Submit
   },
   data() {
     return {
       FormItem,
       Input,
-      TextArea,
       Space,
-      form,
+      form
     }
   },
   methods: {
     log(value) {
       console.log(value)
-    },
-  },
+    }
+  }
 }
 </script>

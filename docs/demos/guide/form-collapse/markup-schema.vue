@@ -50,7 +50,7 @@
         </SchemaVoidField>
       </SchemaVoidField>
     </SchemaField>
-    <FormButtonGroup alignFormItem>
+    <FormButtonGroup align-form-item>
       <Button
         @click="
           () => {
@@ -76,25 +76,19 @@
   </Form>
 </template>
 
-<script>
+<script lang="ts">
+/* eslint-disable vue/no-reserved-component-names */
 import { createForm } from '@formily/core'
 import { createSchemaField } from '@formily/vue'
-import {
-  FormItem,
-  FormCollapse,
-  FormButtonGroup,
-  Submit,
-  Input,
-  Form,
-} from '@formily/antdv'
+import { FormItem, FormCollapse, FormButtonGroup, Submit, Input, Form } from '@formily/antdv'
 import { Button } from 'ant-design-vue'
 
 const SchemaField = createSchemaField({
   components: {
     FormItem,
     FormCollapse,
-    Input,
-  },
+    Input
+  }
 })
 
 export default {
@@ -103,7 +97,7 @@ export default {
     FormButtonGroup,
     Button,
     Submit,
-    ...SchemaField,
+    ...SchemaField
   },
 
   data() {
@@ -112,14 +106,14 @@ export default {
 
     return {
       form,
-      formCollapse,
+      formCollapse
     }
   },
   methods: {
     log(values) {
       console.log(values)
-    },
-  },
+    }
+  }
 }
 </script>
 

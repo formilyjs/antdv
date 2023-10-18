@@ -9,8 +9,8 @@
         :x-component-props="{
           showSearch: true,
           style: {
-            width: '240px',
-          },
+            width: '240px'
+          }
         }"
       />
     </SchemaField>
@@ -18,7 +18,8 @@
   </FormProvider>
 </template>
 
-<script>
+<script lang="ts">
+import type { Field } from '@formily/core'
 import { createForm, onFieldInit, onFieldReact } from '@formily/core'
 import { action, observable } from '@formily/reactive'
 import { createSchemaField, FormProvider } from '@formily/vue'
@@ -38,12 +39,12 @@ function fetchData(value, callback) {
     callback([
       {
         label: 'AAA',
-        value: 'aaa',
+        value: 'aaa'
       },
       {
         label: 'BBB',
-        value: 'ccc',
-      },
+        value: 'ccc'
+      }
     ])
   }
 
@@ -59,11 +60,11 @@ const useAsyncDataSource = (pattern, service) => {
         if (value) {
           keyword.value = value
         }
-      },
+      }
     })
   })
 
-  onFieldReact(pattern, (field) => {
+  onFieldReact(pattern, (field: Field) => {
     field.loading = true
     service({ field, keyword: keyword.value }).then(
       action.bound((data) => {
@@ -84,26 +85,26 @@ const form = createForm({
         fetchData(keyword, resolve)
       })
     })
-  },
+  }
 })
 const fields = createSchemaField({
   components: {
     FormItem,
-    Select,
-  },
+    Select
+  }
 })
 
 export default {
   components: { FormProvider, ...fields, Submit },
   data() {
     return {
-      form,
+      form
     }
   },
   methods: {
     log(value) {
       console.log(value)
-    },
-  },
+    }
+  }
 }
 </script>

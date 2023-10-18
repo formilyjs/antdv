@@ -1,0 +1,39 @@
+@import (reference) '../../styles.less';
+
+.dn-color-input {
+  width: 100%;
+
+  .@{ant-prefix}-popover-inner-content {
+    padding: 0 !important;
+    user-select: none;
+  }
+
+  .@{ant-prefix}-input__prefix {
+    display: flex;
+    align-items: center;
+  }
+  .@{ant-prefix}-input--prefix {
+    .@{ant-prefix}-input__inner {
+      padding-left: 40px;
+    }
+  }
+  .@{ant-prefix}-input-affix-wrapper {
+    .@{ant-prefix}-input-prefix {
+      left: 5px;
+      :not(.antion) {
+        line-height: unset !important;
+      }
+    }
+    .@{ant-prefix}-input:not(:first-child) {
+      padding-left: 35px;
+    }
+  }
+
+  &-color-tips {
+    width: 20px;
+    height: 20px;
+    border-radius: 2px;
+    border: 1px solid @border-color-base;
+    cursor: pointer;
+  }
+}

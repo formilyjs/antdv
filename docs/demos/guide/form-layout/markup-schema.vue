@@ -5,7 +5,7 @@
         x-component="FormLayout"
         :x-component-props="{
           labelCol: 6,
-          wrapperCol: 10,
+          wrapperCol: 10
         }"
       >
         <SchemaStringField
@@ -13,7 +13,7 @@
           title="输入框"
           x-decorator="FormItem"
           :x-decorator-props="{
-            tooltip: '123',
+            tooltip: '123'
           }"
           x-component="Input"
           :required="true"
@@ -30,13 +30,13 @@
   </FormProvider>
 </template>
 
-<script>
+<script lang="ts">
 import { createForm } from '@formily/core'
 import { createSchemaField, FormProvider } from '@formily/vue'
 import { FormLayout, FormItem, Input, Select } from '@formily/antdv'
 
 const fields = createSchemaField({
-  components: { FormLayout, FormItem, Input, Select },
+  components: { FormLayout, FormItem, Input, Select }
 })
 
 export default {
@@ -44,8 +44,8 @@ export default {
   data() {
     const form = createForm()
     return {
-      form,
+      form
     }
-  },
+  }
 }
 </script>

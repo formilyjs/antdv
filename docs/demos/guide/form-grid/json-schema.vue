@@ -5,7 +5,7 @@
   </FormProvider>
 </template>
 
-<script>
+<script lang="ts">
 import { createForm } from '@formily/core'
 import { createSchemaField, FormProvider } from '@formily/vue'
 import { FormItem, Input, Submit, FormGrid } from '@formily/antdv'
@@ -17,54 +17,54 @@ const schema = {
       type: 'void',
       'x-component': 'FormGrid',
       'x-component-props': {
-        minColumns: [4, 6, 10],
+        minColumns: [4, 6, 10]
       },
       properties: {
         aaa: {
           type: 'string',
           title: 'AAA',
           'x-decorator': 'FormItem',
-          'x-component': 'Input',
+          'x-component': 'Input'
         },
         bbb: {
           type: 'string',
           title: 'BBB',
           'x-decorator': 'FormItem',
-          'x-component': 'Input',
+          'x-component': 'Input'
         },
         ccc: {
           type: 'string',
           title: 'CCC',
           'x-decorator': 'FormItem',
-          'x-component': 'Input',
+          'x-component': 'Input'
         },
         ddd: {
           type: 'string',
           title: 'DDD',
           'x-decorator': 'FormItem',
-          'x-component': 'Input',
+          'x-component': 'Input'
         },
         eee: {
           type: 'string',
           title: 'EEE',
           'x-decorator': 'FormItem',
-          'x-component': 'Input',
+          'x-component': 'Input'
         },
         fff: {
           type: 'string',
           title: 'FFF',
           'x-decorator': 'FormItem',
-          'x-component': 'Input',
+          'x-component': 'Input'
         },
         ggg: {
           type: 'string',
           title: 'GGG',
           'x-decorator': 'FormItem',
-          'x-component': 'Input',
-        },
-      },
-    },
-  },
+          'x-component': 'Input'
+        }
+      }
+    }
+  }
 }
 
 const form = createForm()
@@ -72,8 +72,8 @@ const { SchemaField } = createSchemaField({
   components: {
     FormItem,
     Input,
-    FormGrid,
-  },
+    FormGrid
+  }
 })
 
 export default {
@@ -81,14 +81,14 @@ export default {
   data() {
     return {
       form,
-      schema,
+      schema
     }
   },
   methods: {
     onSubmit(value) {
       console.log(value)
-    },
-  },
+    }
+  }
 }
 </script>
 l

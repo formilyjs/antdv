@@ -5,7 +5,7 @@
   </Form>
 </template>
 
-<script>
+<script lang="ts">
 import { createForm } from '@formily/core'
 import { createSchemaField } from '@formily/vue'
 import { action } from '@formily/reactive'
@@ -20,18 +20,18 @@ const schema = {
       enum: [
         {
           label: '发请求1',
-          value: 1,
+          value: 1
         },
         {
           label: '发请求2',
-          value: 2,
-        },
+          value: 2
+        }
       ],
       'x-decorator': 'FormItem',
       'x-component': 'Select',
       'x-component-props': {
-        style: 'width: 240px;',
-      },
+        style: 'width: 240px;'
+      }
     },
     select: {
       type: 'string',
@@ -39,11 +39,11 @@ const schema = {
       'x-decorator': 'FormItem',
       'x-component': 'Select',
       'x-component-props': {
-        style: 'width: 240px;',
+        style: 'width: 240px;'
       },
-      'x-reactions': ['{{useAsyncDataSource(loadData)}}'],
-    },
-  },
+      'x-reactions': ['{{useAsyncDataSource(loadData)}}']
+    }
+  }
 }
 
 const useAsyncDataSource = (service) => (field) => {
@@ -65,23 +65,23 @@ const loadData = async (field) => {
         resolve([
           {
             label: 'AAA',
-            value: 'aaa',
+            value: 'aaa'
           },
           {
             label: 'BBB',
-            value: 'ccc',
-          },
+            value: 'ccc'
+          }
         ])
       } else if (linkage === 2) {
         resolve([
           {
             label: 'CCC',
-            value: 'ccc',
+            value: 'ccc'
           },
           {
             label: 'DDD',
-            value: 'ddd',
-          },
+            value: 'ddd'
+          }
         ])
       }
     }, 1500)
@@ -92,16 +92,17 @@ const form = createForm()
 const { SchemaField } = createSchemaField({
   components: {
     FormItem,
-    Select,
-  },
+    Select
+  }
 })
 
 export default {
-  components: { Form, SchemaField, Submit, Reset },
+  // eslint-disable-next-line vue/no-reserved-component-names
+  components: { Form, SchemaField, Submit },
   data() {
     return {
       form,
-      schema,
+      schema
     }
   },
   methods: {
@@ -109,7 +110,7 @@ export default {
     loadData,
     onSubmit(value) {
       console.log(value)
-    },
-  },
+    }
+  }
 }
 </script>

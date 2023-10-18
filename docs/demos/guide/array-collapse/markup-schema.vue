@@ -3,18 +3,18 @@
     <SchemaField>
       <SchemaArrayField
         name="string_array"
-        :maxItems="3"
+        :max-items="3"
         x-decorator="FormItem"
         x-component="ArrayCollapse"
         :x-component-props="{
           accordion: true,
-          defaultOpenPanelCount: 3,
+          defaultOpenPanelCount: 3
         }"
       >
         <SchemaVoidField
           x-component="ArrayCollapse.CollapsePanel"
           :x-component-props="{
-            header: '字符串数组',
+            header: '字符串数组'
           }"
         >
           <SchemaVoidField x-component="ArrayCollapse.Index" />
@@ -29,21 +29,18 @@
           <SchemaVoidField x-component="ArrayCollapse.MoveUp" />
           <SchemaVoidField x-component="ArrayCollapse.MoveDown" />
         </SchemaVoidField>
-        <SchemaVoidField
-          x-component="ArrayCollapse.Addition"
-          title="添加条目"
-        />
+        <SchemaVoidField x-component="ArrayCollapse.Addition" title="添加条目" />
       </SchemaArrayField>
       <SchemaArrayField
         name="array"
-        :maxItems="3"
+        :max-items="3"
         x-decorator="FormItem"
         x-component="ArrayCollapse"
       >
         <SchemaObjectField
           x-component="ArrayCollapse.Item"
           :x-component-props="{
-            header: '对象数组',
+            header: '对象数组'
           }"
         >
           <SchemaVoidField x-component="ArrayCollapse.Index" />
@@ -58,24 +55,21 @@
           <SchemaVoidField x-component="ArrayCollapse.MoveUp" />
           <SchemaVoidField x-component="ArrayCollapse.MoveDown" />
         </SchemaObjectField>
-        <SchemaVoidField
-          x-component="ArrayCollapse.Addition"
-          title="添加条目"
-        />
+        <SchemaVoidField x-component="ArrayCollapse.Addition" title="添加条目" />
       </SchemaArrayField>
       <SchemaArrayField
         name="string_array_unshift"
-        :maxItems="3"
+        :max-items="3"
         x-decorator="FormItem"
         x-component="ArrayCollapse"
         :x-component-props="{
-          defaultOpenPanelCount: 8,
+          defaultOpenPanelCount: 8
         }"
       >
         <SchemaVoidField
           x-component="ArrayCollapse.Item"
           :x-component-props="{
-            header: '字符串数组',
+            header: '字符串数组'
           }"
         >
           <SchemaVoidField x-component="ArrayCollapse.Index" />
@@ -94,7 +88,7 @@
           x-component="ArrayCollapse.Addition"
           title="添加条目（unshift）"
           :x-component-props="{
-            method: 'unshift',
+            method: 'unshift'
           }"
         />
       </SchemaArrayField>
@@ -105,14 +99,10 @@
           () => {
             form.setInitialValues({
               array: Array.from({ length: 10 }).map(() => ({
-                input: 'default value',
+                input: 'default value'
               })),
-              string_array: Array.from({ length: 10 }).map(
-                () => 'default value'
-              ),
-              string_array_unshift: Array.from({ length: 10 }).map(
-                () => 'default value'
-              ),
+              string_array: Array.from({ length: 10 }).map(() => 'default value'),
+              string_array_unshift: Array.from({ length: 10 }).map(() => 'default value')
             })
           }
         "
@@ -124,47 +114,42 @@
   </FormProvider>
 </template>
 
-<script>
+<script lang="ts">
 import { createForm } from '@formily/core'
 import { FormProvider, createSchemaField } from '@formily/vue'
-import {
-  FormItem,
-  FormButtonGroup,
-  Submit,
-  Input,
-  ArrayCollapse,
-} from '@formily/antdv'
+import { FormItem, FormButtonGroup, Submit, Input, ArrayCollapse } from '@formily/antdv'
 import { Button } from 'ant-design-vue'
 
 const SchemaField = createSchemaField({
   components: {
     FormItem,
     Input,
-    ArrayCollapse,
-  },
+    ArrayCollapse
+  }
 })
 
 export default {
   components: {
     FormProvider,
     FormButtonGroup,
+    // eslint-disable-next-line vue/no-reserved-component-names
     Button,
     Submit,
-    ...SchemaField,
+    ...SchemaField
   },
 
   data() {
     const form = createForm()
 
     return {
-      form,
+      form
     }
   },
   methods: {
     log(values) {
       console.log(values)
-    },
-  },
+    }
+  }
 }
 </script>
 

@@ -18,42 +18,35 @@
       />
     </SchemaField>
     <FormButtonGroup align-form-item>
-      <Reset validate forceClear>重置</Reset>
+      <Reset validate force-clear>重置</Reset>
     </FormButtonGroup>
   </FormProvider>
 </template>
 
-<script>
+<script lang="ts">
 import { createForm } from '@formily/core'
 import { FormProvider, createSchemaField } from '@formily/vue'
-import {
-  FormLayout,
-  Reset,
-  FormButtonGroup,
-  FormItem,
-  Input,
-} from '@formily/antdv'
+import { FormLayout, Reset, FormButtonGroup, FormItem, Input } from '@formily/antdv'
 
 const fields = createSchemaField({
   components: {
     FormItem,
-    Input,
-  },
+    Input
+  }
 })
 
 export default {
   components: {
     FormProvider,
-    FormLayout,
     Reset,
     FormButtonGroup,
-    ...fields,
+    ...fields
   },
   data() {
     const form = createForm()
     return {
-      form,
+      form
     }
-  },
+  }
 }
 </script>

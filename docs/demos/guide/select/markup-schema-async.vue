@@ -8,12 +8,12 @@
         x-component="Select"
         :enum="[
           { label: '发请求1', value: 1 },
-          { label: '发请求2', value: 2 },
+          { label: '发请求2', value: 2 }
         ]"
         :x-component-props="{
           style: {
-            width: '240px',
-          },
+            width: '240px'
+          }
         }"
       />
       <SchemaStringField
@@ -23,8 +23,8 @@
         x-component="Select"
         :x-component-props="{
           style: {
-            width: '240px',
-          },
+            width: '240px'
+          }
         }"
       />
     </SchemaField>
@@ -32,14 +32,15 @@
   </Form>
 </template>
 
-<script>
+<script lang="ts">
+import type { Field } from '@formily/core'
 import { createForm, onFieldReact } from '@formily/core'
 import { createSchemaField } from '@formily/vue'
 import { action } from '@formily/reactive'
 import { Form, FormItem, Select, Submit, Reset } from '@formily/antdv'
 
 const useAsyncDataSource = (pattern, service) => {
-  onFieldReact(pattern, (field) => {
+  onFieldReact(pattern, (field: Field) => {
     field.loading = true
     service(field).then(
       action.bound((data) => {
@@ -61,48 +62,49 @@ const form = createForm({
             resolve([
               {
                 label: 'AAA',
-                value: 'aaa',
+                value: 'aaa'
               },
               {
                 label: 'BBB',
-                value: 'ccc',
-              },
+                value: 'ccc'
+              }
             ])
           } else if (linkage === 2) {
             resolve([
               {
                 label: 'CCC',
-                value: 'ccc',
+                value: 'ccc'
               },
               {
                 label: 'DDD',
-                value: 'ddd',
-              },
+                value: 'ddd'
+              }
             ])
           }
         }, 1500)
       })
     })
-  },
+  }
 })
 const fields = createSchemaField({
   components: {
     FormItem,
-    Select,
-  },
+    Select
+  }
 })
 
 export default {
-  components: { Form, ...fields, Submit, Reset },
+  // eslint-disable-next-line vue/no-reserved-component-names
+  components: { Form, ...fields, Submit },
   data() {
     return {
-      form,
+      form
     }
   },
   methods: {
     onSubmit(value) {
       console.log(value)
-    },
-  },
+    }
+  }
 }
 </script>

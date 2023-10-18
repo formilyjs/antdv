@@ -20,18 +20,11 @@ export function isVnode(element: any): boolean {
 }
 
 export function isVueOptions(options) {
-  return (
-    options &&
-    (typeof options.template === 'string' ||
-      typeof options.render === 'function')
-  )
+  return options && (typeof options.template === 'string' || typeof options.render === 'function')
 }
 
 // eslint-disable-next-line @typescript-eslint/ban-types
-export function composeExport<T0 extends {}, T1 extends {}>(
-  s0: T0,
-  s1: T1
-): T0 & T1 {
+export function composeExport<T0 extends {}, T1 extends {}>(s0: T0, s1: T1): T0 & T1 {
   return Object.assign(s0, s1)
 }
 

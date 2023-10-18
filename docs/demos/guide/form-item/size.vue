@@ -9,7 +9,7 @@
         :enum="[
           { value: 'small', label: 'Small' },
           { value: 'default', label: 'Default' },
-          { value: 'large', label: 'Large' },
+          { value: 'large', label: 'Large' }
         ]"
       />
       <SchemaVoidField name="sizeWrap" x-component="Div">
@@ -28,16 +28,16 @@
           :enum="[
             {
               label: '选项1',
-              value: 1,
+              value: 1
             },
             {
               label: '选项2',
-              value: 2,
-            },
+              value: 2
+            }
           ]"
           :x-component-props="{
             multiple: true,
-            placeholder: '请选择',
+            placeholder: '请选择'
           }"
           required
         />
@@ -49,15 +49,15 @@
           :enum="[
             {
               label: '选项1',
-              value: 1,
+              value: 1
             },
             {
               label: '选项2',
-              value: 2,
-            },
+              value: 2
+            }
           ]"
           :x-component-props="{
-            placeholder: '请选择',
+            placeholder: '请选择'
           }"
           required
         />
@@ -94,7 +94,8 @@
   </Form>
 </template>
 
-<script>
+<script lang="tsx">
+import type { Field } from '@formily/core'
 import { createForm, onFieldChange } from '@formily/core'
 import { createSchemaField } from '@formily/vue'
 import {
@@ -106,29 +107,26 @@ import {
   DatePicker,
   Switch,
   InputNumber,
-  Radio,
+  Radio
 } from '@formily/antdv'
 
-const Div = {
-  functional: true,
-  render(h, context) {
-    return h('div', context.data, context.children)
-  },
+const Div = (props, { slots }) => {
+  return <div {...props}>{slots?.default?.()}</div>
 }
 
 const form = createForm({
   values: {
-    size: 'default',
+    size: 'default'
   },
   effects: () => {
-    onFieldChange('size', ['value'], (field, form) => {
+    onFieldChange('size', ['value'], (field: Field, form) => {
       form.setFieldState('sizeWrap.*', (state) => {
         if (state.decorator[1]) {
           state.decorator[1].size = field.value
         }
       })
     })
-  },
+  }
 })
 const fields = createSchemaField({
   components: {
@@ -140,21 +138,22 @@ const fields = createSchemaField({
     Switch,
     InputNumber,
     Radio,
-    Div,
-  },
+    Div
+  }
 })
 
 export default {
+  // eslint-disable-next-line vue/no-reserved-component-names
   components: { Form, ...fields },
   data() {
     return {
-      form,
+      form
     }
   },
   methods: {
     onSubmit(value) {
       console.log(value)
-    },
-  },
+    }
+  }
 }
 </script>

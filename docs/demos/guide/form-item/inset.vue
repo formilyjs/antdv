@@ -8,7 +8,7 @@
         x-component="Input"
         required
         :x-decorator-props="{
-          inset: true,
+          inset: true
         }"
       />
       <SchemaStringField
@@ -18,7 +18,7 @@
         x-component="Select"
         required
         :x-decorator-props="{
-          inset: true,
+          inset: true
         }"
       />
       <SchemaStringField
@@ -28,7 +28,7 @@
         x-component="Cascader"
         required
         :x-decorator-props="{
-          inset: true,
+          inset: true
         }"
       />
       <SchemaStringField
@@ -38,7 +38,7 @@
         x-component="DatePicker"
         required
         :x-decorator-props="{
-          inset: true,
+          inset: true
         }"
       />
       <SchemaStringField
@@ -48,7 +48,7 @@
         x-component="InputNumber"
         required
         :x-decorator-props="{
-          inset: true,
+          inset: true
         }"
       />
       <SchemaBooleanField
@@ -58,14 +58,14 @@
         x-component="Switch"
         required
         :x-decorator-props="{
-          inset: true,
+          inset: true
         }"
       />
     </SchemaField>
   </Form>
 </template>
 
-<script>
+<script lang="ts">
 import { createForm } from '@formily/core'
 import { createSchemaField } from '@formily/vue'
 import {
@@ -76,7 +76,7 @@ import {
   Cascader,
   DatePicker,
   Switch,
-  InputNumber,
+  InputNumber
 } from '@formily/antdv'
 
 const form = createForm()
@@ -88,21 +88,22 @@ const fields = createSchemaField({
     Cascader,
     DatePicker,
     Switch,
-    InputNumber,
-  },
+    InputNumber
+  }
 })
 
 export default {
+  // eslint-disable-next-line vue/no-reserved-component-names
   components: { Form, ...fields },
   data() {
     return {
-      form,
+      form
     }
   },
   methods: {
     onSubmit(value) {
       console.log(value)
-    },
-  },
+    }
+  }
 }
 </script>

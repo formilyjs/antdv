@@ -5,17 +5,11 @@
   </FormProvider>
 </template>
 
-<script>
+<script lang="ts">
+import type { Field } from '@formily/core'
 import { createForm, onFieldChange, onFieldReact } from '@formily/core'
 import { FormProvider, createSchemaField } from '@formily/vue'
-import {
-  Submit,
-  FormItem,
-  ArrayTable,
-  Input,
-  Editable,
-  Switch,
-} from '@formily/antdv'
+import { Submit, FormItem, ArrayTable, Input, Editable, Switch } from '@formily/antdv'
 
 const fields = createSchemaField({
   components: {
@@ -23,8 +17,8 @@ const fields = createSchemaField({
     ArrayTable,
     Input,
     Editable,
-    Switch,
-  },
+    Switch
+  }
 })
 
 export default {
@@ -33,7 +27,7 @@ export default {
     const form = createForm({
       effects: () => {
         //主动联动模式
-        onFieldChange('hideFirstColumn', ['value'], (field) => {
+        onFieldChange('hideFirstColumn', ['value'], (field: Field) => {
           field.query('array.column3').take((target) => {
             target.visible = !field.value
           })
@@ -45,7 +39,7 @@ export default {
         onFieldReact('array.*.a2', (field) => {
           field.visible = !field.query('.a1').get('value')
         })
-      },
+      }
     })
     const schema = {
       type: 'object',
@@ -54,7 +48,7 @@ export default {
           type: 'boolean',
           title: '隐藏A2',
           'x-decorator': 'FormItem',
-          'x-component': 'Switch',
+          'x-component': 'Switch'
         },
         array: {
           type: 'array',
@@ -62,7 +56,7 @@ export default {
           'x-component': 'ArrayTable',
           'x-component-props': {
             pagination: { pageSize: 10 },
-            scroll: { x: 800 },
+            scroll: { x: 800 }
           },
           items: {
             type: 'object',
@@ -73,14 +67,14 @@ export default {
                 'x-component-props': {
                   width: 80,
                   title: 'Index',
-                  align: 'center',
+                  align: 'center'
                 },
                 properties: {
                   index: {
                     type: 'void',
-                    'x-component': 'ArrayTable.Index',
-                  },
-                },
+                    'x-component': 'ArrayTable.Index'
+                  }
+                }
               },
               column2: {
                 type: 'void',
@@ -90,9 +84,9 @@ export default {
                   a1: {
                     type: 'boolean',
                     'x-decorator': 'FormItem',
-                    'x-component': 'Switch',
-                  },
-                },
+                    'x-component': 'Switch'
+                  }
+                }
               },
               column3: {
                 type: 'void',
@@ -102,9 +96,9 @@ export default {
                   a2: {
                     type: 'string',
                     'x-decorator': 'FormItem',
-                    'x-component': 'Input',
-                  },
-                },
+                    'x-component': 'Input'
+                  }
+                }
               },
               column4: {
                 type: 'void',
@@ -114,9 +108,9 @@ export default {
                   a3: {
                     type: 'string',
                     'x-decorator': 'FormItem',
-                    'x-component': 'Input',
-                  },
-                },
+                    'x-component': 'Input'
+                  }
+                }
               },
               column5: {
                 type: 'void',
@@ -125,7 +119,7 @@ export default {
                   title: 'Operations',
                   prop: 'operations',
                   width: 200,
-                  fixed: 'right',
+                  fixed: 'right'
                 },
                 properties: {
                   item: {
@@ -134,41 +128,41 @@ export default {
                     properties: {
                       remove: {
                         type: 'void',
-                        'x-component': 'ArrayTable.Remove',
+                        'x-component': 'ArrayTable.Remove'
                       },
                       moveDown: {
                         type: 'void',
-                        'x-component': 'ArrayTable.MoveDown',
+                        'x-component': 'ArrayTable.MoveDown'
                       },
                       moveUp: {
                         type: 'void',
-                        'x-component': 'ArrayTable.MoveUp',
-                      },
-                    },
-                  },
-                },
-              },
-            },
+                        'x-component': 'ArrayTable.MoveUp'
+                      }
+                    }
+                  }
+                }
+              }
+            }
           },
           properties: {
             add: {
               type: 'void',
               'x-component': 'ArrayTable.Addition',
-              title: '添加条目',
-            },
-          },
-        },
-      },
+              title: '添加条目'
+            }
+          }
+        }
+      }
     }
     return {
       form,
-      schema,
+      schema
     }
   },
   methods: {
     log(...v) {
       console.log(...v)
-    },
-  },
+    }
+  }
 }
 </script>

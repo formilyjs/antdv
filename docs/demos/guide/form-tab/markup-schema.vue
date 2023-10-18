@@ -1,11 +1,7 @@
 <template>
   <FormProvider :form="form">
     <SchemaField>
-      <SchemaVoidField
-        type="void"
-        x-component="FormTab"
-        :x-component-props="{ formTab }"
-      >
+      <SchemaVoidField type="void" x-component="FormTab" :x-component-props="{ formTab }">
         <SchemaVoidField
           type="void"
           name="tab1"
@@ -48,7 +44,7 @@
         </SchemaVoidField>
       </SchemaVoidField>
     </SchemaField>
-    <FormButtonGroup alignFormItem>
+    <FormButtonGroup align-form-item>
       <Button
         @click="
           () => {
@@ -74,49 +70,25 @@
   </FormProvider>
 </template>
 
-<script>
+<script setup lang="ts">
 import { createForm } from '@formily/core'
 import { FormProvider, createSchemaField } from '@formily/vue'
-import {
-  FormItem,
-  FormTab,
-  FormButtonGroup,
-  Submit,
-  Input,
-} from '@formily/antdv'
+import { FormItem, FormTab, FormButtonGroup, Submit, Input } from '@formily/antdv'
 import { Button } from 'ant-design-vue'
 
-const SchemaField = createSchemaField({
+const { SchemaField, SchemaVoidField, SchemaStringField } = createSchemaField({
   components: {
     FormItem,
     FormTab,
-    Input,
-  },
+    Input
+  }
 })
 
-export default {
-  components: {
-    FormProvider,
-    FormButtonGroup,
-    Button,
-    Submit,
-    ...SchemaField,
-  },
+const form = createForm()
+const formTab = FormTab.createFormTab()
 
-  data() {
-    const form = createForm()
-    const formTab = FormTab.createFormTab()
-
-    return {
-      form,
-      formTab,
-    }
-  },
-  methods: {
-    log(values) {
-      console.log(values)
-    },
-  },
+const log = (values) => {
+  console.log(values)
 }
 </script>
 

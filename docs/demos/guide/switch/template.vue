@@ -1,16 +1,11 @@
 <template>
   <FormProvider :form="form">
-    <Field
-      name="switch"
-      title="开关"
-      :decorator="[FormItem]"
-      :component="[Switch]"
-    />
+    <Field name="switch" title="开关" :decorator="[FormItem]" :component="[Switch]" />
     <Submit @submit="log">提交</Submit>
   </FormProvider>
 </template>
 
-<script>
+<script lang="ts">
 import { createForm } from '@formily/core'
 import { FormProvider, Field } from '@formily/vue'
 import { FormItem, Switch, Submit } from '@formily/antdv'
@@ -23,13 +18,13 @@ export default {
     return {
       FormItem,
       Switch,
-      form,
+      form
     }
   },
   methods: {
     log(value) {
       console.log(value)
-    },
-  },
+    }
+  }
 }
 </script>

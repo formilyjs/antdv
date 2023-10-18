@@ -1,17 +1,14 @@
-import type { Component } from 'vue'
-import type { InjectionKey, Ref } from '@vue/composition-api'
-import {
-  defineComponent,
-  provide,
-  inject,
-  readonly,
-  ref,
-  toRef,
-} from '@vue/composition-api'
+import type { DefineComponent } from 'vue'
+import type { InjectionKey, Ref } from 'vue'
+import { defineComponent, provide, inject, readonly, ref, toRef } from 'vue'
 
 export type CreateContext<T> = {
-  Provider: Component
-  Consumer: Component
+  Provider: DefineComponent<{
+    value: {
+      type: any
+    }
+  }>
+  Consumer: DefineComponent
   injectKey: InjectionKey<Ref<T>>
 }
 
@@ -26,16 +23,16 @@ export const createContext = <T>(defaultValue?: T): CreateContext<T> => {
           type: null,
           default() {
             return defaultValue ?? null
-          },
-        },
+          }
+        }
       },
       setup(props, { slots }) {
-        const value = toRef(props, 'value')
+        const value: any = toRef(props, 'value' as never)
         provide(injectKey, readonly(value))
 
         return () => slots?.default?.()
-      },
-    }),
+      }
+    }) as any,
 
     Consumer: defineComponent({
       name: 'ContextConsumer',
@@ -43,9 +40,9 @@ export const createContext = <T>(defaultValue?: T): CreateContext<T> => {
         const value = inject(injectKey)
 
         return () => slots?.default?.(value)
-      },
+      }
     }),
-    injectKey,
+    injectKey
   }
 }
 

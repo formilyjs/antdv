@@ -13,7 +13,7 @@
   </Form>
 </template>
 
-<script>
+<script lang="ts">
 import { createForm } from '@formily/core'
 import { createSchemaField } from '@formily/vue'
 import { Form, FormItem, Input, Submit } from '@formily/antdv'
@@ -22,21 +22,22 @@ const form = createForm()
 const fields = createSchemaField({
   components: {
     FormItem,
-    Input,
-  },
+    Input
+  }
 })
 
 export default {
+  // eslint-disable-next-line vue/no-reserved-component-names
   components: { Form, ...fields, Submit },
   data() {
     return {
-      form,
+      form
     }
   },
   methods: {
     onSubmit(value) {
       console.log(value)
-    },
-  },
+    }
+  }
 }
 </script>

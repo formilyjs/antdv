@@ -1,16 +1,11 @@
 <template>
   <FormProvider :form="form">
-    <Field
-      name="input"
-      title="密码框"
-      :decorator="[FormItem]"
-      :component="[Password]"
-    />
+    <Field name="input" title="密码框" :decorator="[FormItem]" :component="[Password]" />
     <Submit @submit="log">提交</Submit>
   </FormProvider>
 </template>
 
-<script>
+<script lang="ts">
 import { createForm } from '@formily/core'
 import { FormProvider, Field } from '@formily/vue'
 import { FormItem, Password, Submit } from '@formily/antdv'
@@ -23,13 +18,13 @@ export default {
     return {
       FormItem,
       Password,
-      form,
+      form
     }
   },
   methods: {
     log(value) {
       console.log(value)
-    },
-  },
+    }
+  }
 }
 </script>

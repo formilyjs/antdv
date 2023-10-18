@@ -1,7 +1,7 @@
 <template>
   <FormProvider :form="form">
     <SchemaField :schema="schema" :scope="{ formTab }" />
-    <FormButtonGroup alignFormItem>
+    <FormButtonGroup align-form-item>
       <Button
         @click="
           () => {
@@ -27,24 +27,18 @@
   </FormProvider>
 </template>
 
-<script>
+<script lang="ts">
 import { createForm } from '@formily/core'
 import { FormProvider, createSchemaField } from '@formily/vue'
-import {
-  FormItem,
-  FormTab,
-  FormButtonGroup,
-  Submit,
-  Input,
-} from '@formily/antdv'
+import { FormItem, FormTab, FormButtonGroup, Submit, Input } from '@formily/antdv'
 import { Button } from 'ant-design-vue'
 
 const { SchemaField } = createSchemaField({
   components: {
     FormItem,
     FormTab,
-    Input,
-  },
+    Input
+  }
 })
 
 const schema = {
@@ -54,14 +48,14 @@ const schema = {
       type: 'void',
       'x-component': 'FormTab',
       'x-component-props': {
-        formTab: '{{formTab}}',
+        formTab: '{{formTab}}'
       },
       properties: {
         tab1: {
           type: 'void',
           'x-component': 'FormTab.TabPane',
           'x-component-props': {
-            tab: 'A1',
+            tab: 'A1'
           },
           properties: {
             aaa: {
@@ -69,15 +63,15 @@ const schema = {
               title: 'AAA',
               'x-decorator': 'FormItem',
               required: true,
-              'x-component': 'Input',
-            },
-          },
+              'x-component': 'Input'
+            }
+          }
         },
         tab2: {
           type: 'void',
           'x-component': 'FormTab.TabPane',
           'x-component-props': {
-            tab: 'A2',
+            tab: 'A2'
           },
           properties: {
             bbb: {
@@ -85,15 +79,15 @@ const schema = {
               title: 'BBB',
               'x-decorator': 'FormItem',
               required: true,
-              'x-component': 'Input',
-            },
-          },
+              'x-component': 'Input'
+            }
+          }
         },
         tab3: {
           type: 'void',
           'x-component': 'FormTab.TabPane',
           'x-component-props': {
-            tab: 'A3',
+            tab: 'A3'
           },
           properties: {
             ccc: {
@@ -101,22 +95,23 @@ const schema = {
               title: 'CCC',
               'x-decorator': 'FormItem',
               required: true,
-              'x-component': 'Input',
-            },
-          },
-        },
-      },
-    },
-  },
+              'x-component': 'Input'
+            }
+          }
+        }
+      }
+    }
+  }
 }
 
 export default {
   components: {
     FormProvider,
     FormButtonGroup,
+    // eslint-disable-next-line vue/no-reserved-component-names
     Button,
     Submit,
-    SchemaField,
+    SchemaField
   },
 
   data() {
@@ -126,14 +121,14 @@ export default {
     return {
       schema,
       form,
-      formTab,
+      formTab
     }
   },
   methods: {
     log(values) {
       console.log(values)
-    },
-  },
+    }
+  }
 }
 </script>
 

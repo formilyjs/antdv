@@ -22,8 +22,8 @@
 
 ### 事件
 
-| 属性名                 | 类型                                                                                             | 描述             | 默认值                                |
-| ---------------------- | ------------------------------------------------------------------------------------------------ | ---------------- | ------------------------------------- | --- |
-| onClick                | `(event: MouseEvent) => void                                                                     | boolean`         | 点击事件，如果返回 false 可以阻塞重置 | -   |
-| onResetValidateSuccess | (payload: any) => void                                                                           | 重置校验成功事件 | -                                     |
-| onResetValidateFailed  | (feedbacks: [IFormFeedback](https://core.formilyjs.org/api/models/form#iformfeedback)[]) => void | 重置校验失败事件 | -                                     |
+| 属性名                 | 类型                                                                                                         | 描述                                  | 默认值 |
+| ---------------------- | ------------------------------------------------------------------------------------------------------------ | ------------------------------------- | ------ |
+| onClick                | `(event: MouseEvent) => void                                                                     \| boolean` | 点击事件，如果返回 false 可以阻塞重置 | -      |
+| onResetValidateSuccess | (payload: any) => void                                                                                       | 重置校验成功事件                      | -      |
+| onResetValidateFailed  | (feedbacks: [IFormFeedback](https://core.formilyjs.org/api/models/form#iformfeedback)[]) => void             | 重置校验失败事件                      | -      |

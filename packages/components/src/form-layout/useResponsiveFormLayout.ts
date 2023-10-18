@@ -1,14 +1,10 @@
 import { isArr, isValid } from '@formily/shared'
-import type { Ref } from 'vue-demi'
-import { onMounted, ref } from 'vue-demi'
+import type { Ref } from 'vue'
+import { onMounted, ref } from 'vue'
 
 interface IProps {
   breakpoints?: number[]
-  layout?:
-    | 'vertical'
-    | 'horizontal'
-    | 'inline'
-    | ('vertical' | 'horizontal' | 'inline')[]
+  layout?: 'vertical' | 'horizontal' | 'inline'
   labelCol?: number | number[]
   wrapperCol?: number | number[]
   labelAlign?: 'right' | 'left' | ('right' | 'left')[]
@@ -25,12 +21,7 @@ interface ICalculateProps {
 }
 
 interface IUseResponsiveFormLayout {
-  (
-    props: IProps,
-    refs: {
-      [key: string]: Vue | Element | Vue[] | Element[]
-    }
-  ): {
+  (props: IProps, rootRef: Ref<HTMLElement | null>): {
     props: Ref<IProps>
   }
 }
@@ -57,15 +48,8 @@ const factor = <T>(value: T | T[], breakpointIndex: number): T =>
 
 const calculateProps: ICalculateProps = (target, props) => {
   const { clientWidth } = target
-  const {
-    breakpoints,
-    layout,
-    labelAlign,
-    wrapperAlign,
-    labelCol,
-    wrapperCol,
-    ...otherProps
-  } = props
+  const { breakpoints, layout, labelAlign, wrapperAlign, labelCol, wrapperCol, ...otherProps } =
+    props
   const breakpointIndex = calcBreakpointIndex(breakpoints, clientWidth)
 
   return {
@@ -74,15 +58,11 @@ const calculateProps: ICalculateProps = (target, props) => {
     wrapperAlign: factor(wrapperAlign, breakpointIndex),
     labelCol: factor(labelCol, breakpointIndex),
     wrapperCol: factor(wrapperCol, breakpointIndex),
-    ...otherProps,
+    ...otherProps
   }
 }
 
-export const useResponsiveFormLayout: IUseResponsiveFormLayout = (
-  props,
-  refs
-) => {
-  const root = ref<Element>(null)
+export const useResponsiveFormLayout: IUseResponsiveFormLayout = (props, rootRef) => {
   const { breakpoints } = props
   if (!isArr(breakpoints)) {
     return { props: ref(props) }
@@ -90,17 +70,16 @@ export const useResponsiveFormLayout: IUseResponsiveFormLayout = (
   const layoutProps = ref<IProps>({})
 
   const updateUI = () => {
-    layoutProps.value = calculateProps(root.value, props)
+    layoutProps.value = calculateProps(rootRef.value, props)
   }
 
   onMounted(() => {
-    root.value = refs.root as Element
     const observer = () => {
       updateUI()
     }
     const resizeObserver = new ResizeObserver(observer)
-    if (root.value) {
-      resizeObserver.observe(root.value)
+    if (rootRef.value) {
+      resizeObserver.observe(rootRef.value)
     }
 
     updateUI()
@@ -111,6 +90,6 @@ export const useResponsiveFormLayout: IUseResponsiveFormLayout = (
   })
 
   return {
-    props: layoutProps,
+    props: layoutProps
   }
 }

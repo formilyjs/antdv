@@ -1,10 +1,5 @@
 <template>
-  <Form
-    :labelCol="6"
-    :wrapperCol="10"
-    :form="form"
-    :previewTextPlaceholder="vnode"
-  >
+  <Form :label-col="6" :wrapper-col="10" :form="form" :preview-text-placeholder="vnode">
     <SchemaField>
       <SchemaStringField
         x-decorator="FormItem"
@@ -17,15 +12,15 @@
         title="选择项预览"
         x-component="PreviewText.Select"
         :x-component-props="{
-          multiple: true,
+          multiple: true
         }"
         :default="['123', '222']"
         :enum="[
           { label: 'A111', value: '123' },
           {
             label: 'A222',
-            value: '222',
-          },
+            value: '222'
+          }
         ]"
       />
       <SchemaStringField
@@ -47,11 +42,11 @@
         :default="['hangzhou', 'yuhang']"
         :enum="[
           { label: '杭州', value: 'hangzhou' },
-          { label: '余杭', value: 'yuhang' },
+          { label: '余杭', value: 'yuhang' }
         ]"
       />
     </SchemaField>
-    <FormButtonGroup alignFormItem>
+    <FormButtonGroup align-form-item>
       <Button
         @click="
           () => {
@@ -66,25 +61,20 @@
   </Form>
 </template>
 
-<script>
-import { h } from '@vue/composition-api'
+<script lang="ts">
+/* eslint-disable vue/no-reserved-component-names */
+import { h } from 'vue'
 import { createForm } from '@formily/core'
 import { createSchemaField } from '@formily/vue'
-import {
-  Form,
-  FormItem,
-  Input,
-  PreviewText,
-  FormButtonGroup,
-} from '@formily/antdv'
+import { Form, FormItem, Input, PreviewText, FormButtonGroup } from '@formily/antdv'
 import { Button } from 'ant-design-vue'
 
 const fields = createSchemaField({
   components: {
     FormItem,
     Input,
-    PreviewText,
-  },
+    PreviewText
+  }
 })
 
 export default {
@@ -92,16 +82,14 @@ export default {
     Form,
     FormButtonGroup,
     Button,
-    ...fields,
+    ...fields
   },
   data() {
     const form = createForm()
     return {
       form,
-      vnode: () => h('div', {}, '123'),
+      vnode: () => h('div', {}, '123')
     }
-  },
-
-  mounted() {},
+  }
 }
 </script>

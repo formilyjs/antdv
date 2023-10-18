@@ -8,7 +8,7 @@
         x-component="Input"
         description="description"
         :x-decorator-props="{
-          feedbackStatus: 'error',
+          feedbackStatus: 'error'
         }"
       />
       <SchemaStringField
@@ -17,7 +17,7 @@
         x-component="Input"
         description="description"
         :x-decorator-props="{
-          feedbackStatus: 'warning',
+          feedbackStatus: 'warning'
         }"
       />
       <SchemaStringField
@@ -26,7 +26,7 @@
         x-component="Input"
         description="description"
         :x-decorator-props="{
-          feedbackStatus: 'success',
+          feedbackStatus: 'success'
         }"
       />
       <SchemaStringField
@@ -35,7 +35,7 @@
         x-component="Input"
         description="description"
         :x-decorator-props="{
-          feedbackStatus: 'pending',
+          feedbackStatus: 'pending'
         }"
       />
       <SchemaVoidField x-component="Title" x-content="反馈信息的布局: " />
@@ -45,7 +45,7 @@
         x-component="Input"
         :required="true"
         :x-decorator-props="{
-          feedbackLayout: 'terse',
+          feedbackLayout: 'terse'
         }"
       />
       <SchemaStringField
@@ -55,7 +55,7 @@
         :x-decorator-props="{
           feedbackStatus: 'error',
           feedbackText: 'error message',
-          feedbackLayout: 'terse',
+          feedbackLayout: 'terse'
         }"
       />
       <SchemaStringField
@@ -63,7 +63,7 @@
         x-decorator="FormItem"
         x-component="Input"
         :x-decorator-props="{
-          feedbackLayout: 'terse',
+          feedbackLayout: 'terse'
         }"
       />
       <SchemaStringField
@@ -73,7 +73,7 @@
         :x-decorator-props="{
           feedbackStatus: 'error',
           feedbackText: 'error message',
-          feedbackLayout: 'loose',
+          feedbackLayout: 'loose'
         }"
       />
       <SchemaStringField
@@ -83,7 +83,7 @@
         :x-decorator-props="{
           feedbackStatus: 'warning',
           feedbackText: 'warning message',
-          feedbackLayout: 'popover',
+          feedbackLayout: 'popover'
         }"
       />
       <SchemaStringField
@@ -93,7 +93,7 @@
         :x-decorator-props="{
           feedbackStatus: 'error',
           feedbackText: 'error message',
-          feedbackLayout: 'popover',
+          feedbackLayout: 'popover'
         }"
       />
       <SchemaStringField
@@ -103,7 +103,7 @@
         :x-decorator-props="{
           feedbackStatus: 'success',
           feedbackText: 'success message',
-          feedbackLayout: 'popover',
+          feedbackLayout: 'popover'
         }"
       />
       <SchemaVoidField x-component="Title" x-content="组件的适配情况: " />
@@ -111,7 +111,7 @@
         x-component="FormLayout"
         :x-component-props="{
           labelCol: 6,
-          wrapperCol: 10,
+          wrapperCol: 10
         }"
       >
         <SchemaStringField
@@ -120,7 +120,7 @@
           x-component="Select"
           :x-decorator-props="{
             feedbackStatus: 'success',
-            feedbackIcon: SuccessIcon,
+            feedbackIcon: SuccessIcon
           }"
         />
         <SchemaStringField
@@ -129,7 +129,7 @@
           x-component="DatePicker"
           :x-decorator-props="{
             feedbackStatus: 'success',
-            feedbackIcon: SuccessIcon,
+            feedbackIcon: SuccessIcon
           }"
         />
         <SchemaStringField
@@ -138,10 +138,10 @@
           x-component="DatePicker"
           :x-decorator-props="{
             feedbackStatus: 'success',
-            feedbackIcon: SuccessIcon,
+            feedbackIcon: SuccessIcon
           }"
           :x-component-props="{
-            type: 'daterange',
+            type: 'daterange'
           }"
         />
         <SchemaStringField
@@ -150,10 +150,10 @@
           x-component="DatePicker"
           :x-decorator-props="{
             feedbackStatus: 'success',
-            feedbackIcon: SuccessIcon,
+            feedbackIcon: SuccessIcon
           }"
           :x-component-props="{
-            type: 'year',
+            type: 'year'
           }"
         />
         <SchemaStringField
@@ -162,10 +162,10 @@
           x-component="DatePicker"
           :x-decorator-props="{
             feedbackStatus: 'success',
-            feedbackIcon: SuccessIcon,
+            feedbackIcon: SuccessIcon
           }"
           :x-component-props="{
-            type: 'month',
+            type: 'month'
           }"
         />
         <SchemaStringField
@@ -174,7 +174,7 @@
           x-component="TimePicker"
           :x-decorator-props="{
             feedbackStatus: 'success',
-            feedbackIcon: SuccessIcon,
+            feedbackIcon: SuccessIcon
           }"
         />
         <SchemaStringField
@@ -183,7 +183,7 @@
           x-component="InputNumber"
           :x-decorator-props="{
             feedbackStatus: 'success',
-            feedbackIcon: SuccessIcon,
+            feedbackIcon: SuccessIcon
           }"
         />
         <SchemaStringField
@@ -192,7 +192,7 @@
           x-component="Cascader"
           :x-decorator-props="{
             feedbackStatus: 'success',
-            feedbackIcon: SuccessIcon,
+            feedbackIcon: SuccessIcon
           }"
         />
       </SchemaVoidField>
@@ -200,7 +200,8 @@
   </FormProvider>
 </template>
 
-<script>
+<script lang="ts">
+import { h } from 'vue'
 import { createForm } from '@formily/core'
 import { createSchemaField, FormProvider } from '@formily/vue'
 import {
@@ -211,26 +212,17 @@ import {
   Select,
   DatePicker,
   FormLayout,
-  TimePicker,
+  TimePicker
 } from '@formily/antdv'
+import { CheckOutlined } from '@ant-design/icons-vue'
 
-const SuccessIcon = {
-  functional: true,
-  render(h) {
-    return h('i', {
-      class: 'el-icon-circle-check',
-      style: { color: '#8AE65C' },
-    })
-  },
+const SuccessIcon = () => {
+  return h(CheckOutlined, { style: { color: '#8AE65C' } })
 }
 
-const Title = {
-  functional: true,
-  render(h, context) {
-    return h('p', context.data, context.children)
-  },
+const Title = (props, { slots }) => {
+  return h('p', props, slots.default?.())
 }
-
 const fields = createSchemaField({
   components: {
     Title,
@@ -241,8 +233,8 @@ const fields = createSchemaField({
     Select,
     DatePicker,
     FormLayout,
-    TimePicker,
-  },
+    TimePicker
+  }
 })
 
 export default {
@@ -251,8 +243,8 @@ export default {
     const form = createForm()
     return {
       form,
-      SuccessIcon,
+      SuccessIcon
     }
-  },
+  }
 }
 </script>

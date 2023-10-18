@@ -1,11 +1,6 @@
 <template>
   <Form :form="form">
-    <Field
-      name="date"
-      title="普通日期"
-      :decorator="[FormItem]"
-      :component="[DatePicker]"
-    />
+    <Field name="date" title="普通日期" :decorator="[FormItem]" :component="[DatePicker]" />
     <Field
       name="week"
       title="周选择"
@@ -25,8 +20,8 @@
       :component="[
         DatePicker,
         {
-          mode: 'year',
-        },
+          picker: 'year'
+        }
       ]"
     />
     <Field
@@ -36,8 +31,8 @@
       :component="[
         DatePicker,
         {
-          mode: 'time',
-        },
+          showTime: true
+        }
       ]"
     />
     <ArrayField
@@ -47,15 +42,15 @@
       :component="[
         DatePicker.RangePicker,
         {
-          showTime: true,
-        },
+          showTime: true
+        }
       ]"
     />
     <Submit @submit="onSubmit">提交</Submit>
   </Form>
 </template>
 
-<script>
+<script lang="ts">
 import { createForm } from '@formily/core'
 import { Field, ArrayField } from '@formily/vue'
 import { Form, FormItem, DatePicker, Submit } from '@formily/antdv'
@@ -63,19 +58,19 @@ import { Form, FormItem, DatePicker, Submit } from '@formily/antdv'
 const form = createForm()
 
 export default {
+  // eslint-disable-next-line vue/no-reserved-component-names
   components: { Form, Field, ArrayField, Submit },
   data() {
     return {
       FormItem,
       DatePicker,
-      form,
+      form
     }
   },
   methods: {
     onSubmit(value) {
       console.log(value)
-    },
-  },
+    }
+  }
 }
 </script>
-l
