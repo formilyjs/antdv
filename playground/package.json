@@ -1,6 +1,6 @@
 {
   "name": "playground",
-  "version": "2.0.0",
+  "version": "2.0.1-beta.0",
   "private": true,
   "license": "MIT",
   "main": "lib",
@@ -48,6 +48,11 @@
     "vue-codemirror": "^4.0.6"
   },
   "devDependencies": {
+    "@formily/antdv": "2.0.1-beta.0",
+    "@formily/antdv-designable": "2.0.1-beta.0",
+    "@formily/antdv-prototypes": "2.0.1-beta.0",
+    "@formily/antdv-setters": "2.0.1-beta.0",
+    "@formily/antdv-settings-form": "2.0.1-beta.0",
     "@formily/reactive": "^2.0.0",
     "@formily/reactive-vue": "^2.0.0",
     "@formily/shared": "^2.0.0",
@@ -55,11 +60,6 @@
     "@pind/designable-core": "^2.0.0-beta.6",
     "@pind/designable-formily-transformer": "^2.0.0-beta.6",
     "@pind/designable-shared": "^2.0.0-beta.6",
-    "@formily/antdv": "2.0.0",
-    "@formily/antdv-designable": "2.0.0",
-    "@formily/antdv-prototypes": "2.0.0",
-    "@formily/antdv-setters": "2.0.0",
-    "@formily/antdv-settings-form": "2.0.0",
     "@types/fs-extra": "^9.0.13",
     "@vitejs/plugin-vue": "^4.0.0",
     "@vitejs/plugin-vue-jsx": "^3.0.0",
