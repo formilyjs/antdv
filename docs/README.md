@@ -24,6 +24,13 @@ $ npm install --save ant-design-vue
 $ npm install --save @formily/core @formily/vue vue @formily/antdv
 ```
 
+vue2 请安装 @formily/antdv 1.x 版本
+
+```bash
+$ npm install --save ant-design-vue
+$ npm install --save @formily/core @formily/vue vue@2.x @formily/antdv@1.x
+```
+
 ## 快速开始
 
 <dumi-previewer demoPath="index" :collapsed="false" />
