@@ -7,13 +7,11 @@ export const resolveComponent = (child?: SlotTypes, props?: Record<string, any>)
   if (child) {
     if (typeof child === 'string' || typeof child === 'number') {
       return child
-    } else if (typeof child === 'function') {
-      return (child as Function)(props)
     } else if (isVnode(child)) {
       return child
     } else {
       const Com = toRaw(child as DefineComponent)
-      return <Com {...Com} />
+      return <Com {...props} />
     }
   }
 
