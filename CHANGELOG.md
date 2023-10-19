@@ -1,5 +1,15 @@
 # Changelog
 
+## v2.0.1-beta.3(2023-10-19)
+
+### :bug: Bug Fixes
+
+1. [fix: fix resolveComponent error](https://github.com/formilyjs/antdv/commit/09fff1c) :point_right: ( [yiyunwan](https://github.com/yiyunwan) )
+
+### :blush: Other Changes
+
+1. [ci: remove Upload coverage to Codecov](https://github.com/formilyjs/antdv/commit/f2e8445) :point_right: ( [yiyunwan](https://github.com/yiyunwan) )
+
 ## v2.0.1-beta.2(2023-10-18)
 
 ### :blush: Other Changes
