@@ -20,7 +20,7 @@ import {
 
 const PORTAL_TARGET_NAME = 'FormDialogFooter'
 
-type FormDialogRenderer = VNode | ((form: Form) => VNode)
+type FormDialogRenderer = VNode | ((ctx: { form: Form }) => VNode)
 
 type ModalTitle = string | number | Component | VNode | (() => VNode)
 
