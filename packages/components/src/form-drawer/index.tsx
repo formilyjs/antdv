@@ -20,7 +20,7 @@ import {
 
 const PORTAL_TARGET_NAME = 'FormDrawerFooter'
 
-type FormDrawerRenderer = VNode | ((form: Form) => VNode)
+type FormDrawerRenderer = VNode | ((ctx: { form: Form }) => VNode)
 
 type DrawerTitle = string | number | Component | VNode | (() => VNode)
 
