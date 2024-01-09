@@ -2,12 +2,12 @@ import { observer } from '@formily/reactive-vue'
 import { useParentForm } from '@formily/vue'
 import type { ButtonProps } from 'ant-design-vue'
 import { Button } from 'ant-design-vue'
-import { defineComponent } from 'vue'
+import { defineComponent, type PropType } from 'vue'
 
 import type { IFormFeedback } from '@formily/core'
 
 export interface ISubmitProps extends ButtonProps {
-  onClick?: (e: MouseEvent) => any
+  onClick?: (event: MouseEvent) => void | boolean
   onSubmit?: (values: any) => any
   onSubmitSuccess?: (payload: any) => void
   onSubmitFailed?: (feedbacks: IFormFeedback[]) => void
@@ -16,11 +16,14 @@ export interface ISubmitProps extends ButtonProps {
 export const Submit = observer(
   defineComponent({
     name: 'FSubmit',
+    props: {
+      onClick: Function as PropType<ISubmitProps['onClick']>
+    },
     setup(props, { attrs, slots }) {
       const formRef = useParentForm()
 
       return () => {
-        const { onClick, onSubmit, onSubmitSuccess, onSubmitFailed } = attrs
+        const { onSubmit, onSubmitSuccess, onSubmitFailed } = attrs
         const form = formRef?.value
         return (
           <Button
@@ -28,7 +31,7 @@ export const Submit = observer(
             {...attrs}
             loading={attrs.loading !== undefined ? attrs.loading : form?.submitting}
             onClick={async (e) => {
-              const result = await (onClick as Function)?.(e)
+              const result = await props.onClick?.(e)
               if (result === false) return
               if (onSubmit) {
                 form
