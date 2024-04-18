@@ -1,7 +1,7 @@
 import { observer } from '@formily/reactive-vue'
 import { useParentForm } from '@formily/vue'
 import { Button } from 'ant-design-vue'
-import { defineComponent } from 'vue'
+import { defineComponent, type PropType } from 'vue'
 
 export const Reset = observer(
   defineComponent({
@@ -14,7 +14,8 @@ export const Reset = observer(
       validate: {
         type: Boolean,
         default: false
-      }
+      },
+      onClick: Function as PropType<(event: MouseEvent) => void | boolean>
     },
     emits: ['resetValidateSuccess', 'resetValidateFailed'],
     setup(props, { attrs, slots, emit }) {
@@ -25,7 +26,7 @@ export const Reset = observer(
           <Button
             {...attrs}
             onClick={async (e) => {
-              const result = await (attrs as any).onClick?.(e)
+              const result = await props.onClick?.(e)
               if (result === false) return
               form
                 ?.reset('*', {
