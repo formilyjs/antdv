@@ -93,7 +93,7 @@ export function FormDrawer(
     ...props,
     width: '40%',
     onClose: () => {
-      props.onClose?.()
+      return props.onClose?.()
     },
     onAfterOpenChange: (visible: boolean) => {
       props?.onAfterOpenChange?.(visible)
