@@ -97,7 +97,7 @@ export const FormLayout = defineComponent({
 
     const deepLayout = useFormDeepLayout()
     const newDeepLayout = ref({
-      ...deepLayout
+      ...deepLayout.value
     })
     const shallowProps = ref({})
 
